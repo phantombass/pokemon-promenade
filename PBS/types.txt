@@ -148,5 +148,5 @@ Name=Sound
 InternalName=SOUND
 IsSpecialType=true
 Weaknesses=POISON,ROCK,ICE,TIME
-Resistances=STEEL,FAIRY,ROCK,DRAGON,WATER
+Resistances=PSYCHIC,ELECTRIC,WATER,STEEL,FIGHTING
 Immunities=SOUND
