@@ -1063,6 +1063,38 @@ ItemHandlers::UseOnPokemon.add(:SERIOUSMINT,proc { |item,pkmn,scene|
   next true
 })
 
+ItemHandlers::UseOnPokemon.add(:IVMAXSTONE,proc { |item,pkmn,scene|
+  choices = []
+  for i in 0...5
+    stat = PBStats
+    choices.push(_INTL(stat.getName(i)))
+  end
+  choices.push(_INTL("Cancel"))
+  command = pbMessage("Which IV would you like to max out?",choices,choices.length)
+  statChoice = (command == 6) ? -1 : command
+  statDisp = stat.getName(statChoice)
+    pkmn.iv[statChoice] = 31
+    pkmn.calcStats
+    scene.pbDisplay(_INTL("{1}'s {2} IVs were maxed out!",pkmn.name,statDisp))
+  next true
+})
+
+ItemHandlers::UseOnPokemon.add(:IVMINSTONE,proc { |item,pkmn,scene|
+  choices = []
+  for i in 0...5
+    stat = PBStats
+    choices.push(_INTL(stat.getName(i)))
+  end
+  choices.push(_INTL("Cancel"))
+  command = pbMessage("Which IV would you like to zero out?",choices,choices.length)
+  statChoice = (command == 6) ? -1 : command
+  statDisp = stat.getName(statChoice)
+    pkmn.iv[statChoice] = 0
+    pkmn.calcStats
+    scene.pbDisplay(_INTL("{1}'s {2} IVs were zeroed out!",pkmn.name,statDisp))
+  next true
+})
+
 ItemHandlers::UseOnPokemon.add(:POMEGBERRY,proc { |item,pkmn,scene|
   next pbRaiseHappinessAndLowerEV(pkmn,scene,PBStats::HP,[
      _INTL("{1} adores you! Its base HP fell!",pkmn.name),
