@@ -493,104 +493,87 @@ ShowArea = true
 [083]
 # Icaro PMC
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,15,8
 HealingSpot = 77,22,9
-Outside = false
-Weather = Storm,0
 #-------------------------------
 [084]
 # Icaro Dept 1F
-Outside = false
 Weather = Storm,0
 MapPosition = 0,15,8
 #-------------------------------
 [085]
 # Icaro Dept. 2F
-Outside = false
 Weather = Storm,0
 MapPosition = 0,15,8
 #-------------------------------
 [086]
 # Icaro Dept. 3F
-Outside = false
 Weather = Storm,0
 MapPosition = 0,15,8
 #-------------------------------
 [087]
 # Icaro Dept. 4F
-Outside = false
 Weather = Storm,0
 MapPosition = 0,15,8
 #-------------------------------
 [088]
 # Icaro Dept. 5F
-Outside = false
 Weather = Storm,0
 MapPosition = 0,15,8
 #-------------------------------
 [089]
 # Icaro Dept. Rooftop
-Outside = false
 Weather = Storm,0
 MapPosition = 0,15,8
 #-------------------------------
 [090]
 # Icaro Dept. Elevator
-Outside = false
 Weather = Storm,0
 MapPosition = 0,15,8
 #-------------------------------
 [091]
 # Lyptus Lab
 BattleBack = field
-Outside = false
 Weather = Storm,0
 MapPosition = 0,15,10
 #-------------------------------
 [093]
 # Weather Station
-Outside = false
 Weather = Storm,0
 MapPosition = 0,12,17
 #-------------------------------
 [094]
 # House
-Outside = false
 MapPosition = 0,12,17
 #-------------------------------
 [095]
-# House
-Outside = false
+# House 1
 Weather = Storm,0
 MapPosition = 0,12,17
 #-------------------------------
 [096]
-# House
-Outside = false
+# House 2
 Weather = Storm,0
 MapPosition = 0,12,17
 #-------------------------------
 [097]
 # House
-Outside = false
 Weather = Storm,0
 MapPosition = 0,12,17
 #-------------------------------
 [098]
-# Day Care
-Outside = false
+# Pokémon Day Care
 Weather = Storm,0
 MapPosition = 0,12,17
 #-------------------------------
 [099]
-# House
-Outside = false
+# House 1
 Weather = Storm,0
 MapPosition = 0,12,17
 #-------------------------------
 [100]
-# House
-Outside = false
+# House 2
 Weather = Storm,0
 MapPosition = 0,12,17
 #-------------------------------
@@ -672,6 +655,8 @@ HealingSpot = 114,24,7
 #-------------------------------
 [115]
 # Sibel PMC
+SnapEdges = true
+MapPosition = 0,5,11
 HealingSpot = 114,24,7
 #-------------------------------
 [116]
