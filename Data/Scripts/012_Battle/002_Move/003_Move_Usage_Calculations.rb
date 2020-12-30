@@ -52,6 +52,13 @@ class PokeBattle_Move
       ret = PBTypeEffectiveness::NORMAL_EFFECTIVE_ONE if (isConst?(defType,PBTypes,:FLYING) || isConst?(defType,PBTypes,:DRAGON)) &&
                                                          PBTypes.superEffective?(moveType,defType)
     end
+    #Volcanic Ash's weather
+    if @battle.pbWeather==PBWeather::VolcanicAsh
+      ret = PBTypeEffectiveness::NORMAL_EFFECTIVE_ONE if isConst?(defType,PBTypes,:STEEL) && PBTypes.superEffective?(moveType,defType)
+      if isConst?(defType,PBTypes,:STEEL) && PBTypes.superEffective?(moveType,defType)
+        @battle.pbDisplay(_INTL("The move was weakened by the Volcanic Ash!"))
+      end
+    end
     # Grounded Flying-type Pokémon become susceptible to Ground moves
     if !target.airborne?
       ret = PBTypeEffectiveness::NORMAL_EFFECTIVE_ONE if isConst?(defType,PBTypes,:FLYING) &&
