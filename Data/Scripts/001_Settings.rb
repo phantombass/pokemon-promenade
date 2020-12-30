@@ -56,7 +56,7 @@ TIME_SHADING = true
 # * Whether TMs can be used infinitely as in Gen 5 (true), or are one-use-only
 #      as in older Gens (false).
 #===============================================================================
-POISON_IN_FIELD         = true
+POISON_IN_FIELD         = false
 POISON_FAINT_IN_FIELD   = false
 FISHING_AUTO_HOOK       = false
 DIVING_SURFACE_ANYWHERE = false
