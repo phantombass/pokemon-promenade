@@ -1,0 +1,609 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
+# Gym Leaders
+#-------------------------------
+[LEADER_Seth,Seth]
+LoseText = "Most excellent. You have proven your worth!"
+Pokemon = SANDILE,13
+     Moves = BULLDOZE,BITE,FIREFANG,PURSUIT
+     Nature = JOLLY
+     Item = CHOICESCARF
+     Ability = 1
+     IV = 31,31,31,31,31,31
+     EV = 4,252,0,252,0,0
+Pokemon = GRIMMERA,14
+     Moves = DARKPULSE,ECHOEDVOICE,SNARL,SUBSTITUTE
+     Nature = MODEST
+     Item = LEFTOVERS
+     Ability = 2
+     IV = 31,0,31,31,31,31
+     EV = 252,0,0,4,252,0
+Pokemon = VULLABY,13
+     Moves = NASTYPLOT,DARKPULSE,ROOST,AIRSLASH
+     Nature = BOLD
+     Item = EVIOLITE
+     Ability = 1
+     IV = 31,0,31,31,31,31
+     EV = 252,0,252,0,4,0
+Pokemon = LUCARIO,15
+     Moves = THOUSANDARROWS,DRAINPUNCH,SWORDSDANCE,ICEPUNCH
+     Nature = JOLLY
+     Item = LIFEORB
+     Form = 2
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 0,252,4,252,0,0
+#-------------------------------
+[LEADER_Boris,Boris]
+LoseText = "Through weathering storms, we find ourselves stronger than ever."
+Pokemon = SIGILYPH,20
+     Moves = CALMMIND,WINDDRILL,ROOST,AURORABEAM
+     Nature = TIMID
+     Item = HEAVYDUTYBOOTS
+     Ability = 0
+     IV = 31,0,31,31,31,31
+     EV = 0,252,4,252,0,0
+Pokemon = DUSTERN,21
+     Moves = BULLDOZE,ROOST,DRILLPECK,UTURN
+     Nature = ADAMANT
+     Item = YACHEBERRY
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 252,252,0,0,0,4
+Pokemon = LUXIO,20
+     Moves = BITE,SPARK,ICEFANG,PSYCHICFANGS
+     Nature = ADAMANT
+     Item = CHOICEBAND
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = AMPERBOA,22
+     Moves = MACHPUNCH,SPARK,NEEDLEARM,DRAINPUNCH
+     Nature = JOLLY
+     Item = MUSCLEBAND
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 0,252,4,252,0,0
+#-------------------------------
+[LEADER_Ozzy,Ozzy]
+LoseText = "The sands of time move on. As will you. Congratulations!"
+Pokemon = MORNTAB,24
+     Moves = ROCKTOMB,EARTHQUAKE,TOXIC,STEALTHROCK
+     Nature = CALM
+     Item = WEATHERROCK
+     Ability = 1
+     IV = 31,0,31,31,31,31
+     EV = 252,4,0,0,0,252
+Pokemon = CASTFORM,25
+     Moves = WEATHERBALL,WISH,AURORABEAM,PROTECT
+     Nature = MODEST
+     Item = EVIOLITE
+     IV = 31,0,31,31,31,31
+     EV = 252,0,4,0,252,0
+Pokemon = SANDYGAST,25
+     Moves = SCORCHINGSANDS,ANCIENTPOWER,GIGADRAIN,SHOREUP
+     Nature = CALM
+     Item = EVIOLITE
+     Ability = 0
+     Form = 1
+     IV = 31,31,31,31,31,31
+     EV = 252,0,0,0,4,252
+Pokemon = PHANFAIR,27
+     Moves = EARTHQUAKE,ICESHARD,RAPIDSPIN,PIXIEPUNCH
+     Nature = ADAMANT
+     Item = HEAVYDUTYBOOTS
+     Ability = 0
+     IV = 31,31,31,31,31,31
+     EV = 252,252,0,4,0,0
+#-------------------------------
+[LEADER_Ralph,Ralph]
+LoseText = "Bright as the sun! Well done!"
+Pokemon = NUMEL,30
+     Moves = STEALTHROCK,SCALD,LAVAPLUME,EARTHPOWER
+     Nature = BOLD
+     Item = WEATHERROCK
+     Form = 2
+     Ability = 2
+     IV = 31,0,31,31,31,31
+     EV = 252,0,252,4,0,0
+Pokemon = CASTFORM,30
+     Moves = WEATHERBALL,TRIATTACK,STARBEAM,SOLARBEAM
+     Nature = TIMID
+     Item = EVIOLITE
+     IV = 31,0,31,31,31,31
+     EV = 0,0,4,252,252,0
+Pokemon = CACTURNE,31
+     Moves = SEEDBOMB,PYROBALL,DRAINPUNCH,SWORDSDANCE
+     Nature = JOLLY
+     Item = LIFEORB
+     Ability = 2
+     Form = 1
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = CACTAMBORINE,32
+     Moves = GIGADRAIN,BOOMBURST,WEATHERBALL,QUIVERDANCE
+     Nature = MODEST
+     Item = LIFEORB
+     Ability = 1
+     IV = 31,0,31,31,31,31
+     EV = 4,0,0,252,252,0
+#-------------------------------
+#Icaro Gym
+#-------------------------------
+[YOUNGSTER,Ben]
+LoseText = "Aww, I lost."
+Pokemon = POOCHYENA,12
+Pokemon = RIOLU,12
+#-------------------------------
+[YOUNGSTER,Damian]
+LoseText = "Aww, I lost."
+Pokemon = SANDILE,13
+#-------------------------------
+[YOUNGSTER,Kyle]
+LoseText = "Aww, I lost."
+Pokemon = JERBUZZ,13
+#-------------------------------
+[YOUNGSTER,Steven]
+LoseText = "Aww, I lost."
+Pokemon = VULLABY,13
+#-------------------------------
+# Route 2
+#-------------------------------
+[YOUNGSTER,Eric]
+LoseText = "Aww, I lost."
+Pokemon = POOCHYENA,7
+#-------------------------------
+[YOUNGSTER,Braden]
+LoseText = "Aww, I lost."
+Pokemon = SPECIDAE,7
+#-------------------------------
+[LASS,Natalie]
+LoseText = "Aww, I lost."
+Pokemon = PLOVERT,7
+#-------------------------------
+[LASS,Dana]
+LoseText = "Aww, I lost."
+Pokemon = BUNEARY,7
+#-------------------------------
+# Route 3
+#-------------------------------
+[CAMPER,Ricky]
+LoseText = "Aww, I lost."
+Pokemon = JERBUZZ,8
+Pokemon = POOCHYENA,8
+#-------------------------------
+[BUGCATCHER,Bobby]
+LoseText = "Aww, I lost."
+Pokemon = SCAREUB,8
+Pokemon = STONAT,8
+#-------------------------------
+# Route 4
+#-------------------------------
+[CAMPER,Tommy]
+LoseText = "Aww, I lost."
+Pokemon = SPECIDAE,11
+Pokemon = PLOVERT,11
+Pokemon = JERBUZZ,12
+#-------------------------------
+[BUGCATCHER,Kale]
+LoseText = "Aww, I lost."
+Pokemon = SCAREUB,10
+Pokemon = SCARAPACE,11
+Pokemon = STONAT,10
+Pokemon = MAGATE,11
+#-------------------------------
+[FISHERMAN,Earl]
+LoseText = "Aww, I lost."
+Pokemon = FISHOOS,13
+#-------------------------------
+#Xandri Gym
+#-------------------------------
+[CAMPER,Timmy]
+LoseText = "Aww, I lost."
+Pokemon = DUSTERN,19
+Pokemon = LUXIO,19
+#-------------------------------
+[BIRDKEEPER,Avery]
+LoseText = "Aww, I lost."
+Pokemon = DUSTERN,20
+#-------------------------------
+[BIRDKEEPER,Chip]
+LoseText = "Aww, I lost."
+Pokemon = VULLABY,19
+Pokemon = VULLABY,19
+#-------------------------------
+[CAMPER,Doug]
+LoseText = "Aww, I lost."
+Pokemon = DUSTERN,17
+Pokemon = JERBUZZ,17
+Pokemon = JOLTEON,17
+Pokemon = DUSTERN,19
+#-------------------------------
+# Route 5
+#-------------------------------
+[PICNICKER,Kimmy]
+LoseText = "Aww, I lost."
+Pokemon = BUNEARY,18
+Pokemon = WHISMUR,18
+Pokemon = EXEGGCUTE,18
+#-------------------------------
+[CAMPER,Titus]
+LoseText = "Aww, I lost."
+Pokemon = DUSTERN,17
+Pokemon = RIOLU,18
+Pokemon = BLITZLE,19
+#-------------------------------
+[COOLTRAINER_F,Lillian]
+LoseText = "Aww, I lost."
+Pokemon = VAPOREON,19
+	IV = 31,0,31,31,31,31
+	EV = 252,0,252,0,4,0
+	Nature = BOLD
+	Item = LEFTOVERS
+	Moves = WISH,HEALBELL,SCALD,FLIPTURN
+Pokemon = JOLTEON,19
+	IV = 31,0,31,31,31,31
+	EV = 0,0,0,252,252,4
+	Nature = MODEST
+	Item = LIFEORB
+	Moves = VOLTSWITCH,QUICKATTACK,HIDDENPOWER,SHADOWBALL
+Pokemon = FLAREON,19
+	IV = 31,31,31,31,31,31
+	EV = 0,252,0,252,0,4
+	Nature = ADAMANT
+	Item = CHOICEBAND
+	Moves = FLAMEWHEEL,QUICKATTACK,DOUBLEKICK,BATONPASS
+#-------------------------------
+[BEAUTY,Jacqueline]
+LoseText = "Aww, I lost."
+Pokemon = LOPUNNY,20
+	Form = 2
+#-------------------------------
+[CHANNELER,Xan]
+LoseText = "Aww, I lost."
+Pokemon = GRIMMERA,19
+Pokemon = YAMASK,19
+Pokemon = SPECTRAMYS,20
+#-------------------------------
+# Route 6
+#-------------------------------
+[RUINMANIAC,Douglas]
+LoseText = "Aww, I lost."
+Pokemon = DRILBUR,21
+Pokemon = TABLU,21
+#-------------------------------
+[RUINMANIAC,Thad]
+LoseText = "Aww, I lost."
+Pokemon = SANDYGAST,20
+	Form = 1
+Pokemon = DUSTERN,20
+Pokemon = TABLU,20
+#-------------------------------
+[HIKER,Nob]
+LoseText = "Aww, I lost."
+Pokemon = SANDILE,20
+Pokemon = SANDYGAST,20
+	Form = 1
+Pokemon = SANDYGAST,22
+	Form = 1
+#-------------------------------
+[RUINMANIAC,Dusty]
+LoseText = "Aww, I lost."
+Pokemon = IMOTOMB,21
+Pokemon = TEMPORIFT,21
+#-------------------------------
+# Route 7
+#-------------------------------
+[RUINMANIAC,Sheldon]
+LoseText = "Aww, I lost."
+Pokemon = CACNEA,21
+	Form = 1
+Pokemon = MARACTUS,21
+#-------------------------------
+[HIKER,Hunter]
+LoseText = "Aww, I lost."
+Pokemon = NUMEL,20
+	Form = 2
+Pokemon = DUSTERN,20
+Pokemon = TABLU,20
+#-------------------------------
+[HIKER,Stan]
+LoseText = "Aww, I lost."
+Pokemon = PHANPY,19
+Pokemon = ROCKRUFF,20
+Pokemon = MORNTAB,22
+#-------------------------------
+[RUINMANIAC,Alan]
+LoseText = "Aww, I lost."
+Pokemon = SANDYGAST,23
+	Form = 1
+#-------------------------------
+# Raqqas Gym
+#-------------------------------
+[RUINMANIAC,Archie]
+LoseText = "Aww, I lost."
+Pokemon = TABLU,23
+Pokemon = DRILBUR,23
+#-------------------------------
+[HIKER,Roland]
+LoseText = "Aww, I lost."
+Pokemon = TABLU,22
+Pokemon = TABLU,22
+Pokemon = MORNTAB,24
+#-------------------------------
+[HIKER,Rocky]
+LoseText = "Aww, I lost."
+Pokemon = ROCKRUFF,24
+#-------------------------------
+[RUINMANIAC,Dwight]
+LoseText = "Aww, I lost."
+Pokemon = SAPHYRFLY,23
+Pokemon = DRILBUR,23
+#-------------------------------
+# Route 8
+#-------------------------------
+[HIKER,Ike]
+LoseText = "Aww, I lost."
+Pokemon = CACNEA,24
+	Form = 1
+Pokemon = MARACTUS,24
+Pokemon = ROCKRUFF,24
+#-------------------------------
+[HIKER,Mike]
+LoseText = "Aww, I lost."
+Pokemon = NUMEL,25
+	Form = 2
+Pokemon = DUSTERN,25
+#-------------------------------
+[HIKER,Lou]
+LoseText = "Aww, I lost."
+Pokemon = PHANPY,24
+Pokemon = ROCKRUFF,24
+Pokemon = MORNTAB,24
+#-------------------------------
+[HIKER,Ogg]
+LoseText = "Aww, I lost."
+Pokemon = LYCANROC,26
+	Form = 2
+#-------------------------------
+# Rulox Gym
+#-------------------------------
+[AROMALADY,Marisol]
+LoseText = "Aww, I lost."
+Pokemon = MARACTUS,29
+#-------------------------------
+[AROMALADY,Sunny]
+LoseText = "Aww, I lost."
+Pokemon = NUMEL,28
+     Form = 2
+Pokemon = CACNEA,28
+     Form = 1
+#-------------------------------
+[AROMALADY,Callie]
+LoseText = "Aww, I lost."
+Pokemon = CACNEA,27
+     Form = 1
+Pokemon = PONYTA,27
+Pokemon = LARVESTA,27
+#-------------------------------
+[AROMALADY,Fleur]
+LoseText = "Aww, I lost."
+Pokemon = PONYTA,29
+#-------------------------------
+[AROMALADY,Sarah]
+LoseText = "Aww, I lost."
+Pokemon = NUMEL,27
+     Form = 2
+Pokemon = PONYTA,27
+Pokemon = MARACTUS,27
+#-------------------------------
+# Pyget Range 1F
+#-------------------------------
+[HIKER,Cliff]
+LoseText = "Aww, I lost."
+Pokemon = LYCANROC,30
+	Form = 2
+Pokemon = MORNTAB,30
+#-------------------------------
+[HIKER,Craig]
+LoseText = "Aww, I lost."
+Pokemon = DUSTERN,32
+#-------------------------------
+[HIKER,Jackson]
+LoseText = "Aww, I lost."
+Pokemon = PHANFAIR,29
+Pokemon = LYCANROC,29
+     Form = 2
+Pokemon = MORNTAB,29
+#-------------------------------
+[HIKER,Dwayne]
+LoseText = "Aww, I lost."
+Pokemon = DRILBUR,29
+Pokemon = STELLAVAMP,29
+Pokemon = NUMEL,29
+#-------------------------------
+[HIKER,Johnson]
+LoseText = "Aww, I lost."
+Pokemon = TRAPINCH,30
+Pokemon = CHIMORA,30
+#-------------------------------
+# Pyget Range 2F
+#-------------------------------
+[HIKER,Steve]
+LoseText = "Aww, I lost."
+Pokemon = CHIMORA,31
+Pokemon = LOUDRED,31
+#-------------------------------
+[HIKER,Ron]
+LoseText = "Aww, I lost."
+Pokemon = TRAPINCH,33
+#-------------------------------
+[HIKER,Evan]
+LoseText = "Aww, I lost."
+Pokemon = CAMERUPT,33
+     Form = 2
+#-------------------------------
+[HIKER,Collin]
+LoseText = "Aww, I lost."
+Pokemon = LOUDRED,30
+Pokemon = CHINGLING,30
+Pokemon = CHIMORA,30
+#-------------------------------
+[HIKER,Jacub]
+LoseText = "Aww, I lost."
+Pokemon = LOUDRED,28
+Pokemon = LOUDRED,28
+Pokemon = LOUDRED,28
+Pokemon = LOUDRED,28
+Pokemon = LOUDRED,28
+#-------------------------------
+# Rival Battles
+#-------------------------------
+[RIVAL1,Blue]
+LoseText = "Not too shabby."
+Pokemon = HOPPALM,7
+#-------------------------------
+[RIVAL1,Blue,1]
+LoseText = "Not too shabby."
+Pokemon = CHARPHINCH,7
+#-------------------------------
+[RIVAL1,Blue,2]
+LoseText = "Not too shabby."
+Pokemon = BARBOL,7
+#-------------------------------
+[RIVAL1,Blue,3]
+LoseText = "Not too shabby."
+Pokemon = FISHOOS,22
+Pokemon = EEVEE,22
+Pokemon = HOPPALM,22
+#-------------------------------
+[RIVAL1,Blue,4]
+LoseText = "Not too shabby."
+Pokemon = FISHOOS,22
+Pokemon = EEVEE,22
+Pokemon = CHARPHINCH,22
+#-------------------------------
+[RIVAL1,Blue,5]
+LoseText = "Not too shabby."
+Pokemon = WEEPINBELL,22
+Pokemon = EEVEE,22
+Pokemon = BARBOL,22
+#-------------------------------
+[RIVAL1,Blue,6]
+LoseText = "Not too shabby."
+Pokemon = ARCHAEON,34
+     Moves = ANCIENTPOWER,RECOVER,AURASPHERE,WISH
+     Nature = CALM
+     Item = LEFTOVERS
+     Ability = 1
+     IV = 31,31,31,31,31,31
+     EV = 252,0,0,0,4,252
+Pokemon = FISHOOS,32
+     Moves = FLIPTURN,AQUAJET,ICESHARD,BULLETPUNCH
+     Nature = JOLLY
+     Item = CHOICESCARF
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = DEINO,32
+     Moves = DARKPULSE,QUIVERDANCE,TOXOPLASM,FLAMETHROWER
+     Nature = MODEST
+     Item = EVIOLITE
+     Form = 1
+     IV = 31,31,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = PONYTA,33
+     Moves = FLAMECHARGE,HIGHHORSEPOWER,SWORDSDANCE,DOUBLEKICK
+     Nature = JOLLY
+     Item = LIFEORB
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = PAPYRUN,35
+     Moves = STARSAP,PROTECT,SPORE,BULLETSEED
+     Nature = IMPISH
+     Item = LEFTOVERS
+     IV = 31,31,31,31,31,31
+     EV = 252,4,252,0,0,0
+#-------------------------------
+[RIVAL1,Blue,7]
+LoseText = "Not too shabby."
+Pokemon = PHONEON,34    
+     Moves = WICKEDWIND,BASSDROP,SLACKOFF,MACHPULSE
+     Nature = MODEST
+     Item = CHOICESPECS
+     Ability = 1
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = FISHOOS,32
+     Moves = FLIPTURN,AQUAJET,ICESHARD,BULLETPUNCH
+     Nature = JOLLY
+     Item = CHOICESCARF
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = DEINO,32
+     Moves = DARKPULSE,QUIVERDANCE,TOXOPLASM,FLAMETHROWER
+     Nature = MODEST
+     Item = EVIOLITE
+     Form = 1
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = CHINGLING,33
+     Moves = UPROAR,COSMICPOWER,RECOVER,AURORABEAM
+     Nature = MODEST
+     Item = EVIOLITE
+     Ability = 2
+     IV = 31,0,31,31,31,31
+     EV = 252,0,0,0,252,4
+Pokemon = PHIRUNDO,35
+     Moves = FLAMEWHEEL,TEMPOMARCH,RHYTHMICPUNCH,WILLOWISP
+     Nature = ADAMANT
+     Item = LEFTOVERS
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+#-------------------------------
+[RIVAL1,Blue,8]
+LoseText = "Not too shabby."
+Pokemon = ASTREON,34
+     Moves = STARSAP,STELLARWIND,MOONLIGHT,COMETSHARDS
+     Nature = BOLD
+     Item = LEFTOVERS
+     Ability = 1
+     IV = 31,0,31,31,31,31
+     EV = 252,0,252,4,0,0
+Pokemon = BELLOOM,32
+     Moves = RAZORLEAF,RHYTHMICPUNCH,RHYTHMICRUSH,POISONJAB
+     Nature = JOLLY
+     Item = LIFEORB
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = DEINO,32
+     Moves = DARKPULSE,QUIVERDANCE,TOXOPLASM,FLAMETHROWER
+     Nature = MODEST
+     Item = EVIOLITE
+     Form = 1
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = SAPHYRFLY,33
+     Moves = ICEBEAM,SIGNALBEAM,MINERALCANNON,STICKYWEB
+     Nature = TIMID
+     Item = FOCUSSASH
+     Ability = 2
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = BOWLTISIS,35
+     Moves = ECHOEDVOICE,BUBBLEBEAM,FAKETEARS,SING
+     Nature = TIMID
+     Item = LEFTOVERS
+     IV = 31,0,31,31,31,31
+     EV = 252,0,0,0,252,4
+#-------------------------------
+[CHAMPION,Blue]
+LoseText = "A good battle indeed!"
+Pokemon = VENUSAUR,63
+    Item = SITRUSBERRY
+Pokemon = CHARIZARD,63
+    Item = SITRUSBERRY
+Pokemon = BLASTOISE,63
+    Item = SITRUSBERRY
