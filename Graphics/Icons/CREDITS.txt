@@ -1,0 +1,24 @@
+ENGLISH:
+
+This resource was adapted by Pillowbro to make it compatible with RPG Maker XP, but you should give credits to the spriters who create these graphics. They are:
+
+- leParagon
+- Kalalokki
+- RadicalCharizard
+- NoelleMBrooks
+- Anarlaurendil (Only Melmetal)
+
+Link to the original resource: https://www.deviantart.com/leparagon/art/Gen-8-Icon-sprites-40x30-823261656
+
+===============================================================================================
+ESPAÑOL:
+
+Este recurso fue adaptado por Pillowbro para que sea compatible con RPG Maker XP, pero los créditos son para los spriters, quienes crearon los gráficos, estos son:
+
+- leParagon
+- Kalalokki
+- RadicalCharizard
+- NoelleMBrooks
+- Anarlaurendil (Solo Melmetal)
+
+Link al recurso original: https://www.deviantart.com/leparagon/art/Gen-8-Icon-sprites-40x30-823261656
