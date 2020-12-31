@@ -21,15 +21,14 @@ class PokeBattle_AI
         moveData = pbGetMoveData(target.lastMoveUsed)
         moveType = moveData[MOVE_TYPE]
         typeMod = pbCalcTypeMod(moveType,target,battler)
-        if PBTypes.superEffective?(typeMod) && moveData[MOVE_BASE_DAMAGE]>29
-          switchChance = (moveData[MOVE_BASE_DAMAGE]>39) ? 0 : 10
-          shouldSwitch = ((pbAIRandom(100)+1)>switchChance)
+        if PBTypes.superEffective?(typeMod)
+          shouldSwitch = true
         end
       end
     end
     # Pokémon can't do anything (must have been in battle for at least 5 rounds)
     if !@battle.pbCanChooseAnyMove?(idxBattler) &&
-       battler.turnCount && battler.turnCount>=5
+       battler.turnCount && battler.turnCount>=2
       shouldSwitch = true
     end
     # Pokémon is Perish Songed and has Baton Pass
@@ -62,7 +61,7 @@ class PokeBattle_AI
           scoreCount += 1
         end
         if scoreCount>0 && scoreSum/scoreCount<=20
-          shouldSwitch = true if pbAIRandom(100)<80
+          shouldSwitch = true if pbAIRandom(100)<95
         end
       end
     end
@@ -73,7 +72,7 @@ class PokeBattle_AI
       opp = battler.pbDirectOpposing
       if opp.effects[PBEffects::HyperBeam]>0 ||
          (opp.hasActiveAbility?(:TRUANT) && opp.effects[PBEffects::Truant])
-        shouldSwitch = false if pbAIRandom(100)<80
+        shouldSwitch = false if pbAIRandom(100)<95
       end
     end
     # Sudden Death rule - I'm not sure what this means
@@ -101,25 +100,25 @@ class PokeBattle_AI
           if spikes>0
             spikesDmg = [8,6,4][spikes-1]
             if pkmn.hp<=pkmn.totalhp/spikesDmg
-              next if !pkmn.hasType?(:FLYING) && !pkmn.hasActiveAbility?(:LEVITATE)
+              next if !pkmn.hasType?(:FLYING) && !pkmn.hasActiveAbility?(:LEVITATE) && !pkmn.hasActiveAbility?(:GALEFORCE)
             end
           end
         end
         # moveType is the type of the target's last used move
         if moveType>=0 && PBTypes.ineffective?(pbCalcTypeMod(moveType,battler,battler))
-          weight = 65
+          weight = 85
           typeMod = pbCalcTypeModPokemon(pkmn,battler.pbDirectOpposing(true))
           if PBTypes.superEffective?(typeMod.to_f/PBTypeEffectivenesss::NORMAL_EFFECTIVE)
             # Greater weight if new Pokemon's type is effective against target
-            weight = 85
+            weight = 95
           end
           list.unshift(i) if pbAIRandom(100)<weight   # Put this Pokemon first
         elsif moveType>=0 && PBTypes.resistant?(pbCalcTypeMod(moveType,battler,battler))
-          weight = 40
+          weight = 60
           typeMod = pbCalcTypeModPokemon(pkmn,battler.pbDirectOpposing(true))
           if PBTypes.superEffective?(typeMod.to_f/PBTypeEffectivenesss::NORMAL_EFFECTIVE)
             # Greater weight if new Pokemon's type is effective against target
-            weight = 60
+            weight = 80
           end
           list.unshift(i) if pbAIRandom(100)<weight   # Put this Pokemon first
         else
