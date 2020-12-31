@@ -470,21 +470,26 @@ def pbRockSmashRandomItem
     pbWait(8)
     Kernel.pbMessage(_INTL("Oh, there was an item!"))
     Kernel.pbItemBall(:HARDSTONE)
-  elsif randItem < 96
+  elsif randItem < 86
     pbExclaim(get_character(0))
     pbWait(8)
     Kernel.pbMessage(_INTL("Oh, there was an item!"))
     Kernel.pbItemBall(:NUGGET)
-  else
+  elsif randItem < 96
     pbExclaim(get_character(0))
     pbWait(8)
     Kernel.pbMessage(_INTL("Oh, there was an item!"))
-    randFossil = rand(1)
+    randFossil = rand(2)
       if randFossil = 1
         Kernel.pbItemBall(:TOMBSEAL)
       else
         Kernel.pbItemBall(:ANCIENTTOTEM)
       end
+    else
+      pbExclaim(get_character(0))
+      pbWait(8)
+      Kernel.pbMessage(_INTL("Oh, there was an item!"))
+      Kernel.pbItemBall(:BIGNUGGET)
   end
 end
 
