@@ -480,7 +480,7 @@ def pbRockSmashRandomItem
     pbWait(8)
     Kernel.pbMessage(_INTL("Oh, there was an item!"))
     randFossil = rand(2)
-      if randFossil = 1
+      if randFossil == 1
         Kernel.pbItemBall(:TOMBSEAL)
       else
         Kernel.pbItemBall(:ANCIENTTOTEM)
