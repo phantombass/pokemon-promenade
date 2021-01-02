@@ -637,6 +637,7 @@ HealingSpot = 111,15,32
 SnapEdges = true
 BattleBack = field
 MapPosition = 0,15,10
+Weather = None,0
 Outdoor = false
 #-------------------------------
 [113]
@@ -664,10 +665,14 @@ HealingSpot = 114,24,7
 SnapEdges = true
 BattleBack = field
 MapPosition = 0,15,10
+Outdoor = false
+Weather = None,0
 #-------------------------------
 [117]
 # Xandri Gate
 SnapEdges = true
+Outdoor = false
+Weather = None,0
 MapPosition = 0,11,10
 #-------------------------------
 [118]
