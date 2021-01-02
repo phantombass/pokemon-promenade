@@ -12,6 +12,7 @@ module LvlCap
   Switch = 111               #Switch that turns on Trainer Difficulty Control
   LevelCap = 106             #Variable for the Level Cap
   Gym = 70                   #Switch for Gym Battles
+  Rival = 69                 #Switch for Rival Battles
 end
 
 
@@ -30,17 +31,20 @@ Events.onTrainerPartyLoad+=proc {|sender,e|
         mlv=poke.level if poke.level>mlv
        end
       for i in 0...party.length
-      #sets difficulty based on variable
-      level = 0
-      level=1 if level<1
+        level = 0
+        level=1 if level<1
       if mlv<levelcap && mlv <= party[i].level
-      level = party[i].level
-      level = levelcap if level > levelcap
-    elsif mlv<levelcap && mlv > party[i].level
+        level = party[i].level
+        level = levelcap if level > levelcap
+      elsif mlv<levelcap && mlv > party[i].level
         level = (mlv - 2) + rand(5)
         level = levelcap if level > levelcap
       elsif mlv<levelcap && mlv < party[i].level && $game_switches[LvlCap::Gym] == true
         level = levelcap
+      elsif mlv<levelcap && mlv<=party[i].level && $game_switches[LvlCap::Rival] == true
+        level = party[i].level
+      elsif mlv<levelcap && mlv>party[i].level && $game_switches[LvlCap::Rival] == true
+        level = mlv
       else
         level = levelcap
       end

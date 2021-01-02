@@ -2831,6 +2831,10 @@ class PokeBattle_Move_17A < PokeBattle_Move
       stealthrock=ownside.effects[PBEffects::StealthRock]
       ownside.effects[PBEffects::StealthRock]=oppside.effects[PBEffects::StealthRock]
       oppside.effects[PBEffects::StealthRock]=stealthrock
+    # Comet Shards
+      cometshards=ownside.effects[PBEffects::CometShards]
+      ownside.effects[PBEffects::CometShards]=oppside.effects[PBEffects::CometShards]
+      oppside.effects[PBEffects::CometShards]=cometshards  
 	  # Sticky Web
       stickyweb=ownside.effects[PBEffects::StickyWeb]
       ownside.effects[PBEffects::StickyWeb]=oppside.effects[PBEffects::StickyWeb]

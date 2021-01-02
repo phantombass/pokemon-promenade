@@ -3072,8 +3072,10 @@ class PokeBattle_AI
     when "176"
       #---------------------------------------------------------------------------
     when "177"
+      score += 50 if user.defenseStage>0
       #---------------------------------------------------------------------------
     when "178"
+      score += 40 if user.speed>100
       #---------------------------------------------------------------------------
     when "179"
       #---------------------------------------------------------------------------
@@ -3082,6 +3084,7 @@ class PokeBattle_AI
     when "17B"
       #---------------------------------------------------------------------------
     when "17C"
+      score +=20
       #---------------------------------------------------------------------------
     when "17D"
       #---------------------------------------------------------------------------
@@ -3106,6 +3109,7 @@ class PokeBattle_AI
     when "187"
       #---------------------------------------------------------------------------
     when "188"
+      score +=20
       #---------------------------------------------------------------------------
     when "189"
       #---------------------------------------------------------------------------
@@ -3140,28 +3144,45 @@ class PokeBattle_AI
     when "198"
     #---------------------------------------------------------------------------
     when "500"   # No extra effect
+      score -=100 if @battle.pbWeather == PBWeather::Windy
+      score -=100 if user.pbOpposingSide.effects[PBEffects::StealthRock]
     #---------------------------------------------------------------------------
     when "501"   # No extra effect
+      score +=40 if target.hasType?(:GROUND)
     #---------------------------------------------------------------------------
     when "502"   # No extra effect
     #---------------------------------------------------------------------------
     when "503"   # No extra effect
+      score += 30 if @battle.field.weather == PBWeather::Starstorm
     #---------------------------------------------------------------------------
     when "504"   # No extra effect
+      score +=40 if target.hasType?(:FAIRY)
     #---------------------------------------------------------------------------
     when "505"   # No extra effect
     #---------------------------------------------------------------------------
     when "506"   # No extra effect
+      score += 30 if user.hp <= user.totalhp/2
+      score += 60 if user.effects[PBEffects::Charge] > 0 && user.hp <= user.totalhp/2
     #---------------------------------------------------------------------------
     when "507"   # No extra effect
+      score -= 100 if target.effects[PBEffects::LeechSeed] >= 0
     #---------------------------------------------------------------------------
     when "508"   # No extra effect
+      case @battle.pbWeather
+      when PBWeather::Overcast, PBWeather::Eclipse, PBWeather::Fog, PBWeather::Starstorm, PBWeather::DClear, PBWeather::Borealis
+        score += 40 if user.hp <= user.totalhp/2
+      when PBWeather::None, PBWeather::StrongWinds, PBWeather::Windy
+        score -= 50
+      else
+        score +=20 if user.hp <= user.totalhp/2
+      end
     #---------------------------------------------------------------------------
     when "509"   # No extra effect
     #---------------------------------------------------------------------------
     when "510"   # No extra effect
     #---------------------------------------------------------------------------
     when "511"   # No extra effect
+      score += 30 if user.level-3>target.level
     #---------------------------------------------------------------------------
     end
     return score

@@ -61,11 +61,11 @@ class PokeBattle_AI
     # Decide whether all choices are bad, and if so, try switching instead
     if !wildBattler && skill>=PBTrainerAI.highSkill
       badMoves = false
-      if (maxScore<=30 && user.turnCount>2) ||
-         (maxScore<=50 && user.turnCount>5)
-        badMoves = true if pbAIRandom(100)<90
+      if (maxScore<=50 && user.turnCount>2) ||
+         (maxScore<=70 && user.turnCount>5)
+        badMoves = true if pbAIRandom(100)<95
       end
-      if !badMoves && totalScore<110 && user.turnCount>1
+      if !badMoves && totalScore<110 && user.turnCount>0
         badMoves = true
         choices.each do |c|
           next if !user.moves[c[0]].damagingMove?
@@ -89,9 +89,7 @@ class PokeBattle_AI
         choices.push([i,100,-1])   # Move index, score, target
       end
       if choices.length==0   # No moves are physically possible to use
-        user.eachMoveWithIndex do |_m,i|
-          choices.push([i,100,-1])   # Move index, score, target
-        end
+        pbEnemyShouldWithdrawEx?(idxBattler,true)
       end
     end
     # Randomly choose a move from the choices and register it
@@ -194,9 +192,9 @@ class PokeBattle_AI
       end
       # Pick a good move for the Choice items
       if user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
-        if move.baseDamage>=60;     score += 60
+        if move.baseDamage>=60;     score += 70
         elsif move.damagingMove?;   score += 30
-        elsif move.function=="0F2"; score += 70   # Trick
+        elsif move.function=="0F2"; score += 80   # Trick
         else;                       score -= 60
         end
       end
@@ -204,7 +202,7 @@ class PokeBattle_AI
       if user.status==PBStatuses::SLEEP && !move.usableWhenAsleep?
         user.eachMove do |m|
           next unless m.usableWhenAsleep?
-          score -= 60
+          score -= 80
           break
         end
       end
@@ -215,7 +213,7 @@ class PokeBattle_AI
         else
           user.eachMove do |m|
             next unless m.thawsUser?
-            score -= 60
+            score -= 90
             break
           end
         end
@@ -224,7 +222,7 @@ class PokeBattle_AI
       if target.status==PBStatuses::FROZEN
         user.eachMove do |m|
           next if m.thawsUser?
-          score -= 60
+          score -= 90
           break
         end
       end
@@ -238,7 +236,7 @@ class PokeBattle_AI
       # Account for accuracy of move
       accuracy = pbRoughAccuracy(move,user,target,skill)
       score *= accuracy/100.0
-      score = 0 if score<=10 && skill>=PBTrainerAI.highSkill
+      score = 0 if score<=20 && skill>=PBTrainerAI.highSkill
     end
     score = score.to_i
     score = 0 if score<0
@@ -283,7 +281,7 @@ class PokeBattle_AI
     # Don't prefer weak attacks
 #    damagePercentage /= 2 if damagePercentage<20
     # Prefer damaging attack if level difference is significantly high
-    damagePercentage *= 1.5 if user.level-10>target.level
+    damagePercentage *= 1.5 if user.level-3>target.level
     # Adjust score
     damagePercentage = 140 if damagePercentage>140   # Treat all lethal moves the same
     damagePercentage += 80 if damagePercentage>100   # Prefer moves likely to be lethal

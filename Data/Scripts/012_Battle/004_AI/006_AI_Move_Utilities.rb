@@ -45,7 +45,7 @@ class PokeBattle_AI
     end
     # Delta Stream's weather
     if @battle.pbWeather==PBWeather::StrongWinds
-      ret = PBTypeEffectiveness::NORMAL_EFFECTIVE_ONE if isConst?(defType,PBTypes,:FLYING) &&
+      ret = PBTypeEffectiveness::NORMAL_EFFECTIVE_ONE if (isConst?(defType,PBTypes,:FLYING) || isConst?(defType,PBTypes,:DRAGON)) &&
                                                          PBTypes.superEffective?(moveType,defType)
     end
     # Grounded Flying-type Pokémon become susceptible to Ground moves

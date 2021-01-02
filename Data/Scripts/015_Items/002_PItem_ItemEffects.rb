@@ -1073,6 +1073,10 @@ ItemHandlers::UseOnPokemon.add(:IVMAXSTONE,proc { |item,pkmn,scene|
   command = pbMessage("Which IV would you like to max out?",choices,choices.length)
   statChoice = (command == 6) ? -1 : command
   next false if statChoice == -1
+  if pkmn.iv[statChoice] == 31
+    scene.pbDisplay(_INTL("This stat is already maxed out!"))
+    return false
+  end
   statDisp = stat.getName(statChoice)
     pkmn.iv[statChoice] = 31
     pkmn.calcStats
@@ -1090,6 +1094,10 @@ ItemHandlers::UseOnPokemon.add(:IVMINSTONE,proc { |item,pkmn,scene|
   command = pbMessage("Which IV would you like to zero out?",choices,choices.length)
   statChoice = (command == 6) ? -1 : command
   next false if statChoice == -1
+  if pkmn.iv[statChoice] == 0
+    scene.pbDisplay(_INTL("This stat is already zeroed out!"))
+    return false
+  end
   statDisp = stat.getName(statChoice)
     pkmn.iv[statChoice] = 0
     pkmn.calcStats
