@@ -161,14 +161,14 @@ class PokeBattle_Battle
         exp = a/(2*numPartic) if isPartic
         exp += a/(2*expShare.length) if hasExpShare
       else   # Gain from participating and/or Exp Share (Exp not split)
-        if pkmn.level == $game_variables[106]
+        if pkmn.level >= $game_variables[106]
           exp = a/100
         else
           exp = (isPartic) ? a : a/2
         end
       end
     elsif isPartic   # Participated in battle, no Exp Shares held by anyone
-      if pkmn.level == $game_variables[106]
+      if pkmn.level >= $game_variables[106]
         exp = a/100
       else
         exp = a/(SPLIT_EXP_BETWEEN_GAINERS ? numPartic : 1)
@@ -176,7 +176,7 @@ class PokeBattle_Battle
     elsif expAll   # Didn't participate in battle, gaining Exp due to Exp All
       # NOTE: Exp All works like the Exp Share from Gen 6+, not like the Exp All
       #       from Gen 1, i.e. Exp isn't split between all Pokémon gaining it.
-      if pkmn.level == $game_variables[106]
+      if pkmn.level >= $game_variables[106]
         exp = a/100
       else
         exp = a/2
