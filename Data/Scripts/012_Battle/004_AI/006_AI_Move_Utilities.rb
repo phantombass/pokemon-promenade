@@ -447,17 +447,99 @@ class PokeBattle_AI
       when PBWeather::Sun, PBWeather::HarshSun
         if isConst?(type,PBTypes,:FIRE)
           multipliers[FINAL_DMG_MULT] *= 1.5
-        elsif isConst?(type,PBTypes,:WATER)
+        elsif isConst?(type,PBTypes,:WATER) && !target.hasActiveAbility?(:STEAMPOWERED)
           multipliers[FINAL_DMG_MULT] /= 2
         end
       when PBWeather::Rain, PBWeather::HeavyRain
-        if isConst?(type,PBTypes,:FIRE)
+        if isConst?(type,PBTypes,:FIRE) && !target.hasActiveAbility(:STEAMPOWERED)
           multipliers[FINAL_DMG_MULT] /= 2
         elsif isConst?(type,PBTypes,:WATER)
           multipliers[FINAL_DMG_MULT] *= 1.5
         end
+      when PBWeather::Starstorm
+       if isConst?(type,PBTypes,:COSMIC)
+         multipliers[FINAL_DMG_MULT] *= 1.5
+       elsif isConst?(type,PBTypes,:STEEL)
+         multipliers[FINAL_DMG_MULT] /= 2
+       elsif target.pbHasType?(:COSMIC) && physicalMove? && @function="122"
+  	     multipliers[DEF_MULT] *= 1.5
+       end
+      when PBWeather::Windy
+        if isConst?(type,PBTypes,:FLYING)
+          multipliers[ATK_MULT] *= 1.5
+  	    elsif isConst?(type,PBTypes,:ROCK)
+          multipliers[ATK_MULT] /= 2
+        end
+      when PBWeather::Fog
+        if isConst?(type,PBTypes,:FAIRY)
+          multipliers[FINAL_DMG_MULT] *= 1.5
+        elsif isConst?(type,PBTypes,:DRAGON)
+  	      multipliers[FINAL_DMG_MULT] /= 2
+        end
+      when PBWeather::Eclipse
+        if isConst?(type,PBTypes,:DARK)
+          multipliers[FINAL_DMG_MULT] *= 1.5
+        elsif isConst?(type,PBTypes,:GHOST)
+          multipliers[FINAL_DMG_MULT] *= 1.5
+        elsif isConst?(type,PBTypes,:FAIRY)
+          multipliers[FINAL_DMG_MULT] /= 2
+        elsif isConst?(type,PBTypes,:PSYCHIC)
+          multipliers[FINAL_DMG_MULT] /= 2
+        end
+      when PBWeather::Borealis
+        if isConst?(type,PBTypes,:PSYCHIC)
+          multipliers[FINAL_DMG_MULT] *= 1.5
+        elsif isConst?(type,PBTypes,:DARK)
+          multipliers[FINAL_DMG_MULT] /= 2
+        end
+      when PBWeather::Rainbow
+        if isConst?(type,PBTypes,:GRASS)
+          multipliers[FINAL_DMG_MULT] *= 1.5
+        elsif isConst?(type,PBTypes,:ICE)
+          multipliers[FINAL_DMG_MULT] /= 2
+        end
+      when PBWeather::Overcast
+        if isConst?(type,PBTypes,:GHOST)
+          multipliers[FINAL_DMG_MULT] *= 1.5
+        end
+      when PBWeather::VolcanicAsh
+        if isConst?(type,PBTypes,:STEEL)
+          multipliers[FINAL_DMG_MULT] *= 1.5
+        end
+      when PBWeather::Humid
+        if isConst?(type,PBTypes,:BUG)
+          multipliers[FINAL_DMG_MULT] *= 1.5
+        elsif isConst?(type,PBTypes,:FIRE)
+          multipliers[FINAL_DMG_MULT] /= 2
+        end
+      when PBWeather::TimeWarp
+        if isConst?(type,PBTypes,:TIME)
+          multipliers[FINAL_DMG_MULT] *= 1.5
+        elsif isConst?(type,PBTypes,:POISON)
+          multipliers[FINAL_DMG_MULT] /= 2
+        elsif isConst?(type,PBTypes,:DARK)
+          multipliers[FINAL_DMG_MULT] /= 2
+        end
+      when PBWeather::Reverb
+        if isConst?(type,PBTypes,:SOUND)
+          multipliers[FINAL_DMG_MULT] *= 1.5
+        elsif target.pbHasType?(:SOUND) && physicalMove? && @function="122"
+          multipliers[DEF_MULT] *= 1.5
+        end
+      when PBWeather::Sleet
+        if isConst?(type,PBTypes,:FIRE)
+          multipliers[FINAL_DMG_MULT] /= 2
+        end
+      when PBWeather::DClear
+        if isConst?(type,PBTypes,:COSMIC)
+          multipliers[FINAL_DMG_MULT] *= 1.5
+        end
+      when PBWeather::AcidRain
+        if isConst?(type,PBTypes,:POISON)
+          multipliers[FINAL_DMG_MULT] *= 1.5
+        end
       when PBWeather::Sandstorm
-        if target.pbHasType?(:ROCK) && move.specialMove?(type) && move.function!="122"   # Psyshock
+        if target.pbHasType?(:ROCK) && specialMove? && @function!="122"   # Psyshock
           multipliers[DEF_MULT] *= 1.5
         end
       end
@@ -643,6 +725,9 @@ class PokeBattle_AI
     if skill>=PBTrainerAI.mediumSkill
       if @battle.field.effects[PBEffects::Gravity]>0
         modifiers[ACC_MULT] *= 5/3.0
+      end
+      if @battle.field.weather == PBWeather::Fog
+        modifiers[ACC_MULT] *= 0.75
       end
       if user.effects[PBEffects::MicleBerry]
         modifiers[ACC_MULT] *= 1.2
