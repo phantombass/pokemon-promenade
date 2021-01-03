@@ -15,7 +15,7 @@ class PokeBattle_AI
     battler = @battle.battlers[idxBattler]
     # If Pokémon is within 6 levels of the foe, and foe's last move was
     # super-effective and powerful
-    if !shouldSwitch && battler.turnCount>0 && skill>=PBTrainerAI.highSkill
+    if !shouldSwitch && skill>=PBTrainerAI.highSkill
       target = battler.pbDirectOpposing(true)
       if !target.fainted? && target.lastMoveUsed>0
         moveData = pbGetMoveData(target.lastMoveUsed)

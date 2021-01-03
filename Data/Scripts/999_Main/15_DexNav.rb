@@ -193,9 +193,8 @@ class DexNav
     # Iterates through every possible encounter type
     # Only takes species that player could currently see
     # (ie: will only add water encounters if the player is surfing)
-    for i in 0..15
-      if [EncounterTypes::Land,EncounterTypes::LandMorning,EncounterTypes::LandDay,EncounterTypes::HighBridge,EncounterTypes::Sand,EncounterTypes::Graveyard,EncounterTypes::Snow,
-        EncounterTypes::LandNight].include?(i) && ($PokemonGlobal.surfing || $PokemonGlobal.fishing)
+    for i in 0..17
+      if [EncounterTypes::Land,EncounterTypes::HighBridge,EncounterTypes::Sand,EncounterTypes::Graveyard,EncounterTypes::Snow].include?(i) && ($PokemonGlobal.surfing || $PokemonGlobal.fishing)
         next
       end
       if [EncounterTypes::Water].include?(i) && !$PokemonGlobal.surfing
