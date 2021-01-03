@@ -108,7 +108,7 @@ MenuHandlers.addEntry(:POKEGEAR,_INTL("Pokégear"),"menuPokegear",proc{|menu|
 },proc{ return $Trainer.pokegear })
 # Weather Readout
 MenuHandlers.addEntry(:WEATHERREADOUT,_INTL("Weather Readout"),"weather",proc{|menu|
-  if $game_switches[400] = true
+  if $game_switches[400] == true
   scene = PokemonWeather_Scene.new
   screen = PokemonWeatherScreen.new(scene)
   pbFadeOutIn(99999) {
@@ -119,12 +119,14 @@ end
 
 #DexNav
 MenuHandlers.addEntry(:DEXNAV,_INTL("DexNav"),"menuPokedex",proc{|menu|
+  if $game_switches[401] == true
   scene = Scene_DexNav.new
   screen = DexNavScreen.new(scene)
   pbFadeOutIn(99999) {
     screen.pbStartScreen
   }
-},proc{ return true })
+end
+},proc{ return $game_switches[401] })
 
 # Trainer Card
 MenuHandlers.addEntry(:TRAINER,_INTL("\\pn"),"menuTrainer",proc{|menu|
