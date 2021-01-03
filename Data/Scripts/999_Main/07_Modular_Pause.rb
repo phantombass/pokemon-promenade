@@ -117,6 +117,15 @@ MenuHandlers.addEntry(:WEATHERREADOUT,_INTL("Weather Readout"),"weather",proc{|m
 end
 },proc{ return $game_switches[400] })
 
+#DexNav
+MenuHandlers.addEntry(:DEXNAV,_INTL("DexNav"),"menuPokedex",proc{|menu|
+  scene = Scene_DexNav.new
+  screen = DexNavScreen.new(scene)
+  pbFadeOutIn(99999) {
+    screen.pbStartScreen
+  }
+},proc{ return true })
+
 # Trainer Card
 MenuHandlers.addEntry(:TRAINER,_INTL("\\pn"),"menuTrainer",proc{|menu|
   scene = PokemonTrainerCard_Scene.new
