@@ -122,7 +122,7 @@ OldRod
 GoodRod
     FISHOOS,15
     POLIWAG,15
-    LUVDISC,20
+    HORSEA,20
 SuperRod
     FISHOOS,15
     FISHOOS,25

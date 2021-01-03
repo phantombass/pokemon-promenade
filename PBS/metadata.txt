@@ -636,8 +636,8 @@ HealingSpot = 111,15,32
 # Xandri
 SnapEdges = true
 BattleBack = field
-MapPosition = 0,15,10
 Weather = None,0
+MapPosition = 0,15,10
 Outdoor = false
 #-------------------------------
 [113]
@@ -664,16 +664,16 @@ HealingSpot = 114,24,7
 # Xandri
 SnapEdges = true
 BattleBack = field
+Weather = None,0
 MapPosition = 0,15,10
 Outdoor = false
-Weather = None,0
 #-------------------------------
 [117]
 # Xandri Gate
 SnapEdges = true
-Outdoor = false
 Weather = None,0
 MapPosition = 0,11,10
+Outdoor = false
 #-------------------------------
 [118]
 # Xandri PMC
@@ -1017,6 +1017,14 @@ HealingSpot = 165,9,32
 SnapEdges = true
 Weather = TimeWarp,100
 MapPosition = 0,23,17
+ShowArea = true
+#-------------------------------
+[169]
+# Temple of Fenixet
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,25,12
+Outdoor = false
 ShowArea = true
 #-------------------------------
 [170]
