@@ -105,6 +105,58 @@ end
 #-------------------------------------------------------------------------------
 def renderBadgeAnimation(badge_number=0)
   $Trainer.badges[badge_number] = true
+  badges = $Trainer.numbadges
+  if $game_switches[112] == true
+    if badges == 0
+      $game_variables[106] = 15
+    elsif badges == 1
+      $game_variables[106] = 22
+    elsif badges == 2
+      $game_variables[106] = 27
+    elsif badges == 3
+      $game_variables[106] = 32
+    elsif badges == 4
+      if $game_variables[110] == 5
+        $game_variables[106] = 56
+      elsif $game_variables[110] == 4
+        $game_variables[106] = 53
+      elsif $game_variables[110] == 3
+        $game_variables[106] = 50
+      elsif $game_variables[110] == 2
+        $game_variables[106] = 46
+      elsif $game_variables[110] == 1
+        $game_variables[106] = 43
+      else
+      $game_variables[106] = 40
+      end
+    elsif badges == 5
+      if $game_variables[110] == 7
+        $game_variables[106] = 65
+      elsif $game_variables[110] == 6
+        $game_variables[106] = 63
+      else
+      $game_variables[106] = 60
+      end
+    elsif badges == 6
+      $game_variables[106] = 68
+    elsif badges == 7
+      if $game_variables[110] == 11
+        $game_variables[106] = 85
+      elsif $game_variables[110] == 10
+        $game_variables[106] = 80
+      elsif $game_variables[110] == 9
+        $game_variables[106] = 78
+      elsif $game_variables[110] == 8
+        $game_variables[106] = 74
+      else
+      $game_variables[106] = 71
+      end
+    elsif badges == 8
+    $game_variables[106] = 95
+    else
+    $game_variables[106] = 150
+    end
+  end
   pbMEPlay("getBadge")
   height = defined?(SCREENDUALHEIGHT) ? DEFAULTSCREENHEIGHT : Graphics.height
   viewport = Viewport.new(0,0,Graphics.width,height)
