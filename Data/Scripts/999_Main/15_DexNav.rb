@@ -1,17 +1,9 @@
-#######################
-#
-# DEXNAV
-#
-# thesuzerain
-#
-# Implements the "dexnav" from the latest Pokemon games as seen in Insurgence.
-# Sort of a "gadget belt" or "cell phone" kind of menu.
-# Contains options such as pokemon hunting, online play, etc
-#
-# To open it, use the script:
-#   $scene = Scene_DexNav.new
-# when in the overworld.
-#######################
+PluginManager.register({
+  :name => "DexNav",
+  :version => "1.0",
+  :credits => ["Suzerain","Phantombass"]
+  :link => "No link yet"
+})
 
 
 class Scene_DexNav
