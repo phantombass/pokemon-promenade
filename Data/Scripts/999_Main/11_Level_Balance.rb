@@ -26,24 +26,24 @@ Events.onTrainerPartyLoad+=proc {|sender,e|
       $Trainer.party.length > 0
        levelcap = $game_variables[LvlCap::LevelCap]
        badges = $Trainer.numbadges
-       mlv=0
-       for poke in $Trainer.pokemonParty
-        mlv=poke.level if poke.level>mlv
-       end
+       mlv = $Trainer.party.map { |e| e.level  }.max
       for i in 0...party.length
+        level = 0
         level=1 if level<1
-      if mlv<levelcap && mlv <= party[i].level
+      if mlv<levelcap && mlv < party[i].level && $game_switches[LvlCap::Gym] == true
+        level = levelcap
+      elsif mlv<levelcap && mlv>party[i].level && $game_switches[LvlCap::Rival] == true
+        level = mlv
+      elsif mlv<levelcap && mlv<=party[i].level && $game_switches[LvlCap::Rival] == true
+        level = party[i].level
+      elsif mlv<levelcap && mlv <= party[i].level
         level = party[i].level
         level = levelcap if level > levelcap
       elsif mlv<levelcap && mlv > party[i].level
         level = (mlv - 2) + rand(5)
         level = levelcap if level > levelcap
-      elsif mlv<levelcap && mlv < party[i].level && $game_switches[LvlCap::Gym] == true
-        level = levelcap
-      elsif mlv<levelcap && mlv<=party[i].level && $game_switches[LvlCap::Rival] == true
+      elsif mlv <= 1 && $game_switches[LvlCap::Rival] == true
         level = party[i].level
-      elsif mlv<levelcap && mlv>party[i].level && $game_switches[LvlCap::Rival] == true
-        level = mlv
       else
         level = levelcap
       end
