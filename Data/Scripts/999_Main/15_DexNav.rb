@@ -1,7 +1,7 @@
 PluginManager.register({
   :name => "DexNav",
   :version => "1.0",
-  :credits => ["Suzerain","Phantombass"]
+  :credits => ["Suzerain","Phantombass"],
   :link => "No link yet"
 })
 
