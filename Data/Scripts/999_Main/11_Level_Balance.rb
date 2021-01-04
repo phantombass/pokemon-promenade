@@ -31,7 +31,6 @@ Events.onTrainerPartyLoad+=proc {|sender,e|
         mlv=poke.level if poke.level>mlv
        end
       for i in 0...party.length
-        level = 0
         level=1 if level<1
       if mlv<levelcap && mlv <= party[i].level
         level = party[i].level
