@@ -12,7 +12,6 @@ class PokeBattle_Animation
   def dispose
     @tempSprites.each { |s| s.dispose if s }
   end
-
   def createProcesses; end
   def empty?; return @pictureEx.length==0; end
   def animDone?; return @animDone; end

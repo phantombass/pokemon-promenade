@@ -120,11 +120,9 @@ end
 #DexNav
 MenuHandlers.addEntry(:DEXNAV,_INTL("DexNav"),"menuPokedex",proc{|menu|
   if $game_switches[401] == true
-  scene = Scene_DexNav.new
-  screen = DexNavScreen.new(scene)
-  pbFadeOutIn(99999) {
-    screen.pbStartScreen
-  }
+    @scene = NewDexNav.new
+    pbFadeOutIn(99999) {
+    }
 end
 },proc{ return $game_switches[401] })
 

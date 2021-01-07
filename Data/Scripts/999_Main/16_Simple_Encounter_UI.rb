@@ -71,7 +71,6 @@ class EncounterListUI
     getEncData
     # Following variable is unused, but can be a good sub in if you need it
     textColor = ["0070F8,78B8E8","E82010,F8A8B8","0070F8,78B8E8"][$Trainer.gender]
-
     loctext = _INTL("<ac><c2=06644bd2>{1}</c2></ac>", $game_map.name)
     temparray = @encarray.dup
     if temparray.pop==7  # i picked 7 cause funny

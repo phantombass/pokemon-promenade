@@ -165,7 +165,7 @@ class DexNav
 
   #This method just returns the temporary data for the next pokemon to be encountered.
   def self.getThisPokemonData
-    $dexNavData=[0,0,0,0] if !$dexNavData
+    $dexNavData=[0,0,0] if !$dexNavData
     return $dexNavData
   end
 
