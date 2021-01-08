@@ -13,6 +13,7 @@ class NewDexNav
     @viewport2.z = 999999
     @viewport3 = Viewport.new(0, 120, Graphics.width, Graphics.height)
     @viewport3.z = 999999
+    $viewport1 = nil
     searchmon = 0
     @sprites = {}
     @encarray = []
@@ -67,16 +68,16 @@ class NewDexNav
     main
   end
 
+  def pbUpdate
+    pbUpdateSpriteHash(@sprites)
+  end
+
   def dispose
     pbFadeOutAndHide(@sprites) {pbUpdate}
     pbDisposeSpriteHash(@sprites)
     @viewport1.dispose
     @viewport2.dispose
     @viewport3.dispose
-  end
-
-  def pbUpdate
-    pbUpdateSpriteHash(@sprites)
   end
 
   def pbListOfEncounters(encounter)   # this method is from Nuri Yuri
@@ -165,22 +166,57 @@ class NewDexNav
                 # giving it some rare "egg moves"to incentivize using  this function
                $currentDexSearch=[species,DexNav.addRandomEggMove(species)]
                Kernel.pbMessage("Try looking in wild Pokemon spots near you- it might appear!")
-               pbDisposeSpriteHash(@sprites)
+               pbFadeOutAndHide(@sprites)
                break
             else
                Kernel.pbMessage("Nothing was found. Try looking somewhere else!")
             end
           end
-      elsif Input.trigger?(Input::X)
+      elsif Input.trigger?(Input::B)
+        navMon = -1
         dispose
         break
       else
         next
       end
     end
-    @viewport2.dispose
+    if navMon != -1
+      @viewport2.dispose
+      main2
+    end
+  end
+
+  def main2
+    searchmon = getID(PBSpecies,pbGetSpeciesConst($currentDexSearch[0]))
+    navRand = rand(3)
+    $game_variables[400] = navRand
+    hAbil = pbGetSpeciesData(searchmon,@form,SpeciesHiddenAbility)
+    navAbil1 = pbGetSpeciesData(searchmon,@form,SpeciesAbilities)
+    navAbil = [navAbil1[0],navAbil1[1],hAbil[0]]
+    ab = PBAbilities.getName(navAbil[navRand])
+    Graphics.update
+    searchtext = [PBSpecies.getName(searchmon),ab,PBMoves.getName($currentDexSearch[1])]
+    @sprites["search"] = Window_UnformattedTextPokemon.newWithSize("",345,260,170,126,@viewport1)
+    if navAbil == 2
+      @sprites["search"].text = _INTL("{1}\n{2}\n{3}",searchtext[0],searchtext[1],searchtext[2])
+    else
+      @sprites["search"].text = _INTL("{1}\n{2}\n{3}",searchtext[0],searchtext[1],searchtext[2])
+    end
+    @sprites["searchIcon"] = PokemonSpeciesIconSprite.new(getID(PBSpecies,searchmon),@viewport1)
+    @sprites["searchIcon"].x = 450
+    @sprites["searchIcon"].y = 200
+    $viewport1 = @viewport1
+    pbFadeInAndShow(@sprites) {pbUpdate}
+    $game_switches[350] = true
   end
 end
+
+Events.onStartBattle+=proc {|_sender,e|
+  if $game_switches[350] == true
+    $viewport1.dispose
+    $game_switches[350] = false
+  end
+}
 
 Events.onWildPokemonCreate+=proc {|sender,e|
     pokemon=e[0]
@@ -192,6 +228,7 @@ Events.onWildPokemonCreate+=proc {|sender,e|
         pokemon.setAbility($game_variables[400])
         pokemon.resetMoves
         pokemon.moves[2]=PBMove.new($currentDexSearch[1]) if $currentDexSearch[1]
+        $game_switches[350] = true
         if $currentDexSearch[1] != $currentDexSearch[2]
           pokemon.moves[3]=PBMove.new($currentDexSearch[2]) if $currentDexSearch[2]
         end
