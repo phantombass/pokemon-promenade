@@ -1,7 +1,7 @@
 PluginManager.register({
   :name => "Better DexNav",
   :version => "1.0",
-  :credits => ["Suzerain","Phantombass"],
+  :credits => ["Phantombass","Suzerain","Nuri Yuri","Developers of SimpleEncounterUI"],
   :link => "No link yet"
 })
 
@@ -217,6 +217,15 @@ Events.onStartBattle+=proc {|_sender,e|
     $game_switches[350] = false
   end
 }
+
+Events.onMapChanging +=proc {|_sender,e|
+  if $game_switches[350] == true
+    $viewport1.dispose
+    $game_switches[350] = false
+  end
+}
+
+
 
 Events.onWildPokemonCreate+=proc {|sender,e|
     pokemon=e[0]
