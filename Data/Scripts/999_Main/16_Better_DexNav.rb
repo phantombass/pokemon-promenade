@@ -1,8 +1,8 @@
 PluginManager.register({
   :name => "Better DexNav",
   :version => "1.0",
-  :credits => ["Phantombass","Suzerain","Nuri Yuri","Developers of SimpleEncounterUI"],
-  :link => "No link yet"
+  :credits => ["Phantombass, with portions of code taken from:","Suzerain","Nuri Yuri","Developers of SimpleEncounterUI"],
+  :link => "https://reliccastle.com/resources/520/"
 })
 
 class NewDexNav
