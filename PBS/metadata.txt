@@ -585,6 +585,12 @@ Weather = Storm,0
 MapPosition = 0,11,13
 Outdoor = true
 #-------------------------------
+[102]
+# Crafter's Hideout
+SnapEdges = true
+Weather = Overcast,100
+MapPosition = 0,11,14
+#-------------------------------
 [104]
 # Route 3
 SnapEdges = true
