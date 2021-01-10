@@ -228,6 +228,7 @@ Events.onStartBattle+=proc {|_sender,e|
 Events.onMapChanging +=proc {|_sender,e|
   if $game_switches[350] == true
     $viewport1.dispose
+    $currentDexSearch = nil
     $game_switches[350] = false
   end
 }
