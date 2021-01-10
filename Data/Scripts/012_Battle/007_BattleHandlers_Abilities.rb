@@ -2868,6 +2868,20 @@ BattleHandlers::AbilityOnSwitchIn.add(:GALEFORCE,
   }
 )
 
+BattleHandlers::AbilityOnSwitchIn.add(:PINDROP,
+  proc { |ability,battler,battle|
+    next if battle.field.weather == PBWeather::Reverb
+    pbBattleWeatherAbility(PBWeather::Reverb,battler,battle)
+  }
+)
+
+BattleHandlers::AbilityOnSwitchIn.add(:TIMETRAVELLER,
+  proc { |ability,battler,battle|
+    next if battle.field.weather == PBWeather::TimeWarp
+    pbBattleWeatherAbility(PBWeather::TimeWarp,battler,battle)
+  }
+)
+
 BattleHandlers::AbilityOnSwitchIn.add(:SLOWSTART,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)

@@ -473,6 +473,8 @@ class PokeBattle_Move
     when PBWeather::Reverb
       if isConst?(type,PBTypes,:SOUND)
         multipliers[FINAL_DMG_MULT] *= 1.5
+      elsif soundMove?
+        multipliers[FINAL_DMG_MULT] *= 1.5
       elsif target.pbHasType?(:SOUND) && physicalMove? && @function="122"
         multipliers[DEF_MULT] *= 1.5
       end

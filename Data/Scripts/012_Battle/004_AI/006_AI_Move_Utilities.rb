@@ -461,7 +461,7 @@ class PokeBattle_AI
          multipliers[FINAL_DMG_MULT] *= 1.5
        elsif isConst?(type,PBTypes,:STEEL)
          multipliers[FINAL_DMG_MULT] /= 2
-       elsif target.pbHasType?(:COSMIC) && physicalMove? && @function="122"
+       elsif target.pbHasType?(:COSMIC) && move.physicalMove? && @function="122"
   	     multipliers[DEF_MULT] *= 1.5
        end
       when PBWeather::Windy
@@ -523,7 +523,9 @@ class PokeBattle_AI
       when PBWeather::Reverb
         if isConst?(type,PBTypes,:SOUND)
           multipliers[FINAL_DMG_MULT] *= 1.5
-        elsif target.pbHasType?(:SOUND) && physicalMove? && @function="122"
+        elsif move.soundMove?
+          multipliers[FINAL_DMG_MULT] *= 1.5
+        elsif target.pbHasType?(:SOUND) && move.physicalMove? && @function="122"
           multipliers[DEF_MULT] *= 1.5
         end
       when PBWeather::Sleet
@@ -539,7 +541,7 @@ class PokeBattle_AI
           multipliers[FINAL_DMG_MULT] *= 1.5
         end
       when PBWeather::Sandstorm
-        if target.pbHasType?(:ROCK) && specialMove? && @function!="122"   # Psyshock
+        if target.pbHasType?(:ROCK) && move.specialMove? && @function!="122"   # Psyshock
           multipliers[DEF_MULT] *= 1.5
         end
       end
