@@ -642,7 +642,7 @@ HealingSpot = 111,15,32
 # Xandri
 SnapEdges = true
 BattleBack = field
-Weather = None,0
+Weather = None,100
 MapPosition = 0,15,10
 Outdoor = false
 #-------------------------------
@@ -670,14 +670,14 @@ HealingSpot = 114,24,7
 # Xandri
 SnapEdges = true
 BattleBack = field
-Weather = None,0
+Weather = None,100
 MapPosition = 0,15,10
 Outdoor = false
 #-------------------------------
 [117]
 # Xandri Gate
 SnapEdges = true
-Weather = None,0
+Weather = None,100
 MapPosition = 0,11,10
 Outdoor = false
 #-------------------------------
@@ -1315,6 +1315,11 @@ SnapEdges = true
 Weather = Rain,0
 MapPosition = 0,11,9
 Outdoor = false
+#-------------------------------
+[220]
+# House
+SnapEdges = true
+MapPosition = 0,23,17
 #-------------------------------
 [221]
 # Rulox Gym

@@ -199,7 +199,11 @@ class NewDexNav
     $game_variables[400] = navRand
     hAbil = pbGetSpeciesData(searchmon,@form,SpeciesHiddenAbility)
     navAbil1 = pbGetSpeciesData(searchmon,@form,SpeciesAbilities)
-    navAbil = [navAbil1[0],navAbil1[1],hAbil[0]]
+    if navAbil1[1] = nil
+      navAbil = [navAbil1[0],navAbil1[1],hAbil[0]]
+    else
+      navAbil = [navAbil1[0],navAbil1[0],hAbil[0]]
+    end
     ab = PBAbilities.getName(navAbil[navRand])
     Graphics.update
     searchtext = [PBSpecies.getName(searchmon),ab,PBMoves.getName($currentDexSearch[1])]
