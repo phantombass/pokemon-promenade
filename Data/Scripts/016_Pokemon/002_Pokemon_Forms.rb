@@ -687,29 +687,20 @@ MultipleForms.register(:RIOLU,{
   "getFormOnCreation" => proc { |pkmn|
     next if pkmn.formSimple>=3
     mapPos = pbGetMetadata($game_map.map_id,MetadataMapPosition)
+    $formNav = 2 if mapPos && mapPos[0] == 0
     next 2 if mapPos && mapPos[0]==0   # Zharo region
     next 0
   }
 })
 
-MultipleForms.copy(:RIOLU,:LUCARIO,:BUNEARY,:LOPUNNY,:NUMEL,:CAMERUPT,:ROCKRUFF)
-
-MultipleForms.register(:YAMASK,{
-  "getFormOnCreation" => proc { |pkmn|
-    next if pkmn.formSimple>=3
-    mapPos = pbGetMetadata($game_map.map_id,MetadataMapPosition)
-    next 2 if mapPos && mapPos[0]==0   # Zharo region
-    next 0
-  }
-})
-
-MultipleForms.copy(:YAMASK,:DROWZEE,:PHANPY,:ZEBSTRIKA)
+MultipleForms.copy(:RIOLU,:LUCARIO,:BUNEARY,:LOPUNNY,:NUMEL,:CAMERUPT,:ROCKRUFF,:YAMASK)
 
 MultipleForms.register(:CACNEA,{
   "getFormOnCreation" => proc { |pkmn|
     next if pkmn.formSimple>=2
     maps = pbGetMetadata($game_map.map_id,MetadataMapPosition)   # Map IDs for Zharonian Forme
     if maps && maps[0]==0
+      $formNav = 1
       next 1
     end
     next 0

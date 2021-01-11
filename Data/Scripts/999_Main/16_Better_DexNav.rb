@@ -6,6 +6,7 @@ PluginManager.register({
 })
 
 class NewDexNav
+
   def initialize
     @viewport1 = Viewport.new(0, 0, Graphics.width, Graphics.height)
     @viewport1.z = 99999
@@ -19,7 +20,6 @@ class NewDexNav
     @encarray = []
     @pkmnsprite = []
     @navChoice = 0
-    @form = 0
     navAbil = []
     @ab = []
     encstringarray = [] # Savordez simplified this on discord but I kept it for me to understand better
@@ -121,8 +121,9 @@ class NewDexNav
     lastMon = @encarray.length - 1
     @sprites["navMon"]=Window_AdvancedTextPokemon.new(PBSpecies.getName(@encarray[navMon]))
     @sprites["navMon"].viewport = @viewport1
-    @sprites["navMon"].x=350
+    @sprites["navMon"].x=320
     @sprites["navMon"].y=53
+    @sprites["navMon"].width=156
     @sprites["navMon"].windowskin = nil
     loop do
       Graphics.update
@@ -195,10 +196,21 @@ class NewDexNav
 
   def main2
     searchmon = getID(PBSpecies,pbGetSpeciesConst($currentDexSearch[0]))
+    maps = pbGetMetadata($game_map.map_id,MetadataMapPosition)   # Map IDs for Zharonian Forme
+    form = 0
+    if form == 0 && maps && maps[0]==0
+      if isConst?(searchmon,PBSpecies,:RIOLU)||isConst?(searchmon,PBSpecies,:LUCARIO)||isConst?(searchmon,PBSpecies,:BUNEARY)||isConst?(searchmon,PBSpecies,:LOPUNNY)||isConst?(searchmon,PBSpecies,:NUMEL)||isConst?(searchmon,PBSpecies,:CAMERUPT)||isConst?(searchmon,PBSpecies,:ROCKRUFF)||isConst?(searchmon,PBSpecies,:YAMASK)
+        form = 2
+      elsif isConst?(searchmon,PBSpecies,:CACNEA)||isConst?(searchmon,PBSpecies,:CACTURNE)||isConst?(searchmon,PBSpecies,:SANDYGAST)||isConst?(searchmon,PBSpecies,:PALOSSAND)||isConst?(searchmon,PBSpecies,:DEINO)||isConst?(searchmon,PBSpecies,:ZWEILOUS)||isConst?(searchmon,PBSpecies,:HYDREIGON)||isConst?(searchmon,PBSpecies,:TRAPINCH)||isConst?(searchmon,PBSpecies,:HORSEA)||isConst?(searchmon,PBSpecies,:SEADRA)||isConst?(searchmon,PBSpecies,:EXEGGCUTE)||isConst?(searchmon,PBSpecies,:EXEGGUTOR)||isConst?(searchmon,PBSpecies,:SEEL)||isConst?(searchmon,PBSpecies,:DEWGONG)||isConst?(searchmon,PBSpecies,:DROWZEE)||isConst?(searchmon,PBSpecies,:PHANPY)||isConst?(searchmon,PBSpecies,:ZEBSTRIKA)
+        form = 1
+      else
+        form = form
+      end
+    end
     navRand = rand(3)
     $game_variables[400] = navRand
-    hAbil = pbGetSpeciesData(searchmon,@form,SpeciesHiddenAbility)
-    navAbil1 = pbGetSpeciesData(searchmon,@form,SpeciesAbilities)
+    hAbil = pbGetSpeciesData(searchmon,form,SpeciesHiddenAbility)
+    navAbil1 = pbGetSpeciesData(searchmon,form,SpeciesAbilities)
     if navAbil1[1] = nil
       navAbil = [navAbil1[0],navAbil1[1],hAbil[0]]
     else
@@ -208,11 +220,7 @@ class NewDexNav
     Graphics.update
     searchtext = [PBSpecies.getName(searchmon),ab,PBMoves.getName($currentDexSearch[1])]
     @sprites["search"] = Window_UnformattedTextPokemon.newWithSize("",345,260,170,126,@viewport1)
-    if navAbil == 2
-      @sprites["search"].text = _INTL("{1}\n{2}\n{3}",searchtext[0],searchtext[1],searchtext[2])
-    else
-      @sprites["search"].text = _INTL("{1}\n{2}\n{3}",searchtext[0],searchtext[1],searchtext[2])
-    end
+    @sprites["search"].text = _INTL("{1}\n{2}\n{3}",searchtext[0],searchtext[1],searchtext[2])
     @sprites["searchIcon"] = PokemonSpeciesIconSprite.new(getID(PBSpecies,searchmon),@viewport1)
     @sprites["searchIcon"].x = 450
     @sprites["searchIcon"].y = 200
@@ -245,6 +253,18 @@ Events.onWildPokemonCreate+=proc {|sender,e|
         pokemon.level=pokemon.level
         pokemon.name=PBSpecies.getName(pokemon.species)
         pokemon.setAbility($game_variables[400])
+        maps = pbGetMetadata($game_map.map_id,MetadataMapPosition)
+        pform = 0
+        if pform == 0 && maps && maps[0]==0
+          if isConst?(pokemon.species,PBSpecies,:RIOLU)||isConst?(pokemon.species,PBSpecies,:LUCARIO)||isConst?(pokemon.species,PBSpecies,:BUNEARY)||isConst?(pokemon.species,PBSpecies,:LOPUNNY)||isConst?(pokemon.species,PBSpecies,:NUMEL)||isConst?(pokemon.species,PBSpecies,:CAMERUPT)||isConst?(pokemon.species,PBSpecies,:ROCKRUFF)||isConst?(pokemon.species,PBSpecies,:YAMASK)
+            pform += 2
+          elsif isConst?(pokemon.species,PBSpecies,:CACNEA)||isConst?(pokemon.species,PBSpecies,:CACTURNE)||isConst?(pokemon.species,PBSpecies,:SANDYGAST)||isConst?(pokemon.species,PBSpecies,:PALOSSAND)||isConst?(pokemon.species,PBSpecies,:DEINO)||isConst?(pokemon.species,PBSpecies,:ZWEILOUS)||isConst?(pokemon.species,PBSpecies,:HYDREIGON)||isConst?(pokemon.species,PBSpecies,:TRAPINCH)||isConst?(pokemon.species,PBSpecies,:HORSEA)||isConst?(pokemon.species,PBSpecies,:SEADRA)||isConst?(pokemon.species,PBSpecies,:EXEGGCUTE)||isConst?(pokemon.species,PBSpecies,:EXEGGUTOR)||isConst?(pokemon.species,PBSpecies,:SEEL)||isConst?(pokemon.species,PBSpecies,:DEWGONG)||isConst?(pokemon.species,PBSpecies,:DROWZEE)||isConst?(pokemon.species,PBSpecies,:PHANPY)||isConst?(pokemon.species,PBSpecies,:ZEBSTRIKA)
+            pform += 1
+          else
+            pform = pform
+          end
+        end
+        pokemon.form = pform
         pokemon.resetMoves
         pokemon.moves[2]=PBMove.new($currentDexSearch[1]) if $currentDexSearch[1]
         $game_switches[350] = true
@@ -301,7 +321,18 @@ class DexNav
   # This method gets a random ID of a legal egg move and returns it as a move object.
   def self.addRandomEggMove(species)
     baby = pbGetBabySpecies(species)
-    egg = pbGetSpeciesEggMoves(baby)
+    maps = pbGetMetadata($game_map.map_id,MetadataMapPosition)
+    form = 0
+    if form == 0 && maps && maps[0]==0
+      if isConst?(baby,PBSpecies,:RIOLU)||isConst?(baby,PBSpecies,:LUCARIO)||isConst?(baby,PBSpecies,:BUNEARY)||isConst?(baby,PBSpecies,:LOPUNNY)||isConst?(baby,PBSpecies,:NUMEL)||isConst?(baby,PBSpecies,:CAMERUPT)||isConst?(baby,PBSpecies,:ROCKRUFF)||isConst?(baby,PBSpecies,:YAMASK)
+        form += 2
+      elsif isConst?(baby,PBSpecies,:CACNEA)||isConst?(baby,PBSpecies,:CACTURNE)||isConst?(baby,PBSpecies,:SANDYGAST)||isConst?(baby,PBSpecies,:PALOSSAND)||isConst?(baby,PBSpecies,:DEINO)||isConst?(baby,PBSpecies,:ZWEILOUS)||isConst?(baby,PBSpecies,:HYDREIGON)||isConst?(baby,PBSpecies,:TRAPINCH)||isConst?(baby,PBSpecies,:HORSEA)||isConst?(baby,PBSpecies,:SEADRA)||isConst?(baby,PBSpecies,:EXEGGCUTE)||isConst?(baby,PBSpecies,:EXEGGUTOR)||isConst?(baby,PBSpecies,:SEEL)||isConst?(baby,PBSpecies,:DEWGONG)||isConst?(baby,PBSpecies,:DROWZEE)||isConst?(baby,PBSpecies,:PHANPY)||isConst?(baby,PBSpecies,:ZEBSTRIKA)
+        form += 1
+      else
+        form = form
+      end
+    end
+    egg = pbGetSpeciesEggMoves(baby,form)
     moveChoice = rand(egg.length)
     moves = egg[moveChoice]
     return moves

@@ -657,7 +657,6 @@ class PokeBattle_Battle
     end
     @field.weatherDuration = duration
     pbCommonAnimation(PBWeather.animationName(@field.weather)) if showAnim
-    pbHideAbilitySplash(user) if user
     case @field.weather
     when PBWeather::Sun;         pbDisplay(_INTL("The sunlight is strong."))
     when PBWeather::Rain;        pbDisplay(_INTL("It is raining."))
@@ -690,6 +689,7 @@ class PokeBattle_Battle
     end
     # Check for end of primordial weather, and weather-triggered form changes
     eachBattler { |b| b.pbCheckFormOnWeatherChange }
+    pbHideAbilitySplash(user) if user
     pbEndPrimordialWeather
   end
 
