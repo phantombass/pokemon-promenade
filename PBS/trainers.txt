@@ -154,15 +154,15 @@ LoseText = "Aww, I lost."
 Pokemon = POOCHYENA,7
 #-------------------------------
 [YOUNGSTER,Braden]
-LoseText = "Aww, I lost."
+LoseText = "Did you get a good look?"
 Pokemon = SPECIDAE,7
 #-------------------------------
 [LASS,Natalie]
-LoseText = "Aww, I lost."
+LoseText = "Oh you're strong!"
 Pokemon = PLOVERT,7
 #-------------------------------
 [LASS,Dana]
-LoseText = "Aww, I lost."
+LoseText = "I sure would like to visit other places though."
 Pokemon = BUNEARY,7
 #-------------------------------
 # Route 3

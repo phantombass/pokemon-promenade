@@ -128,22 +128,27 @@ class PokemonEncounters
 
 
   def isDistortion?
+    return false if @density==nil
     return @enctypes[EncounterTypes::Distortion] ? true : false
   end
 
   def isGraveyard?
+    return false if @density==nil
     return @enctypes[EncounterTypes::Graveyard] ? true : false
   end
 
   def isSnow?
+    return false if @density==nil
     return @enctypes[EncounterTypes::Snow] ? true : false
   end
 
   def isSandy?
+    return false if @density==nil
     return @enctypes[EncounterTypes::Sand] ? true : false
   end
 
   def isHighBridge?
+    return false if @density==nil
     return @enctypes[EncounterTypes::HighBridge] ? true : false
   end
 
@@ -176,30 +181,6 @@ class PokemonEncounters
     return @enctypes[EncounterTypes::Water] ? true : false
   end
 
-  # Returns whether it is theoretically possible to have an encounter in the
-  # player's current location.
-  def isEncounterPossibleHere?
-    if $PokemonGlobal.surfing
-      return true
-    elsif PBTerrain.isIce?(pbGetTerrainTag($game_player))
-      return false
-    elsif self.isCave?
-      return true
-    elsif self.isDistortion?
-      return PBTerrain.isDistortion?($game_map.terrain_tag($game_player.x,$game_player.y))
-    elsif self.isSnow?
-      return PBTerrain.isSnow?($game_map.terrain_tag($game_player.x,$game_player.y))
-    elsif self.isGraveyard?
-      return PBTerrain.isGraveyard?($game_map.terrain_tag($game_player.x,$game_player.y))
-    elsif self.isSandy?
-      return PBTerrain.isSandy?($game_map.terrain_tag($game_player.x,$game_player.y))
-    elsif self.isHighBridge?
-      return PBTerrain.isHighBridge?($game_map.terrain_tag($game_player.x,$game_player.y))
-    elsif self.isGrass?
-      return PBTerrain.isGrass?($game_map.terrain_tag($game_player.x,$game_player.y))
-    end
-    return false
-  end
 
   # Returns the encounter method that the current encounter should be generated
   # from, depending on the player's current location.
@@ -208,17 +189,7 @@ class PokemonEncounters
       return EncounterTypes::Water
     elsif self.isCave?
       return EncounterTypes::Cave
-    elsif self.isDistortion?
-      return EncounterTypes::Distortion
-    elsif self.isSandy?
-      return EncounterTypes::Sand
-    elsif self.isGraveyard?
-      return EncounterTypes::Graveyard
-    elsif self.isSnow?
-      return EncounterTypes::Snow
-    elsif self.isHighBridge?
-      return EncounterTypes::HighBridge
-    elsif self.isGrass?
+    elsif self.isGrass? && PBTerrain.isGrass?($game_map.terrain_tag($game_player.x,$game_player.y))
       time = pbGetTimeNow
       enctype = EncounterTypes::Land
       enctype = EncounterTypes::LandNight if self.hasEncounter?(EncounterTypes::LandNight) && PBDayNight.isNight?(time)
@@ -228,10 +199,46 @@ class PokemonEncounters
         enctype = EncounterTypes::BugContest
       end
       return enctype
+    elsif self.isDistortion? && PBTerrain.isDistortion?($game_map.terrain_tag($game_player.x,$game_player.y))
+      return EncounterTypes::Distortion
+    elsif self.isSandy? && PBTerrain.isSandy?($game_map.terrain_tag($game_player.x,$game_player.y))
+      return EncounterTypes::Sand
+    elsif self.isGraveyard? && PBTerrain.isGraveyard?($game_map.terrain_tag($game_player.x,$game_player.y))
+      return EncounterTypes::Graveyard
+    elsif self.isSnow? && PBTerrain.isSnow?($game_map.terrain_tag($game_player.x,$game_player.y))
+      return EncounterTypes::Snow
+    elsif self.isHighBridge? && PBTerrain.isHighBridge?($game_map.terrain_tag($game_player.x,$game_player.y))
+      return EncounterTypes::HighBridge
     end
     return -1
   end
 
+    # Returns whether it is theoretically possible to have an encounter in the
+    # player's current location.
+
+  def isEncounterPossibleHere?
+    if $PokemonGlobal.surfing
+      return true
+    elsif PBTerrain.isIce?(pbGetTerrainTag($game_player))
+      return false
+    elsif self.isCave?
+      return true
+    elsif self.isGrass? && PBTerrain.isGrass?($game_map.terrain_tag($game_player.x,$game_player.y))
+      return true
+    elsif self.isDistortion? && PBTerrain.isDistortion?($game_map.terrain_tag($game_player.x,$game_player.y))
+      return true
+    elsif self.isSnow? && PBTerrain.isSnow?($game_map.terrain_tag($game_player.x,$game_player.y))
+      return true
+    elsif self.isGraveyard? && PBTerrain.isGraveyard?($game_map.terrain_tag($game_player.x,$game_player.y))
+      return true
+    elsif self.isSandy? && PBTerrain.isSandy?($game_map.terrain_tag($game_player.x,$game_player.y))
+      return true
+    elsif self.isHighBridge? && PBTerrain.isHighBridge?($game_map.terrain_tag($game_player.x,$game_player.y))
+      return true
+    else
+    return false
+    end
+  end
   # Returns all the encounter tables for the given map.
   # You can alias this method and modify the returned array's contents if you
   # want to change the encounter table for some reason. Note that each sub-array

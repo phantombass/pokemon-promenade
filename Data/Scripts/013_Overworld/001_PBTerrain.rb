@@ -118,6 +118,6 @@ module PBTerrain
   end
 
   def self.isDoubleWildBattle?(tag)
-    return tag==PBTerrain::TallGrass
+    return tag==PBTerrain::SootGrass
   end
 end
