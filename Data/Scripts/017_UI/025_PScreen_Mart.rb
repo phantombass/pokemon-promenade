@@ -813,9 +813,15 @@ def pbPokemonMart(stock,speech=nil,cantsell=false)
   commands[cmdSell = commands.length] = _INTL("Sell") if !cantsell
   commands[cmdQuit = commands.length] = _INTL("Quit")
   pbCallBub(2,@event_id)
-  cmd = pbMessage(
+  if @event_id == 30
+    cmd = pbMessage(
+      speech ? speech : _INTL("<c2=463F0000>Welcome! How may I serve you?</c2>"),
+      commands,cmdQuit+1)
+  else
+    cmd = pbMessage(
      speech ? speech : _INTL("<c2=7FE00000>Welcome! How may I serve you?</c2>"),
-     commands,cmdQuit+1)
+      commands,cmdQuit+1)
+  end
   loop do
     if cmdBuy>=0 && cmd==cmdBuy
       scene = PokemonMart_Scene.new
@@ -827,12 +833,22 @@ def pbPokemonMart(stock,speech=nil,cantsell=false)
       screen.pbSellScreen
     else
       pbCallBub(2,@event_id)
-      pbMessage(_INTL("<c2=7FE00000>Please come again!</c2>"))
+      if @event_id == 30
+        pbMessage(_INTL("<c2=463F0000>Please come again!</c2>"))
+        break
+      else
+        pbMessage(_INTL("<c2=7FE00000>Please come again!</c2>"))
       break
+      end
     end
     pbCallBub(2,@event_id)
-    cmd = pbMessage(_INTL("<c2=7FE00000>Is there anything else I can help you with?</c2>"),
-       commands,cmdQuit+1)
+    if @event_id == 30
+      cmd = pbMessage(_INTL("<c2=463F0000>Is there anything else I can help you with?</c2>"),
+         commands,cmdQuit+1)
+    else
+         cmd = pbMessage(_INTL("<c2=7FE00000>Is there anything else I can help you with?</c2>"),
+         commands,cmdQuit+1)
+       end
   end
   $game_temp.clear_mart_prices
 end
