@@ -2539,6 +2539,7 @@ BattlerEnemyY = 25
 Evolutions =
 #-------------------------------
 [SEEL,1]
+FormName = Zharonian
 Type1 = GROUND
 BaseStats = 65,45,55,45,45,70
 Abilities = THICKFAT,SLUSHRUSH
@@ -2547,6 +2548,7 @@ Moves = 1,HEADBUTT,3,GROWL,7,MUDSLAP,11,ICYWIND,13,ENCORE,17,ICESHARD,21,REST,23
 EggMoves = BELCH,DISABLE,ENCORE,ENTRAINMENT,FAKEOUT,HORNDRILL,ICICLESPEAR,IRONTAIL,LICK,PERISHSONG,SIGNALBEAM,SLAM,SLEEPTALK,SPITUP,STOCKPILE,SWALLOW,WATERPULSE
 #-------------------------------
 [DEWGONG,1]
+FormName = Zharonian
 Type1 = GROUND
 Type2 = ICE
 BaseStats = 90,70,80,70,70,95
@@ -2556,6 +2558,7 @@ Moves = 0,FREEZEDRY,1,HEADBUTT,3,GROWL,7,MUDSLAP,11,ICYWIND,13,ENCORE,17,ICESHAR
 Evolutions = GONGAIA,Item,ICESTONE
 #-------------------------------
 [LUCARIO,2]
+FormName = Zharonian
 Type1 = FIGHTING
 Type2 = GROUND
 BaseStats = 70,115,80,90,90,80
@@ -2588,6 +2591,7 @@ Evolutions =
 Evolutions = LOPUNNY,HoldItem,BLACKBELT
 #-------------------------------
 [LOPUNNY,2]
+FormName = Zharonian
 Type1 = NORMAL
 Type2 = FIGHTING
 BaseStats = 65,76,94,115,54,96
@@ -2617,6 +2621,7 @@ BattlerShadowSize = 2
 Evolutions = 
 #-------------------------------
 [TRAPINCH,1]
+FormName = Zharonian
 Type1 = STEEL
 BaseStats = 45,100,60,10,15,60
 GenderRate = Female50Percent
@@ -2648,6 +2653,7 @@ BattlerShadowSize = 2
 Evolutions = TINSNARE,HoldItem,SOOTHEBELL,SATELLYDRA,HoldItem,DRAGONSCALE
 #-------------------------------
 [NUMEL,2]
+FormName = Zharonian
 Type1 = FIRE
 Type2 = WATER
 BaseStats = 60,50,40,45,65,45
@@ -2679,6 +2685,7 @@ BattlerShadowSize = 2
 Evolutions = CAMERUPT,HasMove,SCALD
 #-------------------------------
 [CAMERUPT,2]
+FormName = Zharonian
 Type1 = FIRE
 Type2 = WATER
 BaseStats = 70,90,70,50,105,75
@@ -2709,6 +2716,7 @@ BattlerShadowSize = 3
 Evolutions = 
 #-------------------------------
 [CACNEA,1]
+FormName = Zharonian
 Type1 = GRASS
 Type2 = FIRE
 BaseStats = 50,85,50,45,55,50
@@ -2741,6 +2749,7 @@ BattlerShadowSize = 2
 Evolutions = CACTURNE,HasMove,SEEDBOMB
 #-------------------------------
 [CACTURNE,1]
+FormName = Zharonian
 Type1 = GRASS
 Type2 = FIRE
 BaseStats = 70,115,60,55,115,60
@@ -2772,6 +2781,7 @@ BattlerShadowSize = 3
 Evolutions = 
 #-------------------------------
 [DEINO,1]
+FormName = Zharonian
 Type1 = DARK
 Type2 = POISON
 BaseStats = 52,65,50,38,45,50
@@ -2802,6 +2812,7 @@ BattlerShadowSize = 2
 Evolutions = ZWEILOUS,Level,50
 #-------------------------------
 [ZWEILOUS,1]
+FormName = Zharonian
 Type1 = DARK
 Type2 = POISON
 BaseStats = 72,85,70,58,65,70
@@ -2831,6 +2842,7 @@ BattlerShadowSize = 3
 Evolutions = HYDREIGON,Level,64
 #-------------------------------
 [HYDREIGON,1]
+FormName = Zharonian
 Type1 = DARK
 Type2 = POISON
 BaseStats = 92,105,90,98,125,90
@@ -2860,6 +2872,7 @@ BattlerShadowSize = 3
 Evolutions = 
 #-------------------------------
 [SANDYGAST,1]
+FormName = Zharonian
 Type1 = TIME
 Type2 = GROUND
 BaseStats = 55,35,80,25,70,55
@@ -2891,6 +2904,7 @@ BattlerShadowSize = 2
 Evolutions = PALOSSAND,Level,42
 #-------------------------------
 [PALOSSAND,1]
+FormName = Zharonian
 Type1 = TIME
 Type2 = GROUND
 BaseStats = 85,75,110,35,100,75
@@ -3046,6 +3060,7 @@ Type2 = COSMIC
 BattlerEnemyY = 28
 #-------------------------------
 [QWILFISH,1]
+FormName = Zharonian
 Type1 = WATER
 Type2 = STEEL
 BaseStats = 85,45,95,95,125,95

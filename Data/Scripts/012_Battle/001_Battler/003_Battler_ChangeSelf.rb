@@ -191,7 +191,7 @@ class PokeBattle_Battler
         when PBWeather::TimeWarp;                   newForm = 19
         when PBWeather::Reverb;                     newForm = 20
         when PBWeather::Sun, PBWeather::HarshSun;   newForm = 1
-        when PBWeather::Rain, PBWeather::HeavyRain; newForm = 2
+        when PBWeather::Rain, PBWeather::Storm, PBWeather::HeavyRain; newForm = 2
         when PBWeather::Hail, PBWeather::Sleet;     newForm = 3
         end
         if @form!=newForm
