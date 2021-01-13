@@ -44,6 +44,7 @@ BattleHandlers::SpeedCalcAbility.add(:STARSPRINT,
 BattleHandlers::SpeedCalcAbility.add(:SURGESURFER,
   proc { |ability,battler,mult|
     next mult*2 if battler.battle.field.terrain==PBBattleTerrains::Electric
+    next mult*2 if w==PBWeather::Storm
   }
 )
 

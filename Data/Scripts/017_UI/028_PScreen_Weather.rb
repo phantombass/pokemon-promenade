@@ -245,7 +245,8 @@ class PokemonWeatherScreen
 	  if $game_variables[61]>=1
           pbMessage(_INTL("Weather: Eclipse"))
           pbMessage(_INTL("Weather Ball Type: Dark"))
-          pbMessage(_INTL("Additional Effects: Dark x 1.5, Psychic x .5"))
+          pbMessage(_INTL("Additional Effects: Dark x 1.5, Ghost x 1.5"))
+          pbMessage(_INTL("Additional Effects: Fairy x .5, Psychic x .5"))
           else
             pbMessage(_INTL("No Readout Installed for this Weather"))
           end
@@ -344,7 +345,7 @@ class PokemonWeatherScreen
         elsif cmdNone>=0 && cmd==cmdVolc
           pbPlayDecisionSE
 	  if $game_variables[73]>=1
-          pbMessage(_INTL("Weather: Volcanic Ash"))
+          pbMessage(_INTL("Weather: Distorted Ashfall"))
           pbMessage(_INTL("Weather Ball Type: Steel"))
           pbMessage(_INTL("Additional Effects: Removes Steel's weaknesses"))
           else

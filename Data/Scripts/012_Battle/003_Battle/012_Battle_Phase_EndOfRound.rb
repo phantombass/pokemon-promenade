@@ -158,7 +158,7 @@ class PokeBattle_Battle
         b.pbFaint if b.fainted?
       when PBWeather::Sleet
         next if !b.takesHailDamage?
-        pbDisplay(_INTL("{1} is buffeted by the hail!",b.pbThis))
+        pbDisplay(_INTL("{1} is buffeted by the Sleet!",b.pbThis))
         @scene.pbDamageAnimation(b)
         b.pbReduceHP(b.totalhp/8,false)
         b.pbItemHPHealCheck

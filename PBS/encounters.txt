@@ -224,6 +224,28 @@ Sand
     SANDYGAST,18,21
     ROCKRUFF,16,19
 #-------------------------------
+133 # Grakha Oasis
+25,10,10
+Water
+    LUVDISC,20,25
+    POLIWAG,20,25
+    FISHOOS,15,25
+    FISHOOS,25,35
+    QWILFISH,20,35
+OldRod
+    FISHOOS,5
+    LUVDISC,10
+GoodRod
+    FISHOOS,20
+    POLIWAG,20
+    QWILFISH,20,25
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    LUVDISC,25,30
+    QWILFISH,25,30
+#-------------------------------
 138 # Pyget Range 1F
 25,10,10
 Cave

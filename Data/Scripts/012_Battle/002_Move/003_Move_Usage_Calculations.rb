@@ -456,6 +456,14 @@ class PokeBattle_Move
       if isConst?(type,PBTypes,:STEEL)
         multipliers[FINAL_DMG_MULT] *= 1.5
       end
+    when PBWeather::Storm
+      if isConst?(type,PBTypes,:FIRE) && !target.hasActiveAbility(:STEAMPOWERED)
+        multipliers[FINAL_DMG_MULT] /= 2
+      elsif isConst?(type,PBTypes,:WATER)
+        multipliers[FINAL_DMG_MULT] *= 1.5
+      elsif isConst?(type,PBTypes,:ELECTRIC) && target.affectedByTerrain?
+        multipliers[FINAL_DMG_MULT] *= 1.5
+      end
     when PBWeather::Humid
       if isConst?(type,PBTypes,:BUG)
         multipliers[FINAL_DMG_MULT] *= 1.5

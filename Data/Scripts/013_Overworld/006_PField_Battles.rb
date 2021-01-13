@@ -114,7 +114,6 @@ def pbPrepareBattle(battle)
       battle.defaultWeather = PBWeather::Sun
     when PBFieldWeather::Storm
       battle.defaultWeather = PBWeather::Storm
-      battle.defaultTerrain = PBBattleTerrains::Electric
     when PBFieldWeather::Starstorm
       battle.defaultWeather = PBWeather::Starstorm
     when PBFieldWeather::Overcast

@@ -275,7 +275,7 @@ class PokeBattle_Battle
     case @field.weather
     when PBWeather::Starstorm;   pbDisplay(_INTL("Stars fill the sky."))
     when PBWeather::Thunder;     pbDisplay(_INTL("Lightning flashes in th sky."))
-    when PBWeather::Storm;       pbDisplay(_INTL("A storm rages."))
+    when PBWeather::Storm;       pbDisplay(_INTL("A thunderstorm rages. The ground became electrified!"))
     when PBWeather::Humid;       pbDisplay(_INTL("The air is humid."))
     when PBWeather::Overcast;    pbDisplay(_INTL("The sky is overcast."))
     when PBWeather::Eclipse;     pbDisplay(_INTL("The sky is dark."))

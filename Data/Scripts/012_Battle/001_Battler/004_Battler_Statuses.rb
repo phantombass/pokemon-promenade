@@ -57,6 +57,10 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("It doesn't affect {1}...",pbThis(true))) if showMessages
       return false
     end
+    if newStatus==PBStatuses::SLEEP && @battle.pbWeather==PBWeather::Storm
+      @battle.pbDisplay(_INTL("It doesn't affect {1}...",pbThis(true))) if showMessages
+      return false
+    end
     # Terrains immunity
     if affectedByTerrain?
       case @battle.field.terrain
