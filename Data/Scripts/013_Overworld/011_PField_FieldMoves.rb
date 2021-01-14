@@ -518,7 +518,7 @@ def Kernel.pbStrength
     return false
   end
     if !$DEBUG && $PokemonBag.pbQuantity(PBItems::FULCRUM)==0
-    Kernel.pbMessage(_INTL("It's a big boulder, but theoretically it should be movable."))
+    Kernel.pbMessage(_INTL("It's a big boulder, but it should be movable."))
     return false
   end
   if Kernel.pbConfirmMessage(_INTL("Would you like to move the boulder?"))
@@ -534,7 +534,7 @@ end
 
 Events.onAction += proc { |_sender,_e|
   facingEvent = $game_player.pbFacingEvent
-  pbStrength if facingEvent && facingEvent.name.downcase=="boulder"
+  Kernel.pbStrength if facingEvent && facingEvent.name.downcase=="boulder"
 }
 
 

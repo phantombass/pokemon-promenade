@@ -358,6 +358,7 @@ class PokemonLoadScreen
           $PokemonStorage      = Marshal.load(f)
           $SaveVersion         = Marshal.load(f) unless f.eof?
           pbRefreshResizeFactor   # To fix Game_Screen pictures
+          $game_switches[350] = false
           time = pbGetTimeNow
           $game_variables[99] = time.day
           dailyWeather = $game_variables[27]

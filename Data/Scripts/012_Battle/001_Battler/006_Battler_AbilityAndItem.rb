@@ -10,7 +10,7 @@ class PokeBattle_Battler
     # Ending primordial weather, checking Trace
     pbContinualAbilityChecks(true)
     # Abilities that trigger upon switching in
-    if (!fainted? && nonNegatableAbility?) || abilityActive?
+    if (!fainted? && unstoppableAbility?) || abilityActive?
       BattleHandlers.triggerAbilityOnSwitchIn(@ability,self,@battle)
     end
     # Check for end of primordial weather
@@ -109,7 +109,7 @@ class PokeBattle_Battler
         @ability = choice.ability
         @battle.pbDisplay(_INTL("{1} traced {2}'s {3}!",pbThis,choice.pbThis(true),choice.abilityName))
         @battle.pbHideAbilitySplash(self)
-        if !onSwitchIn && (nonNegatableAbility? || abilityActive?)
+        if !onSwitchIn && (unstoppableAbility? || abilityActive?)
           BattleHandlers.triggerAbilityOnSwitchIn(@ability,self,@battle)
         end
       end
@@ -138,7 +138,7 @@ class PokeBattle_Battler
         @battle.pbSetSeen(self)
       end
     end
-    @effects[PBEffects::GastroAcid] = false if nonNegatableAbility?
+    @effects[PBEffects::GastroAcid] = false if unstoppableAbility?
     @effects[PBEffects::SlowStart]  = 0 if !isConst?(@ability,PBAbilities,:SLOWSTART)
     # Revert form if Flower Gift/Forecast was lost
     pbCheckFormOnWeatherChange

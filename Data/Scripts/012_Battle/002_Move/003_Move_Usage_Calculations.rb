@@ -401,7 +401,7 @@ class PokeBattle_Move
         multipliers[FINAL_DMG_MULT] /= 2
       end
     when PBWeather::Rain, PBWeather::HeavyRain
-      if isConst?(type,PBTypes,:FIRE) && !target.hasActiveAbility(:STEAMPOWERED)
+      if isConst?(type,PBTypes,:FIRE) && !target.hasActiveAbility?(:STEAMPOWERED)
         multipliers[FINAL_DMG_MULT] /= 2
       elsif isConst?(type,PBTypes,:WATER)
         multipliers[FINAL_DMG_MULT] *= 1.5
@@ -457,11 +457,11 @@ class PokeBattle_Move
         multipliers[FINAL_DMG_MULT] *= 1.5
       end
     when PBWeather::Storm
-      if isConst?(type,PBTypes,:FIRE) && !target.hasActiveAbility(:STEAMPOWERED)
+      if isConst?(type,PBTypes,:FIRE) && !target.hasActiveAbility?(:STEAMPOWERED)
         multipliers[FINAL_DMG_MULT] /= 2
       elsif isConst?(type,PBTypes,:WATER)
         multipliers[FINAL_DMG_MULT] *= 1.5
-      elsif isConst?(type,PBTypes,:ELECTRIC) && target.affectedByTerrain?
+      elsif isConst?(type,PBTypes,:ELECTRIC)
         multipliers[FINAL_DMG_MULT] *= 1.5
       end
     when PBWeather::Humid
