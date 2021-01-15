@@ -1973,6 +1973,7 @@ BattlerEnemyY = 25
 Abilities = OWNTEMPO
 HiddenAbility = OWNTEMPO
 Evolutions = LYCANROC,Level,25
+BattlerEnemyY = 27
 #-------------------------------
 [LYCANROC,1]
 FormName = Midnight Form
@@ -2898,7 +2899,7 @@ WildItemUncommon = SPELLTAG
 BattlerPlayerX = 0
 BattlerPlayerY = 0
 BattlerEnemyX = 0
-BattlerEnemyY = 5
+BattlerEnemyY = 28
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions = PALOSSAND,Level,42

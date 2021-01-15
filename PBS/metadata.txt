@@ -970,6 +970,7 @@ MapPosition = 0,27,1
 #-------------------------------
 [157]
 # Temple of Mauselynx
+SnapEdges = true
 Weather = TimeWarp,100
 HealingSpot = 141,33,7
 ShowArea = true
