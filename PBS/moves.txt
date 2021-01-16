@@ -676,7 +676,7 @@
 659,ROCKWRECKER,Rock Wrecker,0C2,150,ROCK,Physical,90,5,0,NearOther,0,befn,"The user launches a huge boulder at the target to attack. It must rest on the next turn, however."
 660,DIAMONDSTORM,Diamond Storm,136,100,ROCK,Physical,95,5,50,AllNearFoes,0,bef,"The user whips up a storm of diamonds to damage foes. This may also sharply raise the user's Defense stat."
 661,STONEEDGE,Stone Edge,000,100,ROCK,Physical,80,5,0,NearOther,0,befh,"The user stabs the foe with sharpened stones from below. It has a high critical-hit ratio."
-662,POWERGEM,Power Gem,000,80,ROCK,Special,100,20,0,NearOther,0,bef,"The user attacks with a ray of light that sparkles as if it were made of gemstones."
+662,POWERGEM,Power Gem,000,80,ROCK,Special,100,20,0,NearOther,0,befp,"The user attacks with a ray of light that sparkles as if it were made of gemstones."
 663,ROCKSLIDE,Rock Slide,00F,75,ROCK,Physical,90,10,30,AllNearFoes,0,be,"Large boulders are hurled at the foes to inflict damage. It may also make the targets flinch."
 664,ANCIENTPOWER,Ancient Power,02D,60,TIME,Special,100,5,10,NearOther,0,bef,"The user attacks with a prehistoric power. It may also raise all the user's stats at once."
 665,ROCKTOMB,Rock Tomb,044,60,ROCK,Physical,95,15,100,NearOther,0,bef,"Boulders are hurled at the target. It also lowers the target's Speed by preventing its movement."
