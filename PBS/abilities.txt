@@ -264,7 +264,7 @@
 262,ASONEICE,As One,"This Pokémon has both the Abilities of Calyrex and Spectrier."
 263,ASONEGHOST,As One,"This Pokémon has both the Abilities of Calyrex and Glastrier."
 264,AMPLIFIER,Amplifier,"Boosts the power of sound-based and Sound-type moves."
-265,TIMETRAVELLER,Time Travel,"Summons Time Warp on entry."
+265,WORMHOLE,Wormhole,"Summons Time Warp on entry."
 266,PINDROP,Pin Drop,"Summons Echo Chamber on entry."
 267,ASPIRANT,Aspirant,"At the end of every turn, if possible, this Pokémon will make a wish."
 268,HOPEFULTOLL,Hopeful Toll,"At the end of every turn, this Pokémon will cure their party of all status ailments."
