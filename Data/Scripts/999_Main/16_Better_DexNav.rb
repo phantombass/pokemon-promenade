@@ -219,7 +219,7 @@ class NewDexNav
     ab = PBAbilities.getName(navAbil[navRand])
     Graphics.update
     searchtext = [PBSpecies.getName(searchmon),ab,PBMoves.getName($currentDexSearch[1])]
-    @sprites["search"] = Window_UnformattedTextPokemon.newWithSize("",345,260,170,126,@viewport1)
+    @sprites["search"] = Window_UnformattedTextPokemon.newWithSize("",304,260,210,126,@viewport1)
     @sprites["search"].text = _INTL("{1}\n{2}\n{3}",searchtext[0],searchtext[1],searchtext[2])
     @sprites["searchIcon"] = PokemonSpeciesIconSprite.new(getID(PBSpecies,searchmon),@viewport1)
     @sprites["searchIcon"].x = 450
