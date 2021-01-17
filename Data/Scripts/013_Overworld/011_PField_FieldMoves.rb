@@ -286,7 +286,7 @@ def Kernel.pbDive
     Kernel.pbMessage(_INTL("The sea is deep here."))
     return false
   end
-  if Kernel.pbConfirmMessage(_INTL("The sea is deep here. Would you like to use Dive?"))
+  if Kernel.pbConfirmMessage(_INTL("The sea is deep here. Would you like to use the Scuba Tank?"))
     if $PokemonBag.pbQuantity(PBItems::SCUBATANK)>0
       Kernel.pbMessage(_INTL("{1} used the {2}!",$Trainer.name,PBItems.getName(PBItems::SCUBATANK)))
       pbHiddenMoveAnimation(nil)
@@ -324,7 +324,7 @@ def Kernel.pbSurfacing
     Kernel.pbMessage(_INTL("Light is filtering down from above."))
     return false
   end
-  if Kernel.pbConfirmMessage(_INTL("Light is filtering down from above. Would you like to use Dive?"))
+  if Kernel.pbConfirmMessage(_INTL("Light is filtering down from above. Would you like to surface?"))
     if $PokemonBag.pbQuantity(PBItems::SCUBATANK)>0
       Kernel.pbMessage(_INTL("{1} used the {2}!",$Trainer.name,PBItems.getName(PBItems::SCUBATANK)))
       pbHiddenMoveAnimation(nil)
@@ -498,7 +498,7 @@ def Kernel.pbRockSmash
     Kernel.pbMessage(_INTL("It's a rugged rock, but it may be able to be smashed."))
     return false
   end
-  if Kernel.pbConfirmMessage(_INTL("This rock appears to be breakable. Would you like to use Rock Smash?"))
+  if Kernel.pbConfirmMessage(_INTL("This rock appears to be breakable. Would you like to use the Hammer?"))
     if $PokemonBag.pbQuantity(PBItems::HAMMER)>0
       Kernel.pbMessage(_INTL("{1} used the {2}!",$Trainer.name,PBItems.getName(PBItems::HAMMER)))
       pbHiddenMoveAnimation(nil)
