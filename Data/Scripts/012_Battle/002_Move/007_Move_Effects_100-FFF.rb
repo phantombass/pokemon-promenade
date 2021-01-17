@@ -387,47 +387,45 @@ end
 # Removes trapping moves, entry hazards and Leech Seed on user/user's side.
 # (Rapid Spin)
 #===============================================================================
-class PokeBattle_Move_110 < PokeBattle_StatUpMove
-  def initialize(battle,move)
-    super
-    @statUp = [PBStats::SPEED,1]
+class PokeBattle_Move_110 < PokeBattle_Move
+    def pbEffectAfterAllHits(user,target)
+      return if user.fainted? || target.damageState.unaffected
+      if user.effects[PBEffects::Trapping]>0
+        trapMove = PBMoves.getName(user.effects[PBEffects::TrappingMove])
+        trapUser = @battle.battlers[user.effects[PBEffects::TrappingUser]]
+        @battle.pbDisplay(_INTL("{1} got free of {2}'s {3}!",user.pbThis,trapUser.pbThis(true),trapMove))
+        user.effects[PBEffects::Trapping]     = 0
+        user.effects[PBEffects::TrappingMove] = 0
+        user.effects[PBEffects::TrappingUser] = -1
+      end
+      if user.effects[PBEffects::LeechSeed]>=0
+        user.effects[PBEffects::LeechSeed] = -1
+        @battle.pbDisplay(_INTL("{1} shed Leech Seed!",user.pbThis))
+      end
+      if user.pbOwnSide.effects[PBEffects::StealthRock]
+        user.pbOwnSide.effects[PBEffects::StealthRock] = false
+        @battle.pbDisplay(_INTL("{1} blew away stealth rocks!",user.pbThis))
+      end
+      if user.pbOwnSide.effects[PBEffects::CometShards]
+        user.pbOwnSide.effects[PBEffects::CometShards] = false
+        @battle.pbDisplay(_INTL("{1} blew away comet shards!",user.pbThis))
+      end
+      if user.pbOwnSide.effects[PBEffects::Spikes]>0
+        user.pbOwnSide.effects[PBEffects::Spikes] = 0
+        @battle.pbDisplay(_INTL("{1} blew away spikes!",user.pbThis))
+      end
+      if user.pbOwnSide.effects[PBEffects::ToxicSpikes]>0
+        user.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
+        @battle.pbDisplay(_INTL("{1} blew away poison spikes!",user.pbThis))
+      end
+      if user.pbOwnSide.effects[PBEffects::StickyWeb]
+        user.pbOwnSide.effects[PBEffects::StickyWeb] = false
+        user.pbOwnSide.effects[PBEffects::StickyWebUser] = -1
+        @battle.pbDisplay(_INTL("{1} blew away sticky webs!",user.pbThis))
+      end
+      user.pbRaiseStatStage(PBStats::SPEED,1,user)
+    end
   end
-  def pbEffectAfterAllHits(user,target)
-    return if user.fainted? || target.damageState.unaffected
-    if user.effects[PBEffects::Trapping]>0
-      trapMove = PBMoves.getName(user.effects[PBEffects::TrappingMove])
-      trapUser = @battle.battlers[user.effects[PBEffects::TrappingUser]]
-      @battle.pbDisplay(_INTL("{1} got free of {2}'s {3}!",user.pbThis,trapUser.pbThis(true),trapMove))
-      user.effects[PBEffects::Trapping]     = 0
-      user.effects[PBEffects::TrappingMove] = 0
-      user.effects[PBEffects::TrappingUser] = -1
-    end
-    if user.effects[PBEffects::LeechSeed]>=0
-      user.effects[PBEffects::LeechSeed] = -1
-      @battle.pbDisplay(_INTL("{1} shed Leech Seed!",user.pbThis))
-    end
-    if user.pbOwnSide.effects[PBEffects::StealthRock]
-      user.pbOwnSide.effects[PBEffects::StealthRock] = false
-      @battle.pbDisplay(_INTL("{1} blew away stealth rocks!",user.pbThis))
-    end
-    if user.pbOwnSide.effects[PBEffects::CometShards]
-      user.pbOwnSide.effects[PBEffects::CometShards] = false
-      @battle.pbDisplay(_INTL("{1} blew away comet shards!",user.pbThis))
-    end
-    if user.pbOwnSide.effects[PBEffects::Spikes]>0
-      user.pbOwnSide.effects[PBEffects::Spikes] = 0
-      @battle.pbDisplay(_INTL("{1} blew away spikes!",user.pbThis))
-    end
-    if user.pbOwnSide.effects[PBEffects::ToxicSpikes]>0
-      user.pbOwnSide.effects[PBEffects::ToxicSpikes] = 0
-      @battle.pbDisplay(_INTL("{1} blew away poison spikes!",user.pbThis))
-    end
-    if user.pbOwnSide.effects[PBEffects::StickyWeb]
-      user.pbOwnSide.effects[PBEffects::StickyWeb] = false
-      @battle.pbDisplay(_INTL("{1} blew away sticky webs!",user.pbThis))
-    end
-  end
-end
 
 
 
@@ -2834,7 +2832,7 @@ class PokeBattle_Move_17A < PokeBattle_Move
     # Comet Shards
       cometshards=ownside.effects[PBEffects::CometShards]
       ownside.effects[PBEffects::CometShards]=oppside.effects[PBEffects::CometShards]
-      oppside.effects[PBEffects::CometShards]=cometshards  
+      oppside.effects[PBEffects::CometShards]=cometshards
 	  # Sticky Web
       stickyweb=ownside.effects[PBEffects::StickyWeb]
       ownside.effects[PBEffects::StickyWeb]=oppside.effects[PBEffects::StickyWeb]

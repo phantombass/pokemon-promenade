@@ -13,6 +13,7 @@ module LvlCap
   LevelCap = 106             #Variable for the Level Cap
   Gym = 70                   #Switch for Gym Battles
   Rival = 69                 #Switch for Rival Battles
+  Ace = 129                  #Switch for Ace Trainer Battles
 end
 
 
@@ -103,7 +104,7 @@ Events.onTrainerPartyLoad+=proc {|sender,e|
       party[i].name=PBSpecies.getName(species)
       party[i].species=species
       party[i].calcStats
-      if $game_switches[LvlCap::Gym] == false
+      if $game_switches[LvlCap::Gym] == false && $game_switches[LvlCap::Ace] == false
       party[i].resetMoves
       end
       end #end of for

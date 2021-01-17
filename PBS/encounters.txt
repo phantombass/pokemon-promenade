@@ -3,18 +3,18 @@
 042 # Route 1
 25,10,10
 Land
-    PLOVERT,1,3
-    SPECIDAE,1,3
-    PLOVERT,1,3
-    SPECIDAE,1,3
-    PLOVERT,1,3
-    SPECIDAE,1,3
-    PLOVERT,1,3
-    SPECIDAE,1,3
-    PLOVERT,1,3
-    SPECIDAE,1,3
-    PLOVERT,1,3
-    SPECIDAE,1,3
+    PLOVERT,1,2
+    SPECIDAE,1,2
+    PLOVERT,1,2
+    SPECIDAE,1,2
+    PLOVERT,1,2
+    SPECIDAE,1,2
+    PLOVERT,1,2
+    SPECIDAE,1,2
+    PLOVERT,1,2
+    SPECIDAE,1,2
+    PLOVERT,1,2
+    SPECIDAE,1,2
 #-------------------------------
 101 # Route 2
 25,10,10
