@@ -2367,7 +2367,10 @@ BattleHandlers::EORHealingAbility.add(:HOPEFULTOLL,
     else
       battle.pbDisplay(_INTL("{1} sounded a {2}",battler.pbThis,battler.abilityName))
     end
-    pbAromatherapyHeal(PBTargets::UserAndAllies,battler)
+    battle.pbParty(battler.index).each_with_index do |pkmn,i|
+      next if !pkmn || !pkmn.able? || pkmn.status==PBStatuses::NONE
+      pbAromatherapyHeal(pkmn)
+    end
     battle.pbHideAbilitySplash(battler)
   }
 )
