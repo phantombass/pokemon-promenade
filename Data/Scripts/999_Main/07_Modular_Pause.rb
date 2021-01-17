@@ -120,10 +120,11 @@ end
 #DexNav
 MenuHandlers.addEntry(:DEXNAV,_INTL("DexNav"),"menuPokedex",proc{|menu|
   if $game_switches[401] == true
+    menu.pbEndScene
+    menu.endscene = false
+    menu.close = true
     @scene = NewDexNav.new
-    pbFadeOutIn(99999) {
-    }
-end
+  end
 },proc{ return $game_switches[401] })
 
 # Trainer Card

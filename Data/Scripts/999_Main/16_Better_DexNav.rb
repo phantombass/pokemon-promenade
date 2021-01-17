@@ -29,7 +29,7 @@ class NewDexNav
     loctext = _INTL("<ac><c2=43F022E8>{1}</c2></ac>", $game_map.name)
     temparray = @encarray.dup  # doing `if @encarray.pop==7` actually pops the last species off before the loop!
     if temparray.pop==7  # i picked 7 cause funny
-      loctext += sprintf("<al><c2=7FF05EE8>This area has no encounters</c2></al>")
+      loctext += sprintf("<al><c2=FFCADE00>This area has no encounters</c2></al>")
       loctext += sprintf("<c2=63184210>-----------------------------------------</c2>")
     else
       i = 0
@@ -48,7 +48,7 @@ class NewDexNav
          end
          i +=1
        end
-      loctext += sprintf("<al><c2=7FF05EE8>Total encounters for area: %s</c2></al>",@encarray.length)
+      loctext += sprintf("<al><c2=FFCADE00>Total encounters for area: %s</c2></al>",@encarray.length)
       loctext += sprintf("<c2=63184210>-----------------------------------------</c2>")
       #loctext += sprintf("<al>%s</al>",encstringarray.join(", "))#.map{|a| a.to_s})
     end
@@ -58,6 +58,8 @@ class NewDexNav
     @sprites["locwindow"].y=20
     @sprites["locwindow"].width=512 #if @sprites["locwindow"].width<420
     @sprites["locwindow"].height=344
+    @sprites["locwindow"].setSkin("Graphics/Windowskins/frlgtextskin")
+    @sprites["locwindow"].opacity=200
     @sprites["locwindow"].visible=true
     @sprites["nav"] = AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport3)
     @sprites["nav"].x = 5
@@ -119,10 +121,10 @@ class NewDexNav
     navMon = 0
     @navChoice = 0
     lastMon = @encarray.length - 1
-    @sprites["navMon"]=Window_AdvancedTextPokemon.new(PBSpecies.getName(@encarray[navMon]))
+    @sprites["navMon"]=Window_AdvancedTextPokemon.new(_INTL("<c2=FFCADE00>{1}</c2>",PBSpecies.getName(@encarray[navMon])))
     @sprites["navMon"].viewport = @viewport1
-    @sprites["navMon"].x=320
-    @sprites["navMon"].y=53
+    @sprites["navMon"].x=340
+    @sprites["navMon"].y=52
     @sprites["navMon"].width=156
     @sprites["navMon"].windowskin = nil
     loop do
@@ -136,16 +138,16 @@ class NewDexNav
         @navChoice +=7
         navMon += 7
         @sprites["nav"].y += 64
-        @sprites["navMon"].text = PBSpecies.getName(@encarray[navMon])
+        @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",PBSpecies.getName(@encarray[navMon]))
       elsif Input.trigger?(Input::UP) && @navChoice > 6
         @navChoice -=7
         navMon -=7
-        @sprites["navMon"].text = PBSpecies.getName(@encarray[navMon])
+        @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",PBSpecies.getName(@encarray[navMon]))
         @sprites["nav"].y -= 64
       elsif Input.trigger?(Input::LEFT) && (@navChoice != 0 && @navChoice != 7 && @navChoice != 14)
         @navChoice -=1
         navMon -=1
-        @sprites["navMon"].text = PBSpecies.getName(@encarray[navMon])
+        @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",PBSpecies.getName(@encarray[navMon]))
         @sprites["nav"].x -= 64
       elsif Input.trigger?(Input::RIGHT)
         if @navChoice == 6 || @navChoice == 13 || @navChoice == 20 || @navChoice == lastMon
@@ -153,31 +155,31 @@ class NewDexNav
         elsif (@navChoice !=6 && @navChoice !=13 && @navChoice !=20) || (@navChoice != lastMon)
         @navChoice +=1
         navMon +=1
-        @sprites["navMon"].text = PBSpecies.getName(@encarray[navMon])
+        @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",PBSpecies.getName(@encarray[navMon]))
         @sprites["nav"].x += 64
         end
       elsif Input.trigger?(Input::C)
         if !$Trainer.seen[@encarray[navMon]]
-          Kernel.pbMessage("You cannot search for this Pokémon yet!")
-          Kernel.pbMessage("Try looking for it first to register it to your Pokédex!")
+          Kernel.pbMessage("<c2=318c675a>You cannot search for this Pokémon yet!</c2>")
+          Kernel.pbMessage("<c2=318c675a>Try looking for it first to register it to your Pokédex!</c2>")
           next
         elsif $currentDexSearch != nil
-          Kernel.pbMessage("You're already searching for one. Try having a look around!")
+          Kernel.pbMessage("<c2=318c675a>You're already searching for one. Try having a look around!</c2>")
           @viewport2.dispose
           break
         else
-          Kernel.pbMessage("Searching...")
+          Kernel.pbMessage("<c2=318c675a>Searching...</c2>")
             if rand(2) == 0
-               Kernel.pbMessage("Oh! A Pokemon was found nearby!")
+               Kernel.pbMessage("<c2=318c675a>Oh! A Pokemon was found nearby!</c2>")
                 species=@encarray[@navChoice]
                # We generate the pokemon they found (added to the encounters),
                 # giving it some rare "egg moves"to incentivize using  this function
                $currentDexSearch=[species,DexNav.addRandomEggMove(species)]
-               Kernel.pbMessage("Try looking in wild Pokemon spots near you- it might appear!")
+               Kernel.pbMessage("<c2=318c675a>Try looking in wild Pokemon spots near you- it might appear!</c2>")
                pbFadeOutAndHide(@sprites)
                break
             else
-               Kernel.pbMessage("Nothing was found. Try looking somewhere else!")
+               Kernel.pbMessage("<c2=318c675a>Nothing was found. Try looking somewhere else!</c2>")
             end
           end
       elsif Input.trigger?(Input::B)
@@ -219,11 +221,13 @@ class NewDexNav
     ab = PBAbilities.getName(navAbil[navRand])
     Graphics.update
     searchtext = [PBSpecies.getName(searchmon),ab,PBMoves.getName($currentDexSearch[1])]
-    @sprites["search"] = Window_UnformattedTextPokemon.newWithSize("",304,260,210,126,@viewport1)
+    @sprites["search"] = Window_AdvancedTextPokemon.newWithSize("",304,252,218,126,@viewport1)
     @sprites["search"].text = _INTL("{1}\n{2}\n{3}",searchtext[0],searchtext[1],searchtext[2])
+    @sprites["search"].setSkin("Graphics/Windowskins/frlgtextskin")
+    @sprites["search"].opacity = 200
     @sprites["searchIcon"] = PokemonSpeciesIconSprite.new(getID(PBSpecies,searchmon),@viewport1)
     @sprites["searchIcon"].x = 450
-    @sprites["searchIcon"].y = 200
+    @sprites["searchIcon"].y = 185
     $viewport1 = @viewport1
     pbFadeInAndShow(@sprites) {pbUpdate}
     $game_switches[350] = true
