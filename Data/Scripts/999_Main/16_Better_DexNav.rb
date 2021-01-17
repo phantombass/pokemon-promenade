@@ -222,7 +222,11 @@ class NewDexNav
     Graphics.update
     searchtext = [PBSpecies.getName(searchmon),ab,PBMoves.getName($currentDexSearch[1])]
     @sprites["search"] = Window_AdvancedTextPokemon.newWithSize("",304,252,218,126,@viewport1)
-    @sprites["search"].text = _INTL("{1}\n{2}\n{3}",searchtext[0],searchtext[1],searchtext[2])
+    if navRand == 2
+      @sprites["search"].text = _INTL("{1}\n<c2=463F0000>{2}</c2>\n{3}",searchtext[0],searchtext[1],searchtext[2])
+    else
+      @sprites["search"].text = _INTL("{1}\n{2}\n{3}",searchtext[0],searchtext[1],searchtext[2])
+    end
     @sprites["search"].setSkin("Graphics/Windowskins/frlgtextskin")
     @sprites["search"].opacity = 200
     @sprites["searchIcon"] = PokemonSpeciesIconSprite.new(getID(PBSpecies,searchmon),@viewport1)
