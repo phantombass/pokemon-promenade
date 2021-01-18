@@ -213,7 +213,7 @@ class NewDexNav
     $game_variables[400] = navRand
     hAbil = pbGetSpeciesData(searchmon,form,SpeciesHiddenAbility)
     navAbil1 = pbGetSpeciesData(searchmon,form,SpeciesAbilities)
-    if navAbil1[1] = nil
+    if navAbil1[1] != nil
       navAbil = [navAbil1[0],navAbil1[1],hAbil[0]]
     else
       navAbil = [navAbil1[0],navAbil1[0],hAbil[0]]
@@ -221,7 +221,7 @@ class NewDexNav
     ab = PBAbilities.getName(navAbil[navRand])
     Graphics.update
     searchtext = [PBSpecies.getName(searchmon),ab,PBMoves.getName($currentDexSearch[1])]
-    @sprites["search"] = Window_AdvancedTextPokemon.newWithSize("",304,240,230,126,@viewport1)
+    @sprites["search"] = Window_AdvancedTextPokemon.newWithSize("",265,250,250,126,@viewport1)
     if navRand == 2
       @sprites["search"].text = _INTL("{1}\n<c2=463F0000>{2}</c2>\n{3}",searchtext[0],searchtext[1],searchtext[2])
     else
