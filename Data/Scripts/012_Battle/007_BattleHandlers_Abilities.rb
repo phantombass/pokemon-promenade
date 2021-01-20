@@ -2879,7 +2879,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:PINDROP,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:TIMETRAVELLER,
+BattleHandlers::AbilityOnSwitchIn.add(:WORMHOLE,
   proc { |ability,battler,battle|
     next if battle.field.weather == PBWeather::TimeWarp
     pbBattleWeatherAbility(PBWeather::TimeWarp,battler,battle)
@@ -2923,7 +2923,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:TURBOBLAZE,
   }
 )
 
-BattleHandlers::AbilityOnSwitchIn.add(:TWISTED,
+BattleHandlers::AbilityOnSwitchIn.add(:DIMENSIONSHIFT,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
     if battle.field.weather == PBWeather::TimeWarp
