@@ -275,7 +275,6 @@ Events.onWildPokemonCreate+=proc {|sender,e|
         pokemon.form = pform
         pokemon.resetMoves
         pokemon.moves[2]=PBMove.new($currentDexSearch[1]) if $currentDexSearch[1]
-        $game_switches[350] = true
         if $currentDexSearch[1] != $currentDexSearch[2]
           pokemon.moves[3]=PBMove.new($currentDexSearch[2]) if $currentDexSearch[2]
         end

@@ -37,7 +37,7 @@ Pokemon = LUCARIO,15
 [LEADER_Boris,Boris]
 LoseText = "Through weathering storms, we find ourselves stronger than ever."
 Pokemon = SIGILYPH,20
-     Moves = CALMMIND,WINDDRILL,ROOST,AURORABEAM
+     Moves = CALMMIND,AIRCUTTER,ROOST,AURORABEAM
      Nature = TIMID
      Item = HEAVYDUTYBOOTS
      Ability = 0
@@ -81,7 +81,7 @@ Pokemon = CASTFORM,25
      IV = 31,0,31,31,31,31
      EV = 252,0,4,0,252,0
 Pokemon = SANDYGAST,25
-     Moves = SCORCHINGSANDS,ANCIENTPOWER,GIGADRAIN,SHOREUP
+     Moves = SCORCHINGSANDS,ANCIENTPOWER,MEGADRAIN,STOCKPILE
      Nature = CALM
      Item = EVIOLITE
      Ability = 0
@@ -113,7 +113,7 @@ Pokemon = CASTFORM,30
      IV = 31,0,31,31,31,31
      EV = 0,0,4,252,252,0
 Pokemon = CACTURNE,31
-     Moves = SEEDBOMB,PYROBALL,DRAINPUNCH,SWORDSDANCE
+     Moves = SEEDBOMB,PYROBALL,DRAINPUNCH,FLAMECHARGE
      Nature = JOLLY
      Item = LIFEORB
      Ability = 2
@@ -169,7 +169,7 @@ Pokemon = BUNEARY,7
 #-------------------------------
 [CAMPER,Ricky]
 LoseText = "Aww, I lost."
-Pokemon = JERBUZZ,8
+Pokemon = SHINX,8
 Pokemon = POOCHYENA,8
 #-------------------------------
 [BUGCATCHER,Bobby]
@@ -311,7 +311,7 @@ Pokemon = TABLU,20
 LoseText = "Aww, I lost."
 Pokemon = PHANPY,19
 Pokemon = ROCKRUFF,20
-Pokemon = MORNTAB,22
+Pokemon = TABLU,22
 #-------------------------------
 [RUINMANIAC,Alan]
 LoseText = "Aww, I lost."
@@ -501,7 +501,7 @@ Pokemon = ARCHAEON,34
 Pokemon = FISHOOS,32
      Moves = FLIPTURN,AQUAJET,ICESHARD,BULLETPUNCH
      Nature = JOLLY
-     Item = CHOICESCARF
+     Item = MUSCLEBAND
      Ability = 2
      IV = 31,31,31,31,31,31
      EV = 0,252,0,252,0,4
@@ -528,17 +528,17 @@ Pokemon = PAPYRUN,35
 #-------------------------------
 [RIVAL1,Blue,7]
 LoseText = "Not too shabby."
-Pokemon = PHONEON,34    
+Pokemon = PHONEON,34
      Moves = WICKEDWIND,BASSDROP,SLACKOFF,MACHPULSE
      Nature = MODEST
-     Item = CHOICESPECS
+     Item = WISEGLASSES
      Ability = 1
      IV = 31,0,31,31,31,31
      EV = 0,0,0,252,252,4
 Pokemon = FISHOOS,32
      Moves = FLIPTURN,AQUAJET,ICESHARD,BULLETPUNCH
      Nature = JOLLY
-     Item = CHOICESCARF
+     Item = MUSCLEBAND
      Ability = 2
      IV = 31,31,31,31,31,31
      EV = 0,252,0,252,0,4
@@ -557,7 +557,7 @@ Pokemon = CHINGLING,33
      IV = 31,0,31,31,31,31
      EV = 252,0,0,0,252,4
 Pokemon = PHIRUNDO,35
-     Moves = FLAMEWHEEL,TEMPOMARCH,RHYTHMICPUNCH,WILLOWISP
+     Moves = FLAMEWHEEL,TEMPOMARCH,RHYTHMICPUNCH,ROOST
      Nature = ADAMANT
      Item = LEFTOVERS
      IV = 31,31,31,31,31,31
@@ -593,7 +593,7 @@ Pokemon = SAPHYRFLY,33
      IV = 31,0,31,31,31,31
      EV = 0,0,0,252,252,4
 Pokemon = BOWLTISIS,35
-     Moves = ECHOEDVOICE,BUBBLEBEAM,FAKETEARS,SING
+     Moves = BASSDROP,BUBBLEBEAM,FAKETEARS,SING
      Nature = TIMID
      Item = LEFTOVERS
      IV = 31,0,31,31,31,31

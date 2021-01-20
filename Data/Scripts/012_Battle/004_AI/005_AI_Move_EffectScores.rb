@@ -2258,7 +2258,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "105"
-      if user.pbOpposingSide.effects[PBEffects::StealthRock]
+      if user.pbOpposingSide.effects[PBEffects::StealthRock] || user.pbOpposingSide.effects[PBEffects::CometShards]
         score -= 90
       else
         canChoose = false
@@ -3146,6 +3146,22 @@ class PokeBattle_AI
     when "500"   # No extra effect
       score -=100 if @battle.pbWeather == PBWeather::Windy
       score -=100 if user.pbOpposingSide.effects[PBEffects::StealthRock]
+      if user.pbOpposingSide.effects[PBEffects::StealthRock] || user.pbOpposingSide.effects[PBEffects::CometShards]
+        score -= 90
+      else
+        canChoose = false
+        user.eachOpposing do |b|
+          next if !@battle.pbCanChooseNonActive?(b.index)
+          canChoose = true
+          break
+        end
+        if !canChoose
+          # Opponent can't switch in any Pokemon
+          score -= 90
+        else
+          score += 10*@battle.pbAbleNonActiveCount(user.idxOpposingSide)
+        end
+      end
     #---------------------------------------------------------------------------
     when "501"   # No extra effect
       score +=40 if target.hasType?(:GROUND)
