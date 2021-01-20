@@ -236,7 +236,7 @@ class PokemonWeatherScreen
           pbMessage(_INTL("Weather: Fog"))
           pbMessage(_INTL("Weather Ball Type: Fairy"))
           pbMessage(_INTL("Additional Effects: Fairy x 1.5, Dragon x .5"))
-          pbMessage(_INTL("All moves that check accuracy are 50% accurate"))
+          pbMessage(_INTL("All moves that check accuracy are 67% accurate"))
           else
             pbMessage(_INTL("No Readout Installed for this Weather"))
           end
