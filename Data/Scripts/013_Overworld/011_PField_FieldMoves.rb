@@ -466,17 +466,17 @@ def pbRockSmashRandomItem
   randItem = rand(100)+1
   return nil if randItem < 51
   if randItem < 76
-    pbExclaim(get_character(0))
+    pbExclaim(get_character(-1))
     pbWait(8)
     Kernel.pbMessage(_INTL("Oh, there was an item!"))
     Kernel.pbItemBall(:HARDSTONE)
   elsif randItem < 86
-    pbExclaim(get_character(0))
+    pbExclaim(get_character(-1))
     pbWait(8)
     Kernel.pbMessage(_INTL("Oh, there was an item!"))
     Kernel.pbItemBall(:NUGGET)
   elsif randItem < 96
-    pbExclaim(get_character(0))
+    pbExclaim(get_character(-1))
     pbWait(8)
     Kernel.pbMessage(_INTL("Oh, there was an item!"))
     randFossil = rand(2)
@@ -486,7 +486,7 @@ def pbRockSmashRandomItem
         Kernel.pbItemBall(:ANCIENTTOTEM)
       end
     else
-      pbExclaim(get_character(0))
+      pbExclaim(get_character(-1))
       pbWait(8)
       Kernel.pbMessage(_INTL("Oh, there was an item!"))
       Kernel.pbItemBall(:BIGNUGGET)
