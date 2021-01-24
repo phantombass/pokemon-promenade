@@ -694,7 +694,7 @@
 688,AQUAROCKET,Aqua Rocket,Aqua Rockets,8,0,A replacement for the HM Waterfall.,2,0,6,
 689,HIKINGGEAR,Hiking Gear,Hiking Gears,8,0,A replacement for the HM Rock Climb.,2,0,6,
 690,SCUBATANK,Scuba Tank,Scuba Tanks,8,0,A replacement for the HM Dive.,2,0,6,
-691,CASTFORMITE,Castformite,Castformites,1,0,"One variety of the mysterious Mega Stones. Have Castform hold it, and this stone will enable it to Mega Evolve during battle.",0,0,12,
+691,FORMETEONITE,Formeteonite,Formeteonites,1,0,"One variety of the mysterious Mega Stones. Have Formeteos hold it, and this stone will enable it to Mega Evolve during battle.",0,0,12,
 692,PIXIEDUST,Pixie Dust,Pixie Dusts,1,2100,"A peculiar powder that makes certain species of Pokémon evolve. It sparkles like glitter.",1,0,7,
 693,EXPALL,Exp. Share,Exp. Shares,8,0,"Currently ON. This allows all Pokémon in the party to gain experience from a battle.",2,0,6,
 694,EXPALLOFF,Exp. Share,Exp. Shares,8,0,"Currently OFF. This allows all Pokémon in the party to gain experience from a battle.",2,0,6,
@@ -763,3 +763,8 @@
 776,NEFLORITE,Neflorite,Neflorites,1,0,"One variety of the mysterious Mega Stones. Have Neflora hold it, and this stone will enable it to Mega Evolve during battle.",0,0,12,
 777,SATURABTITE,Saturabtite,Saturabtites,1,0,"One variety of the mysterious Mega Stones. Have Saturabtu hold it, and this stone will enable it to Mega Evolve during battle.",0,0,12,
 778,TM107,TM107,TM107s,4,30000,"This move's type and power are based upon the weather.",3,0,0,WEATHERBALL
+779,TIMESTONE,Time Stone,Time Stones,1,2100,A peculiar stone that makes certain species of Pokémon evolve. It feels as though it is older than time itself.,1,0,7,
+780,SOUNDSTONE,Sound Stone,Sound Stones,1,2100,A peculiar stone that makes certain species of Pokémon evolve. It makes a slight hum.,1,0,7,
+781,APOPHITE,Apophite,Apophites,1,0,"One variety of the mysterious Mega Stones. Have Apophicary hold it, and this stone will enable it to Mega Evolve during battle.",0,0,12,
+782,FALKMUNRITE,Falkmunrite,Falkmunrites,1,0,"One variety of the mysterious Mega Stones. Have Falkmunra hold it, and this stone will enable it to Mega Evolve during battle.",0,0,12,
+783,TM108,TM108,TM108s,4,30000,"The user attacks with a powerfully projected voice.",3,0,0,HYPERVOICE

@@ -369,7 +369,7 @@ class PokeBattle_Battle
       bTypes = battler.pbTypes(true)
       eff = PBTypes.getCombinedEffectiveness(aType,bTypes[0],bTypes[1],bTypes[2])
       if battler.pbHasType?(:COSMIC)
-        battler.pbOwnSide.effects[PBEffects::CometShards] = 0
+        battler.pbOwnSide.effects[PBEffects::CometShards] = false
         pbDisplay(_INTL("{1} diffused the comet shards!",battler.pbThis))
       elsif !PBTypes.ineffective?(eff)
         eff = eff.to_f/PBTypeEffectiveness::NORMAL_EFFECTIVE

@@ -73,3 +73,6 @@
 70,ELITEFOUR_Lance,Elite Four,200,Battle Elite,Battle victory leader,,Male,200,
 71,CHAMPION,Champion,200,Battle Elite,Battle victory leader,,Male,200,
 72,THERACOMET,Thera Comet,200,Battle Elite,Battle victory leader,,Male,200,
+73,GUARDIAN_Owen,Temple Guardian,200,Battle Elite,Battle victory leader,,Male,200,
+74,GUARDIAN_Marie,Temple Guardian,200,Battle Elite,Battle victory leader,,Female,200,
+75,GUARDIAN_Burt,Temple Guardian,200,Battle Elite,Battle victory leader,,Male,200,

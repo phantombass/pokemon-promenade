@@ -3093,3 +3093,43 @@ BattlerEnemyY = 9
 BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions =
+#-------------------------------
+[PHIRENIX,1]
+FormName = Mega Phirenix
+MegaStone = PHIRENIXITE
+BaseStats = 120,200,120,140,100,120
+Abilities = RESURGENCE
+Height = 1.1
+Weight = 27.8
+#-------------------------------
+[NEFLORA,1]
+FormName = Mega Neflora
+MegaStone = NEFLORITE
+BaseStats = 150,110,165,100,110,165
+Abilities = ASPIRANT
+Height = 1.1
+Weight = 27.8
+#-------------------------------
+[SATURABTU,1]
+FormName = Mega Saturabtu
+MegaStone = SATURABTITE
+BaseStats = 105,130,125,110,205,125
+Abilities = HOPEFULTOLL
+Height = 1.1
+Weight = 27.8
+#-------------------------------
+[APOPHICARY,1]
+FormName = Mega Apophicary
+MegaStone = APOPHITE
+BaseStats = 120,150,150,130,150,150
+Abilities = NITRIC
+Height = 1.1
+Weight = 27.8
+#-------------------------------
+[FALKMUNRA,1]
+FormName = Mega Falkmunra
+MegaStone = FALKMUNRITE
+BaseStats = 130,160,130,140,160,130
+Abilities = DUAT
+Height = 1.1
+Weight = 27.8
