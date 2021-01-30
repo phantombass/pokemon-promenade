@@ -139,6 +139,128 @@ Pokemon = MERITEMPO,52
      IV = 31,0,31,31,31,31
      EV = 0,0,4,252,252,0
 #-------------------------------
+# Elite 4
+#-------------------------------
+[CHAMPION,Dr. Lyptus]
+LoseText = "As long as I live, I will remember how you rose to this position. Congratulations \PN! You're the new Champion!"
+Pokemon = EYEROGLYPH,93
+     Moves = QUANTUMWAVE,PHOTONGEYSER,COMETSHARDS,AURASPHERE
+     Nature = TIMID
+     Item = FOCUSSASH
+     IV = 31,0,31,31,31,31
+     EV = 0,0,4,252,252,0
+Pokemon = HYDREIGON_1,94
+     Moves = WICKEDWIND,TOXOPLASM,FLAMETHROWER,QUIVERDANCE
+     Nature = TIMID
+     Item = BLACKSLUDGE
+     Ability = 0
+     IV = 31,0,31,31,31,31
+     EV = 0,0,4,252,252,0
+Pokemon = FORMETEOS,92
+    Moves = STARBEAM,BAROMETERBOMB,COSMICPOWER,RECOVER
+    Nature = TIMID
+    Item = LEFTOVERS
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+Pokemon = SATURABTU,94
+    Moves = SIRENSSONG,BOOMBURST,ICEBEAM,PARTINGSHOT
+    Nature = MODEST
+    Item = CHOICESPECS
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+Pokemon = APOPHICARY,95
+    Moves = NASTYPLOT,FLEURCANNON,DEATHTOLL,FLAMETHROWER
+    Nature = TIMID
+    Item = LIFEORB
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+Pokemon = FALKMUNRA,95
+    Moves = FLAMETHROWER,QUANTUMWAVE,STARBEAM,RECOVER
+    Nature = TIMID
+    Item = LIFEORB
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+#-------------------------------
+[CHAMPION,Dr. Lyptus,1]
+LoseText = "As long as I live, I will remember how you rose to this position. Congratulations \PN! You're the new Champion!"
+Pokemon = EYEROGLYPH,93
+    Moves = QUANTUMWAVE,PHOTONGEYSER,COMETSHARDS,AURASPHERE
+    Nature = TIMID
+    Item = FOCUSSASH
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+Pokemon = HYDREIGON_1,94
+    Moves = WICKEDWIND,TOXOPLASM,FLAMETHROWER,QUIVERDANCE
+    Nature = TIMID
+    Item = BLACKSLUDGE
+    Ability = 0
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+Pokemon = FORMETEOS,92
+    Moves = STARBEAM,BAROMETERBOMB,COSMICPOWER,RECOVER
+    Nature = TIMID
+    Item = LEFTOVERS
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+Pokemon = NEFLORA,94
+    Moves = SPACIALGROVE,STARBEAM,SUBSTITUTE,PROTECT
+    Nature = BOLD
+    Item = LEFTOVERS
+    IV = 31,0,31,31,31,31
+    EV = 252,0,252,0,4,0
+Pokemon = APOPHICARY,95
+    Moves = NASTYPLOT,FLEURCANNON,DEATHTOLL,FLAMETHROWER
+    Nature = TIMID
+    Item = LIFEORB
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+Pokemon = FALKMUNRA,95
+    Moves = FLAMETHROWER,QUANTUMWAVE,STARBEAM,RECOVER
+    Nature = TIMID
+    Item = LIFEORB
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+#-------------------------------
+[CHAMPION,Dr. Lyptus]
+LoseText = "As long as I live, I will remember how you rose to this position. Congratulations \PN! You're the new Champion!"
+Pokemon = EYEROGLYPH,93
+    Moves = QUANTUMWAVE,PHOTONGEYSER,COMETSHARDS,AURASPHERE
+    Nature = TIMID
+    Item = FOCUSSASH
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+Pokemon = HYDREIGON_1,94
+    Moves = WICKEDWIND,TOXOPLASM,FLAMETHROWER,QUIVERDANCE
+    Nature = TIMID
+    Item = BLACKSLUDGE
+    Ability = 0
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+Pokemon = FORMETEOS,92
+    Moves = STARBEAM,BAROMETERBOMB,COSMICPOWER,RECOVER
+    Nature = TIMID
+    Item = LEFTOVERS
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+Pokemon = SATURABTU,94
+    Moves = SIRENSSONG,BOOMBURST,ICEBEAM,PARTINGSHOT
+    Nature = TIMID
+    Item = CHOICESPECS
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+Pokemon = APOPHICARY,95
+    Moves = NASTYPLOT,FLEURCANNON,DEATHTOLL,FLAMETHROWER
+    Nature = TIMID
+    Item = LIFEORB
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+Pokemon = FALKMUNRA,95
+    Moves = FLAMETHROWER,QUANTUMWAVE,STARBEAM,RECOVER
+    Nature = TIMID
+    Item = LIFEORB
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+#-------------------------------
 #Icaro Gym
 #-------------------------------
 [YOUNGSTER,Ben]
@@ -467,6 +589,33 @@ Pokemon = LOUDRED,28
 Pokemon = LOUDRED,28
 Pokemon = LOUDRED,28
 Pokemon = LOUDRED,28
+#-------------------------------
+# Route 13
+#-------------------------------
+[COOLTRAINER_M,Liam]
+LoseText = "Aww, I lost."
+Pokemon = FERROCUDA,36
+	IV = 31,31,31,31,31,31
+	EV = 0,252,0,252,0,4
+	Nature = ADAMANT
+	Item = CHOICESCARF
+	Moves = FLIPTURN,FISHIOUSREND,IRONHEAD,PSYCHICFANGS
+  Ability = 2
+Pokemon = PEGASOOT,36
+  IV = 31,0,31,31,31,31
+  EV = 0,0,0,252,252,4
+  Nature = TIMID
+  Item = LIFEORB
+  Moves = ROOST,DAZZLINGGLEAM,SCORCHINGSANDS,LAVAPLUME
+  Ability = 2
+Pokemon = EXEGGUTOR_1,36
+  IV = 31,0,31,31,31,31
+  EV = 252,0,0,0,252,4
+  Nature = TIMID
+  Item = LEFTOVERS
+  Moves = LEECHSEED,DRAGONPULSE,WISH,GIGADRAIN
+  Ability = 1
+#-------------------------------
 #-------------------------------
 # Rival Battles
 #-------------------------------
