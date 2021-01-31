@@ -696,6 +696,7 @@ class PokeBattle_Battle
   def pbEndPrimordialWeather
     oldWeather = @field.weather
     # End Primordial Sea, Desolate Land, Delta Stream
+    if @opponent
     case @field.weather
     when PBWeather::HarshSun
       if !pbCheckGlobalAbility(:DESOLATELAND)
@@ -713,6 +714,7 @@ class PokeBattle_Battle
         pbDisplay("The mysterious air current has dissipated!")
       end
     end
+  end
     if @field.weather!=oldWeather
       # Check for form changes caused by the weather changing
       eachBattler { |b| b.pbCheckFormOnWeatherChange }

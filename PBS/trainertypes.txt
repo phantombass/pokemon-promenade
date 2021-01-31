@@ -23,7 +23,7 @@
 20,LADY,Lady,160,,,,Female,100,
 21,PAINTER,Painter,16,,,,Female,100,
 22,POKEMANIAC,Poké Maniac,64,,,,Male,100,
-23,POKEMONBREEDER,Pokémon Breeder,48,,,,Female,100,
+23,POKEMONBREEDER,Pokémon Breeder,48,,,,Female,200,
 24,PROFESSOR,Professor,200,,,,Male,200,
 25,ROCKER,Rocker,24,,,,Male,100,
 26,RUINMANIAC,Ruin Maniac,48,,,,Male,100,

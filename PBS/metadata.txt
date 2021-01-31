@@ -119,7 +119,7 @@ ShowArea = true
 [022]
 # Azgi Ruins
 SnapEdges = true
-BattleBack =
+BattleBack = 
 Weather = Sandstorm,100
 MapPosition = 0,21,17
 Outdoor = true
@@ -907,6 +907,7 @@ MapPosition = 0,26,18
 [147]
 # Dontu
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,21,1
 Outdoor = true
 ShowArea = true
@@ -915,8 +916,8 @@ ShowArea = true
 # Dontu PMC
 SnapEdges = true
 MapPosition = 0,21,1
-HealingSpot = 147,6,6
 Outdoor = false
+HealingSpot = 147,6,6
 #-------------------------------
 [149]
 # Temple of Sobekodile
@@ -928,6 +929,7 @@ ShowArea = true
 [150]
 # Route 13
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,23,1
 Outdoor = true
 ShowArea = true
@@ -935,6 +937,7 @@ ShowArea = true
 [151]
 # Route 14
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,25,1
 Outdoor = true
 ShowArea = true
@@ -942,6 +945,7 @@ ShowArea = true
 [152]
 # Eloh City
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,26,1
 Outdoor = true
 ShowArea = true
@@ -963,6 +967,7 @@ ShowArea = true
 # Eloh Gate
 SnapEdges = true
 MapPosition = 0,25,1
+Outdoor = false
 #-------------------------------
 [156]
 # Route 15 Gate
@@ -986,6 +991,7 @@ ShowArea = true
 [159]
 # Route 15
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,28,1
 Outdoor = true
 ShowArea = true
@@ -993,6 +999,7 @@ ShowArea = true
 [160]
 # Route 16
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,28,3
 Outdoor = true
 ShowArea = true
@@ -1010,6 +1017,7 @@ MapPosition = 0,5,11
 [165]
 # Klinsper
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,28,5
 Outdoor = true
 ShowArea = true
@@ -1038,6 +1046,7 @@ ShowArea = true
 [170]
 # Route 17
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,26,5
 Outdoor = true
 ShowArea = true
@@ -1045,6 +1054,7 @@ ShowArea = true
 [171]
 # Ezgal
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,24,5
 Outdoor = true
 ShowArea = true
@@ -1065,6 +1075,7 @@ MapPosition = 0,24,5
 [175]
 # Isani Peninsula
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,28,0
 Outdoor = true
 ShowArea = true
@@ -1075,6 +1086,7 @@ ShowArea = true
 [177]
 # Route 11
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,21,3
 Outdoor = true
 ShowArea = true
@@ -1082,6 +1094,7 @@ ShowArea = true
 [178]
 # Route 12
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,20,5
 Outdoor = true
 ShowArea = true
@@ -1089,6 +1102,7 @@ ShowArea = true
 [179]
 # Zharo Archipelago Port
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,18,5
 Outdoor = true
 HealingSpot = 179,14,10
@@ -1097,6 +1111,7 @@ ShowArea = true
 [180]
 # Route 27
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,16,5
 Outdoor = true
 ShowArea = true
@@ -1104,6 +1119,7 @@ ShowArea = true
 [181]
 # Route 28
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,16,7
 Outdoor = true
 ShowArea = true
@@ -1111,6 +1127,7 @@ ShowArea = true
 [182]
 # Route 29
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,17,9
 Outdoor = true
 ShowArea = true
@@ -1118,6 +1135,7 @@ ShowArea = true
 [184]
 # Zharo Mainland Port
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,18,9
 Outdoor = true
 ShowArea = true
@@ -1125,6 +1143,7 @@ ShowArea = true
 [185]
 # Fa'lo Shoals
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,19,9
 Outdoor = true
 ShowArea = true
@@ -1132,7 +1151,7 @@ ShowArea = true
 [186]
 # Temple of Orrustorm
 SnapEdges = true
-Weather = TimeWarp,100
+Weather = Storm,0
 MapPosition = 0,19,9
 Outdoor = false
 ShowArea = true
@@ -1140,13 +1159,21 @@ ShowArea = true
 [187]
 # Route 20
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,21,9
 Outdoor = true
 ShowArea = true
 #-------------------------------
+[188]
+# Pokémon Day Care
+SnapEdges = true
+MapPosition = 0,25,1
+Outdoor = false
+#-------------------------------
 [189]
 # Tagubeet
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,22,9
 Outdoor = true
 ShowArea = true
@@ -1215,9 +1242,17 @@ MapPosition = 0,29,9
 Outdoor = true
 ShowArea = true
 #-------------------------------
+[201]
+# Castronis PMC
+SnapEdges = true
+MapPosition = 0,29,8
+Outdoor = false
+HealingSpot = 200,26,14
+#-------------------------------
 [202]
 # Route 10
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,22,10
 Outdoor = true
 ShowArea = true
@@ -1267,6 +1302,7 @@ ShowArea = true
 [209]
 # Route 23
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,7,16
 Outdoor = true
 ShowArea = true
@@ -1274,6 +1310,7 @@ ShowArea = true
 [210]
 # New Icaro City
 SnapEdges = true
+Weather = Storm,0
 MapPosition = 0,4,16
 Outdoor = true
 ShowArea = true
@@ -1334,6 +1371,6 @@ SnapEdges = true
 MapPosition = 0,21,1
 #-------------------------------
 [242]
-# Dontu Inn
+# Inn Keepers House
 SnapEdges = true
 MapPosition = 0,21,1

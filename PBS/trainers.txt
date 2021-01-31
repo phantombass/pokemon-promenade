@@ -594,21 +594,21 @@ Pokemon = LOUDRED,28
 #-------------------------------
 [COOLTRAINER_M,Liam]
 LoseText = "Aww, I lost."
-Pokemon = FERROCUDA,36
+Pokemon = FERROCUDA,37
 	IV = 31,31,31,31,31,31
 	EV = 0,252,0,252,0,4
 	Nature = ADAMANT
 	Item = CHOICESCARF
 	Moves = FLIPTURN,FISHIOUSREND,IRONHEAD,PSYCHICFANGS
   Ability = 2
-Pokemon = PEGASOOT,36
+Pokemon = PEGASOOT,37
   IV = 31,0,31,31,31,31
   EV = 0,0,0,252,252,4
   Nature = TIMID
   Item = LIFEORB
   Moves = ROOST,DAZZLINGGLEAM,SCORCHINGSANDS,LAVAPLUME
   Ability = 2
-Pokemon = EXEGGUTOR_1,36
+Pokemon = EXEGGUTOR_1,37
   IV = 31,0,31,31,31,31
   EV = 252,0,0,0,252,4
   Nature = TIMID
@@ -616,6 +616,19 @@ Pokemon = EXEGGUTOR_1,36
   Moves = LEECHSEED,DRAGONPULSE,WISH,GIGADRAIN
   Ability = 1
 #-------------------------------
+[BIRDKEEPER,Roger]
+LoseText = "Aww, I lost."
+Pokemon = VULLABY,34
+Pokemon = SIGILYPH,34
+Pokemon = DUSTERN,34
+#-------------------------------
+[POKEMONBREEDER,Eve]
+LoseText = "Aww, I lost."
+Pokemon = ESPEON,32
+Pokemon = UMBREON,32
+Pokemon = LEAFEON,32
+Pokemon = GLACEON,32
+Pokemon = SYLVEON,32
 #-------------------------------
 # Rival Battles
 #-------------------------------

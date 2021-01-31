@@ -112,7 +112,7 @@ class PokeBattle_Move_087 < PokeBattle_Move
   def pbBaseType(user)
     ret = getID(PBTypes,:NORMAL)
     case @battle.pbWeather
-    when PBWeather::Sun, PBWeather::HarshSun, PBWeather::SolarFlare
+    when PBWeather::Sun, PBWeather::HarshSun
       ret = getConst(PBTypes,:FIRE) || ret
     when PBWeather::Rain, PBWeather::HeavyRain
       ret = getConst(PBTypes,:WATER) || ret

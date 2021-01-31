@@ -146,8 +146,8 @@ def pbPrepareBattle(battle)
       battle.defaultWeather = PBWeather::Borealis
     when PBFieldWeather::Sleet
       battle.defaultWeather = PBWeather::Sleet
-    when PBFieldWeather::SolarFlare
-      battle.defaultWeather = PBWeather::SolarFlare
+    when PBFieldWeather::StrongWinds
+      battle.defaultWeather = PBWeather::StrongWinds
     when PBFieldWeather::Fog
       battle.defaultWeather = PBWeather::Fog
     when PBFieldWeather::TimeWarp

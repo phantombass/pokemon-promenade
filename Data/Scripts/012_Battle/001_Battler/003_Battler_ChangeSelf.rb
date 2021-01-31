@@ -175,7 +175,6 @@ class PokeBattle_Battler
         when PBWeather::Overcast, PBWeather::DWind; newForm = 5
         when PBWeather::Starstorm;   			        	newForm = 6
 	    	when PBWeather::DClear; 				          	newForm = 6
-        when PBWeather::SolarFlare;                 newForm = 1
         when PBWeather::Eclipse;                    newForm = 7
         when PBWeather::Windy;                      newForm = 8
         when PBWeather::HeatLight;                  newForm = 9
@@ -210,7 +209,6 @@ class PokeBattle_Battler
           when PBWeather::Overcast, PBWeather::DWind; newForm = 5
           when PBWeather::Starstorm;   			        	newForm = 6
   	    	when PBWeather::DClear; 				          	newForm = 6
-          when PBWeather::SolarFlare;                 newForm = 1
           when PBWeather::Eclipse;                    newForm = 7
           when PBWeather::Windy;                      newForm = 8
           when PBWeather::HeatLight;                  newForm = 9
