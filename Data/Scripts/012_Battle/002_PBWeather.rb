@@ -47,14 +47,14 @@ begin
       when ShadowSky;   return "ShadowSky"
       when Starstorm;   return "ShadowSky"
       when Thunder;     return nil
-      when Windy;       return "StrongWinds"
+      when Windy;       return "Windy"
       when DustDevil;   return "Sandstorm"
       when Sleet;       return "Hail"
       when SolarFlare;  return "HarshSun"
       when HeatLight;   return nil
       when Fog;         return "Fog"
 	    when Overcast;	  return nil
-      when VolcanicAsh; return nil
+      when VolcanicAsh; return "VolcanicAsh"
       end
       return nil
     end

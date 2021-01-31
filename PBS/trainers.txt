@@ -139,6 +139,15 @@ Pokemon = MERITEMPO,52
      IV = 31,0,31,31,31,31
      EV = 0,0,4,252,252,0
 #-------------------------------
+[GUARDIAN_Burt,Burt]
+LoseText = "This battle will be buzzing about for ages!"
+Pokemon = CENTISEPA,55
+    Moves = CALMMIND,DRAININGKISS,SIGNALBEAM,STARBEAM
+    Nature = TIMID
+    Item = LEFTOVERS
+    IV = 31,0,31,31,31,31
+    EV = 0,0,4,252,252,0
+#-------------------------------
 # Elite 4
 #-------------------------------
 [CHAMPION,Dr. Lyptus]
@@ -630,6 +639,45 @@ Pokemon = LEAFEON,32
 Pokemon = GLACEON,32
 Pokemon = SYLVEON,32
 #-------------------------------
+[BIRDKEEPER,Larry]
+LoseText = "Aww, I lost."
+Pokemon = SIGILYPH,35
+Pokemon = KESTRAIA,36
+#-------------------------------
+# Route 14
+#-------------------------------
+[POKEMONBREEDER,Izzy]
+LoseText = "Aww, I lost."
+Pokemon = VULLABY,32
+Pokemon = CHIMECHO,32
+Pokemon = PONYTA,32
+Pokemon = HORSEA,32
+Pokemon = LOPUNNY,32
+#-------------------------------
+[COOLTRAINER_F,Leah]
+LoseText = "Aww, I lost."
+Pokemon = LUVDISC,37
+	IV = 31,31,31,31,31,31
+	EV = 0,252,0,252,0,4
+	Nature = ADAMANT
+	Item = CHOICESCARF
+	Moves = UTURN,COSMICFANGS,LIQUIDATION,KNOCKOFF
+  Ability = 2
+Pokemon = BELLOOM,37
+  IV = 31,31,31,31,31,31
+  EV = 0,252,0,0,252,4
+  Nature = JOLLY
+  Item = LIFEORB
+  Moves = SEEDBOMB,FHYTHMICPUNCH,RHYTHMICRUSH,KNOCKOFF
+  Ability = 0
+Pokemon = EXPLOUD,37
+  IV = 31,0,31,31,31,31
+  EV = 252,0,0,0,252,4
+  Nature = TIMID
+  Item = EXPERTBELT
+  Moves = BOOMBURST,POLARITYPULSE,SPECTRALSHRIEK,FLAMETHROWER
+  Ability = 0
+#-------------------------------
 # Rival Battles
 #-------------------------------
 [RIVAL1,Blue]
@@ -767,6 +815,117 @@ Pokemon = SAPHYRFLY,33
      EV = 0,0,0,252,252,4
 Pokemon = BOWLTISIS,35
      Moves = BASSDROP,BUBBLEBEAM,FAKETEARS,SING
+     Nature = TIMID
+     Item = LEFTOVERS
+     IV = 31,0,31,31,31,31
+     EV = 252,0,0,0,252,4
+#-------------------------------
+#-------------------------------
+[RIVAL1,Blue,9]
+LoseText = "Not too shabby."
+Pokemon = ARCHAEON,44
+     Moves = QUANTUMWAVE,BATONPASS,AURASPHERE,WISH
+     Nature = CALM
+     Item = LEFTOVERS
+     Ability = 1
+     IV = 31,31,31,31,31,31
+     EV = 252,0,0,0,4,252
+Pokemon = FLORACUDA,43
+     Moves = FLIPTURN,FISHIOUSREND,ICESHARD,SEEDBOMB
+     Nature = JOLLY
+     Item = CHOICESCARF
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = DEINO,43
+     Moves = DARKPULSE,QUIVERDANCE,TOXOPLASM,FLAMETHROWER
+     Nature = MODEST
+     Item = EVIOLITE
+     Form = 1
+     IV = 31,31,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = PEGASOOT,44
+     Moves = FLAMETHROWER,MOONBLAST,CALMMIND,SCORCHINGSANDS
+     Nature = JOLLY
+     Item = LIFEORB
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = PAPYRUN,45
+     Moves = STARBEAM,STARSAP,SPORE,GIGADRAIN
+     Nature = BOLD
+     Item = LEFTOVERS
+     IV = 31,31,31,31,31,31
+     EV = 252,4,252,0,0,0
+#-------------------------------
+[RIVAL1,Blue,10]
+LoseText = "Not too shabby."
+Pokemon = PHONEON,44
+     Moves = WICKEDWIND,HYPERVOICE,SLACKOFF,AURASPHERE
+     Nature = MODEST
+     Item = WISEGLASSES
+     Ability = 1
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = FLORACUDA,43
+     Moves = FLIPTURN,FISHIOUSREND,ICESHARD,SEEDBOMB
+     Nature = JOLLY
+     Item = CHOICESCARF
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = DEINO,43
+     Moves = DARKPULSE,QUIVERDANCE,TOXOPLASM,FLAMETHROWER
+     Nature = MODEST
+     Item = EVIOLITE
+     Form = 1
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = CHIMECHO,44
+     Moves = HYPERVOICE,STARBEAM,RECOVER,POLARITYPULSE
+     Nature = MODEST
+     Item = EVIOLITE
+     Ability = 2
+     IV = 31,0,31,31,31,31
+     EV = 252,0,0,0,252,4
+Pokemon = PHIRUNDO,45
+     Moves = SOLARWINGS,TEMPORALSHIFT,RHYTHMICPUNCH,ROOST
+     Nature = ADAMANT
+     Item = LEFTOVERS
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+#-------------------------------
+[RIVAL1,Blue,11]
+LoseText = "Not too shabby."
+Pokemon = ASTREON,44
+     Moves = STARBEAM,STARSAP,POWERGEM,COMETSHARDS
+     Nature = BOLD
+     Item = LEFTOVERS
+     Ability = 1
+     IV = 31,0,31,31,31,31
+     EV = 252,0,252,4,0,0
+Pokemon = BELLOOM,43
+     Moves = SEEDBOMB,RHYTHMICPUNCH,RHYTHMICRUSH,KNOCKOFF
+     Nature = JOLLY
+     Item = LIFEORB
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = DEINO,43
+     Moves = DARKPULSE,QUIVERDANCE,TOXOPLASM,FLAMETHROWER
+     Nature = MODEST
+     Item = EVIOLITE
+     Form = 1
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = SAPHYRFLY,44
+     Moves = STARBEAM,SIGNALBEAM,POWERGEM,STICKYWEB
+     Nature = TIMID
+     Item = FOCUSSASH
+     Ability = 2
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = BOWLTISIS,45
+     Moves = BASSDROP,SURF,ICEBEAM,SING
      Nature = TIMID
      Item = LEFTOVERS
      IV = 31,0,31,31,31,31

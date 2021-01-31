@@ -1028,6 +1028,13 @@ SnapEdges = true
 MapPosition = 0,28,5
 HealingSpot = 165,9,32
 #-------------------------------
+[167]
+# Crafter's Hideout
+SnapEdges = true
+SafariMap = false
+Outdoor = false
+ShowArea = false
+#-------------------------------
 [168]
 # Temple of Cenitsepa
 SnapEdges = true
@@ -1346,6 +1353,14 @@ ShowArea = true
 SnapEdges = true
 DiveMap = 214
 MapPosition = 0,15,7
+ShowArea = true
+#-------------------------------
+[217]
+# Cave of Deceit
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,28,3
+Outdoor = false
 ShowArea = true
 #-------------------------------
 [218]
