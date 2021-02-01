@@ -678,6 +678,47 @@ Pokemon = EXPLOUD,37
   Moves = BOOMBURST,POLARITYPULSE,SPECTRALSHRIEK,FLAMETHROWER
   Ability = 0
 #-------------------------------
+# Route 15
+#-------------------------------
+[BUGCATCHER,Paul]
+LoseText = "Aww, I lost."
+Pokemon = LARVESTA,40
+Pokemon = SAPHYRFLY,40
+#-------------------------------
+[BUGCATCHER,Ringo]
+LoseText = "Aww, I lost."
+Pokemon = LARVESTA,40
+Pokemon = SPOOKHEPRI,40
+#-------------------------------
+[COOLTRAINER_M,Eric]
+LoseText = "Aww, I lost."
+Pokemon = SOBELISK,42
+  IV = 31,31,31,31,31,31
+  EV = 252,4,0,0,0,252
+  Nature = CAREFUL
+  Item = LEFTOVERS
+  Moves = STEALTHROCK,RAPIDSPIN,DIAMONDSTORM,RECHARGE
+  Ability = 1
+Pokemon = VULLABY,42
+	IV = 31,31,31,31,31,31
+	EV = 252,0,252,0,0,4
+	Nature = IMPISH
+	Item = EVIOLITE
+	Moves = KNOCKOFF,ROOST,UTURN,TOXIC
+  Ability = 2
+Pokemon = LUCARIO_2,42
+  IV = 31,31,31,31,31,31
+  EV = 0,0,0,252,252,4
+  Nature = JOLLY
+  Item = LIFEORB
+  Moves = DRAINPUNCH,EARTHQUAKE,SWORDSDANCE,ICEPUNCH
+  Ability = 0
+#-------------------------------
+[CHANNELER,Mary]
+LoseText = "Aww, I lost."
+Pokemon = LARVESTA,40
+Pokemon = SPOOKHEPRI,40
+#-------------------------------
 # Rival Battles
 #-------------------------------
 [RIVAL1,Blue]
