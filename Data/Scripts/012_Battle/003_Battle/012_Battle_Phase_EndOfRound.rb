@@ -172,30 +172,30 @@ class PokeBattle_Battle
         b.pbFaint if b.fainted?
       when PBWeather::Windy
         next if !b.pbOwnSide.effects[PBEffects::StealthRock] && b.pbOwnSide.effects[PBEffects::Spikes] == 0 && !b.pbOwnSide.effects[PBEffects::CometShards] && !b.pbOwnSide.effects[PBEffects::StickyWeb] && b.pbOwnSide.effects[PBEffects::ToxicSpikes] == 0
-        if b.pbOwnSide.effects[PBEffects::StealthRock] || (NEWEST_BATTLE_MECHANICS && b.pbOpposingSide.effects[PBEffects::StealthRock])
+        if b.pbOwnSide.effects[PBEffects::StealthRock] || b.pbOpposingSide.effects[PBEffects::StealthRock]
           b.pbOwnSide.effects[PBEffects::StealthRock]      = false
-          b.pbOpposingSide.effects[PBEffects::StealthRock] = false if NEWEST_BATTLE_MECHANICS
-          @battle.pbDisplay(_INTL("{1} blew away stealth rocks!",user.pbThis))
+          b.pbOpposingSide.effects[PBEffects::StealthRock] = false
+          @battle.pbDisplay(_INTL("The wind blew away the stealth rocks!"))
         end
-        if b.pbOwnSide.effects[PBEffects::Spikes]>0 || (NEWEST_BATTLE_MECHANICS && b.pbOpposingSide.effects[PBEffects::Spikes]>0)
+        if b.pbOwnSide.effects[PBEffects::Spikes]>0 || b.pbOpposingSide.effects[PBEffects::Spikes]>0
           b.pbOwnSide.effects[PBEffects::Spikes]      = 0
-          target.pbOpposingSide.effects[PBEffects::Spikes] = 0 if NEWEST_BATTLE_MECHANICS
-          @battle.pbDisplay(_INTL("{1} blew away spikes!",user.pbThis))
+          target.pbOpposingSide.effects[PBEffects::Spikes] = 0 
+          @battle.pbDisplay(_INTL("The wind blew away the spikes!"))
         end
-        if b.pbOwnSide.effects[PBEffects::CometShards] || (NEWEST_BATTLE_MECHANICS && b.pbOpposingSide.effects[PBEffects::CometShards])
+        if b.pbOwnSide.effects[PBEffects::CometShards] || b.pbOpposingSide.effects[PBEffects::CometShards]
           b.pbOwnSide.effects[PBEffects::CometShards]      = false
-          b.pbOpposingSide.effects[PBEffects::CometShards] = false if NEWEST_BATTLE_MECHANICS
-          @battle.pbDisplay(_INTL("{1} blew away comet shards!",user.pbThis))
+          b.pbOpposingSide.effects[PBEffects::CometShards] = false
+          @battle.pbDisplay(_INTL("The wind blew away the comet shards!"))
         end
-        if b.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 || (NEWEST_BATTLE_MECHANICS && b.pbOpposingSide.effects[PBEffects::ToxicSpikes]>0)
+        if b.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 || b.pbOpposingSide.effects[PBEffects::ToxicSpikes]>0
           b.pbOwnSide.effects[PBEffects::ToxicSpikes]      = 0
-          b.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0 if NEWEST_BATTLE_MECHANICS
-          @battle.pbDisplay(_INTL("{1} blew away poison spikes!",user.pbThis))
+          b.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
+          @battle.pbDisplay(_INTL("The wind blew away the poison spikes!"))
         end
-        if b.pbOwnSide.effects[PBEffects::StickyWeb] || (NEWEST_BATTLE_MECHANICS && b.pbOpposingSide.effects[PBEffects::StickyWeb])
+        if b.pbOwnSide.effects[PBEffects::StickyWeb] || b.pbOpposingSide.effects[PBEffects::StickyWeb]
           b.pbOwnSide.effects[PBEffects::StickyWeb]      = false
-          b.pbOpposingSide.effects[PBEffects::StickyWeb] = false if NEWEST_BATTLE_MECHANICS
-          @battle.pbDisplay(_INTL("{1} blew away sticky webs!",user.pbThis))
+          b.pbOpposingSide.effects[PBEffects::StickyWeb] = false
+          @battle.pbDisplay(_INTL("The wind blew away the sticky webs!"))
         end
       end
     end

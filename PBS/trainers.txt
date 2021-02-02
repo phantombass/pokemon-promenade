@@ -716,8 +716,8 @@ Pokemon = LUCARIO_2,42
 #-------------------------------
 [CHANNELER,Mary]
 LoseText = "Aww, I lost."
-Pokemon = LARVESTA,40
-Pokemon = SPOOKHEPRI,40
+Pokemon = HYENASTY,40
+Pokemon = SPECTRAMYS,40
 #-------------------------------
 # Rival Battles
 #-------------------------------

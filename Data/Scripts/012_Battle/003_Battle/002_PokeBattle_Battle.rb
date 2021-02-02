@@ -700,18 +700,30 @@ class PokeBattle_Battle
     case @field.weather
     when PBWeather::HarshSun
       if !pbCheckGlobalAbility(:DESOLATELAND)
-        @field.weather = PBWeather::None
-        pbDisplay("The harsh sunlight faded!")
+        if @field.defaultWeather == PBWeather::HarshSun
+          @field.weather = PBWeather::HarshSun
+        else
+          @field.weather = PBWeather::None
+          pbDisplay("The harsh sunlight faded!")
+        end
       end
     when PBWeather::HeavyRain
       if !pbCheckGlobalAbility(:PRIMORDIALSEA)
-        @field.weather = PBWeather::None
-        pbDisplay("The heavy rain has lifted!")
+        if @field.defaultWeather == PBWeather::HeavyRain
+          @field.weather = PBWeather::HeavyRain
+        else
+          @field.weather = PBWeather::None
+          pbDisplay("The heavy rain has lifted!")
+        end
       end
     when PBWeather::StrongWinds
       if !pbCheckGlobalAbility(:DELTASTREAM)
-        @field.weather = PBWeather::None
-        pbDisplay("The mysterious air current has dissipated!")
+        if @field.defaultWeather == PBWeather::StrongWinds
+          @field.weather = PBWeather::StrongWinds
+        else
+          @field.weather = PBWeather::None
+          pbDisplay("The mysterious air current has dissipated!")
+        end
       end
     end
   end
