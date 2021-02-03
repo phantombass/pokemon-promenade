@@ -175,27 +175,22 @@ class PokeBattle_Battle
         if b.pbOwnSide.effects[PBEffects::StealthRock] || b.pbOpposingSide.effects[PBEffects::StealthRock]
           b.pbOwnSide.effects[PBEffects::StealthRock]      = false
           b.pbOpposingSide.effects[PBEffects::StealthRock] = false
-          @battle.pbDisplay(_INTL("The wind blew away the stealth rocks!"))
         end
         if b.pbOwnSide.effects[PBEffects::Spikes]>0 || b.pbOpposingSide.effects[PBEffects::Spikes]>0
           b.pbOwnSide.effects[PBEffects::Spikes]      = 0
-          target.pbOpposingSide.effects[PBEffects::Spikes] = 0 
-          @battle.pbDisplay(_INTL("The wind blew away the spikes!"))
+          target.pbOpposingSide.effects[PBEffects::Spikes] = 0
         end
         if b.pbOwnSide.effects[PBEffects::CometShards] || b.pbOpposingSide.effects[PBEffects::CometShards]
           b.pbOwnSide.effects[PBEffects::CometShards]      = false
           b.pbOpposingSide.effects[PBEffects::CometShards] = false
-          @battle.pbDisplay(_INTL("The wind blew away the comet shards!"))
         end
         if b.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 || b.pbOpposingSide.effects[PBEffects::ToxicSpikes]>0
           b.pbOwnSide.effects[PBEffects::ToxicSpikes]      = 0
           b.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
-          @battle.pbDisplay(_INTL("The wind blew away the poison spikes!"))
         end
         if b.pbOwnSide.effects[PBEffects::StickyWeb] || b.pbOpposingSide.effects[PBEffects::StickyWeb]
           b.pbOwnSide.effects[PBEffects::StickyWeb]      = false
           b.pbOpposingSide.effects[PBEffects::StickyWeb] = false
-          @battle.pbDisplay(_INTL("The wind blew away the sticky webs!"))
         end
       end
     end

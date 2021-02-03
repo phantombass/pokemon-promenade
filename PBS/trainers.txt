@@ -719,6 +719,32 @@ LoseText = "Aww, I lost."
 Pokemon = HYENASTY,40
 Pokemon = SPECTRAMYS,40
 #-------------------------------
+# Route 16
+#-------------------------------
+[COOLTRAINER_F,Olivia]
+LoseText = "Aww, I lost."
+Pokemon = BEARTIC,42
+	IV = 31,31,31,31,31,31
+	EV = 0,252,0,252,0,4
+	Nature = ADAMANT
+	Item = LIFEORB
+	Moves = ICICLECRASH,CLOSECOMBAT,EARTHQUAKE,AQUAJET
+  Ability = 2
+Pokemon = PALOSSAND_1,42
+  IV = 31,0,31,31,31,31
+  EV = 252,0,252,0,0,4
+  Nature = BOLD
+  Item = LEFTOVERS
+  Moves = QUANTUMWAVE,SCORCHINGSANDS,GIGADRAIN,STEALTHROCK
+  Ability = 0
+Pokemon = BARBASTELLA,42
+  IV = 31,0,31,31,31,31
+  EV = 252,0,4,0,252,0
+  Nature = MODEST
+  Item = ASSAULTVEST
+  Moves = STARBEAM,TOXOPLASM,OBLIVIONWING,STARSAP
+  Ability = 2
+#-------------------------------
 # Rival Battles
 #-------------------------------
 [RIVAL1,Blue]
