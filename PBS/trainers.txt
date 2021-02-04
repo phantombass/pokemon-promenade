@@ -745,6 +745,22 @@ Pokemon = BARBASTELLA,42
   Moves = STARBEAM,TOXOPLASM,OBLIVIONWING,STARSAP
   Ability = 2
 #-------------------------------
+[BUGCATCHER,Silas]
+LoseText = "Aww, I lost."
+Pokemon = LARVESTA,40
+Pokemon = MAGATE,40
+Pokemon = SCARAPACE,40
+#-------------------------------
+[RUINMANIAC,Allen]
+LoseText = "Aww, I lost."
+Pokemon = SANDYGAST_1,41
+Pokemon = ARCHASM,41
+#-------------------------------
+[RUINMANIAC,Stefan]
+LoseText = "Aww, I lost."
+Pokemon = SANDYGAST_1,41
+Pokemon = IMHOTERROR,41
+#-------------------------------
 # Rival Battles
 #-------------------------------
 [RIVAL1,Blue]

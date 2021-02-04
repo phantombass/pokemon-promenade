@@ -28887,7 +28887,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 37
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions =
+Evolutions = SATURABTU,Item,ARCHAICSTONE
 #-------------------------------
 [906]
 Name = Plovert
@@ -30886,7 +30886,7 @@ BaseEXP = 345
 EffortPoints = 3,0,0,0,0,0
 Rareness = 3
 Happiness = 50
-Abilities = NATURALCURE
+Abilities = SHEDSKIN
 HiddenAbility = UNAWARE
 Moves = 1,LEECHLIFE,10,AROMATHERAPY,20,DRAININGKISS,30,MISTYTERRAIN,40,SIGNALBEAM,50,WISH,60,STICKYWEB,70,MOONBLAST,80,BUGBUZZ,90,HEALINGWISH
 Compatibility = Undiscovered

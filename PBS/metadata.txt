@@ -1389,3 +1389,10 @@ MapPosition = 0,21,1
 # Inn Keepers House
 SnapEdges = true
 MapPosition = 0,21,1
+#-------------------------------
+[244]
+# Museum
+SnapEdges = true
+MapPosition = 0,28,5
+Outdoor = false
+ShowArea = false
