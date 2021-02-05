@@ -141,12 +141,12 @@ Pokemon = MERITEMPO,52
 #-------------------------------
 [GUARDIAN_Burt,Burt]
 LoseText = "This battle will be buzzing about for ages!"
-Pokemon = CENTISEPA,55
-    Moves = CALMMIND,DRAININGKISS,SIGNALBEAM,STARBEAM
-    Nature = TIMID
+Pokemon = CENTISEPA,58
+    Moves = CALMMIND,DRAININGKISS,SIGNALBEAM,POWERGEM
+    Nature = BOLD
     Item = LEFTOVERS
     IV = 31,0,31,31,31,31
-    EV = 0,0,4,252,252,0
+    EV = 252,0,252,0,4,0
 #-------------------------------
 # Elite 4
 #-------------------------------
