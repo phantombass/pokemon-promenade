@@ -761,6 +761,41 @@ LoseText = "Aww, I lost."
 Pokemon = SANDYGAST_1,41
 Pokemon = IMHOTERROR,41
 #-------------------------------
+# Route 17
+#-------------------------------
+[RUINMANIAC,Arthur]
+LoseText = "Aww, I lost."
+Pokemon = PALOSSAND_1,43
+Pokemon = PALOSSAND_1,43
+#-------------------------------
+[COOLTRAINER_M,Gus]
+LoseText = "Aww, I lost."
+Pokemon = ALAKAZAM,45
+  IV = 31,31,31,31,31,31
+  EV = 0,0,0,252,252,4
+  Nature = TIMID
+  Item = LIFEORB
+  Moves = PSYCHIC,STARBEAM,SHADOWBALL,NASTYPLOT
+  Ability = 2
+Pokemon = ARCHASM,45
+	IV = 31,31,31,31,31,31
+	EV = 0,252,0,252,4,0
+	Nature = JOLLY
+	Item = MUSCLEBAND
+	Moves = EARTHQUAKE,RHYTHMICPUNCH,ROCKSLIDE,SHOREUP
+Pokemon = CACTURNE_1,45
+  IV = 31,31,31,31,31,31
+  EV = 0,0,0,252,252,4
+  Nature = JOLLY
+  Item = CHARCOAL
+  Moves = DRAINPUNCH,SEEDBOMB,PYROBALL,FLAMECHARGE
+  Ability = 2
+#-------------------------------
+[BUGCATCHER,Webster]
+LoseText = "Aww, I lost."
+Pokemon = LARVESTA,44
+Pokemon = SAPHYRFLY,44
+#-------------------------------
 # Rival Battles
 #-------------------------------
 [RIVAL1,Blue]
