@@ -198,7 +198,7 @@ REGION_MAP_EXTRAS = [
 # * The number of boxes in Pokémon storage.
 #===============================================================================
 def pbStorageCreator
-  return _INTL("Bill")
+  return _INTL("Lyptus")
 end
 NUM_STORAGE_BOXES = 30
 
