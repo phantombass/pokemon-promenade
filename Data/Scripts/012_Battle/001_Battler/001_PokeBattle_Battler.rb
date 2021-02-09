@@ -539,6 +539,24 @@ class PokeBattle_Battler
     return true
   end
 
+  def takesDustDevilDamage?
+    return false if !takesIndirectDamage?
+    return false if pbHasType?(:GROUND) || pbHasType?(:FLYING)
+    return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
+    return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDVEIL])
+    return false if hasActiveItem?(:SAFETYGOGGLES)
+    return true
+  end
+
+  def takesAcidRainDamage?
+    return false if !takesIndirectDamage?
+    return false if pbHasType?(:POISON) || pbHasType?(:STEEL)
+    return false if inTwoTurnAttack?("0CA","0CB")   # Dig, Dive
+    return false if hasActiveAbility?([:OVERCOAT,:SANDFORCE,:SANDRUSH,:SANDVEIL])
+    return false if hasActiveItem?(:SAFETYGOGGLES)
+    return true
+  end
+
   def takesHailDamage?
     return false if !takesIndirectDamage?
     return false if pbHasType?(:ICE)
