@@ -130,9 +130,7 @@ class PokeBattle_Battle
       elsif badges == 6
         $game_variables[106] = 81
       elsif badges == 7
-        if $game_variables[110] == 13
-          $game_variables[106] = 95
-        elsif $game_variables[110] == 12
+        if $game_variables[110] == 12
           $game_variables[106] = 93
         elsif $game_variables[110] == 11
           $game_variables[106] = 90
@@ -142,9 +140,13 @@ class PokeBattle_Battle
         $game_variables[106] = 84
         end
       elsif badges == 8
-      $game_variables[106] = 115
+      if $game_variables[110] == 13
+        $game_variables[106] = 115
       else
-      $game_variables[106] = 150
+        $game_variables[106] = 95
+      end
+      elsif $game_switches[12] == true
+        $game_variables[106] = 150
       end
     end
     # Don't bother calculating if gainer is already at max Exp

@@ -814,7 +814,7 @@ Pokemon = TRAPINCH_1,44
 Pokemon = EXCADRILL,44
 #-------------------------------
 [HEADSCIENTIST,Rameses]
-LoseText = "Aww, I lost."
+LoseText = "How interesting."
 Pokemon = IMHOTERROR,44
 	IV = 31,31,31,31,31,31
 	EV = 252,0,252,0,4,0
