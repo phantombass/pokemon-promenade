@@ -1,0 +1,1398 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
+[000]
+PlayerA = POKEMONTRAINER_Red,trchar000,boy_bike,boy_surf,boy_run,boy_surf,boy_fish_offset,boy_fish_offset
+PlayerB = POKEMONTRAINER_Leaf,trchar001,girl_bike,girl_surf,girl_run,girl_surf,girl_fish_offset,girl_fish_offset
+TrainerVictoryME = Battle victory trainer.ogg
+WildVictoryME = Battle victory wild.ogg
+TrainerBattleBGM = Battle trainer.mid
+SurfBGM = Surfing.mid
+BicycleBGM = Bicycle.mid
+Home = 4,1,6,8
+WildBattleBGM = Battle wild.mid
+#-------------------------------
+[001]
+# Intro
+#-------------------------------
+[002]
+# Azgi Ruins
+SnapEdges = true
+BattleBack = sand
+Weather = Sandstorm,100
+MapPosition = 0,21,17
+Outdoor = true
+HealingSpot = 2,18,14
+ShowArea = true
+#-------------------------------
+[003]
+# \PN's house
+MapPosition = 0,13,12
+HealingSpot = 2,8,8
+#-------------------------------
+[004]
+# Pokémon Lab
+MapPosition = 0,13,12
+ShowArea = false
+#-------------------------------
+[005]
+# Route 1
+BattleBack = field
+MapPosition = 0,13,11
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[006]
+# Kurt's house
+MapPosition = 0,13,11
+#-------------------------------
+[007]
+# Cedolan City
+MapSize = 2,11
+MapPosition = 0,13,10
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[008]
+# Daisy's house
+MapPosition = 0,13,12
+#-------------------------------
+[009]
+# Cedolan City Poké Center
+MapPosition = 0,14,10
+HealingSpot = 8,17,11
+#-------------------------------
+[010]
+# Cedolan Gym
+BattleBack = indoor3
+MapPosition = 0,13,10
+Environment = Rock
+#-------------------------------
+[011]
+# Pokémon Institute
+MapPosition = 0,14,10
+#-------------------------------
+[012]
+# Cedolan City Condo
+MapPosition = 0,14,10
+#-------------------------------
+[013]
+# Game Corner
+MapPosition = 0,14,10
+#-------------------------------
+[014]
+# Cedolan Dept. 1F
+MapPosition = 0,13,10
+#-------------------------------
+[015]
+# Cedolan Dept. 2F
+MapPosition = 0,13,10
+#-------------------------------
+[016]
+# Cedolan Dept. 3F
+MapPosition = 0,13,10
+#-------------------------------
+[017]
+# Cedolan Dept. 4F
+MapPosition = 0,13,10
+#-------------------------------
+[018]
+# Cedolan Dept. 5F
+MapPosition = 0,13,10
+#-------------------------------
+[019]
+# Cedolan Dept. Rooftop
+MapPosition = 0,13,10
+#-------------------------------
+[020]
+# Cedolan Dept. Elevator
+MapPosition = 0,13,10
+#-------------------------------
+[021]
+# Route 2
+MapSize = 1,11
+BattleBack = field
+Weather = Rain,100
+MapPosition = 0,14,8
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[022]
+# Azgi Ruins
+SnapEdges = true
+BattleBack = 
+Weather = Sandstorm,100
+MapPosition = 0,21,17
+Outdoor = true
+Environment = Sand
+#-------------------------------
+[023]
+# Lerucean Town
+MapPosition = 0,15,8
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[024]
+# Lerucean Town Poké Center
+MapPosition = 0,15,8
+HealingSpot = 23,11,15
+#-------------------------------
+[025]
+# Lerucean Town Mart
+MapPosition = 0,15,8
+#-------------------------------
+[026]
+# Pokémon Fan Club
+MapPosition = 0,15,8
+#-------------------------------
+[027]
+# Pokémon Day Care
+MapPosition = 0,15,8
+#-------------------------------
+[028]
+# Natural Park
+BattleBack = field
+MapPosition = 0,16,8
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[029]
+# Natural Park Entrance
+Bicycle = true
+MapPosition = 0,16,8
+#-------------------------------
+[030]
+# Natural Park Pavillion
+MapPosition = 0,16,8
+#-------------------------------
+[031]
+# Route 3
+MapSize = 2,1101
+BattleBack = field
+MapPosition = 0,14,6
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[032]
+# Azgi Pyramid
+SnapEdges = true
+BattleBack = cave1
+MapPosition = 0,21,16
+Environment = Cave
+#-------------------------------
+[034]
+# Ice Cave
+BattleBack = cave1
+Bicycle = true
+MapPosition = 0,15,6
+Environment = Cave
+#-------------------------------
+[035]
+# Ingido Plateau
+MapPosition = 0,13,6
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[036]
+# Pokémon League
+MapPosition = 0,13,6
+HealingSpot = 35,17,7
+#-------------------------------
+[037]
+# Pokémon League
+BattleBack = elite1
+MapPosition = 0,13,6
+#-------------------------------
+[038]
+# Hall of Fame
+MapPosition = 0,13,6
+#-------------------------------
+[039]
+# Route 4
+MapSize = 2,11
+BattleBack = field
+MapPosition = 0,11,6
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[040]
+# Route 4
+MapPosition = 0,11,6
+Outdoor = true
+BicycleAlways = true
+ShowArea = true
+#-------------------------------
+[041]
+# Route 5
+MapSize = 1,111
+MapPosition = 0,11,7
+Outdoor = true
+BicycleAlways = true
+ShowArea = true
+#-------------------------------
+[042]
+# Route 1
+SnapEdges = true
+BattleBack = field
+Weather = Storm,0
+MapPosition = 0,16,17
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[043]
+# Icaro City
+BattleBack = field
+Weather = Storm,0
+MapPosition = 0,12,17
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[044]
+# Route 6
+MapSize = 2,11
+BattleBack = field
+MapPosition = 0,11,10
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[045]
+# Route 6
+MapPosition = 0,11,10
+Outdoor = true
+BicycleAlways = true
+ShowArea = true
+#-------------------------------
+[046]
+# Cycling Road gate
+Bicycle = true
+MapPosition = 0,12,6
+#-------------------------------
+[047]
+# Route 7
+MapSize = 2,11
+BattleBack = rocky
+Weather = Rain,0
+MapPosition = 0,15,10
+Outdoor = true
+Environment = Rock
+ShowArea = true
+#-------------------------------
+[048]
+# Icaro City
+BattleBack = field
+MapPosition = 0,12,16
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[049]
+# Rock Cave
+BattleBack = cave1
+Bicycle = true
+MapPosition = 0,16,10
+Environment = Cave
+#-------------------------------
+[050]
+# Rock Cave
+BattleBack = cave3
+Bicycle = true
+MapPosition = 0,16,10
+DarkMap = true
+Environment = Cave
+#-------------------------------
+[051]
+# Dungeon
+BattleBack = cave2
+Bicycle = true
+Dungeon = true
+MapPosition = 0,16,10
+Environment = Cave
+#-------------------------------
+[052]
+# Battle Frontier
+MapPosition = 0,17,10
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[053]
+# Battle Frontier Poké Center
+MapPosition = 0,17,10
+HealingSpot = 52,17,14
+#-------------------------------
+[054]
+# Battle Frontier Mart
+MapPosition = 0,17,10
+#-------------------------------
+[055]
+# Battle Tower
+MapPosition = 0,17,10
+HealingSpot = 52,30,10
+#-------------------------------
+[056]
+# Battle Tower arena
+BattleBack = indoor1
+MapPosition = 0,17,10
+#-------------------------------
+[057]
+# Stadium Cup lobby
+MapPosition = 0,17,10
+#-------------------------------
+[058]
+# Battle Palace
+MapPosition = 0,17,10
+#-------------------------------
+[059]
+# Battle Palace arena
+BattleBack = indoor1
+MapPosition = 0,17,10
+#-------------------------------
+[060]
+# Battle Arena
+MapPosition = 0,17,10
+#-------------------------------
+[061]
+# Battle Arena arena
+BattleBack = indoor1
+MapPosition = 0,17,10
+#-------------------------------
+[062]
+# Battle Factory
+MapPosition = 0,17,10
+#-------------------------------
+[063]
+# Battle Factory intro corridor
+MapPosition = 0,17,10
+#-------------------------------
+[064]
+# Battle Factory arena
+BattleBack = indoor1
+MapPosition = 0,17,10
+#-------------------------------
+[065]
+# Battle Factory corridor
+MapPosition = 0,17,10
+#-------------------------------
+[066]
+# Safari Zone
+BattleBack = field
+MapPosition = 0,12,12
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[067]
+# Safari Zone gate
+MapPosition = 0,12,12
+#-------------------------------
+[068]
+# Safari Zone
+BattleBack = forest
+MapPosition = 0,12,12
+SafariMap = true
+Outdoor = true
+Environment = Forest
+ShowArea = true
+#-------------------------------
+[069]
+# Route 8
+DiveMap = 70
+BattleBack = field
+MapPosition = 0,13,13
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[070]
+# Underwater
+BattleBack = underwater
+MapPosition = 0,13,13
+Environment = Underwater
+#-------------------------------
+[071]
+# Harbour
+MapPosition = 0,13,13
+#-------------------------------
+[072]
+# Berth Island
+BattleBack = field
+Weather = Storm,50
+MapPosition = 0,18,17
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[073]
+# Faraday Island
+BattleBack = field
+MapPosition = 0,22,16
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[074]
+# Cycling Road gate
+Bicycle = true
+MapPosition = 0,12,10
+#-------------------------------
+[075]
+# Tiall Region
+BattleBack = city
+MapPosition = 1,13,16
+Outdoor = true
+#-------------------------------
+[076]
+# Icaro City
+BattleBack = field
+Weather = Storm,0
+MapPosition = 0,12,15
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[077]
+# Icaro City
+BattleBack = field
+Weather = Storm,0
+MapPosition = 0,11,16
+Outdoor = true
+HealingSpot = 77,22,9
+ShowArea = true
+#-------------------------------
+[078]
+# Icaro City
+BattleBack = field
+Weather = Storm,0
+MapPosition = 0,11,16
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[079]
+# Icaro City
+BattleBack = field
+Weather = Storm,0
+MapPosition = 0,10,15
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[080]
+# Icaro City
+BattleBack = field
+Weather = Storm,0
+MapPosition = 0,11,17
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[081]
+# Icaro City
+BattleBack = field
+Weather = Storm,0
+MapPosition = 0,10,16
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[082]
+# Icaro City
+BattleBack = field
+MapPosition = 0,10,17
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[083]
+# Icaro PMC
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,15,8
+HealingSpot = 77,22,9
+#-------------------------------
+[084]
+# Icaro Dept 1F
+Weather = Storm,0
+MapPosition = 0,15,8
+#-------------------------------
+[085]
+# Icaro Dept. 2F
+Weather = Storm,0
+MapPosition = 0,15,8
+#-------------------------------
+[086]
+# Icaro Dept. 3F
+Weather = Storm,0
+MapPosition = 0,15,8
+#-------------------------------
+[087]
+# Icaro Dept. 4F
+Weather = Storm,0
+MapPosition = 0,15,8
+#-------------------------------
+[088]
+# Icaro Dept. 5F
+Weather = Storm,0
+MapPosition = 0,15,8
+#-------------------------------
+[089]
+# Icaro Dept. Rooftop
+Weather = Storm,0
+MapPosition = 0,15,8
+#-------------------------------
+[090]
+# Icaro Dept. Elevator
+Weather = Storm,0
+MapPosition = 0,15,8
+#-------------------------------
+[091]
+# Lyptus Lab
+BattleBack = field
+Weather = Storm,0
+MapPosition = 0,15,10
+#-------------------------------
+[093]
+# Weather Station
+Weather = Storm,0
+MapPosition = 0,12,17
+#-------------------------------
+[094]
+# House
+MapPosition = 0,12,17
+#-------------------------------
+[095]
+# House 1
+Weather = Storm,0
+MapPosition = 0,12,17
+#-------------------------------
+[096]
+# House 2
+Weather = Storm,0
+MapPosition = 0,12,17
+#-------------------------------
+[097]
+# House
+Weather = Storm,0
+MapPosition = 0,12,17
+#-------------------------------
+[098]
+# Pokémon Day Care
+Weather = Storm,0
+MapPosition = 0,12,17
+#-------------------------------
+[099]
+# House 1
+Weather = Storm,0
+MapPosition = 0,12,17
+#-------------------------------
+[100]
+# House 2
+Weather = Storm,0
+MapPosition = 0,12,17
+#-------------------------------
+[101]
+# Route 2
+SnapEdges = true
+BattleBack = field
+Weather = Storm,0
+MapPosition = 0,11,13
+Outdoor = true
+#-------------------------------
+[102]
+# Crafter's Hideout
+SnapEdges = true
+Weather = Overcast,100
+MapPosition = 0,11,14
+#-------------------------------
+[104]
+# Route 3
+SnapEdges = true
+BattleBack = field
+Weather = Storm,0
+MapPosition = 0,12,12
+Outdoor = true
+#-------------------------------
+[105]
+# Fude Village
+SnapEdges = true
+DiveMap = 108
+BattleBack = field
+Weather = Storm,0
+MapPosition = 0,13,12
+Outdoor = true
+#-------------------------------
+[106]
+# Fude PMC
+SnapEdges = true
+MapPosition = 0,15,8
+HealingSpot = 105,7,8
+#-------------------------------
+[108]
+# Underwater
+SnapEdges = true
+BattleBack = underwater
+Weather = Storm,0
+MapPosition = 0,15,10
+Environment = Underwater
+#-------------------------------
+[110]
+# Route 4
+SnapEdges = true
+BattleBack = field
+Weather = Storm,0
+MapPosition = 0,11,11
+Outdoor = true
+#-------------------------------
+[111]
+# Xandri
+SnapEdges = true
+BattleBack = field
+MapPosition = 0,11,9
+Outdoor = true
+HealingSpot = 111,15,32
+#-------------------------------
+[112]
+# Xandri
+SnapEdges = true
+BattleBack = field
+Weather = None,100
+MapPosition = 0,15,10
+Outdoor = false
+#-------------------------------
+[113]
+# Route 5
+SnapEdges = true
+BattleBack = rocky
+MapPosition = 0,8,11
+Outdoor = true
+#-------------------------------
+[114]
+# Sibel Fortress
+SnapEdges = true
+BattleBack = rocky
+MapPosition = 0,5,11
+HealingSpot = 114,24,7
+#-------------------------------
+[115]
+# Sibel PMC
+SnapEdges = true
+MapPosition = 0,5,11
+HealingSpot = 114,24,7
+#-------------------------------
+[116]
+# Xandri
+SnapEdges = true
+BattleBack = field
+Weather = None,100
+MapPosition = 0,15,10
+Outdoor = false
+#-------------------------------
+[117]
+# Xandri Gate
+SnapEdges = true
+Weather = None,100
+MapPosition = 0,11,10
+Outdoor = false
+#-------------------------------
+[118]
+# Xandri PMC
+SnapEdges = true
+MapPosition = 0,15,8
+HealingSpot = 111,15,32
+#-------------------------------
+[119]
+# Sibel Fortress
+SnapEdges = true
+BattleBack = rocky
+MapPosition = 0,15,10
+#-------------------------------
+[120]
+# Sibel Fortress
+SnapEdges = true
+BattleBack = rocky
+MapPosition = 0,15,10
+#-------------------------------
+[121]
+# Sibel Fortress
+SnapEdges = true
+BattleBack = rocky
+MapPosition = 0,15,10
+#-------------------------------
+[122]
+# Sibel Fortress
+SnapEdges = true
+BattleBack = rocky
+MapPosition = 0,15,10
+#-------------------------------
+[123]
+# Sibel Fortress
+SnapEdges = true
+BattleBack = rocky
+Weather = Rain,0
+MapPosition = 0,5,11
+Outdoor = true
+#-------------------------------
+[124]
+# Azgi
+SnapEdges = true
+BattleBack = sand
+Weather = Sandstorm,100
+MapPosition = 0,23,17
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[125]
+# Azgi PMC
+SnapEdges = true
+MapPosition = 0,15,8
+HealingSpot = 124,8,8
+#-------------------------------
+[126]
+# Route 6
+SnapEdges = true
+BattleBack = sand
+Weather = Rain,0
+MapPosition = 0,25,17
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[127]
+# Route 7
+SnapEdges = true
+BattleBack = sand
+Weather = Rain,0
+MapPosition = 0,26,17
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[129]
+# Raqqas
+SnapEdges = true
+BattleBack = sand
+Weather = Rain,0
+MapPosition = 0,26,18
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[130]
+# Raqqas PMC
+SnapEdges = true
+MapPosition = 0,15,8
+HealingSpot = 129,27,7
+#-------------------------------
+[131]
+# Route 8
+SnapEdges = true
+BattleBack = sand
+Weather = Rain,0
+MapPosition = 0,23,16
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[132]
+# Route 9
+SnapEdges = true
+BattleBack = sand
+Weather = Rain,0
+MapPosition = 0,24,15
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[133]
+# Grakha Oasis
+SnapEdges = true
+BattleBack = sand
+Weather = Storm,100
+MapPosition = 0,25,15
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[134]
+# Rulox
+SnapEdges = true
+BattleBack = sand
+Weather = Rain,0
+MapPosition = 0,23,14
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[135]
+# Rulox PMC
+SnapEdges = true
+MapPosition = 0,23,14
+HealingSpot = 134,9,13
+ShowArea = false
+#-------------------------------
+[136]
+# Temple of Neflora
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,15,8
+ShowArea = true
+#-------------------------------
+[137]
+# Temple of Saturabtu
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,15,8
+ShowArea = true
+#-------------------------------
+[138]
+# Pyget Range
+SnapEdges = true
+BattleBack = cave3
+Weather = Reverb,100
+Bicycle = true
+MapPosition = 0,23,13
+Outdoor = false
+Environment = Cave
+ShowArea = true
+#-------------------------------
+[139]
+# Pyget Range
+SnapEdges = true
+BattleBack = cave3
+Weather = Reverb,100
+Bicycle = true
+MapPosition = 0,23,13
+Environment = Cave
+ShowArea = false
+#-------------------------------
+[140]
+# Pyget Range
+SnapEdges = true
+BattleBack = cave3
+Weather = Reverb,100
+Bicycle = true
+MapPosition = 0,23,13
+Environment = Cave
+ShowArea = true
+#-------------------------------
+[141]
+# Mauselynx Alley
+SnapEdges = true
+BattleBack = snow
+Weather = Sleet,100
+Bicycle = true
+MapPosition = 0,26,12
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[142]
+# Narkka Temple
+SnapEdges = true
+BattleBack = snow
+Weather = Sleet,100
+Bicycle = true
+MapPosition = 0,25,12
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[143]
+# Rulox Temple
+SnapEdges = true
+BattleBack = snow
+Weather = Sleet,100
+Bicycle = true
+MapPosition = 0,28,12
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[144]
+# Temple of Phirenix
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,28,12
+ShowArea = true
+#-------------------------------
+[145]
+# Temple of Bastungsten
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,5,11
+ShowArea = true
+#-------------------------------
+[146]
+# Raqqas Gym
+SnapEdges = true
+MapPosition = 0,26,18
+#-------------------------------
+[147]
+# Dontu
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,21,1
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[148]
+# Dontu PMC
+SnapEdges = true
+MapPosition = 0,21,1
+Outdoor = false
+HealingSpot = 147,6,6
+#-------------------------------
+[149]
+# Temple of Sobekodile
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,21,1
+ShowArea = true
+#-------------------------------
+[150]
+# Route 13
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,23,1
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[151]
+# Route 14
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,25,1
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[152]
+# Eloh City
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,26,1
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[153]
+# Eloh PMC
+SnapEdges = true
+MapPosition = 0,26,1
+HealingSpot = 152,20,10
+#-------------------------------
+[154]
+# Temple of Meritempo
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,26,1
+ShowArea = true
+#-------------------------------
+[155]
+# Eloh Gate
+SnapEdges = true
+MapPosition = 0,25,1
+Outdoor = false
+#-------------------------------
+[156]
+# Route 15 Gate
+SnapEdges = true
+MapPosition = 0,27,1
+#-------------------------------
+[157]
+# Temple of Mauselynx
+SnapEdges = true
+Weather = TimeWarp,100
+HealingSpot = 141,33,7
+ShowArea = true
+#-------------------------------
+[158]
+# Temple of Osiram
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,23,17
+ShowArea = true
+#-------------------------------
+[159]
+# Route 15
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,28,1
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[160]
+# Route 16
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,28,3
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[161]
+# Klinsper Gate
+SnapEdges = true
+MapPosition = 0,28,4
+#-------------------------------
+[162]
+# Aqua Rocket Crafter
+SnapEdges = true
+MapPosition = 0,5,11
+#-------------------------------
+[165]
+# Klinsper
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,28,5
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[166]
+# Klinsper PMC
+SnapEdges = true
+MapPosition = 0,28,5
+HealingSpot = 165,9,32
+#-------------------------------
+[167]
+# Crafter's Hideout
+SnapEdges = true
+SafariMap = false
+Outdoor = false
+ShowArea = false
+#-------------------------------
+[168]
+# Temple of Cenitsepa
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,23,17
+ShowArea = true
+#-------------------------------
+[169]
+# Temple of Fenixet
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,25,12
+Outdoor = false
+ShowArea = true
+#-------------------------------
+[170]
+# Route 17
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,26,5
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[171]
+# Ezgal
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,24,5
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[172]
+# Ezgal PMC
+SnapEdges = true
+MapPosition = 0,24,5
+Outdoor = false
+HealingSpot = 171,38,16
+ShowArea = false
+#-------------------------------
+[174]
+# Fossil Reviver
+SnapEdges = true
+MapPosition = 0,24,5
+#-------------------------------
+[175]
+# Isani Peninsula
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,28,0
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[176]
+# House
+#-------------------------------
+[177]
+# Route 11
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,21,3
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[178]
+# Route 12
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,20,5
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[179]
+# Zharo Archipelago Port
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,18,5
+Outdoor = true
+HealingSpot = 179,14,10
+ShowArea = true
+#-------------------------------
+[180]
+# Route 27
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,16,5
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[181]
+# Route 28
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,16,7
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[182]
+# Route 29
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,17,9
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[184]
+# Zharo Mainland Port
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,18,9
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[185]
+# Fa'lo Shoals
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,19,9
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[186]
+# Temple of Orrustorm
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,19,9
+Outdoor = false
+ShowArea = true
+#-------------------------------
+[187]
+# Route 20
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,21,9
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[188]
+# Pokémon Day Care
+SnapEdges = true
+MapPosition = 0,25,1
+Outdoor = false
+#-------------------------------
+[189]
+# Tagubeet
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,22,9
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[190]
+# Fa'lo PMC
+SnapEdges = true
+MapPosition = 0,19,9
+HealingSpot = 185,4,10
+#-------------------------------
+[191]
+# Tagubeet PMC
+SnapEdges = true
+MapPosition = 0,22,9
+Outdoor = false
+HealingSpot = 189,9,23
+#-------------------------------
+[193]
+# Route 21
+SnapEdges = true
+Weather = Rain,0
+MapPosition = 0,22,8
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[194]
+# Route 21 Gate
+SnapEdges = true
+MapPosition = 0,22,9
+#-------------------------------
+[195]
+# Haunted Reef
+SnapEdges = true
+Weather = Overcast,100
+MapPosition = 0,22,7
+Outdoor = true
+HealingSpot = 195,15,20
+ShowArea = true
+#-------------------------------
+[197]
+# Route 22
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,25,9
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[198]
+# Route 22 Gate
+SnapEdges = true
+MapPosition = 0,22,9
+#-------------------------------
+[199]
+# Castronis
+SnapEdges = true
+Weather = Storm,100
+MapPosition = 0,29,9
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[200]
+# Castronis
+SnapEdges = true
+Weather = Storm,100
+MapPosition = 0,29,9
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[201]
+# Castronis PMC
+SnapEdges = true
+MapPosition = 0,29,8
+Outdoor = false
+HealingSpot = 200,26,14
+#-------------------------------
+[202]
+# Route 10
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,22,10
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[203]
+# Rex Valley
+SnapEdges = true
+Weather = Overcast,100
+MapPosition = 0,22,12
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[204]
+# Rex Valley
+SnapEdges = true
+Weather = Eclipse,100
+MapPosition = 0,22,12
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[206]
+# Pyget Range
+SnapEdges = true
+BattleBack = cave3
+Weather = Reverb,100
+Bicycle = true
+MapPosition = 0,23,13
+Outdoor = false
+Environment = Cave
+ShowArea = true
+#-------------------------------
+[207]
+# Anahu Peak
+SnapEdges = true
+Weather = Sleet,100
+MapPosition = 0,22,11
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[208]
+# Temple of Falkmunra
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,22,11
+ShowArea = true
+#-------------------------------
+[209]
+# Route 23
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,7,16
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[210]
+# New Icaro City
+SnapEdges = true
+Weather = Storm,0
+MapPosition = 0,4,16
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[211]
+# New Icaro PMC
+SnapEdges = true
+MapPosition = 0,4,16
+Outdoor = false
+HealingSpot = 210,16,6
+ShowArea = false
+#-------------------------------
+[212]
+# Underwater
+SnapEdges = true
+MapPosition = 0,15,10
+ShowArea = true
+#-------------------------------
+[213]
+# Underwater
+SnapEdges = true
+MapPosition = 0,15,9
+ShowArea = true
+#-------------------------------
+[214]
+# Underwater
+SnapEdges = true
+MapPosition = 0,15,8
+ShowArea = true
+#-------------------------------
+[215]
+# Victory Road
+SnapEdges = true
+DiveMap = 214
+MapPosition = 0,15,7
+ShowArea = true
+#-------------------------------
+[217]
+# Cave of Deceit
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,28,3
+Outdoor = false
+ShowArea = true
+#-------------------------------
+[218]
+# Xandri Gym
+SnapEdges = true
+Weather = Rain,0
+MapPosition = 0,11,9
+Outdoor = false
+#-------------------------------
+[220]
+# House
+SnapEdges = true
+MapPosition = 0,23,17
+#-------------------------------
+[221]
+# Rulox Gym
+SnapEdges = true
+MapPosition = 0,23,14
+#-------------------------------
+[241]
+# Dontu Inn
+SnapEdges = true
+MapPosition = 0,21,1
+#-------------------------------
+[242]
+# Inn Keepers House
+SnapEdges = true
+MapPosition = 0,21,1
+#-------------------------------
+[244]
+# Museum
+SnapEdges = true
+MapPosition = 0,28,5
+Outdoor = false
+ShowArea = false

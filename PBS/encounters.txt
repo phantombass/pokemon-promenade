@@ -1,0 +1,766 @@
+﻿# See the documentation on the wiki to learn how to edit this file.
+#-------------------------------
+042 # Route 1
+25,10,10
+Land
+    PLOVERT,1,2
+    SPECIDAE,1,2
+    PLOVERT,1,2
+    SPECIDAE,1,2
+    PLOVERT,1,2
+    SPECIDAE,1,2
+    PLOVERT,1,2
+    SPECIDAE,1,2
+    PLOVERT,1,2
+    SPECIDAE,1,2
+    PLOVERT,1,2
+    SPECIDAE,1,2
+#-------------------------------
+101 # Route 2
+25,10,10
+Land
+    PLOVERT,5,7
+    SPECIDAE,5,7
+    PLOVERT,5,7
+    SPECIDAE,5,7
+    POOCHYENA,4,6
+    BUNEARY,4,6
+    STONAT,4,6
+    SCAREUB,4,6
+    STONAT,4,6
+    SCAREUB,4,6
+    JERBUZZ,4,6
+    JERBUZZ,4,6
+#-------------------------------
+104 # Route 3
+25,10,10
+Land
+    PLOVERT,6,8
+    SPECIDAE,6,8
+    STONAT,6,8
+    SCAREUB,6,8
+    POOCHYENA,5,7
+    BUNEARY,7,9
+    POOCHYENA,5,7
+    BUNEARY,7,9
+    WHISMUR,7,9
+    JERBUZZ,7,9
+    WHISMUR,7,9
+    JERBUZZ,7,9
+#-------------------------------
+105 # Fude Village
+25,10,10
+Water
+    LUVDISC,14,19
+    POLIWAG,15,16
+    FISHOOS,14,16
+    FISHOOS,14,16
+    FISHOOS,14,16
+OldRod
+    FISHOOS,5
+    FISHOOS,10
+GoodRod
+    FISHOOS,15
+    FISHOOS,15
+    LUVDISC,20
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    LUVDISC,25,30
+    HORSEA,25,30
+#-------------------------------
+110 # Route 4
+25,10,10
+Land
+    SCAREUB,8,10
+    SPECIDAE,8,10
+    SCAREUB,8,10
+    POOCHYENA,8,10
+    POOCHYENA,8,10
+    SHINX,9,11
+    AUDINO,10,12
+    AUDINO,10,12
+    BELLSPROUT,9,11
+    YAMASK,10,12
+    YAMASK,10,12
+    BELLSPROUT,9,11
+#-------------------------------
+111 # Xandri
+25,10,10
+Water
+    LUVDISC,14,19
+    POLIWAG,15,16
+    FISHOOS,14,16
+    FISHOOS,14,16
+    FISHOOS,14,16
+OldRod
+    FISHOOS,5
+    LUVDISC,10
+GoodRod
+    FISHOOS,15
+    FISHOOS,15
+    LUVDISC,20
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    LUVDISC,25,30
+    HORSEA,25,30
+#-------------------------------
+112 # Xandri
+25,10,10
+Water
+    LUVDISC,14,19
+    POLIWAG,15,16
+    FISHOOS,14,16
+    FISHOOS,14,16
+    FISHOOS,14,16
+OldRod
+    FISHOOS,5
+    LUVDISC,10
+GoodRod
+    FISHOOS,15
+    POLIWAG,15
+    HORSEA,20
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    LUVDISC,25,30
+    QWILFISH,25,30
+#-------------------------------
+113 # Route 5
+25,10,10
+Land
+    EXEGGCUTE,9,12
+    PLOVERT,8,11
+    BELLSPROUT,9,12
+    SHINX,9,12
+    GRIMMERA,8,11
+    WHISMUR,8,11
+    BELLSPROUT,9,12
+    RIOLU,10,13
+    CHINGLING,11,14
+    BLITZLE,11,14
+    CHINGLING,11,14
+    BLITZLE,11,14
+#-------------------------------
+126 # Route 6
+25,10,10
+Sand
+    TRAPINCH,16,19
+    SANDILE,16,19
+    DRILBUR,16,19
+    DRILBUR,16,19
+    CACNEA,16,19
+    NUMEL,16,19
+    VULLABY,17,20
+    VULLABY,17,20
+    SANDYGAST,18,21
+    SIGILYPH,18,21
+    SANDYGAST,18,21
+    PHANPY,16,19
+#-------------------------------
+127 # Route 7
+25,10,10
+Sand
+    TRAPINCH,16,19
+    SANDILE,16,19
+    DRILBUR,16,19
+    DRILBUR,16,19
+    CACNEA,16,19
+    NUMEL,16,19
+    VULLABY,17,20
+    VULLABY,17,20
+    SANDYGAST,18,21
+    SIGILYPH,18,21
+    SANDYGAST,18,21
+    MARACTUS,16,19
+#-------------------------------
+131 # Route 8
+25,10,10
+Land
+    TRAPINCH,16,19
+    SANDILE,16,19
+    DRILBUR,16,19
+    DRILBUR,16,19
+    CACNEA,16,19
+    DUSTERN,19,21
+    BELLSPROUT,17,20
+    BELLSPROUT,17,20
+    SANDYGAST,18,21
+    RIOLU,18,21
+    SANDYGAST,18,21
+    ROCKRUFF,16,19
+
+Sand
+    TRAPINCH,16,19
+    SANDILE,16,19
+    DRILBUR,16,19
+    DRILBUR,16,19
+    CACNEA,16,19
+    NUMEL,16,19
+    MARACTUS,17,20
+    MARACTUS,17,20
+    SANDYGAST,18,21
+    RIOLU,18,21
+    SANDYGAST,18,21
+    PHANPY,16,19
+#-------------------------------
+132 # Route 9
+25,10,10
+Sand
+    TRAPINCH,16,19
+    SANDILE,16,19
+    DRILBUR,16,19
+    DRILBUR,16,19
+    CACNEA,16,19
+    NUMEL,16,19
+    AUDINO,17,20
+    AUDINO,17,20
+    SANDYGAST,18,21
+    RIOLU,18,21
+    SANDYGAST,18,21
+    ROCKRUFF,16,19
+#-------------------------------
+133 # Grakha Oasis
+25,10,10
+Water
+    LUVDISC,20,25
+    POLIWAG,20,25
+    FISHOOS,15,25
+    FISHOOS,25,35
+    QWILFISH,20,35
+OldRod
+    FISHOOS,5
+    LUVDISC,10
+GoodRod
+    FISHOOS,20
+    POLIWAG,20
+    QWILFISH,20,25
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    LUVDISC,25,30
+    QWILFISH,25,30
+#-------------------------------
+138 # Pyget Range 1F
+25,10,10
+Cave
+    SEEL,20,23
+    TABLU,20,23
+    STELLAVAMP,20,23
+    STELLAVAMP,20,23
+    CHINGLING,21,24
+    LOUDRED,21,24
+    CUBCHOO,21,24
+    CUBCHOO,21,24
+    GRIMMERA,20,23
+    BRONZOR,21,24
+    GRIMMERA,20,23
+    RIOLU,22,25
+#-------------------------------
+139 # Pyget Range 2F
+25,10,10
+Cave
+    SEEL,20,23
+    TABLU,20,23
+    STELLAVAMP,20,23
+    STELLAVAMP,20,23
+    CHINGLING,21,24
+    LOUDRED,21,24
+    CUBCHOO,21,24
+    CUBCHOO,21,24
+    GRIMMERA,20,23
+    BRONZOR,21,24,
+    GRIMMERA,21,24
+    DEINO,22,25
+#-------------------------------
+140 # Pyget Range 3F Alley Exit
+25,10,10
+Cave
+    SEEL,20,23
+    TABLU,20,23
+    STELLAVAMP,20,23
+    STELLAVAMP,20,23
+    CHINGLING,21,24
+    LOUDRED,21,24
+    CUBCHOO,21,24
+    CUBCHOO,21,24
+    GRIMMERA,20,23
+    BRONZOR,21,24,
+    GRIMMERA,21,24
+    DEINO,22,25
+#-------------------------------
+141 # Mauselynx Alley
+25,10,10
+Snow
+    SEEL,22,25
+    CHINGLING,22,25
+    SEEL,22,25
+    LOUDRED,22,25
+    CHINGLING,22,25
+    LOUDRED,22,25
+    GRIMMERA,23,26
+    SNOVER,23,26
+    GRIMMERA,23,26
+    DEINO,22,25
+    GRIMMERA,23,26
+    DEINO,22,25
+#-------------------------------
+142 # Narkka Temple
+25,10,10
+Snow
+    SEEL,22,25
+    CHINGLING,22,25
+    SEEL,22,25
+    LOUDRED,22,25
+    CHINGLING,22,25
+    LOUDRED,22,25
+    GRIMMERA,23,26
+    SNOVER,23,26
+    GRIMMERA,23,26
+    DEINO,22,25
+    GRIMMERA,23,26
+    DEINO,22,25
+#-------------------------------
+143 # Rulox Temple
+25,10,10
+Snow
+    SEEL,22,25
+    CHINGLING,22,25
+    SEEL,22,25
+    AUDINO,22,25
+    CHINGLING,22,25
+    AUDINO,22,25
+    GRIMMERA,23,26
+    SNOVER,23,26
+    GRIMMERA,23,26
+    DEINO,22,25
+    GRIMMERA,23,26
+    DEINO,22,25
+#-------------------------------
+150 # Route 13
+25,10,10
+Land
+    DUSTERN,31,34
+    SPECTRAMYS,31,34
+    DUSTERN,31,34
+    SPECTRAMYS,31,34
+    EXEGGCUTE,30,33
+    EXEGGCUTE,30,33
+    HYENASTY,30,33
+    HYENASTY,30,33
+    ZEBSTRIKA,30,33
+    PONYTA,32,35
+    ZEBSTRIKA,30,33
+    PONYTA,32,35
+HighBridge
+    DUSTERN,31,34
+    VULLABY,31,34
+    DUSTERN,31,34
+    VULLABY,31,34
+    CHINGLING,30,33
+    CHINGLING,30,33
+    SAPHYRFLY,30,33
+    SPOOKHEPRI,30,33
+    KADABRA,30,33
+    SIGILYPH,32,35
+    KADABRA,30,33
+    SIGILYPH,32,35
+Water
+    LUVDISC,25,30
+    POLIWAG,25,30
+    FISHOOS,20,30
+    FISHOOS,20,30
+    FISHOOS,30,35
+OldRod
+    FISHOOS,5
+    FISHOOS,10
+GoodRod
+    FISHOOS,15
+    FISHOOS,15
+    POLIWAG,20
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    LUVDISC,25,30
+    POLIWHIRL,30,35
+#-------------------------------
+151 # Route 14
+25,10,10
+Land
+    DUSTERN,31,34
+    SPECTRAMYS,31,34
+    DUSTERN,31,34
+    SPECTRAMYS,31,34
+    EXEGGCUTE,30,33
+    EXEGGCUTE,30,33
+    AUDINO,30,33
+    AUDINO,30,33
+    WEEPINBELL,30,33
+    PONYTA,32,35
+    WEEPINBELL,30,33
+    PONYTA,32,35
+#-------------------------------
+159 # Route 15
+25,10,10
+Land
+    DUSTERN,33,36
+    LUXIO,33,36
+    DUSTERN,33,36
+    LUXIO,33,36
+    EXEGGCUTE,32,35
+    EXEGGCUTE,32,35
+    DROWZEE,32,35
+    DROWZEE,32,35
+    WEEPINBELL,30,33
+    PONYTA,32,35
+    KESTRAIA,35,36
+    LUXRAY,35,36
+#-------------------------------
+160 # Route 16
+25,10,10
+Land
+    DUSTERN,33,36
+    LUXIO,33,36
+    DUSTERN,33,36
+    LUXIO,33,36
+    ZEBSTRIKA,32,35
+    WEEPINBELL,32,35
+    DROWZEE,32,35
+    DROWZEE,32,35
+    WEEPINBELL,30,33
+    ZEBSTRIKA,32,35
+    KESTRAIA,35,36
+    EEVEE,32,35
+Water
+    LUVDISC,25,30
+    POLIWAG,25,30
+    FISHOOS,20,30
+    FISHOOS,20,30
+    FISHOOS,30,35
+OldRod
+    FISHOOS,5
+    FISHOOS,10
+GoodRod
+    FISHOOS,15
+    FISHOOS,15
+    POLIWAG,20
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    LUVDISC,25,30
+    QWILFISH,30,35
+#-------------------------------
+170 # Route 17
+25,10,10
+Land
+    SAPHYRFLY,35,38
+    SPOOKHEPRI,35,38
+    SAPHYRFLY,35,38
+    SPOOKHEPRI,35,38
+    WEEPINBELL,34,37
+    WEEPINBELL,34,37
+    DROWZEE,33,36
+    DROWZEE,33,36
+    CHIMECHO,35,38
+    LARVESTA,33,36
+    YESOMNIA,35,38
+    LARVESTA,33,36
+Sand
+    SAPHYRFLY,35,38
+    DRILBUR,35,38
+    SAPHYRFLY,35,38
+    DRILBUR,35,38
+    VULLABY,34,37
+    VULLABY,34,37
+    SANDYGAST,33,36
+    SANDYGAST,33,36
+    KROKOROK,35,38
+    PHANFAIR,33,36
+    KROKOROK,35,38
+    PHANFAIR,33,36
+#-------------------------------
+177 # Route 11
+25,10,10
+Water
+    LUVDISC,25,30
+    POLIWAG,25,30
+    FISHOOS,30,35
+    FISHOOS,35,40
+    QWILFISH,35,40
+OldRod
+    FISHOOS,5
+    FISHOOS,10
+GoodRod
+    FISHOOS,15
+    FISHOOS,15
+    POLIWAG,20
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    QWILFISH,30,35
+    POLIWHIRL,30,35
+#-------------------------------
+178 # Route 12
+25,10,10
+Water
+    LUVDISC,25,30
+    POLIWAG,25,30
+    FISHOOS,30,35
+    FISHOOS,35,40
+    QWILFISH,35,40
+OldRod
+    FISHOOS,5
+    FISHOOS,10
+GoodRod
+    FISHOOS,15
+    FISHOOS,15
+    POLIWAG,20
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    QWILFISH,30,35
+    POLIWHIRL,30,35
+#-------------------------------
+179 # Zharo Archipelago Port
+25,10,10
+Water
+    LUVDISC,25,30
+    POLIWAG,25,30
+    FISHOOS,30,35
+    FISHOOS,35,40
+    QWILFISH,35,40
+OldRod
+    FISHOOS,5
+    FISHOOS,10
+GoodRod
+    FISHOOS,15
+    FISHOOS,15
+    POLIWAG,20
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    POLIWHIRL,40,45
+    QWILFISH,40,45
+#-------------------------------
+180 # Route 27
+25,10,10
+Water
+    LUVDISC,25,30
+    POLIWAG,25,30
+    FISHOOS,30,35
+    FISHOOS,35,40
+    DISCORONA,40,45
+OldRod
+    FISHOOS,5
+    FISHOOS,10
+GoodRod
+    FISHOOS,15
+    FISHOOS,15
+    POLIWAG,20
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    POLIWHIRL,40,45
+    QWILFISH,40,45
+#-------------------------------
+181 # Route 28
+25,10,10
+Water
+    LUVDISC,25,30
+    POLIWAG,25,30
+    FISHOOS,30,35
+    FISHOOS,35,40
+    DISCORONA,40,45
+OldRod
+    FISHOOS,5
+    FISHOOS,10
+GoodRod
+    FISHOOS,15
+    FISHOOS,15
+    POLIWAG,20
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    POLIWHIRL,40,45
+    QWILFISH,40,45
+#-------------------------------
+182 # Route 29
+25,10,10
+Water
+    LUVDISC,25,30
+    POLIWAG,25,30
+    FISHOOS,30,35
+    FISHOOS,35,40
+    DISCORONA,40,45
+OldRod
+    FISHOOS,5
+    FISHOOS,10
+GoodRod
+    FISHOOS,15
+    FISHOOS,15
+    POLIWAG,20
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    POLIWHIRL,40,45
+    QWILFISH,40,45
+#-------------------------------
+187 # Route 20
+25,10,10
+Land
+    KESTRAIA,42,46
+    SPECTRAMYS,42,46
+    KESTRAIA,42,46
+    SPECTRAMYS,42,46
+    AUDINO,40,43
+    AUDINO,40,43
+    EXEGGCUTE,40,43
+    EXEGGCUTE,40,43
+    RAPIDASH,41,44
+    HYPIXIE,40,43
+    RAPIDASH,41,44
+    HYPIXIE,40,43
+#-------------------------------
+193 # Route 21
+25,10,10
+Land
+    YAMASK,42,46
+    SPECTRAMYS,42,46
+    YAMASK,42,46
+    SPECTRAMYS,42,46
+    KADABRA,40,43
+    KADABRA,40,43
+    SEADRA,40,43
+    SEADRA,40,43
+    HYENASTY,41,44
+    HYENASTY,40,43
+    HYENASTY,41,44
+    HYENASTY,40,43
+#-------------------------------
+195 # Haunted Reef
+25,10,10
+Graveyard
+    YAMASK,43,47
+    SPECTRAMYS,43,47
+    YAMASK,43,47
+    SPECTRAMYS,43,47
+    HYENASTY,41,44
+    HYENASTY,41,44
+    SEADRA,41,44
+    SEADRA,41,44
+    HYENASTY,42,45
+    SPOOKLOTH,41,44
+    HYENASTY,42,45
+    SPOOKLOTH,41,44
+#-------------------------------
+197 # Route 22
+25,10,10
+Land
+    KESTRAIA,44,48
+    SPECTRAMYS,44,48
+    KESTRAIA,44,48
+    SPECTRAMYS,44,48
+    AUDINO,42,45
+    AUDINO,42,45
+    EXEGGCUTE,42,45
+    EXEGGCUTE,42,45
+    ZEBSTRIKA,43,47
+    SUBWINDER,42,45
+    ZEBSTRIKA,43,47
+    SUBWINDER,42,45
+#-------------------------------
+202 # Route 10
+25,10,10
+Land
+    KESTRAIA,64,68
+    LYCANROC,64,68
+    KESTRAIA,64,68
+    LYCANROC,64,68
+    BRONZONG,62,65
+    BRONZONG,62,65
+    LUCARIO,62,65
+    LUCARIO,62,65
+    KROOKODILE,63,67
+    ECHOMERA,62,65
+    KROOKODILE,63,67
+    ECHOMERA,62,65
+#-------------------------------
+203 # Rex Valley
+25,10,10
+Land
+    KROOKODILE,66,70
+    LYCANROC,66,70
+    KROOKODILE,66,70
+    LYCANROC,66,70
+    BRONZONG,64,67
+    BRONZONG,64,67
+    AUDINO,64,67
+    AUDINO,64,67
+    ECHOMERA,65,69
+    AUDINO,64,67
+    ECHOMERA,65,69
+    AUDINO,64,67
+#-------------------------------
+206 # Pyget Range - Anahu Path
+25,10,10
+Cave
+    BARBASTELLA,82,85
+    SOBELISK,82,85
+    BARBASTELLA,82,85
+    SOBELISK,82,85
+    BRONZONG,80,83
+    BRONZONG,80,83
+    AUDINO,80,83
+    AUDINO,80,83
+    BEARTIC,81,84
+    EXPLOUD,80,83
+    BEARTIC,81,84
+    EXPLOUD,80,83
+Water
+    LUVDISC,65,70
+    POLIWHIRL,75,80
+    FISHOOS,70,75
+    FISHOOS,75,80
+    QWILFISH,80,85
+OldRod
+    FISHOOS,5
+    FISHOOS,10
+GoodRod
+    FISHOOS,15
+    FISHOOS,15
+    LUVDISC,20
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    POLIWRATH,50,55
+    POLITOED,50,55
+#-------------------------------
+209 # Route 23
+25,10,10
+Land
+    KESTRAIA,72,75
+    LYCANROC,72,75
+    KESTRAIA,72,75
+    LYCANROC,72,75
+    BRONZONG,70,73
+    BRONZONG,70,73
+    RAPIDASH,70,73
+    ZEBSTRIKA,70,73
+    ECHOMERA,71,74
+    ECHOMERA,70,73
+    ECHOMERA,71,74
+    ECHOMERA,70,73
