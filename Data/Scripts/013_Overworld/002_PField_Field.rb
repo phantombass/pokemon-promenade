@@ -182,6 +182,7 @@ Events.onMapUpdate += proc { |_sender,_e|
   next if !$Trainer
   if $game_switches[141] == true
     pbMessageDisplay(_INTL("You are now ready to play past the demo! Please go to Mauselynx Alley to continue your journey!"))
+    $game_switches[142] = true
   end
   last = $PokemonGlobal.pokerusTime
   now = pbGetTimeNow
