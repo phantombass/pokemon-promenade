@@ -509,7 +509,7 @@ EndSpeechLose = "Man, I lost!"
 Name = KUSSO
 PokemonNos = 2,18,24,27,32,40,43,45,47,53,60,63,83,84,99,104,107,115
 BeginSpeech = Here I come!
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = "Yes, I won!"
 #-------------------------------
 [064]
@@ -1181,7 +1181,7 @@ EndSpeechLose = "Man, I lost!"
 Name = RAO
 PokemonNos = 276,278,279,288,306,320,330,343,347,360
 BeginSpeech = Here I come!
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = "Yes, I won!"
 #-------------------------------
 [148]
@@ -1189,7 +1189,7 @@ EndSpeechLose = "Man, I lost!"
 Name = BOH
 PokemonNos = 249,268,269,272,280,287,288,293,305,309,322,335,349,355,365
 BeginSpeech = Here I come!
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = "Yes, I won!"
 #-------------------------------
 [149]
@@ -1445,7 +1445,7 @@ EndSpeechLose = "Man, I lost!"
 Name = RAMIL
 PokemonNos = 252,253,259,262,265,271,273,281,283,295,304,306,308,315,322,328,342,354
 BeginSpeech = Here I come!
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = "Yes, I won!"
 #-------------------------------
 [181]

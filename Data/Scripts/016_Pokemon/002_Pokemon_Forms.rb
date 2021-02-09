@@ -693,7 +693,7 @@ MultipleForms.register(:RIOLU,{
   }
 })
 
-MultipleForms.copy(:RIOLU,:LUCARIO,:BUNEARY,:LOPUNNY,:NUMEL,:CAMERUPT,:ROCKRUFF,:LYCANROC,:YAMASK)
+MultipleForms.copy(:RIOLU,:LUCARIO,:BUNEARY,:LOPUNNY,:NUMEL,:CAMERUPT,:ROCKRUFF,:LYCANROC,:YAMASK,:COFAGRIGUS)
 
 MultipleForms.register(:CACNEA,{
   "getFormOnCreation" => proc { |pkmn|

@@ -796,6 +796,46 @@ LoseText = "Aww, I lost."
 Pokemon = LARVESTA,44
 Pokemon = SAPHYRFLY,44
 #-------------------------------
+# Scientist Grunt and Boss Battles
+#-------------------------------
+[SCIENTIST,Grunt]
+LoseText = "Aww, I lost."
+Pokemon = RUNERIGUS,44
+Pokemon = COFAGRIGUS_2,44
+#-------------------------------
+[SCIENTIST,Grunt,1]
+LoseText = "Aww, I lost."
+Pokemon = VULLABY,44
+Pokemon = BRONZONG,44
+#-------------------------------
+[SCIENTIST,Grunt,2]
+LoseText = "Aww, I lost."
+Pokemon = TRAPINCH_1,44
+Pokemon = EXCADRILL,44
+#-------------------------------
+[HEADSCIENTIST,Rameses]
+LoseText = "Aww, I lost."
+Pokemon = IMHOTERROR,44
+	IV = 31,31,31,31,31,31
+	EV = 252,0,252,0,4,0
+	Nature = BOLD
+	Item = LEFTOVERS
+	Moves = TIMELOOP,WILLOWISP,HEX,RECOVER
+Pokemon = PHANFAIR,45
+  Moves = EARTHQUAKE,ICESHARD,RAPIDSPIN,PLAYROUGH
+  Nature = ADAMANT
+  Item = ASSAULTVEST
+  Ability = 0
+  IV = 31,31,31,31,31,31
+  EV = 252,252,0,4,0,0
+Pokemon = SPEAKOBRA,46
+  IV = 31,31,31,31,31,31
+  EV = 0,0,0,252,252,4
+  Nature = TIMID
+  Item = THROATSPRAY
+  Moves = DRAGONPULSE,DEATHTOLL,BASSDROP,FLAMETHROWER
+  Ability = 2
+#-------------------------------
 # Rival Battles
 #-------------------------------
 [RIVAL1,Blue]

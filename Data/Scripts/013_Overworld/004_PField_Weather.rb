@@ -31,8 +31,9 @@ begin
     Borealis    = 28 # Northern Lights
     TimeWarp    = 29
     Reverb      = 30
+    HarshSun    = 31
 
-    def PBFieldWeather.maxValue; return 30; end
+    def PBFieldWeather.maxValue; return 31; end
   end
 
 rescue Exception
@@ -78,6 +79,7 @@ module RPG
       @weatherTypes[PBFieldWeather::Sandstorm] = [[], -12,  4, -2]
       @weatherTypes[PBFieldWeather::DustDevil] = [[], -12,  4, -2]
       @weatherTypes[PBFieldWeather::Sun]       = nil
+      @weatherTypes[PBFieldWeather::HarshSun]  = nil
       @sprites = []
     end
 
@@ -324,7 +326,7 @@ module RPG
       when PBFieldWeather::Blizzard, PBFieldWeather::Sleet;  prepareBlizzardBitmaps
       when PBFieldWeather::Sandstorm, PBFieldWeather::DustDevil;                      prepareSandstormBitmaps
       end
-      weatherBitmaps = (@type==PBFieldWeather::None || @type==PBFieldWeather::Sun  || @type==PBFieldWeather::HeatLight || @type==PBFieldWeather::Overcast || @type==PBFieldWeather::Starstorm || @type==PBFieldWeather::Humid || @type==PBFieldWeather::Fog  || @type==PBFieldWeather::Thunder  || @type==PBFieldWeather::DClear || @type==PBFieldWeather::DWind  || @type==PBFieldWeather::Borealis  || @type==PBFieldWeather::TimeWarp || @type==PBFieldWeather::Eclipse || @type==PBFieldWeather::Reverb || @type==PBFieldWeather::Rainbow) ? nil : @weatherTypes[@type][0]
+      weatherBitmaps = (@type==PBFieldWeather::None || @type==PBFieldWeather::Sun || @type==PBFieldWeather::HarshSun || @type==PBFieldWeather::HeatLight || @type==PBFieldWeather::Overcast || @type==PBFieldWeather::Starstorm || @type==PBFieldWeather::Humid || @type==PBFieldWeather::Fog  || @type==PBFieldWeather::Thunder  || @type==PBFieldWeather::DClear || @type==PBFieldWeather::DWind  || @type==PBFieldWeather::Borealis  || @type==PBFieldWeather::TimeWarp || @type==PBFieldWeather::Eclipse || @type==PBFieldWeather::Reverb || @type==PBFieldWeather::Rainbow) ? nil : @weatherTypes[@type][0]
       ensureSprites
       @sprites.each_with_index do |s,i|
         next if !s
@@ -480,6 +482,17 @@ module RPG
         $game_map.fog_sy = 0
       when PBFieldWeather::Sandstorm; @viewport.tone.set(   @max/2,         0,   -@max/2,  0)
       when PBFieldWeather::Sun
+        $game_map.fog_name = nil
+        @sun = @max if @sun!=@max && @sun!=-@max
+        @sun = -@sun if @sunValue>@max || @sunValue<0
+        @sunValue = @sunValue+@sun/32
+        @viewport.tone.set(@sunValue+63,@sunValue+63,@sunValue/2+31,0)
+      when PBFieldWeather::HarshSun
+        $game_map.fog_name = nil
+        @viewport.color.red = 255
+        @viewport.color.green = 0
+        @viewport.color.blue = 0
+        @viewport.color.alpha = 100
         @sun = @max if @sun!=@max && @sun!=-@max
         @sun = -@sun if @sunValue>@max || @sunValue<0
         @sunValue = @sunValue+@sun/32
@@ -491,7 +504,7 @@ module RPG
         @viewport.flash(Color.new(255,255,255,230),rnd*20) if rnd<4
       end
       @viewport.update
-      return if @type==PBFieldWeather::None || @type==PBFieldWeather::Sun || @type==PBFieldWeather::TimeWarp || @type==PBFieldWeather::Borealis || @type==PBFieldWeather::Reverb || @type==PBFieldWeather::Fog  || @type==PBFieldWeather::Overcast ||  @type==PBFieldWeather::DClear || @type==PBFieldWeather::DWind || @type==PBFieldWeather::HeatLight || @type==PBFieldWeather::Humid || @type==PBFieldWeather::Rainbow || @type==PBFieldWeather::Eclipse || @type==PBFieldWeather::Starstorm
+      return if @type==PBFieldWeather::None || @type==PBFieldWeather::Sun || @type==PBFieldWeather::HarshSun || @type==PBFieldWeather::TimeWarp || @type==PBFieldWeather::Borealis || @type==PBFieldWeather::Reverb || @type==PBFieldWeather::Fog  || @type==PBFieldWeather::Overcast ||  @type==PBFieldWeather::DClear || @type==PBFieldWeather::DWind || @type==PBFieldWeather::HeatLight || @type==PBFieldWeather::Humid || @type==PBFieldWeather::Rainbow || @type==PBFieldWeather::Eclipse || @type==PBFieldWeather::Starstorm
       # Update weather particles (raindrops, snowflakes, etc.)
       ensureSprites
       for i in 1..@max

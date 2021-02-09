@@ -40,7 +40,7 @@ begin
       when Rain;        return "Rain"
       when Sandstorm;   return "Sandstorm"
       when Hail;        return "Hail"
-      when HarshSun;    return "HarshSun"
+      when HarshSun;    return "Sun"
       when HeavyRain;   return "HeavyRain"
       when Storm;       return "HeavyRain"
       when StrongWinds; return "StrongWinds"

@@ -565,7 +565,7 @@ EndSpeechLose = "Man, I lost!"
 Name = GLEEIO
 PokemonNos = 121,122,128,151,155,162,168,171,173,186,199,211,214,230,232,235
 BeginSpeech = Here I come!
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = "Yes, I won!"
 #-------------------------------
 [071]
@@ -573,7 +573,7 @@ EndSpeechLose = "Man, I lost!"
 Name = PLUL
 PokemonNos = 141,144,151,163,188,202,212,218,225,227,235
 BeginSpeech = Here I come!
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = "Yes, I won!"
 #-------------------------------
 [072]
@@ -581,7 +581,7 @@ EndSpeechLose = "Man, I lost!"
 Name = KIIO
 PokemonNos = 142,150,179,180,184,185,189,192,204,236,237,240
 BeginSpeech = Here I come!
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = "Yes, I won!"
 #-------------------------------
 [073]
@@ -1173,7 +1173,7 @@ EndSpeechLose = "Man, I lost!"
 Name = PUR
 PokemonNos = 243,248,251,257,287,297,302,308,332,333,335,345,354
 BeginSpeech = Here I come!
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = "Yes, I won!"
 #-------------------------------
 [147]
@@ -1181,7 +1181,7 @@ EndSpeechLose = "Man, I lost!"
 Name = KAMSEK
 PokemonNos = 258,259,262,263,275,285,296,298,303,306,314,317,325,329,332,339,342,343,345,360,362
 BeginSpeech = Here I come!
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = "Yes, I won!"
 #-------------------------------
 [148]
@@ -1189,7 +1189,7 @@ EndSpeechLose = "Man, I lost!"
 Name = DOMORN
 PokemonNos = 246,275,297,302,309,317,319,352,356,358
 BeginSpeech = Here I come!
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = "Yes, I won!"
 #-------------------------------
 [149]

@@ -818,7 +818,7 @@
 957,DRACOFANGS,Draco Fangs,00F,85,DRAGON,Physical,100,10,0,00,0,abefi,"The user charges the target with teeth as sharp as knives. This may cause the target to flinch."
 958,TIMEBOMB,Time Bomb,03F,130,TIME,Special,90,5,0,00,0,befn,"Time itself distorts to inflict massive damage on the target. The user's Sp.Atk is harshly cut."
 959,SONICFANGS,Sonic Fangs,00F,85,SOUND,Physical,100,10,0,00,0,abefik,"The user charges the target with teeth as sharp as knives. This may cause the target to flinch."
-960,MACHFIST,Mach Fist,0A5,60,SOUND,Physical,0,20,0,NearOther,0,abefjk,"The user throws a punch at the speed of sound. The punch lands without fail."
+960,MACHRUSH,Mach Rush,0A5,60,SOUND,Physical,0,20,0,NearOther,0,abefjk,"The user throws a punch at the speed of sound. The punch lands without fail."
 961,DOPPLERPUNCH,Doppler Punch,007,75,SOUND,Physical,100,15,10,NearOther,0,abefjk,"The user throws a punch at the speed of sound. It may paralyze the foe."
 962,SONICSTRIKE,Sonic Strike,000,95,SOUND,Physical,100,15,10,NearOther,0,abefk,"The user rushes the foe at mach speeds and emits a deafening clap."
 963,ECHORUSH,Echo Rush,000,40,SOUND,Physical,100,15,10,NearOther,1,abefk,"The user rushes the foe at mach speeds. This move usually goes first."

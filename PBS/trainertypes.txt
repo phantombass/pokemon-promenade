@@ -29,7 +29,7 @@
 26,RUINMANIAC,Ruin Maniac,48,,,,Male,100,
 27,SAILOR,Sailor,32,,,,Male,100,
 28,HEADSCIENTIST,Head Scientist,48,,,,Male,200,
-29,SCIENTIST,Scientist,48,,,,Male,180,
+29,SCIENTIST,Scientist,48,,,,Male,100,
 30,TAMER,Tamer,40,,,,Male,100,
 31,BLACKBELT,Black Belt,32,,,,Male,100,
 32,CRUSHGIRL,Crush Girl,24,,,,Female,100,

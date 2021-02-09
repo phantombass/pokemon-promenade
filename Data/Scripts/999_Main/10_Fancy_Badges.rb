@@ -116,12 +116,14 @@ def renderBadgeAnimation(badge_number=0)
     elsif badges == 3
       $game_variables[106] = 32
     elsif badges == 4
-      if $game_variables[110] == 5
-        $game_variables[106] = 56
+      if $game_variables[110] == 6
+        $game_variables[106] = 64
+      elsif $game_variables[110] == 5
+        $game_variables[106] = 61
       elsif $game_variables[110] == 4
-        $game_variables[106] = 53
+        $game_variables[106] = 58
       elsif $game_variables[110] == 3
-        $game_variables[106] = 50
+        $game_variables[106] = 55
       elsif $game_variables[110] == 2
         $game_variables[106] = 46
       elsif $game_variables[110] == 1
@@ -130,29 +132,31 @@ def renderBadgeAnimation(badge_number=0)
       $game_variables[106] = 40
       end
     elsif badges == 5
-      if $game_variables[110] == 7
-        $game_variables[106] = 65
-      elsif $game_variables[110] == 6
-        $game_variables[106] = 63
-      else
-      $game_variables[106] = 60
-      end
-    elsif badges == 6
-      $game_variables[106] = 68
-    elsif badges == 7
-      if $game_variables[110] == 11
-        $game_variables[106] = 85
-      elsif $game_variables[110] == 10
-        $game_variables[106] = 80
-      elsif $game_variables[110] == 9
+      if $game_variables[110] == 9
         $game_variables[106] = 78
       elsif $game_variables[110] == 8
-        $game_variables[106] = 74
+        $game_variables[106] = 75
+      elsif $game_variables[110] == 7
+        $game_variables[106] = 72
       else
-      $game_variables[106] = 71
+      $game_variables[106] = 68
+      end
+    elsif badges == 6
+      $game_variables[106] = 81
+    elsif badges == 7
+      if $game_variables[110] == 13
+        $game_variables[106] = 95
+      elsif $game_variables[110] == 12
+        $game_variables[106] = 93
+      elsif $game_variables[110] == 11
+        $game_variables[106] = 90
+      elsif $game_variables[110] == 10
+        $game_variables[106] = 87
+      else
+      $game_variables[106] = 84
       end
     elsif badges == 8
-    $game_variables[106] = 95
+    $game_variables[106] = 115
     else
     $game_variables[106] = 150
     end

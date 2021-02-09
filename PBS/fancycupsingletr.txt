@@ -101,7 +101,7 @@ EndSpeechLose = WAAAH ! I LOST MOTHER
 Name = MANUEL
 PokemonNos = 9,21,22,24,25,40,41,46,47,48,72,73,85,101,144,165,172,190,203,253
 BeginSpeech = ME LOSE ? THAT'S PREPOSTEROUS !
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = NATURALLY I WIN
 #-------------------------------
 [013]
@@ -109,7 +109,7 @@ EndSpeechLose = HOW COULD YOU DO THAT ?
 Name = RUSS
 PokemonNos = 21,22,23,24,40,46,47,48,72,73,84,99,144,171,191
 BeginSpeech = THEY ALL WANT MY FABULOUS POKéMON
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = I WILL HAVE A POKéMON PARTY
 #-------------------------------
 [014]
@@ -117,7 +117,7 @@ EndSpeechLose = I LIKE MYSELF IF I LOSE TOO
 Name = DUSTIN
 PokemonNos = 9,21,22,24,25,39,40,41,47,48,71,72,73,86,96,171,193,250
 BeginSpeech = I REALLY LIKE COOL POKéMON
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = I LIKE MYSELF WHEN I WIN !
 #-------------------------------
 [015]
@@ -509,7 +509,7 @@ EndSpeechLose = NO ! I WON'T ACCEPT THIS
 Name = ARNIE
 PokemonNos = 0,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,27,28,33,34,35,36,37,40,41,43,45,46,48,49,53,54,56,57,59,60,63,64,65,66,67,68,69,70,71,72,73,75,76,77,78,79,80,81,95,96,97,102,115,189,214,238
 BeginSpeech = I AM NO. 1 I HAVE NO RIVAL
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = YOU SEE ? I CAN'T LOSE
 #-------------------------------
 [064]
@@ -517,7 +517,7 @@ EndSpeechLose = GOOD-BYE ! GOOD-BYE !!
 Name = ADRIAN
 PokemonNos = 11,49,66,112,115,120,124,127,129,133,148,158,163,165,169,172,180,181,183,217,222
 BeginSpeech = YAHOO ! YAHOO !!
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = THANK YOU ! THANK YOU !!
 #-------------------------------
 [065]
@@ -525,7 +525,7 @@ EndSpeechLose = I AM NOT A GENIUS IN BATTLE
 Name = TRISTAN
 PokemonNos = 6,11,13,43,45,54,56,57,61,67,68,69,159,165,175,193,195,196,197,216,222
 BeginSpeech = CONFUSED ? I AM A GENIUS
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = SEE ? I AM A GENIUS
 #-------------------------------
 [066]
@@ -1093,7 +1093,7 @@ EndSpeechLose = MY BELLY DRUM WAS TOO WEAK ...
 Name = GABRIEL
 PokemonNos = 10,11,12,13,121,135
 BeginSpeech = POUND THE THICK FAT ON MY BELLY DRUM
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = POUND MY BELLY DRUM POUND MY BELLY DRUM
 #-------------------------------
 [137]
@@ -1349,7 +1349,7 @@ EndSpeechLose = I DISLIKE ANY KIND OF MUD SPORT
 Name = ISSAC
 PokemonNos = 10,11,12,13,65,122
 BeginSpeech = MY HOBBY ?
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = I LIKE ANY KIND OF WATER SPORT
 #-------------------------------
 [169]
@@ -1357,7 +1357,7 @@ EndSpeechLose = HEY WHAT DID I DO ?
 Name = QUINTON
 PokemonNos = 10,11,108,133,134,168
 BeginSpeech = I AM SAD CAUSE I AM TOO WEAK
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = YOU AREN'T TOO STRONG FOR ME
 #-------------------------------
 [170]
@@ -1493,7 +1493,7 @@ EndSpeechLose = TCH ... I AM TOO WEAK ...
 Name = CLINTON
 PokemonNos = 4,5,105,113,137,139
 BeginSpeech = WANT TO SEE MY HYPNOSIS ?
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = YOUR FURY SWIPES YOUR STRENGTH YOUNG TRAINER
 #-------------------------------
 [187]
@@ -1501,7 +1501,7 @@ EndSpeechLose = I WANT MY MOTHER !
 Name = JESSE
 PokemonNos = 4,5,88,94,116,118
 BeginSpeech = THIS BATTLE IS FOR MY MOTHER
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = MOTHER WILL BE HAPPY FOR ME
 #-------------------------------
 [188]
@@ -2261,7 +2261,7 @@ EndSpeechLose = LOOK AT MY FABULOUS FASHION SENSE
 Name = GIDEON
 PokemonNos = 11,132,140,148,176,181,195,196,197
 BeginSpeech = WHAT'S UP? YOU THINK I AM SCARY ?
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = I AM COOL BUT NOT SCARY !
 #-------------------------------
 [283]
@@ -2269,7 +2269,7 @@ EndSpeechLose = SEE ? I ALWAYS LOSE
 Name = TRISTON
 PokemonNos = 27,66,74,79,80,110,134,175,196,198,215,241
 BeginSpeech = I WOULD RATHER LOOK AT POKéMON
-Type = SUPERNERD
+Type = SCIENTIST
 EndSpeechWin = HUH? YOU MEAN I WON ?!
 #-------------------------------
 [284]
