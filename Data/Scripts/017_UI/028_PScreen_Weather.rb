@@ -275,6 +275,7 @@ class PokemonWeatherScreen
 	  if $game_variables[65]>=1
           pbMessage(_INTL("Weather: Humid"))
           pbMessage(_INTL("Weather Ball Type: Bug"))
+          pbMessage(_INTL("Fire x .5"))
           pbMessage(_INTL("Additional Effects: Non-Bug types are at -1 Speed"))
           else
             pbMessage(_INTL("No Readout Installed for this Weather"))
