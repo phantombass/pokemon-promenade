@@ -119,7 +119,7 @@ ShowArea = true
 [022]
 # Azgi Ruins
 SnapEdges = true
-BattleBack = 
+BattleBack =
 Weather = Sandstorm,100
 MapPosition = 0,21,17
 Outdoor = true
@@ -493,88 +493,89 @@ ShowArea = true
 [083]
 # Icaro PMC
 SnapEdges = true
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,15,8
 HealingSpot = 77,22,9
 #-------------------------------
 [084]
 # Icaro Dept 1F
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,15,8
 #-------------------------------
 [085]
 # Icaro Dept. 2F
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,15,8
 #-------------------------------
 [086]
 # Icaro Dept. 3F
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,15,8
 #-------------------------------
 [087]
 # Icaro Dept. 4F
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,15,8
 #-------------------------------
 [088]
 # Icaro Dept. 5F
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,15,8
 #-------------------------------
 [089]
 # Icaro Dept. Rooftop
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,15,8
 #-------------------------------
 [090]
 # Icaro Dept. Elevator
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,15,8
 #-------------------------------
 [091]
 # Lyptus Lab
 BattleBack = field
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,15,10
 #-------------------------------
 [093]
 # Weather Station
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,12,17
 #-------------------------------
 [094]
 # House
+Weather = None,100
 MapPosition = 0,12,17
 #-------------------------------
 [095]
 # House 1
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,12,17
 #-------------------------------
 [096]
 # House 2
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,12,17
 #-------------------------------
 [097]
 # House
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,12,17
 #-------------------------------
 [098]
 # Pokémon Day Care
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,12,17
 #-------------------------------
 [099]
 # House 1
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,12,17
 #-------------------------------
 [100]
 # House 2
-Weather = Storm,0
+Weather = None,100
 MapPosition = 0,12,17
 #-------------------------------
 [101]
@@ -635,6 +636,7 @@ Outdoor = true
 SnapEdges = true
 BattleBack = field
 MapPosition = 0,11,9
+Weather = None,100
 Outdoor = true
 HealingSpot = 111,15,32
 #-------------------------------
@@ -685,6 +687,7 @@ Outdoor = false
 # Xandri PMC
 SnapEdges = true
 MapPosition = 0,15,8
+Weather = None,100
 HealingSpot = 111,15,32
 #-------------------------------
 [119]

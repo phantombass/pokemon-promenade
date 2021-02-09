@@ -796,6 +796,93 @@ LoseText = "Aww, I lost."
 Pokemon = LARVESTA,44
 Pokemon = SAPHYRFLY,44
 #-------------------------------
+# Route 11
+#-------------------------------
+[FISHERMAN,Killian]
+LoseText = "Aww, I lost."
+Pokemon = FERROCUDA,48
+#-------------------------------
+[FISHERMAN,Smee]
+LoseText = "Aww, I lost."
+Pokemon = FLAROCUDA,48
+#-------------------------------
+[FISHERMAN,Rod]
+LoseText = "Aww, I lost."
+Pokemon = FEAROCUDA,48
+#-------------------------------
+[SWIMMER_F,Mia]
+LoseText = "Aww, I lost."
+Pokemon = LUVDISC,47
+Pokemon = POLIWHIRL,47
+#-------------------------------
+[SWIMMER_F,Selena]
+LoseText = "Aww, I lost."
+Pokemon = LUVDISC,46
+Pokemon = FISHOOS,46
+Pokemon = LUVDISC,46
+Pokemon = POLIWHIRL,46
+#-------------------------------
+[COOLTRAINER_F,Matilda]
+LoseText = "Aww, I lost."
+Pokemon = HYENASTY,50
+	IV = 31,31,31,31,31,31
+	EV = 0,0,0,252,252,4
+	Nature = TIMID
+	Item = EXPERTBELT
+	Moves = DARKPULSE,SHADOWBALL,WILLOWISP,SWIFTSWIPE
+  Ability = 2
+Pokemon = ZWEILOUS_1,50
+  IV = 31,0,31,31,31,31
+  EV = 0,0,0,252,252,4
+  Nature = MODEST
+  Item = BLACKSLUDGE
+  Moves = TOXOPLASM,DARKPULSE,FLAMETHROWER,QUIVERDANCE
+  Ability = 0
+Pokemon = SATELLYDRA,50
+  IV = 31,0,31,31,31,31
+  EV = 0,252,0,252,0,0
+  Nature = JOLLY
+  Item = LIFEORB
+  Moves = IRONFANGS,LEECHLIFE,DRACOFANGS,DRAGONDANCE
+  Ability = 0
+#-------------------------------
+# Route 12
+#-------------------------------
+[SWIMMER_F,Demi]
+LoseText = "Aww, I lost."
+Pokemon = POLIWHIRL,48
+Pokemon = POLIWHIRL,48
+#-------------------------------
+[SWIMMER_F,Alice]
+LoseText = "Aww, I lost."
+Pokemon = LUVDISC,48
+Pokemon = LUVDISC,48
+Pokemon = DISCORONA,48
+#-------------------------------
+[COOLTRAINER_F,Sophia]
+LoseText = "Aww, I lost."
+Pokemon = SEADRA_1,51
+	IV = 31,31,31,31,31,31
+	EV = 0,252,0,252,0,4
+	Nature = JOLLY
+	Item = EVIOLITE
+	Moves = SHADOWPUNCH,DRAGONDANCE,WILLOWISP,SHADOWSNEAK
+  Ability = 2
+Pokemon = CASTFORM,51
+  IV = 31,0,31,31,31,31
+  EV = 0,0,0,252,252,4
+  Nature = MODEST
+  Item = LEFTOVERS
+  Moves = WEATHERBALL,METEORSHOWER,ICEBEAM,WISH
+  Ability = 0
+Pokemon = ZEBSTRIKA,51
+  IV = 31,0,31,31,31,31
+  EV = 0,252,0,252,0,4
+  Nature = JOLLY
+  Item = LIFEORB
+  Moves = WILDCHARGE,FLAMECHARGE,HIGHHORSEPOWER,DOUBLEKICK
+  Ability = 0
+#-------------------------------
 # Scientist Grunt and Boss Battles
 #-------------------------------
 [SCIENTIST,Grunt]
