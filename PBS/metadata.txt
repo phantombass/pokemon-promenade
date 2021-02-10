@@ -437,7 +437,6 @@ Outdoor = true
 [076]
 # Icaro City
 BattleBack = field
-Weather = Storm,0
 MapPosition = 0,12,15
 Outdoor = true
 ShowArea = true
@@ -445,7 +444,6 @@ ShowArea = true
 [077]
 # Icaro City
 BattleBack = field
-Weather = Storm,0
 MapPosition = 0,11,16
 Outdoor = true
 HealingSpot = 77,22,9
@@ -454,7 +452,6 @@ ShowArea = true
 [078]
 # Icaro City
 BattleBack = field
-Weather = Storm,0
 MapPosition = 0,11,16
 Outdoor = true
 ShowArea = true
@@ -462,7 +459,6 @@ ShowArea = true
 [079]
 # Icaro City
 BattleBack = field
-Weather = Storm,0
 MapPosition = 0,10,15
 Outdoor = true
 ShowArea = true
@@ -470,7 +466,6 @@ ShowArea = true
 [080]
 # Icaro City
 BattleBack = field
-Weather = Storm,0
 MapPosition = 0,11,17
 Outdoor = true
 ShowArea = true
@@ -478,7 +473,6 @@ ShowArea = true
 [081]
 # Icaro City
 BattleBack = field
-Weather = Storm,0
 MapPosition = 0,10,16
 Outdoor = true
 ShowArea = true
@@ -493,89 +487,89 @@ ShowArea = true
 [083]
 # Icaro PMC
 SnapEdges = true
-Weather = None,100
+Outdoor = false
 MapPosition = 0,15,8
 HealingSpot = 77,22,9
 #-------------------------------
 [084]
 # Icaro Dept 1F
-Weather = None,100
+Outdoor = false
 MapPosition = 0,15,8
 #-------------------------------
 [085]
 # Icaro Dept. 2F
-Weather = None,100
+Outdoor = false
 MapPosition = 0,15,8
 #-------------------------------
 [086]
 # Icaro Dept. 3F
-Weather = None,100
+Outdoor = false
 MapPosition = 0,15,8
 #-------------------------------
 [087]
 # Icaro Dept. 4F
-Weather = None,100
+Outdoor = false
 MapPosition = 0,15,8
 #-------------------------------
 [088]
 # Icaro Dept. 5F
-Weather = None,100
+Outdoor = false
 MapPosition = 0,15,8
 #-------------------------------
 [089]
 # Icaro Dept. Rooftop
-Weather = None,100
+Outdoor = false
 MapPosition = 0,15,8
 #-------------------------------
 [090]
 # Icaro Dept. Elevator
-Weather = None,100
+Outdoor = false
 MapPosition = 0,15,8
 #-------------------------------
 [091]
 # Lyptus Lab
 BattleBack = field
-Weather = None,100
+Outdoor = false
 MapPosition = 0,15,10
 #-------------------------------
 [093]
 # Weather Station
-Weather = None,100
+Outdoor = false
 MapPosition = 0,12,17
 #-------------------------------
 [094]
 # House
-Weather = None,100
+Outdoor = false
 MapPosition = 0,12,17
 #-------------------------------
 [095]
 # House 1
-Weather = None,100
+Outdoor = false
 MapPosition = 0,12,17
 #-------------------------------
 [096]
 # House 2
-Weather = None,100
+Outdoor = false
 MapPosition = 0,12,17
 #-------------------------------
 [097]
 # House
-Weather = None,100
+Outdoor = false
 MapPosition = 0,12,17
 #-------------------------------
 [098]
 # Pokémon Day Care
-Weather = None,100
+Outdoor = false
 MapPosition = 0,12,17
 #-------------------------------
 [099]
 # House 1
-Weather = None,100
+Outdoor = false
 MapPosition = 0,12,17
 #-------------------------------
 [100]
 # House 2
-Weather = None,100
+Outdoor = false
 MapPosition = 0,12,17
 #-------------------------------
 [101]
