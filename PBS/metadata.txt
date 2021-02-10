@@ -119,7 +119,7 @@ ShowArea = true
 [022]
 # Azgi Ruins
 SnapEdges = true
-BattleBack =
+BattleBack = 
 Weather = Sandstorm,100
 MapPosition = 0,21,17
 Outdoor = true
@@ -487,90 +487,90 @@ ShowArea = true
 [083]
 # Icaro PMC
 SnapEdges = true
-Outdoor = false
 MapPosition = 0,15,8
+Outdoor = false
 HealingSpot = 77,22,9
 #-------------------------------
 [084]
 # Icaro Dept 1F
-Outdoor = false
 MapPosition = 0,15,8
+Outdoor = false
 #-------------------------------
 [085]
 # Icaro Dept. 2F
-Outdoor = false
 MapPosition = 0,15,8
+Outdoor = false
 #-------------------------------
 [086]
 # Icaro Dept. 3F
-Outdoor = false
 MapPosition = 0,15,8
+Outdoor = false
 #-------------------------------
 [087]
 # Icaro Dept. 4F
-Outdoor = false
 MapPosition = 0,15,8
+Outdoor = false
 #-------------------------------
 [088]
 # Icaro Dept. 5F
-Outdoor = false
 MapPosition = 0,15,8
+Outdoor = false
 #-------------------------------
 [089]
 # Icaro Dept. Rooftop
-Outdoor = false
 MapPosition = 0,15,8
+Outdoor = false
 #-------------------------------
 [090]
 # Icaro Dept. Elevator
-Outdoor = false
 MapPosition = 0,15,8
+Outdoor = false
 #-------------------------------
 [091]
 # Lyptus Lab
 BattleBack = field
-Outdoor = false
 MapPosition = 0,15,10
+Outdoor = false
 #-------------------------------
 [093]
 # Weather Station
-Outdoor = false
 MapPosition = 0,12,17
+Outdoor = false
 #-------------------------------
 [094]
 # House
-Outdoor = false
 MapPosition = 0,12,17
+Outdoor = false
 #-------------------------------
 [095]
 # House 1
-Outdoor = false
 MapPosition = 0,12,17
+Outdoor = false
 #-------------------------------
 [096]
 # House 2
-Outdoor = false
 MapPosition = 0,12,17
+Outdoor = false
 #-------------------------------
 [097]
 # House
-Outdoor = false
 MapPosition = 0,12,17
+Outdoor = false
 #-------------------------------
 [098]
 # Pokémon Day Care
-Outdoor = false
 MapPosition = 0,12,17
+Outdoor = false
 #-------------------------------
 [099]
 # House 1
-Outdoor = false
 MapPosition = 0,12,17
+Outdoor = false
 #-------------------------------
 [100]
 # House 2
-Outdoor = false
 MapPosition = 0,12,17
+Outdoor = false
 #-------------------------------
 [101]
 # Route 2
@@ -629,8 +629,8 @@ Outdoor = true
 # Xandri
 SnapEdges = true
 BattleBack = field
-MapPosition = 0,11,9
 Weather = None,100
+MapPosition = 0,11,9
 Outdoor = true
 HealingSpot = 111,15,32
 #-------------------------------
@@ -639,7 +639,7 @@ HealingSpot = 111,15,32
 SnapEdges = true
 BattleBack = field
 Weather = None,100
-MapPosition = 0,15,10
+MapPosition = 0,11,9
 Outdoor = false
 #-------------------------------
 [113]
@@ -667,7 +667,7 @@ HealingSpot = 114,24,7
 SnapEdges = true
 BattleBack = field
 Weather = None,100
-MapPosition = 0,15,10
+MapPosition = 0,11,9
 Outdoor = false
 #-------------------------------
 [117]
@@ -680,8 +680,8 @@ Outdoor = false
 [118]
 # Xandri PMC
 SnapEdges = true
-MapPosition = 0,15,8
 Weather = None,100
+MapPosition = 0,11,9
 HealingSpot = 111,15,32
 #-------------------------------
 [119]
@@ -1136,6 +1136,10 @@ MapPosition = 0,17,9
 Outdoor = true
 ShowArea = true
 #-------------------------------
+[183]
+# House
+MapPosition = 0,11,9
+#-------------------------------
 [184]
 # Zharo Mainland Port
 SnapEdges = true
@@ -1376,6 +1380,22 @@ MapPosition = 0,23,17
 # Rulox Gym
 SnapEdges = true
 MapPosition = 0,23,14
+#-------------------------------
+[227]
+# House 2
+MapPosition = 0,11,9
+#-------------------------------
+[228]
+# House
+MapPosition = 0,11,9
+#-------------------------------
+[229]
+# House 2
+MapPosition = 0,11,9
+#-------------------------------
+[230]
+# House 3
+MapPosition = 0,11,9
 #-------------------------------
 [241]
 # Dontu Inn
