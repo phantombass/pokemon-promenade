@@ -20,8 +20,10 @@ begin
     Space       = 17
     UltraSpace  = 18
     Distortion  = 19
+    HighBridge  = 20
+    Sandy       = 21
 
-    def self.maxValue; return 19; end
+    def self.maxValue; return 21; end
   end
 
 rescue Exception
