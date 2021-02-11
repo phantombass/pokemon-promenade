@@ -364,6 +364,10 @@ class PokemonLoadScreen
               $game_switches[141] = true
             end
           end
+          if $game_switches[141] == true
+            pbMessage(_INTL("You are now ready to play past the demo! Go to Mauselynx Alley to continue your journey!"))
+            $game_switches[142] = true
+          end
           time = pbGetTimeNow
           $game_variables[99] = time.day
           dailyWeather = $game_variables[27]
