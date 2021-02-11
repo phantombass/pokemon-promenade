@@ -119,7 +119,7 @@ ShowArea = true
 [022]
 # Azgi Ruins
 SnapEdges = true
-BattleBack = 
+BattleBack =
 Weather = Sandstorm,100
 MapPosition = 0,21,17
 Outdoor = true
@@ -646,6 +646,7 @@ Outdoor = false
 # Route 5
 SnapEdges = true
 BattleBack = rocky
+Weather = None,0
 MapPosition = 0,8,11
 Outdoor = true
 #-------------------------------
