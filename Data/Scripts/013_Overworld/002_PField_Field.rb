@@ -179,29 +179,6 @@ end
 #===============================================================================
 # Pokérus check
 Events.onMapUpdate += proc { |_sender,_e|
-  def pbDisplay(text)
-    @messageBox.text    = text
-    @messageBox.visible = true
-    @helpWindow.visible = false
-    pbPlayDecisionSE
-    loop do
-      Graphics.update
-      Input.update
-      pbUpdate
-      if @messageBox.busy?
-        if Input.trigger?(Input::C)
-          pbPlayDecisionSE if @messageBox.pausing?
-          @messageBox.resume
-        end
-      else
-        if Input.trigger?(Input::B) || Input.trigger?(Input::C)
-          break
-        end
-      end
-    end
-    @messageBox.visible = false
-    @helpWindow.visible = true
-  end
   next if !$Trainer
   if $game_switches[141] == true
     pbDisplay(_INTL("You are now ready to play past the demo! Please go to Mauselynx Alley to continue your journey!"))
