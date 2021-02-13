@@ -5,11 +5,11 @@ PlayerA = POKEMONTRAINER_Red,trchar000,boy_bike,boy_surf,boy_run,boy_surf,boy_fi
 PlayerB = POKEMONTRAINER_Leaf,trchar001,girl_bike,girl_surf,girl_run,girl_surf,girl_fish_offset,girl_fish_offset
 TrainerVictoryME = Battle victory trainer.ogg
 WildVictoryME = Battle victory wild.ogg
-TrainerBattleBGM = Battle trainer.mid
+TrainerBattleBGM = HGSS-118-BattleTrainer.ogg
 SurfBGM = Surfing.mid
 BicycleBGM = Bicycle.mid
 Home = 4,1,6,8
-WildBattleBGM = Battle wild.mid
+WildBattleBGM = HGSS-110-BattleWild.ogg
 #-------------------------------
 [001]
 # Intro
@@ -119,7 +119,7 @@ ShowArea = true
 [022]
 # Azgi Ruins
 SnapEdges = true
-BattleBack = 
+BattleBack =
 Weather = Sandstorm,100
 MapPosition = 0,21,17
 Outdoor = true

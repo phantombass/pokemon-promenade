@@ -907,7 +907,7 @@ Pokemon = ZEBSTRIKA,51
 #-------------------------------
 # Route 20
 #-------------------------------
-[COOLTRAINER_M,Gus]
+[COOLTRAINER_M,Burton]
 LoseText = "Aww, I lost."
 Pokemon = YESOMNIA,57
   IV = 31,31,31,31,31,31
