@@ -157,6 +157,24 @@ Pokemon = ORRUSTORM,70
     IV = 31,0,31,31,31,31
     EV = 0,0,0,252,252,0
 #-------------------------------
+[GUARDIAN_Andy,Andy]
+LoseText = "How intriguing."
+Pokemon = CANINPU,75
+    Moves = TIMEWARP,TOXIC,HEX,PROTECT
+    Nature = MODEST
+    Item = LEFTOVERS
+    IV = 31,0,31,31,31,31
+    EV = 252,0,128,0,128,0
+#-------------------------------
+[GUARDIAN_Owen,Owen]
+LoseText = "I am madly impressed with you, my friend."
+Pokemon = SOBEKODILE,79
+    Moves = LIQUIDATION,PSYCHICFANGS,LEECHLIFE,COSMICFANGS
+    Nature = JOLLY
+    Item = EXPERTBELT
+    IV = 31,31,31,31,31,31
+    EV = 0,252,0,252,0,4
+#-------------------------------
 # Elite 4
 #-------------------------------
 [CHAMPION,Dr. Lyptus]
@@ -988,6 +1006,33 @@ Pokemon = SPEAKOBRA,46
   Item = THROATSPRAY
   Moves = DRAGONPULSE,DEATHTOLL,BASSDROP,FLAMETHROWER
   Ability = 2
+#-------------------------------
+[SCIENTIST,Grunt,3]
+LoseText = "Aww, I lost."
+Pokemon = SATELLYDRA,56
+#-------------------------------
+[SCIENTIST,Grunt,4]
+LoseText = "Aww, I lost."
+Pokemon = TINSNARE,56
+#-------------------------------
+[SCIENTIST,Grunt,5]
+LoseText = "Aww, I lost."
+Pokemon = COFAGRIGUS,56
+  Form = 2
+#-------------------------------
+[SCIENTIST,Grunt,6]
+LoseText = "Aww, I lost."
+Pokemon = RUNERIGUS,56
+#-------------------------------
+[SCIENTIST,Grunt,7]
+LoseText = "Aww, I lost."
+Pokemon = BARBASTELLA,55
+Pokemon = EXCADRILL,55
+#-------------------------------
+[SCIENTIST,Grunt,8]
+LoseText = "Aww, I lost."
+Pokemon = IMHOTERROR,55
+Pokemon = ARCHASM,55
 #-------------------------------
 # Rival Battles
 #-------------------------------
