@@ -148,6 +148,15 @@ Pokemon = CENTISEPA,58
     IV = 31,0,31,31,31,31
     EV = 252,0,252,0,4,0
 #-------------------------------
+[GUARDIAN_Tim,Tim]
+LoseText = "What a whirlwind!"
+Pokemon = ORRUSTORM,70
+    Moves = WEATHERBALL,THUNDERBOLT,ROOST,WINDDRILL
+    Nature = TIMID
+    Item = WISEGLASSES
+    IV = 31,0,31,31,31,31
+    EV = 0,0,0,252,252,0
+#-------------------------------
 # Elite 4
 #-------------------------------
 [CHAMPION,Dr. Lyptus]

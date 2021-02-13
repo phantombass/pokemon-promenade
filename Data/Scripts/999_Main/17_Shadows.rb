@@ -58,7 +58,11 @@ No_Shadow_If_Event_Name_Has = [
 # Events that have this in their event name will always receive a shadow.
 # Does take "Case_Sensitive" into account.
 Always_Give_Shadow_If_Event_Name_Has = [
-    "Trainer"
+    "Trainer",
+    "NPC",
+    "Scientist",
+    "Dude",
+    "Itemcraft"
 ]
 
 # Determines whether or not an event should be given a shadow.
