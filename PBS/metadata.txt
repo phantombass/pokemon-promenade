@@ -119,7 +119,7 @@ ShowArea = true
 [022]
 # Azgi Ruins
 SnapEdges = true
-BattleBack =
+BattleBack = 
 Weather = Sandstorm,100
 MapPosition = 0,21,17
 Outdoor = true
@@ -1438,4 +1438,16 @@ Outdoor = false
 # House 2
 SnapEdges = true
 MapPosition = 0,19,9
+Outdoor = false
+#-------------------------------
+[250]
+# Mansion
+SnapEdges = true
+MapPosition = 0,22,9
+Outdoor = false
+#-------------------------------
+[251]
+# Mansion Basement
+SnapEdges = true
+MapPosition = 0,22,9
 Outdoor = false
