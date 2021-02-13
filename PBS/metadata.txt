@@ -119,7 +119,7 @@ ShowArea = true
 [022]
 # Azgi Ruins
 SnapEdges = true
-BattleBack =
+BattleBack = 
 Weather = Sandstorm,100
 MapPosition = 0,21,17
 Outdoor = true
@@ -1200,6 +1200,12 @@ MapPosition = 0,22,9
 Outdoor = false
 HealingSpot = 189,9,23
 #-------------------------------
+[192]
+# Tagubeet Gate
+SnapEdges = true
+MapPosition = 0,21,9
+Outdoor = false
+#-------------------------------
 [193]
 # Route 21
 SnapEdges = true
@@ -1220,6 +1226,13 @@ Weather = Overcast,100
 MapPosition = 0,22,7
 Outdoor = true
 HealingSpot = 195,15,20
+ShowArea = true
+#-------------------------------
+[196]
+# Temple of Caninpu
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,22,9
 ShowArea = true
 #-------------------------------
 [197]
@@ -1414,3 +1427,15 @@ SnapEdges = true
 MapPosition = 0,28,5
 Outdoor = false
 ShowArea = false
+#-------------------------------
+[247]
+# House
+SnapEdges = true
+MapPosition = 0,19,9
+Outdoor = false
+#-------------------------------
+[248]
+# House 2
+SnapEdges = true
+MapPosition = 0,19,9
+Outdoor = false
