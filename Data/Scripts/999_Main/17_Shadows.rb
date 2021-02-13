@@ -52,6 +52,7 @@ No_Shadow_If_Event_Name_Has = [
     ".sl",
     "Healing balls",
     "Door",
+    "BerryPlant",
     "Stairs"
 ]
 
