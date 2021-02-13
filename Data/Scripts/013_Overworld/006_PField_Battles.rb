@@ -189,12 +189,14 @@ def pbPrepareBattle(battle)
     when PBEnvironment::Grass, PBEnvironment::TallGrass,
          PBEnvironment::ForestGrass;                            base = "grass"
 #    when PBEnvironment::Rock;                                   base = "rock"
-    when PBEnvironment::Sand;                                   base = "sand"
+    when PBEnvironment::Sand, PBEnvironment::Sandy;             base = "sand"
     when PBEnvironment::MovingWater, PBEnvironment::StillWater; base = "water"
     when PBEnvironment::Puddle;                                 base = "puddle"
     when PBEnvironment::Ice;                                    base = "ice"
     when PBEnvironment::Distortion;                             base = "distortion"
     when PBEnvironment::Snow;                                   base = "snow"
+    when PBEnvironment::HighBridge;                             base = "indoor1"
+    when PBEnvironment::Graveyard;                              base = "indoor3"
     end
   else
     base = battleRules["base"]
@@ -239,6 +241,7 @@ def pbGetEnvironment
   when PBTerrain::Sandy;                       ret = PBEnvironment::Sand
   when PBTerrain::Graveyard;                   ret = PBEnvironment::Graveyard
   when PBTerrain::Snow;                        ret = PBEnvironment::Snow
+  when PBTerrain::HighBridge;                  ret = PBEnvironment::HighBridge
   end
   return ret
 end
