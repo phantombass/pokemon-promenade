@@ -2926,12 +2926,17 @@ BattleHandlers::AbilityOnSwitchIn.add(:TURBOBLAZE,
 BattleHandlers::AbilityOnSwitchIn.add(:DIMENSIONSHIFT,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    if battle.field.weather == PBWeather::TimeWarp
-      @battle.field.effects[PBEffects::TrickRoom] = 7
-    else
-      @battle.field.effects[PBEffects::TrickRoom] = 5
+    if battle.field.effects[PBEffects::TrickRoom] > 0
+      battle.field.effects[PBEffects::TrickRoom] = 0
+      battle.pbDisplay(_INTL("{1} reverted the dimensions!",battler.pbThis))
     end
-    battle.pbDisplay(_INTL("{1} twisted the dimensions!",battler.pbThis))
+    if battle.field.weather == PBWeather::TimeWarp
+      battle.field.effects[PBEffects::TrickRoom] = 7
+      battle.pbDisplay(_INTL("{1} twisted the dimensions!",battler.pbThis))
+    else
+      battle.field.effects[PBEffects::TrickRoom] = 5
+      battle.pbDisplay(_INTL("{1} twisted the dimensions!",battler.pbThis))
+    end
     battle.pbHideAbilitySplash(battler)
   }
 )
@@ -2939,7 +2944,7 @@ BattleHandlers::AbilityOnSwitchIn.add(:DIMENSIONSHIFT,
 BattleHandlers::AbilityOnSwitchIn.add(:CACOPHONY,
   proc { |ability,battler,battle|
     battle.pbShowAbilitySplash(battler)
-    battle.pbDisplay(_INTL("{1}'s {2} is creating an uproar!",battler.pbThis,abilityName.pbThis))
+    battle.pbDisplay(_INTL("{1} is creating an uproar!",battler.pbThis))
     battle.pbHideAbilitySplash(battler)
   }
 )
