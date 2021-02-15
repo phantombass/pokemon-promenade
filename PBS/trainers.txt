@@ -128,6 +128,43 @@ Pokemon = CACTAMBORINE,32
      IV = 31,0,31,31,31,31
      EV = 4,0,0,252,252,0
 #-------------------------------
+[LEADER_Delta,Delta]
+LoseText = "Trainers like you are the reason I remodeled this Gym! Well done!"
+Pokemon = DISCORONA,62
+     Moves = UTURN,STARSAP,LIQUIDATION,HEALINGWISH
+     Nature = JOLLY
+     Item = WEATHERROCK
+     Ability = 1
+     IV = 31,31,31,31,31,31
+     EV = 252,4,0,252,0,0
+Pokemon = CASTFORM,61
+     Moves = WEATHERBALL,HURRICANE,STARBEAM,RECOVER
+     Nature = TIMID
+     Item = EVIOLITE
+     IV = 31,0,31,31,31,31
+     EV = 0,0,4,252,252,0
+Pokemon = FERROCUDA,62
+     Moves = FISHIOUSREND,FLIPTURN,TUNGSTENTOMB,PSYCHICFANGS
+     Nature = ADAMANT
+     Item = CHOICEBAND
+     Ability = 1
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = POLIWRATH,60
+    Moves = LIQUIDATION,DRAINPUNCH,CLOSECOMBAT,ICEPUNCH
+    Nature = JOLLY
+    Item = ASSAULTVEST
+    Ability = 2
+    IV = 31,31,31,31,31,31
+    EV = 0,252,0,252,0,4
+Pokemon = ZEBOLTRA,64
+     Moves = THUNDER,RISINGVOLTAGE,MOONBLAST,OVERCHARGE
+     Nature = TIMID
+     Item = ZAPPLATE
+     Ability = 2
+     IV = 31,0,31,31,31,31
+     EV = 4,0,0,252,252,0
+#-------------------------------
 #Temple Guardian Battles
 #-------------------------------
 [GUARDIAN_Marie,Marie]
@@ -171,7 +208,7 @@ LoseText = "I am madly impressed with you, my friend."
 Pokemon = SOBEKODILE,79
     Moves = LIQUIDATION,PSYCHICFANGS,LEECHLIFE,COSMICFANGS
     Nature = JOLLY
-    Item = EXPERTBELT
+    Item = LIFEORB
     IV = 31,31,31,31,31,31
     EV = 0,252,0,252,0,4
 #-------------------------------
@@ -966,6 +1003,83 @@ LoseText = "Aww, I lost."
 Pokemon = SYLVEON,55
 Pokemon = ALKALEON,55
 Pokemon = DRAKEON,55
+#-------------------------------
+# Route 22
+#-------------------------------
+[POKEMONBREEDER,Wanda]
+LoseText = "Aww, I lost."
+Pokemon = ASTREON,61
+Pokemon = ARCHAEON,61
+Pokemon = PHONEON,61
+#-------------------------------
+[POKEMONBREEDER,Sally]
+LoseText = "Aww, I lost."
+Pokemon = RAPIDASH,61
+Pokemon = ZEBSTRIKA,61
+Pokemon = PEGASOOT,61
+#-------------------------------
+[PSYCHIC_F,Marisol]
+LoseText = "Aww, I lost."
+Pokemon = DROWZEE,61
+Pokemon = BRONZONG,61
+Pokemon = YESOMNIA,61
+#-------------------------------
+[COOLTRAINER_F,Jules]
+LoseText = "Aww, I lost."
+Pokemon = NYMPHYDRA,63
+  IV = 31,31,31,31,31,31
+  EV = 0,0,4,252,252,0
+  Nature = TIMID
+  Item = LIFEORB
+  Moves = DRAGONPULSE,MOONBLAST,STARBEAM,RECOVER
+  Ability = 0
+Pokemon = BASSILISK,63
+	IV = 31,31,31,31,31,31
+	EV = 0,252,0,252,4,0
+	Nature = HASTY
+  Ability = 2
+	Item = LEFTOVERS
+	Moves = DRAGONDANCE,SONICSTRIKE,CLANGINGSCALES,POLARITYPULSE
+Pokemon = CORPUSCUFF,63
+  IV = 31,31,31,31,31,31
+  EV = 0,0,0,252,252,4
+  Happiness = 255
+  Nature = JOLLY
+  Item = ASSAULTVEST
+  Moves = DRAINPUNCH,CLOSECOMBAT,HEXCANNON,RHYTHMICPUNCH
+#-------------------------------
+# Castronis Gym
+#-------------------------------
+[SWIMMER_F,Ariel]
+LoseText = "Aww, I lost."
+Pokemon = FAIRICUDA,63
+#-------------------------------
+[SWIMMER_F,Farah]
+LoseText = "Aww, I lost."
+Pokemon = FERROCUDA,63
+#-------------------------------
+[SWIMMER_F,Helga]
+LoseText = "Aww, I lost."
+Pokemon = FEAROCUDA,63
+#-------------------------------
+[SWIMMER_F,Heather]
+LoseText = "Aww, I lost."
+Pokemon = FLAROCUDA,63
+#-------------------------------
+[SWIMMER_F,Lily]
+LoseText = "Aww, I lost."
+Pokemon = FLORACUDA,63
+#-------------------------------
+[SWIMMER_F,Elsa]
+LoseText = "Aww, I lost."
+Pokemon = FRIOCUDA,63
+#-------------------------------
+[SAILOR,Jasper]
+LoseText = "Aww, I lost."
+Pokemon = POLIWRATH,61
+Pokemon = POLITOED,61
+Pokemon = QWILFISH,61
+  Form = 1
 #-------------------------------
 # Scientist Grunt and Boss Battles
 #-------------------------------
