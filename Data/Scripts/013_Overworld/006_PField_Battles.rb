@@ -598,7 +598,9 @@ def pbAfterBattle(decision,canLose)
   if $PokemonGlobal.partner
     pbHealAll
     $PokemonGlobal.partner[3].each do |pkmn|
-      pkmn.heal
+      if $game_switches[73] == true
+        pkmn.heal if !pkmn.fainted?
+      end
       pkmn.makeUnmega
       pkmn.makeUnprimal
     end

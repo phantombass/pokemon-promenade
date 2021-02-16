@@ -193,6 +193,10 @@ ItemHandlers::UseInField.add(:SACREDASH,proc { |item|
     pbMessage(_INTL("There is no Pokémon."))
     next 0
   end
+  if $game_switches[73] == true
+    pbMessage(_INTL("It won't have any effect."))
+    next 0
+  end
   canrevive = false
   for i in $Trainer.pokemonParty
     next if !i.fainted?
@@ -511,7 +515,7 @@ ItemHandlers::UseOnPokemon.add(:FULLRESTORE,proc { |item,pkmn,scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:REVIVE,proc { |item,pkmn,scene|
-  if !pkmn.fainted?
+  if !pkmn.fainted? || $game_switches[73] == true
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
@@ -524,7 +528,7 @@ ItemHandlers::UseOnPokemon.add(:REVIVE,proc { |item,pkmn,scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:MAXREVIVE,proc { |item,pkmn,scene|
-  if !pkmn.fainted?
+  if !pkmn.fainted? || $game_switches[73] == true
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
@@ -564,7 +568,7 @@ ItemHandlers::UseOnPokemon.add(:HEALPOWDER,proc { |item,pkmn,scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:REVIVALHERB,proc { |item,pkmn,scene|
-  if !pkmn.fainted?
+  if !pkmn.fainted? || $game_switches[73] == true
     scene.pbDisplay(_INTL("It won't have any effect."))
     next false
   end
