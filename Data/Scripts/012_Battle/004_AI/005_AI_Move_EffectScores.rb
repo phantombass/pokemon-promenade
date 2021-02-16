@@ -3164,7 +3164,7 @@ class PokeBattle_AI
       end
     #---------------------------------------------------------------------------
     when "501"   # No extra effect
-      score +=40 if target.hasType?(:GROUND)
+      score +=40 if target.pbHasType?(:GROUND)
     #---------------------------------------------------------------------------
     when "502"   # No extra effect
     #---------------------------------------------------------------------------
@@ -3172,7 +3172,7 @@ class PokeBattle_AI
       score += 30 if @battle.field.weather == PBWeather::Starstorm
     #---------------------------------------------------------------------------
     when "504"   # No extra effect
-      score +=40 if target.hasType?(:FAIRY)
+      score +=40 if target.pbHasType?(:FAIRY)
     #---------------------------------------------------------------------------
     when "505"   # No extra effect
     #---------------------------------------------------------------------------

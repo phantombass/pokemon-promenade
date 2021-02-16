@@ -586,6 +586,12 @@ SnapEdges = true
 Weather = Overcast,100
 MapPosition = 0,11,14
 #-------------------------------
+[103]
+# Weather Institute
+SnapEdges = true
+MapPosition = 0,12,17
+Outdoor = false
+#-------------------------------
 [104]
 # Route 3
 SnapEdges = true

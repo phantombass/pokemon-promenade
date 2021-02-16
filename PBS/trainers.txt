@@ -212,6 +212,14 @@ Pokemon = SOBEKODILE,79
     IV = 31,31,31,31,31,31
     EV = 0,252,0,252,0,4
 #-------------------------------
+[GUARDIAN_Tara,Tara]
+LoseText = "Young one, you are so talented!"
+Pokemon = OSIRAM,85
+    Moves = THOUSANDARROWS,STARSAP,SHOREUP,COMETSHARDS
+    Nature = ADAMANT
+    Item = LEFTOVERS
+    IV = 31,31,31,31,31,31
+    EV = 252,0,128,0,0,128
 # Elite 4
 #-------------------------------
 [CHAMPION,Dr. Lyptus]
@@ -1147,6 +1155,12 @@ Pokemon = EXCADRILL,55
 LoseText = "Aww, I lost."
 Pokemon = IMHOTERROR,55
 Pokemon = ARCHASM,55
+#-------------------------------
+[SCIENTIST,Grunt,9]
+LoseText = "Aww, I lost."
+Pokemon = IMHOTERROR,65
+Pokemon = ARCHASM,65
+Pokemon = EXCADRILL,66
 #-------------------------------
 # Rival Battles
 #-------------------------------
