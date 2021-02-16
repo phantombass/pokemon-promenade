@@ -1162,6 +1162,54 @@ Pokemon = IMHOTERROR,65
 Pokemon = ARCHASM,65
 Pokemon = EXCADRILL,66
 #-------------------------------
+[SCIENTIST,Grunt,10]
+LoseText = "Aww, I lost."
+Pokemon = IMHOTERROR,70
+#-------------------------------
+[SCIENTIST,Grunt,11]
+LoseText = "Aww, I lost."
+Pokemon = ARCHASM,70
+#-------------------------------
+[SCIENTIST,Grunt,12]
+LoseText = "Aww, I lost."
+Pokemon = TINSNARE,69
+Pokemon = EXCADRILL,69
+#-------------------------------
+[SCIENTIST,Grunt,13]
+LoseText = "Aww, I lost."
+Pokemon = SATELLYDRA,69
+Pokemon = EXCADRILL,69
+#-------------------------------
+[SCIENTIST,Grunt,14]
+LoseText = "Aww, I lost."
+Pokemon = COFAGRIGUS,68
+  Form = 2
+Pokemon = RUNERIGUS,68
+Pokemon = BELLOOM,68
+#-------------------------------
+[HEADSCIENTIST,Tuya]
+LoseText = "Hmmph. Stupid punk."
+Pokemon = ARCHASM,70
+	IV = 31,31,31,31,31,31
+	EV = 0,252,0,252,0,4
+	Nature = JOLLY
+	Item = LIFEORB
+	Moves = QUANTUMCRUSH,EARTHQUAKE,ROCKSLIDE,SHOREUP
+Pokemon = COFAGRIGUS,45
+  Moves = FLASHCANNON,WILLOWISP,HEX,BODYPRESS
+  Nature = CALM
+  Item = LEFTOVERS
+  Form = 2
+  IV = 31,31,31,31,31,31
+  EV = 252,0,0,4,252,0
+Pokemon = NYMPHYDRA,72
+  IV = 31,31,31,31,31,31
+  EV = 0,0,0,252,252,4
+  Nature = TIMID
+  Item = LIFEORB
+  Moves = DRAGONPULSE,LIGHTOFRUIN,RECOVER,STARBEAM
+  Ability = 0
+#-------------------------------
 # Rival Battles
 #-------------------------------
 [RIVAL1,Blue]

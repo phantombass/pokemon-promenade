@@ -2001,7 +2001,9 @@ BattleHandlers::EORWeatherAbility.add(:SOLARPOWER,
 BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
   proc { |ability,weather,battler,battle|
     newWeather = 0
+    oldWeather = battle.field.weather
     newForm = battler.form
+    newWeather = newForm
     battle.eachOtherSideBattler(battler.index) do |b|
     targetTypes = b.pbTypes
     type1 = targetTypes[0]
@@ -2013,20 +2015,20 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
       when 18; newWeather = 16
       when 2, 21; newWeather = 19
       when 6; newWeather = 1
-      when !7, !14, !20, !18, !2, !21, !6, nil; newWeather = 15
+      when 0,1,3,4,5,8,9,10,11,12,13,15,16,17,19, nil; newWeather = 15
       end
     when 1
       case type2
       when 3, 19; newWeather = 17
       when 8; newWeather = 6
       when 2, 10; newWeather = 19
-      when !3, !19, !8, !2, !10, nil; newWeather = 4
+      when 0,1,4,5,6,7,9,11,12,13,14,15,16,17,18,20,21, nil; newWeather = 4
       end
     when 2
       case type2
       when 4, 15, 16, 21; newWeather = 3
       when 10; newWeather = 19
-      when !4, !15, !16, !21, !10, nil; newWeather = 9
+      when 0,1,2,3,5,6,7,8,9,11,12,13,14,17,18,19,20, nil; newWeather = 9
       end
     when 5
       case type2
@@ -2043,7 +2045,7 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
       when 16, 2, 21; newWeather = 3
       when 19; newWeather = 17
       when 20; newWeather = 5
-      when !11, !20, !13, !5, !16, !2, !21, !19, nil; newWeather = 2
+      when 0,1,3,4,6,7,8,9,10,12,14,15,17,18, nil; newWeather = 2
       end
     when 3
       case type2
@@ -2051,21 +2053,21 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
       when 20; newWeather = 16
       when 21; newWeather = 12
       when 7; newWeather = 5
-      when !17, !8, !13, !5, !10, !14, !20, !21, !7, nil; newWeather = 17
+      when 0,1,2,3,4,6,9,11,12,15,16,18,19, nil; newWeather = 17
       end
     when 6
       case type2
       when 4, 11, 1; newWeather = 8
       when 12, 8, 19; newWeather = 1
       when 20; newWeather = 16
-      when !4, !11, !1, !12, !8, !19, !20, nil; newWeather = 12
+      when 0,2,3,5,6,7,9,10,13,14,15,16,17,18,21, nil; newWeather = 12
       end
     when 7
       case type2
       when 1, 17; newWeather = 4
       when 18; newWeather = 16
       when 6; newWeather = 1
-      when !1, !17, !18, !6, nil; newWeather = 7
+      when 0,2,3,4,5,7,8,9,10,11,12,13,14,15,16,19,20,21, nil; newWeather = 7
       end
     when 8
       case type2
@@ -2074,7 +2076,7 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
       when 10, 5; newWeather = 14
       when 17, 0; newWeather = 15
       when 16; newWeather = 6
-      when !11, !20, !10, !5, !17, !0, !16, nil; newWeather = 1
+      when 2,3,4,6,7,8,9,12,13,14,15,18,19,21, nil; newWeather = 1
       end
     when 12
       case type2
@@ -2092,7 +2094,7 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
       when 19, 5, 1, 2, 21; newWeather = 19
       when 20; newWeather = 7
       when 16, 13; newWeather = 14
-      when !12, !11, !13, !19, !5, !1, !2, !21, !20, !16, nil; newWeather = 2
+      when 0,3,4,6,7,8,9,10,14,15,17,18, nil; newWeather = 2
       end
     when 11
       case type2
@@ -2100,14 +2102,14 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
       when 7; newWeather = 7
       when 4, 5; newWeather = 13
       when 14; newWeather = 20
-      when !10, !2, !7, !4, !5, !14, nil; newWeather = 6
+      when 0,1,3,6,8,9,11,12,13,15,16,17,18,19,20,21, nil; newWeather = 6
       end
     when 13
       case type2
       when 2, 12; newWeather = 3
       when 20; newWeather = 5
       when 6; newWeather = 1
-      when !2, !12, !20, !6, nil; newWeather = 14
+      when 0,1,3,4,5,7,8,9,10,11,13,14,15,16,17,18,19,21, nil; newWeather = 14
       end
     when 15
       case type2
@@ -2122,7 +2124,7 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
       when 17, 12; newWeather = 18
       when 1, 2, 8, 11; newWeather = 20
       when 15, 18; newWeather = 16
-      when !17, !12, !1, !2, !8, !11, !15, !18, nil; newWeather = 7
+      when 0,3,4,5,6,7,9,10,13,14,16,19,20,21, nil; newWeather = 7
       end
     when 16
       case type2
@@ -2130,13 +2132,13 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
       when 17, 1, 20; newWeather = 4
       when 10; newWeather = 12
       when 14; newWeather = 20
-      when !21, !4, !2, !12, !17, !1, !20, !10, !14, nil; newWeather = 6
+      when 0,3,5,6,7,8,9,11,13,15,16,18,19, nil; newWeather = 6
       end
     when 18
       case type2
       when 10, 21; newWeather = 11
       when 14, 7, 20; newWeather = 16
-      when !10, !14, !7, !20, !21, nil; newWeather = 6
+      when 0,1,2,3,4,5,6,8,9,11,12,13,15,16,17,18,19, nil; newWeather = 6
       end
     when 19
       case type2
@@ -2145,12 +2147,12 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
       when 7; newWeather = 7
       when 3, 1; newWeather = 17
       when 15, 12, 6; newWeather = 1
-      when !8, !4, !3, !1, !15, !12, !6, !7, nil; newWeather = 19
+      when 0,2,5,9,10,11,13,14,16,17,18,19,20,21, nil; newWeather = 19
       end
     when 20
       case type2
       when 0, 17; newWeather = 11
-      when !0, !17, nil; newWeather = 5
+      when 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,18,19,20,21, nil; newWeather = 5
       end
     when 21
       case type2
@@ -2158,13 +2160,14 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
       when 3, 5, 8; newWeather = 14
       when 1; newWeather = 4
       when 11; newWeather = 6
-      when !4, !2, !12, !16, !11, !3, !5, !8, !1, nil; newWeather = 12
+      when 0,6,7,9,10,13,14,15,16,17,18,19,20,21, nil; newWeather = 12
       end
     end
   end
-  weatherChange = battle.field.weather
-  break if newWeather == newForm
-    battle.pbShowAbilitySplash(battler)
+  if newWeather==newForm
+    weatherChange = battle.field.weather
+    break
+  end
   case newWeather
   when 1; weatherChange = PBWeather::Sun  if weather != PBWeather::Sun
   when 2; weatherChange = PBWeather::Rain  if weather != PBWeather::Rain
@@ -2187,6 +2190,9 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
   when 19; weatherChange = PBWeather::TimeWarp  if weather != PBWeather::TimeWarp
   when 20; weatherChange = PBWeather::Reverb  if weather != PBWeather::Reverb
   end
+  battle.pbShowAbilitySplash(battler)
+  battle.field.weather = weatherChange
+  @weatherType = weatherChange
   case weatherChange
   when PBWeather::Starstorm;   battle.pbDisplay(_INTL("Stars fill the sky."))
   when PBWeather::Thunder;     battle.pbDisplay(_INTL("Lightning flashes in th sky."))
@@ -2217,13 +2223,12 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
   when PBWeather::StrongWinds; battle.pbDisplay(_INTL("The wind is strong."))
   when PBWeather::ShadowSky;   battle.pbDisplay(_INTL("The sky is shadowy."))
   end
-  battle.field.weather = weatherChange
-  newForm = newWeather
-  if @form!=newForm
-    battler.pbChangeForm(newForm,_INTL("{1} transformed!",battler.pbThis))
-  end
-  oldWeather = newWeather
-  battle.pbHideAbilitySplash(battler)
+    newForm = newWeather
+    if @form!=newForm
+      battler.pbChangeForm(newForm,_INTL("{1} transformed!",battler.pbThis))
+    end
+    oldWeather = weatherChange
+    battle.pbHideAbilitySplash(battler)
   }
 )
 

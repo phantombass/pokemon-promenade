@@ -201,7 +201,8 @@ class PokeBattle_Battler
       else
         pbChangeForm(0,_INTL("{1} transformed!",pbThis))
       end
-      if  isConst?(@species,PBSpecies,:FORMETEOS)
+    end
+      if isConst?(@species,PBSpecies,:FORMETEOS)
         if hasActiveAbility?(:ACCLIMATE)
           newForm = 0
           case @battle.pbWeather
@@ -224,7 +225,7 @@ class PokeBattle_Battler
           when PBWeather::TimeWarp;                   newForm = 19
           when PBWeather::Reverb;                     newForm = 20
           when PBWeather::Sun, PBWeather::HarshSun;   newForm = 1
-          when PBWeather::Rain, PBWeather::HeavyRain; newForm = 2
+          when PBWeather::Rain, PBWeather::Storm, PBWeather::HeavyRain; newForm = 2
           when PBWeather::Hail, PBWeather::Sleet;     newForm = 3
           end
           if @form!=newForm
@@ -235,7 +236,7 @@ class PokeBattle_Battler
         else
           pbChangeForm(0,_INTL("{1} transformed!",pbThis))
         end
-    end
+      end
     # Cherrim - Flower Gift
     if isConst?(@species,PBSpecies,:CHERRIM)
       if hasActiveAbility?(:FLOWERGIFT)
@@ -253,7 +254,6 @@ class PokeBattle_Battler
       end
     end
   end
-end
   # Checks the Pokémon's form and updates it if necessary. Used for when a
   # Pokémon enters battle (endOfRound=false) and at the end of each round
   # (endOfRound=true).

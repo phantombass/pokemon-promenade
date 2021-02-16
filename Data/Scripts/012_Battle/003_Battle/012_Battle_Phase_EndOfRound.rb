@@ -38,6 +38,14 @@ class PokeBattle_Battle
     # Count down weather duration
     @field.weatherDuration -= 1 if @field.weatherDuration>0
     # Weather wears off
+    curWeather = pbWeather
+    priority.each do |b|
+      # Weather-related abilities
+      if b.abilityActive?
+        BattleHandlers.triggerEORWeatherAbility(b.ability,curWeather,b,self)
+        b.pbFaint if b.fainted?
+      end
+    end
     if @field.weatherDuration==0
       case @field.weather
       when PBWeather::Sun
@@ -113,11 +121,6 @@ class PokeBattle_Battle
     # Effects due to weather
     curWeather = pbWeather
     priority.each do |b|
-      # Weather-related abilities
-      if b.abilityActive?
-        BattleHandlers.triggerEORWeatherAbility(b.ability,curWeather,b,self)
-        b.pbFaint if b.fainted?
-      end
       # Weather damage
       # NOTE:
       case curWeather

@@ -2938,6 +2938,7 @@ Evolutions =
 [FORMETEOS,1]
 FormName = Sunny Form
 Type1 = FIRE
+Type2 = COSMIC
 Color = Red
 Pokedex = This is the form FORMETEOS takes on the brightest of days. Its skin is unexpectedly hot to the touch, so approach with care.
 BattlerPlayerY = 0
@@ -2946,6 +2947,7 @@ BattlerEnemyY = 21
 [FORMETEOS,2]
 FormName = Rainy Form
 Type1 = WATER
+Type2 = COSMIC
 Color = Blue
 Pokedex = This is the form FORMETEOS takes when soaked with rain. When its body is compressed, water will seep out as if from a sponge.
 BattlerPlayerY = 0
@@ -2954,6 +2956,7 @@ BattlerEnemyY = 21
 [FORMETEOS,3]
 FormName = Snowy Form
 Type1 = ICE
+Type2 = COSMIC
 Color = White
 Pokedex = This is the form FORMETEOS takes when covered in snow. Its body becomes an ice-like material, with a temperature near -5 degrees Celsius.
 BattlerPlayerY = 0
