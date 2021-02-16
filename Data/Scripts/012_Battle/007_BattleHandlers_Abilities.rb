@@ -2163,8 +2163,6 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
     end
   end
   weatherChange = battle.field.weather
-
-  battle.pbDisplay(_INTL("{1} as opposed to {2}",newWeather,newForm))
   break if newWeather == newForm
     battle.pbShowAbilitySplash(battler)
   case newWeather
