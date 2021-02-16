@@ -388,7 +388,11 @@ end
 # Fully heal all Pokémon in the party
 #===============================================================================
 def pbHealAll
-  $Trainer.party.each { |pkmn| pkmn.heal }
+  if $game_switches[73] == false
+    $Trainer.party.each { |pkmn| pkmn.heal }
+  else
+    $Trainer.party.each { |pkmn| pkmn.heal if !pkmn.fainted?}
+  end
 end
 
 

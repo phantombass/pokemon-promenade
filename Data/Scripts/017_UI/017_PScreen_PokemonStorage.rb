@@ -1716,7 +1716,9 @@ class PokemonStorageScreen
             p = (heldpoke) ? heldpoke : @storage[-1,index]
             p.formTime = nil if p.respond_to?("formTime")
             p.form     = 0 if p.isSpecies?(:SHAYMIN)
-            p.heal
+            if $game_switches[73] == false
+              p.heal
+            end
           end
           @scene.pbStore(selected,heldpoke,destbox,firstfree)
           if heldpoke
@@ -1763,7 +1765,9 @@ class PokemonStorageScreen
     if box>=0
       @heldpkmn.formTime = nil if @heldpkmn.respond_to?("formTime")
       @heldpkmn.form     = 0 if @heldpkmn.isSpecies?(:SHAYMIN)
-      @heldpkmn.heal
+      if $game_switches[73] == false
+        @heldpkmn.heal
+      end
     end
     @scene.pbPlace(selected,@heldpkmn)
     @storage[box,index] = @heldpkmn
@@ -1792,7 +1796,9 @@ class PokemonStorageScreen
     if box>=0
       @heldpkmn.formTime = nil if @heldpkmn.respond_to?("formTime")
       @heldpkmn.form     = 0 if @heldpkmn.isSpecies?(:SHAYMIN)
-      @heldpkmn.heal
+      if $game_switches[73] == false
+        @heldpkmn.heal
+      end
     end
     @scene.pbSwap(selected,@heldpkmn)
     tmp = @storage[box,index]
