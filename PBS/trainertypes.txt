@@ -64,7 +64,7 @@
 61,LEADER_Ozzy,Gym Leader,200,Gym Leader,Battle victory leader,,Male,200,
 62,LEADER_Phoebe,Gym Leader,200,Gym Leader,Battle victory leader,,Female,200,
 63,LEADER_Seth,Gym Leader,200,Gym Leader,Battle victory leader,,Male,200,
-64,LEADER_Anne,Gym Leader,200,Gym Leader,Battle victory leader,,Female,200,
+64,LEADER_Ann,Gym Leader,200,Gym Leader,Battle victory leader,,Female,200,
 65,LEADER_Ralph,Gym Leader,200,Gym Leader,Battle victory leader,,Male,200,
 66,LEADER_Sebastian,Gym Leader,200,Gym Leader,Battle victory leader,,Male,200,
 67,ELITEFOUR_Lorelei,Elite Four,200,Battle Elite,Battle victory leader,,Female,200,

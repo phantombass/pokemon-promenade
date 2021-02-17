@@ -166,7 +166,7 @@ Pokemon = ZEBOLTRA,64
      EV = 4,0,0,252,252,0
 #-------------------------------
 [LEADER_Sebastian,Sebastian]
-LoseText = "Trainers like you are the reason I remodeled this Gym! Well done!"
+LoseText = "What a beautiful song we have made! Wonderful indeed!"
 Pokemon = REVERBELL,77
      Moves = COMETSHARDS,STARBEAM,RECOVER,BOOMBURST
      Nature = TIMID
@@ -208,6 +208,52 @@ Pokemon = BASSILISK,78
      Ability = 2
      IV = 31,0,31,31,31,31
      EV = 4,0,0,252,252,0
+#-------------------------------
+[LEADER_Ann,Ann]
+LoseText = "Such a haunting performance!"
+Pokemon = PALOSSAND,79
+     Moves = STEALTHROCK,SCORCHINGSANDS,SHOREUP,QUANTUMWAVE
+     Nature = CALM
+     Item = LEFTOVERS
+     Form = 1
+     Ability = 1
+     IV = 31,0,31,31,31,31
+     EV = 252,0,0,0,4,252
+Pokemon = COFAGRIGUS,78
+     Moves = WILLOWISP,HEX,POLARITYPULSE,KINGSSHIELD
+     Nature = CALM
+     Item = LEFTOVERS
+     Form = 2
+     IV = 31,0,31,31,31,31
+     EV = 252,0,0,0,4,252
+Pokemon = FEAROCUDA,78
+     Moves = FLIPTURN,SCALD,ASTRALBARRAGE,HAZE
+     Nature = BOLD
+     Item = LEFTOVERS
+     Ability = 2
+     IV = 31,0,31,31,31,31
+     EV = 252,0,252,0,4,0
+Pokemon = ARCHAEON,79
+    Moves = QUANTUMWAVE,AURASPHERE,PSYSHOCK,RECOVER
+    Nature = TIMID
+    Item = LIFEORB
+    Ability = 2
+    IV = 31,0,31,31,31,31
+    EV = 0,0,0,252,252,4
+Pokemon = IMHOTERROR,80
+     Moves = QUANTUMWAVE,SPECTRALSHRIEK,RECOVER,HEX
+     Nature = MODEST
+     Item = LEFTOVERS
+     Ability = 0
+     IV = 31,0,31,31,31,31
+     EV = 252,0,128,0,0,128
+Pokemon = CORPUSCUFF,81
+     Moves = CLOSECOMBAT,HEXCANNON,DOPPLERPUNCH,DRAINPUNCH
+     Nature = JOLLY
+     Item = MUSCLEBAND
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 4,252,0,252,0,0
 #-------------------------------
 #Temple Guardian Battles
 #-------------------------------
@@ -1205,6 +1251,26 @@ Pokemon = CHIMECHO,75
 [ROCKER,Brian]
 LoseText = "Aww, I lost."
 Pokemon = ECHOMERA,76
+#-------------------------------
+# Haunted Reef Gym
+#-------------------------------
+[CHANNELER,Hanna]
+LoseText = "Aww, I lost."
+Pokemon = SEADRA,79
+  Form = 1
+Pokemon = PALOSSAND,79
+  Form = 1
+#-------------------------------
+[CHANNELER,Jackie]
+LoseText = "Aww, I lost."
+Pokemon = IMHOTERROR,79
+Pokemon = COFAGRIGUS,79
+  Form = 2
+#-------------------------------
+[CHANNELER,Cora]
+LoseText = "Aww, I lost."
+Pokemon = ARCHASM,79
+Pokemon = RUNERIGUS,79
 #-------------------------------
 # Scientist Grunt and Boss Battles
 #-------------------------------

@@ -1106,6 +1106,7 @@ def useMoveFly
   end
   pbFadeOutIn(99999){
     Kernel.pbCancelVehicles
+    $game_switches[115] = false
     $game_switches[116] = false
     $game_switches[117] = false
     $game_switches[118] = false
