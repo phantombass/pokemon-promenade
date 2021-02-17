@@ -120,6 +120,11 @@ end
 #DexNav
 MenuHandlers.addEntry(:DEXNAV,_INTL("DexNav"),"menuPokedex",proc{|menu|
   if $game_switches[401] == true
+    if $currentDexSearch != nil
+      pbMessage(_INTL("You are already searching!"))
+      menu.close = true
+      break
+    end
     menu.pbEndScene
     menu.endscene = false
     menu.close = true
