@@ -1376,6 +1376,13 @@ DiveMap = 214
 MapPosition = 0,15,7
 ShowArea = true
 #-------------------------------
+[216]
+# Cave of Uncertainty
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,25,17
+ShowArea = true
+#-------------------------------
 [217]
 # Cave of Deceit
 SnapEdges = true
@@ -1462,4 +1469,10 @@ Outdoor = false
 # Castronis Gym
 SnapEdges = true
 MapPosition = 0,28,8
+Outdoor = false
+#-------------------------------
+[253]
+# Ezgal Gym
+SnapEdges = true
+MapPosition = 0,24,5
 Outdoor = false

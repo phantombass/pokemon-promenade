@@ -165,6 +165,50 @@ Pokemon = ZEBOLTRA,64
      IV = 31,0,31,31,31,31
      EV = 4,0,0,252,252,0
 #-------------------------------
+[LEADER_Sebastian,Sebastian]
+LoseText = "Trainers like you are the reason I remodeled this Gym! Well done!"
+Pokemon = REVERBELL,77
+     Moves = COMETSHARDS,STARBEAM,RECOVER,BOOMBURST
+     Nature = TIMID
+     Item = WEATHERROCK
+     Ability = 2
+     IV = 31,0,31,31,31,31
+     EV = 0,0,4,252,252,0
+Pokemon = TINSNARE,75
+     Moves = BOOMBURST,ROCKSLIDE,POLARITYPULSE,EARTHPOWER
+     Nature = QUIET
+     Item = ASSAULTVEST
+     IV = 31,0,31,31,31,31
+     EV = 252,0,0,0,252,4
+Pokemon = BRONZONG,75
+     Moves = GYROBALL,TOXIC,PSYWAVE,EARTHQUAKE
+     Nature = SASSY
+     Item = LEFTOVERS
+     Ability = 0
+     IV = 31,31,31,0,31,31
+     EV = 252,4,0,0,0,252
+Pokemon = ECHOMERA,76
+    Moves = WICKEDWIND,BOOMBURST,DEATHTOLL,UTURN
+    Nature = TIMID
+    Item = CHOICESPECS
+    Ability = 2
+    IV = 31,0,31,31,31,31
+    EV = 0,0,0,252,252,4
+Pokemon = EXPLOUD,76
+     Moves = BOOMBURST,POLARITYPULSE,ICEBEAM,SURF
+     Nature = TIMID
+     Item = EXPERTBELT
+     Ability = 0
+     IV = 31,0,31,31,31,31
+     EV = 4,0,0,252,252,0
+Pokemon = BASSILISK,78
+     Moves = DRAGONDANCE,BOOMBURST,DEATHTOLL,CLANGINGSCALES
+     Nature = TIMID
+     Item = THROATSPRAY
+     Ability = 2
+     IV = 31,0,31,31,31,31
+     EV = 4,0,0,252,252,0
+#-------------------------------
 #Temple Guardian Battles
 #-------------------------------
 [GUARDIAN_Marie,Marie]
@@ -1043,7 +1087,7 @@ Pokemon = NYMPHYDRA,63
   Ability = 0
 Pokemon = BASSILISK,63
 	IV = 31,31,31,31,31,31
-	EV = 0,252,0,252,4,0
+	EV = 0,128,0,252,128,0
 	Nature = HASTY
   Ability = 2
 	Item = LEFTOVERS
@@ -1055,6 +1099,48 @@ Pokemon = CORPUSCUFF,63
   Nature = JOLLY
   Item = ASSAULTVEST
   Moves = DRAINPUNCH,CLOSECOMBAT,HEXCANNON,RHYTHMICPUNCH
+#-------------------------------
+# Route 22
+#-------------------------------
+[COOLTRAINER_M,Carlton]
+LoseText = "Aww, I lost."
+Pokemon = KROOKODILE,80
+  IV = 31,31,31,31,31,31
+  EV = 0,252,4,252,0,0
+  Nature = JOLLY
+  Item = LIFEORB
+  Moves = KNOCKOFF,EARTHQUAKE,STONEEDGE,STEALTHROCK
+  Ability = 1
+Pokemon = HYENASTY,80
+	IV = 31,31,31,31,31,31
+	EV = 0,0,0,252,252,4
+	Nature = TIMID
+  Ability = 2
+	Item = EXPERTBELT
+	Moves = WICKEDWIND,SPECTRALSHRIEK,DAZZLINGGLEAM,NASTYPLOT
+Pokemon = UMBREON,80
+  IV = 31,0,31,31,31,31
+  EV = 252,0,252,0,0,4
+  Happiness = 255
+  Nature = BOLD
+  Item = LEFTOVERS
+  Ability = 0
+  Moves = WISH,PROTECT,HEALBELL,FOULPLAY
+#-------------------------------
+[PSYCHIC_F,Sherry]
+LoseText = "Aww, I lost."
+Pokemon = BRONZONG,78
+Pokemon = YESOMNIA,78
+#-------------------------------
+[CHANNELER,Amy]
+LoseText = "Aww, I lost."
+Pokemon = SEADRA,78
+  Form = 1
+Pokemon = HYENASTY,78
+#-------------------------------
+[PSYCHIC_F,Deanne]
+LoseText = "Aww, I lost."
+Pokemon = ESPEON,79
 #-------------------------------
 # Castronis Gym
 #-------------------------------
@@ -1088,6 +1174,37 @@ Pokemon = POLIWRATH,61
 Pokemon = POLITOED,61
 Pokemon = QWILFISH,61
   Form = 1
+#-------------------------------
+# Ezgal Gym
+#-------------------------------
+[BEAUTY,Megan]
+LoseText = "Aww, I lost."
+Pokemon = CHIMECHO,76
+  Item = EVIOLITE
+#-------------------------------
+[BEAUTY,Sophie]
+LoseText = "Aww, I lost."
+Pokemon = EXPLOUD,76
+#-------------------------------
+[BEAUTY,Faith]
+LoseText = "Aww, I lost."
+Pokemon = COFAGRIGUS,75
+  Form = 2
+Pokemon = SATELLYDRA,75
+#-------------------------------
+[ROCKER,Freddie]
+LoseText = "Aww, I lost."
+Pokemon = ECHOMERA,75
+Pokemon = BRONZONG,75
+#-------------------------------
+[ROCKER,Phil]
+LoseText = "Aww, I lost."
+Pokemon = BRONZONG,75
+Pokemon = CHIMECHO,75
+#-------------------------------
+[ROCKER,Brian]
+LoseText = "Aww, I lost."
+Pokemon = ECHOMERA,76
 #-------------------------------
 # Scientist Grunt and Boss Battles
 #-------------------------------
@@ -1610,6 +1727,136 @@ Pokemon = SAPHYRFLY,58
      EV = 0,0,0,252,252,4
 Pokemon = BOWLTISIS,60
      Moves = HYPERVOICE,SURF,ICEBEAM,PARTINGSHOT
+     Nature = MODEST
+     Item = LEFTOVERS
+     IV = 31,0,31,31,31,31
+     EV = 252,0,0,0,252,4
+#-------------------------------
+[RIVAL1,Blue,15]
+LoseText = "Not too shabby."
+Pokemon = ARCHAEON,80
+     Moves = QUANTUMWAVE,BATONPASS,AURASPHERE,WISH
+     Nature = CALM
+     Item = LEFTOVERS
+     Ability = 1
+     IV = 31,31,31,31,31,31
+     EV = 252,0,0,0,4,252
+Pokemon = BASSILISK,77
+    Moves = CLANGINGSCALES,BOOMBURST,POLARITYPULSE,WICKEDWIND
+    Nature = TIMID
+    Item = CHOICESPECS
+    Ability = 2
+    IV = 31,0,31,31,31,31
+    EV = 0,0,0,252,252,4
+Pokemon = FERROCUDA,77
+     Moves = SHIFTGEAR,FISHIOUSREND,PSYCHICFANGS,TUNGSTENTOMB
+     Nature = JOLLY
+     Item = LIFEORB
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = HYDREIGON,78
+     Moves = WICKEDWIND,QUIVERDANCE,TOXOPLASM,HYPERVOICE
+     Nature = TIMID
+     Item = BLACKSLUDGE
+     Form = 1
+     IV = 31,31,31,31,31,31
+     EV = 252,0,0,0,252,4
+Pokemon = PEGASOOT,79
+     Moves = FLAMETHROWER,MOONBLAST,CALMMIND,SCORCHINGSANDS
+     Nature = JOLLY
+     Item = LIFEORB
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = NEFLORA,81
+     Moves = STARBEAM,QUIVERDANCE,SPORE,SPACIALGROVE
+     Nature = BOLD
+     Item = LEFTOVERS
+     IV = 31,31,31,31,31,31
+     EV = 252,4,252,0,0,0
+#-------------------------------
+[RIVAL1,Blue,16]
+LoseText = "Not too shabby."
+Pokemon = PHONEON,80
+     Moves = WICKEDWIND,BOOMBURST,SLACKOFF,AURASPHERE
+     Nature = MODEST
+     Item = WISEGLASSES
+     Ability = 1
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = FLORACUDA,77
+     Moves = FLIPTURN,FISHIOUSREND,ICESHARD,SEEDBOMB
+     Nature = JOLLY
+     Item = CHOICESCARF
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = CORPUSCUFF,77
+     Moves = CLOSECOMBAT,HEXCANNON,DOPPLERPUNCH,RHYTHMICPUNCH
+     Nature = JOLLY
+     Item = CHOICEBAND
+     IV = 31,0,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = HYDREIGON,78
+     Moves = WICKEDWIND,QUIVERDANCE,TOXOPLASM,HYPERVOICE
+     Nature = TIMID
+     Item = BLACKSLUDGE
+     Form = 1
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = REVERBELL,79
+     Moves = BOOMBURST,STARBEAM,RECOVER,POLARITYPULSE
+     Nature = MODEST
+     Item = THROATSPRAY
+     Ability = 2
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = PHIRENIX,81
+     Moves = CINDERRUSH,TEMPORALRAZE,RHYTHMICRUSH,RECOVER
+     Nature = ADAMANT
+     Item = LEFTOVERS
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+#-------------------------------
+[RIVAL1,Blue,17]
+LoseText = "Not too shabby."
+Pokemon = ASTREON,80
+     Moves = STARBEAM,STARSAP,POWERGEM,COMETSHARDS
+     Nature = BOLD
+     Item = LEFTOVERS
+     Ability = 1
+     IV = 31,0,31,31,31,31
+     EV = 252,0,252,4,0,0
+Pokemon = BELLOOM,78
+     Moves = LEAFBLADE,QUANTUMCRUSH,RHYTHMICRUSH,KNOCKOFF
+     Nature = JOLLY
+     Item = LIFEORB
+     IV = 31,31,31,31,31,31
+     EV = 0,252,0,252,0,4
+Pokemon = NYMPHYDRA,78
+     Moves = LIGHTOFRUIN,RECOVER,DRAGONPULSE,QUIVERDANCE
+     Nature = TIMID
+     Item = LIFEORB
+     Ability = 0
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = HYDREIGON,79
+     Moves = WICKEDWIND,QUIVERDANCE,TOXOPLASM,HYPERVOICE
+     Nature = TIMID
+     Item = BLACKSLUDGE
+     Form = 1
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = SAPHYRFLY,79
+     Moves = STARBEAM,SIGNALBEAM,PALEOBEAM,QUIVERDANCE
+     Nature = TIMID
+     Item = FOCUSSASH
+     Ability = 2
+     IV = 31,0,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = SATURABTU,81
+     Moves = HYPERVOICE,SIRENSSONG,ICEBEAM,PARTINGSHOT
      Nature = MODEST
      Item = LEFTOVERS
      IV = 31,0,31,31,31,31

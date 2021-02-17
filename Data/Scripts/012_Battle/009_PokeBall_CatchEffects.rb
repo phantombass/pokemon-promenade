@@ -223,11 +223,11 @@ BallHandlers::ModifyCatchRate.add(:DREAMBALL,proc { |ball,catchRate,battle,battl
 })
 
 BallHandlers::ModifyCatchRate.add(:BEASTBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
-  if ultraBeast
-    catchRate *= 5
-  else
-    catchRate /= 10
-  end
+if battler.isSpecies?(:UNOWN) || battler.isSpecies?(:EYEROGLYPH) || battler.isSpecies?(:OSIRAM) || battler.isSpecies?(:CANINPU) || battler.isSpecies?(:MERITEMPO) || battler.isSpecies?(:SOBEKODILE) || battler.isSpecies?(:BASTUNGSTEN) || battler.isSpecies?(:MAUSELYNX) || battler.isSpecies?(:FENIXET) || battler.isSpecies?(:APOPHICARY) || battler.isSpecies?(:FALKMUNRA) || battler.isSpecies?(:CENTISEPA) || battler.isSpecies?(:ORRUSTORM) || battler.isSpecies?(:PHIRENIX) || battler.isSpecies?(:SATURABTU) || battler.isSpecies?(:NEFLORA)
+  catchRate *= 5
+else
+  catchRate /= 10
+end
   next catchRate
 })
 
