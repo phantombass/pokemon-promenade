@@ -798,7 +798,7 @@
 937,REVERB,Reverb,510,0,SOUND,Status,0,5,0,20,0,,"The user summons the power of the reverberation to create an Echo Chamber."
 938,TEMPORALSHIFT,Temporal Shift,044,65,TIME,Physical,100,20,100,NearOther,0,bef,"The continuum shifts rapidly around the target. It also lowers its Speed stat."
 939,SPACIALGROVE,Spacial Grove,0DD,100,GRASS,Special,100,5,0,00,0,bef,"The foe has their energy drained by the grove the user plants around them, healing the user."
-940,SIRENSSONG,Siren's Song,147,100,WATER,Special,100,5,0,NearOther,0,befk,"Using a hyperspace hole, the user appears right next to the target and strikes. Skips protections."
+940,SIRENSSONG,Siren's Song,147,100,WATER,Special,100,5,0,NearOther,0,befk,"Using a hypnotic song, the user strikes right next to the target. Skips protections."
 941,TEMPOMARCH,Tempo March,091,40,TIME,Physical,95,20,0,NearOther,0,abef,"The target is hit with rhythmic precision. Its power increases if it hits in succession."
 942,TIMEWIND,Time Wind,000,40,TIME,Special,100,30,0,NearOther,0,bef,"The target is buffeted with winds of time energy."
 943,TURNABOUT,Turnabout,051,0,TIME,Status,0,30,0,BothSides,0,,"The user performs an about face that eliminates every stat change among all the Pokémon engaged in battle."
