@@ -119,7 +119,7 @@ ShowArea = true
 [022]
 # Azgi Ruins
 SnapEdges = true
-BattleBack = 
+BattleBack =
 Weather = Sandstorm,100
 MapPosition = 0,21,17
 Outdoor = true
@@ -660,7 +660,7 @@ Outdoor = true
 # Sibel Fortress
 SnapEdges = true
 BattleBack = rocky
-MapPosition = 0,5,11
+MapPosition = 0,6,11
 HealingSpot = 114,24,7
 #-------------------------------
 [115]
