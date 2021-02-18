@@ -309,6 +309,34 @@ Pokemon = OSIRAM,85
     Item = LEFTOVERS
     IV = 31,31,31,31,31,31
     EV = 252,0,128,0,0,128
+#-------------------------------
+[GUARDIAN_Tuya,Tuya]
+LoseText = "..."
+Pokemon = BASTUNGSTEN,100
+    Moves = TUNGSTENTOMB,PLAYROUGH,WISH,HONECLAWS
+    Nature = JOLLY
+    Item = LEFTOVERS
+    IV = 31,31,31,31,31,31
+    EV = 0,252,0,252,0,4
+#-------------------------------
+[GUARDIAN_Seti,Seti]
+LoseText = "..."
+Pokemon = FENIXET,105
+    Moves = WICKEDWIND,AURASPHERE,RECOVER,CALMMIND
+    Nature = BOLD
+    Item = LEFTOVERS
+    IV = 31,0,31,31,31,31
+    EV = 252,0,252,0,4,0
+#-------------------------------
+[GUARDIAN_Rameses,Rameses]
+LoseText = "..."
+Pokemon = MAUSELYNX,110
+    Moves = STEALTHROCK,PALEOBEAM,SPECTRALSHRIEK,HYPERVOICE
+    Nature = TIMID
+    Item = BABIRIBERRY
+    IV = 31,31,31,31,31,31
+    EV = 0,252,0,252,0,4
+#-------------------------------
 # Elite 4
 #-------------------------------
 [CHAMPION,Dr. Lyptus]
