@@ -1656,8 +1656,9 @@ BattleHandlers::TargetAbilityOnHit.add(:MUMMY,
        :BATTLEBOND,
        :DISGUISE,
 #       :FLOWERGIFT,                                      # This can be replaced
-#       :FORECAST,                                        # This can be replaced
+       :FORECAST,                                        # This can be replaced
        :MULTITYPE,
+       :ACCLIMATE,
        :POWERCONSTRUCT,
        :SCHOOLING,
        :SHIELDSDOWN,
@@ -3083,6 +3084,7 @@ BattleHandlers::AbilityChangeOnBattlerFainting.add(:POWEROFALCHEMY,
        :DISGUISE,
        :FLOWERGIFT,
        :FORECAST,
+       :ACCLIMATE,
        :MULTITYPE,
        :POWERCONSTRUCT,
        :SCHOOLING,

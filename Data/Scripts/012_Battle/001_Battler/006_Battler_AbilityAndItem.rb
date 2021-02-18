@@ -83,6 +83,7 @@ class PokeBattle_Battler
          :FLOWERGIFT,
          :FORECAST,
          :MULTITYPE,
+         :ACCLIMATE,
          :POWERCONSTRUCT,
          :SCHOOLING,
          :SHIELDSDOWN,
