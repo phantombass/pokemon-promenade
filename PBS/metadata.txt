@@ -661,13 +661,11 @@ Outdoor = true
 SnapEdges = true
 BattleBack = rocky
 MapPosition = 0,6,11
-HealingSpot = 114,24,7
 #-------------------------------
 [115]
 # Sibel PMC
 SnapEdges = true
-MapPosition = 0,5,11
-HealingSpot = 114,24,7
+MapPosition = 0,6,11
 #-------------------------------
 [116]
 # Xandri
