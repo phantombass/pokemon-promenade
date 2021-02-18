@@ -223,9 +223,9 @@ class NewDexNav
     if $currentDexSearch[1] == nil
       dexMove = "-"
     else
-      dexMove = PBMoves.getname($currentDexSearch[1])
+      dexMove = $currentDexSearch[1]
     end
-    searchtext = [PBSpecies.getName(searchmon),ab,dexMove]
+    searchtext = [PBSpecies.getName(searchmon),ab,PBMoves.getName(dexMove)]
     @sprites["search"] = Window_AdvancedTextPokemon.newWithSize("",265,250,250,126,@viewport1)
     if navRand == 2
       @sprites["search"].text = _INTL("{1}\n<c2=463F0000>{2}</c2>\n{3}",searchtext[0],searchtext[1],searchtext[2])
