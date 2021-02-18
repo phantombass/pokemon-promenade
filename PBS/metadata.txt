@@ -1287,7 +1287,7 @@ ShowArea = true
 # Rex Valley
 SnapEdges = true
 Weather = Overcast,100
-MapPosition = 0,22,12
+MapPosition = 0,24,11
 Outdoor = true
 ShowArea = true
 #-------------------------------
@@ -1295,8 +1295,15 @@ ShowArea = true
 # Rex Valley
 SnapEdges = true
 Weather = Eclipse,100
-MapPosition = 0,22,12
+MapPosition = 0,24,11
 Outdoor = true
+ShowArea = true
+#-------------------------------
+[205]
+# Temple of Apophicary
+SnapEdges = true
+Weather = TimeWarp,100
+MapPosition = 0,24,11
 ShowArea = true
 #-------------------------------
 [206]
