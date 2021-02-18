@@ -2211,8 +2211,9 @@ class PokeBattle_Move_165 < PokeBattle_Move
        :BATTLEBOND,
        :DISGUISE,
 #       :FLOWERGIFT,                                       # This can be negated
-#       :FORECAST,                                         # This can be negated
+       :FORECAST,                                         # This can be negated
        :MULTITYPE,
+       :ACCLIMATE,
        :POWERCONSTRUCT,
        :SCHOOLING,
        :SHIELDSDOWN,

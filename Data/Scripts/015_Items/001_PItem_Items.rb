@@ -500,7 +500,7 @@ def pbJustRaiseEffortValues(pkmn,ev,evgain)
 end
 
 def pbRaiseEffortValues(pkmn,ev,evgain=10,evlimit=true)
-  return 0 if evlimit && pkmn.ev[ev]>=100
+  return 0 if evlimit && pkmn.ev[ev]>=252
   totalev = 0
   for i in 0...6
     totalev += pkmn.ev[i]
@@ -511,8 +511,8 @@ def pbRaiseEffortValues(pkmn,ev,evgain=10,evlimit=true)
   if pkmn.ev[ev]+evgain>PokeBattle_Pokemon::EV_STAT_LIMIT
     evgain = PokeBattle_Pokemon::EV_STAT_LIMIT-pkmn.ev[ev]
   end
-  if evlimit && pkmn.ev[ev]+evgain>100
-    evgain = 100-pkmn.ev[ev]
+  if evlimit && pkmn.ev[ev]+evgain>252
+    evgain = 252-pkmn.ev[ev]
   end
   if evgain>0
     pkmn.ev[ev] += evgain
@@ -532,8 +532,7 @@ def pbRaiseHappinessAndLowerEV(pkmn,scene,ev,messages)
     pkmn.changeHappiness("evberry")
   end
   if e
-    pkmn.ev[ev] -= 10
-    pkmn.ev[ev] = 0 if pkmn.ev[ev]<0
+    pkmn.ev[ev] = 0
     pkmn.calcStats
   end
   scene.pbRefresh

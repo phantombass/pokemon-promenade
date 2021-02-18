@@ -362,7 +362,8 @@ class PokeBattle_Battler
       :BATTLEBOND,
       :DISGUISE,
 #      :FLOWERGIFT,                                        # This can be stopped
-#      :FORECAST,                                          # This can be stopped
+      :FORECAST,
+      :ACCLIMATE,
       :MULTITYPE,
       :POWERCONSTRUCT,
       :SCHOOLING,
@@ -392,6 +393,7 @@ class PokeBattle_Battler
       :DISGUISE,
       :FLOWERGIFT,
       :FORECAST,
+      :ACCLIMATE,
       :MULTITYPE,
       :POWERCONSTRUCT,
       :SCHOOLING,
