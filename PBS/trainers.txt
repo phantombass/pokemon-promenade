@@ -254,6 +254,51 @@ Pokemon = CORPUSCUFF,81
      IV = 31,31,31,31,31,31
      EV = 4,252,0,252,0,0
 #-------------------------------
+[LEADER_Phoebe,Phoebe]
+LoseText = "Absolutely brilliant!"
+Pokemon = SPOOKHEPRI,92
+     Moves = STICKYWEB,UTURN,HEXCANNON,RECOVER
+     Nature = CAREFUL
+     Item = LEFTOVERS
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 252,0,0,0,4,252
+Pokemon = SAPHYRFLY,93
+     Moves = QUIVERDANCE,SIGNALBEAM,STARBEAM,PALEOBEAM
+     Nature = TIMID
+     Item = HEAVYDUTYBOOTS
+     Ability = 2
+     IV = 31,31,31,31,31,31
+     EV = 0,0,0,252,252,4
+Pokemon = FAIRICUDA,93
+     Moves = FLIPTURN,FLEURCANNON,OVERHEAT,ICEBEAM
+     Nature = MODEST
+     Item = CHOICESPECS
+     Ability = 2
+     IV = 31,0,31,31,31,31
+     EV = 4,0,0,252,252,0
+Pokemon = PEGASOOT,92
+    Moves = CALMMIND,FLAMETHROWER,SCORCHINGSANDS,MOONBALL
+    Nature = TIMID
+    Item = LIFEORB
+    Ability = 2
+    IV = 31,0,31,31,31,31
+    EV = 0,0,0,252,252,4
+Pokemon = AUDINO,93
+     Moves = WISH,PROTECT,BODYSLAM,ENCORE
+     Nature = BOLD
+     Item = LEFTOVERS
+     Ability = 1
+     IV = 31,31,31,31,31,31
+     EV = 252,0,252,0,0,4
+Pokemon = NYMPHYDRA,95
+     Moves = LIGHTOFRUIN,DRAGONPULSE,RECOVER,HEALBELL
+     Nature = MODEST
+     Item = LIFEORB
+     Ability = 0
+     IV = 31,0,31,31,31,31
+     EV = 4,0,0,252,252,0
+#-------------------------------
 #Temple Guardian Battles
 #-------------------------------
 [GUARDIAN_Marie,Marie]
