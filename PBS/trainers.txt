@@ -348,7 +348,7 @@ Pokemon = SOBEKODILE,79
 #-------------------------------
 [GUARDIAN_Tara,Tara]
 LoseText = "Young one, you are so talented!"
-Pokemon = OSIRAM,85
+Pokemon = OSIRAM,90
     Moves = THOUSANDARROWS,STARSAP,SHOREUP,COMETSHARDS
     Nature = ADAMANT
     Item = LEFTOVERS
@@ -357,8 +357,8 @@ Pokemon = OSIRAM,85
 #-------------------------------
 [GUARDIAN_Tuya,Tuya]
 LoseText = "..."
-Pokemon = BASTUNGSTEN,100
-    Moves = TUNGSTENTOMB,PLAYROUGH,WISH,HONECLAWS
+Pokemon = BASTUNGSTEN,105
+    Moves = TUNGSTENTOMB,PLAYROUGH,COSMICFANGS,HONECLAWS
     Nature = JOLLY
     Item = LEFTOVERS
     IV = 31,31,31,31,31,31
@@ -366,7 +366,7 @@ Pokemon = BASTUNGSTEN,100
 #-------------------------------
 [GUARDIAN_Seti,Seti]
 LoseText = "..."
-Pokemon = FENIXET,105
+Pokemon = FENIXET,110
     Moves = WICKEDWIND,AURASPHERE,RECOVER,CALMMIND
     Nature = BOLD
     Item = LEFTOVERS
@@ -375,7 +375,7 @@ Pokemon = FENIXET,105
 #-------------------------------
 [GUARDIAN_Rameses,Rameses]
 LoseText = "..."
-Pokemon = MAUSELYNX,110
+Pokemon = MAUSELYNX,115
     Moves = STEALTHROCK,PALEOBEAM,SPECTRALSHRIEK,HYPERVOICE
     Nature = TIMID
     Item = BABIRIBERRY
@@ -384,7 +384,7 @@ Pokemon = MAUSELYNX,110
 #-------------------------------
 [GUARDIAN_Eucal,Eucal]
 LoseText = "..."
-Pokemon = APOPHICARY,115
+Pokemon = APOPHICARY,120
     Moves = STARSAP,DEATHTOLL,STRANGESTEAM,HYPERVOICE
     Nature = TIMID
     Item = BLACKSLUDGE
@@ -393,7 +393,7 @@ Pokemon = APOPHICARY,115
 #-------------------------------
 [GUARDIAN_Lyptus,Dr. Lyptus]
 LoseText = "Amazing. Simply amazing!"
-Pokemon = FALKMUNRA,120
+Pokemon = FALKMUNRA,125
     Moves = RECOVER,FLAMETHROWER,QUANTUMWAVE,STARBEAM
     Nature = TIMID
     Item = LIFEORB
@@ -1715,7 +1715,7 @@ Pokemon = CORPUSCUFF,75
   Ability = 0
 #-------------------------------
 [HEADSCIENTIST,Rameses,1]
-LoseText = "How interesting."
+LoseText = "Ugh..."
 Pokemon = IMHOTERROR,97
 	IV = 31,31,31,31,31,31
 	EV = 252,0,252,0,4,0
@@ -1736,6 +1736,12 @@ Pokemon = BASSILISK,98
   Item = THROATSPRAY
   Moves = CLANGINGSCALES,DEATHTOLL,BOOMBURST,DRAGONDANCE
   Ability = 2
+Pokemon = MAUSELYNX,100
+    Moves = STEALTHROCK,PALEOBEAM,SPECTRALSHRIEK,HYPERVOICE
+    Nature = TIMID
+    Item = BABIRIBERRY
+    IV = 31,31,31,31,31,31
+    EV = 0,252,0,252,0,4
 #-------------------------------
 [HEADSCIENTIST,Tuya,1]
 LoseText = "Hmmph. Stupid punk."
@@ -1759,6 +1765,12 @@ Pokemon = NYMPHYDRA,98
   Item = LIFEORB
   Moves = DRAGONPULSE,LIGHTOFRUIN,RECOVER,STARBEAM
   Ability = 0
+Pokemon = BASTUNGSTEN,100
+  Moves = TUNGSTENTOMB,PLAYROUGH,COSMICFANGS,HONECLAWS
+  Nature = JOLLY
+  Item = LEFTOVERS
+  IV = 31,31,31,31,31,31
+  EV = 0,252,0,252,0,4
 #-------------------------------
 [HEADSCIENTIST,Seti,1]
 LoseText = "Ugh."
@@ -1782,6 +1794,12 @@ Pokemon = CORPUSCUFF,98
   Item = MUSCLEBAND
   Moves = DRAINPUNCH,CLOSECOMBAT,HEXCANNON,RHYTHMICPUNCH
   Ability = 0
+Pokemon = FENIXET,100
+    Moves = WICKEDWIND,AURASPHERE,RECOVER,CALMMIND
+    Nature = BOLD
+    Item = LEFTOVERS
+    IV = 31,0,31,31,31,31
+    EV = 252,0,252,0,4,0
 #-------------------------------
 # Rival Battles
 #-------------------------------
