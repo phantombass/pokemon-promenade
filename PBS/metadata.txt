@@ -620,7 +620,7 @@ HealingSpot = 105,7,8
 SnapEdges = true
 BattleBack = underwater
 Weather = Storm,0
-MapPosition = 0,15,10
+MapPosition = 0,14,12
 Environment = Underwater
 #-------------------------------
 [110]
@@ -1359,26 +1359,27 @@ ShowArea = false
 [212]
 # Underwater
 SnapEdges = true
-MapPosition = 0,15,10
+MapPosition = 0,14,11
 ShowArea = true
 #-------------------------------
 [213]
 # Underwater
 SnapEdges = true
-MapPosition = 0,15,9
+MapPosition = 0,14,10
 ShowArea = true
 #-------------------------------
 [214]
 # Underwater
 SnapEdges = true
-MapPosition = 0,15,8
+MapPosition = 0,14,9
 ShowArea = true
 #-------------------------------
 [215]
 # Victory Road
 SnapEdges = true
 DiveMap = 214
-MapPosition = 0,15,7
+MapPosition = 0,14,8
+Outdoor = true
 ShowArea = true
 #-------------------------------
 [216]
