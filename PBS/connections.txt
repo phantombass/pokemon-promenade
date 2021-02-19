@@ -6,10 +6,10 @@
 78,West,38,82,East,0
 # Icaro City (80) - Icaro City (82)
 80,West,0,82,East,0
-# Icaro City (48) - Icaro City (82)
-48,South,0,82,North,64
 # Icaro City (81) - Icaro City (82)
 81,South,2,82,North,0
+# Icaro City (48) - Icaro City (82)
+48,South,0,82,North,66
 # Icaro City (78) - Icaro City (77)
 78,South,0,77,North,0
 # Icaro City (79) - Icaro City (77)
@@ -18,39 +18,41 @@
 80,North,0,77,South,0
 # Icaro City (81) - Icaro City (77)
 81,East,0,77,West,0
-# Icaro City (43) - Icaro City (77)
-43,West,0,77,East,19
+# Icaro City (48) - Icaro City (77)
+48,West,0,77,East,0
 # Icaro City (76) - Icaro City (77)
 76,West,19,77,East,0
+# Icaro City (43) - Icaro City (77)
+43,West,0,77,East,19
 # Icaro City (79) - Icaro City (78)
 79,East,0,78,West,0
-# Icaro City (48) - Icaro City (78)
-48,North,0,78,South,31
 # Icaro City (81) - Icaro City (78)
 81,North,35,78,South,0
-# Icaro City (43) - Icaro City (78)
-43,West,0,78,East,38
+# Icaro City (48) - Icaro City (78)
+48,West,0,78,East,19
 # Icaro City (76) - Icaro City (78)
 76,West,0,78,East,0
+# Icaro City (43) - Icaro City (78)
+43,West,0,78,East,38
 # Icaro City (80) - Icaro City (79)
 80,West,0,79,East,38
-# Icaro City (48) - Icaro City (79)
-48,North,0,79,South,64
 # Icaro City (81) - Icaro City (79)
 81,North,2,79,South,0
-# Icaro City (48) - Icaro City (80)
-48,South,0,80,North,31
+# Icaro City (48) - Icaro City (79)
+48,North,0,79,South,66
 # Icaro City (81) - Icaro City (80)
 81,East,19,80,West,0
-# Icaro City (43) - Icaro City (80)
-43,West,0,80,East,0
+# Icaro City (48) - Icaro City (80)
+48,West,19,80,East,0
 # Icaro City (76) - Icaro City (80)
 76,West,38,80,East,0
-# Icaro City (43) - Icaro City (48)
-43,North,0,48,South,2
-# Icaro City (76) - Icaro City (48)
-76,South,0,48,North,2
-# Icaro City (43) - Icaro City (81)
-43,North,0,81,South,68
+# Icaro City (43) - Icaro City (80)
+43,West,0,80,East,0
 # Icaro City (76) - Icaro City (81)
 76,South,0,81,North,68
+# Icaro City (43) - Icaro City (81)
+43,North,0,81,South,68
+# Icaro City (76) - Icaro City (48)
+76,South,0,48,North,0
+# Icaro City (43) - Icaro City (48)
+43,North,0,48,South,0
