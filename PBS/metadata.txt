@@ -1523,3 +1523,18 @@ Weather = Windy,100
 MapPosition = 0,14,7
 Outdoor = true
 ShowArea = true
+#-------------------------------
+[260]
+# Victory Road
+SnapEdges = true
+DiveMap = 261
+Weather = Windy,100
+MapPosition = 0,13,7
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[261]
+# Underwater
+SnapEdges = true
+MapPosition = 0,13,7
+ShowArea = true
