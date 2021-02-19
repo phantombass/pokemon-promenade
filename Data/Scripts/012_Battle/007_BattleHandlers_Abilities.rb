@@ -2135,6 +2135,13 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
       when 14; newWeather = 20
       when 0,3,5,6,7,8,9,11,13,15,16,18,19, nil; newWeather = 6
       end
+    when 17
+      case type2
+      when 0,1,2,4,6,7,11,13,16,18,20,21,nil; newWeather = 4
+      when 3,10,19; newWeather = 14
+      when 12,14; newWeather = 18
+      when 5,8,15; newWeather = 15
+      end
     when 18
       case type2
       when 10, 21; newWeather = 11

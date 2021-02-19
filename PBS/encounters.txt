@@ -193,7 +193,6 @@ Land
     RIOLU,18,21
     SANDYGAST,18,21
     ROCKRUFF,16,19
-
 Sand
     TRAPINCH,16,19
     SANDILE,16,19
@@ -246,7 +245,7 @@ SuperRod
     LUVDISC,25,30
     QWILFISH,25,30
 #-------------------------------
-138 # Pyget Range 1F
+138 # Pyget Range
 25,10,10
 Cave
     SEEL,20,23
@@ -262,7 +261,7 @@ Cave
     GRIMMERA,20,23
     RIOLU,22,25
 #-------------------------------
-139 # Pyget Range 2F
+139 # Pyget Range
 25,10,10
 Cave
     SEEL,20,23
@@ -274,11 +273,11 @@ Cave
     CUBCHOO,21,24
     CUBCHOO,21,24
     GRIMMERA,20,23
-    BRONZOR,21,24,
+    BRONZOR,21,24
     GRIMMERA,21,24
     DEINO,22,25
 #-------------------------------
-140 # Pyget Range 3F Alley Exit
+140 # Pyget Range
 25,10,10
 Cave
     SEEL,20,23
@@ -290,7 +289,7 @@ Cave
     CUBCHOO,21,24
     CUBCHOO,21,24
     GRIMMERA,20,23
-    BRONZOR,21,24,
+    BRONZOR,21,24
     GRIMMERA,21,24
     DEINO,22,25
 #-------------------------------
@@ -357,19 +356,6 @@ Land
     PONYTA,32,35
     ZEBSTRIKA,30,33
     PONYTA,32,35
-HighBridge
-    DUSTERN,31,34
-    VULLABY,31,34
-    DUSTERN,31,34
-    VULLABY,31,34
-    CHINGLING,30,33
-    CHINGLING,30,33
-    SAPHYRFLY,30,33
-    SPOOKHEPRI,30,33
-    KADABRA,30,33
-    SIGILYPH,32,35
-    KADABRA,30,33
-    SIGILYPH,32,35
 Water
     LUVDISC,25,30
     POLIWAG,25,30
@@ -389,6 +375,19 @@ SuperRod
     LUVDISC,25,30
     LUVDISC,25,30
     POLIWHIRL,30,35
+HighBridge
+    DUSTERN,31,34
+    VULLABY,31,34
+    DUSTERN,31,34
+    VULLABY,31,34
+    CHINGLING,30,33
+    CHINGLING,30,33
+    SAPHYRFLY,30,33
+    SPOOKHEPRI,30,33
+    KADABRA,30,33
+    SIGILYPH,32,35
+    KADABRA,30,33
+    SIGILYPH,32,35
 #-------------------------------
 151 # Route 14
 25,10,10
@@ -714,7 +713,7 @@ Land
     ECHOMERA,85,89
     AUDINO,84,87
 #-------------------------------
-206 # Pyget Range - Anahu Path
+206 # Pyget Range
 25,10,10
 Cave
     BARBASTELLA,92,95
