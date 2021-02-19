@@ -1128,6 +1128,7 @@ ShowArea = true
 [181]
 # Route 28
 SnapEdges = true
+DiveMap = 263
 Weather = Storm,0
 MapPosition = 0,16,7
 Outdoor = true
@@ -1537,4 +1538,16 @@ ShowArea = true
 # Underwater
 SnapEdges = true
 MapPosition = 0,13,7
+ShowArea = true
+#-------------------------------
+[262]
+# Underwater
+SnapEdges = true
+MapPosition = 0,15,7
+ShowArea = true
+#-------------------------------
+[263]
+# Underwater
+SnapEdges = true
+MapPosition = 0,16,7
 ShowArea = true
