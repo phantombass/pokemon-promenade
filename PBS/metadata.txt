@@ -1487,3 +1487,24 @@ Outdoor = false
 # New Icaro Gym
 SnapEdges = true
 MapPosition = 0,3,16
+#-------------------------------
+[256]
+# Cave of Discovery
+SnapEdges = true
+Weather = Reverb,100
+MapPosition = 0,7,11
+ShowArea = true
+#-------------------------------
+[257]
+# Cave of Discovery
+SnapEdges = true
+Weather = Reverb,100
+MapPosition = 0,7,11
+ShowArea = true
+#-------------------------------
+[258]
+# Cave of Discovery
+SnapEdges = true
+Weather = Reverb,100
+MapPosition = 0,7,11
+ShowArea = true
