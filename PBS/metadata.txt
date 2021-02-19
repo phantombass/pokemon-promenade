@@ -1488,6 +1488,13 @@ Outdoor = false
 SnapEdges = true
 MapPosition = 0,3,16
 #-------------------------------
+[255]
+# Victory Road
+SnapEdges = true
+Weather = Reverb,100
+MapPosition = 0,14,7
+ShowArea = true
+#-------------------------------
 [256]
 # Cave of Discovery
 SnapEdges = true
@@ -1507,4 +1514,12 @@ ShowArea = true
 SnapEdges = true
 Weather = Reverb,100
 MapPosition = 0,7,11
+ShowArea = true
+#-------------------------------
+[259]
+# Victory Road
+SnapEdges = true
+Weather = Windy,100
+MapPosition = 0,14,7
+Outdoor = true
 ShowArea = true
