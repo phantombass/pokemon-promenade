@@ -80,6 +80,8 @@ module RPG
       @weatherTypes[PBFieldWeather::DustDevil] = [[], -12,  4, -2]
       @weatherTypes[PBFieldWeather::Sun]       = nil
       @weatherTypes[PBFieldWeather::HarshSun]  = nil
+      @weatherTypes[PBFieldWeather::Reverb]       = nil
+      @weatherTypes[PBFieldWeather::TimeWarp]       = nil
       @sprites = []
     end
 
@@ -456,6 +458,7 @@ module RPG
         @viewport.color.green = 255
         @viewport.color.blue = 120
         @viewport.color.alpha = 35
+        $game_map.fog_name = nil
       when PBFieldWeather::DAshfall;
         @viewport.tone.set(-@max*6/4, -@max*6/4,  -@max*6/4, 20)
         $game_map.fog_name = nil
@@ -480,6 +483,20 @@ module RPG
         @viewport.color.alpha = 0
         $game_map.fog_sx = 2
         $game_map.fog_sy = 0
+      when PBFieldWeather::Reverb;
+        $game_map.fog_name = nil
+        @viewport.tone.set(0,0,0,0)
+        @viewport.color.red = 0
+        @viewport.color.green = 0
+        @viewport.color.blue = 0
+        @viewport.color.alpha = 0
+      when PBFieldWeather::TimeWarp;
+        $game_map.fog_name = nil
+        @viewport.tone.set(0,0,0,0)
+        @viewport.color.red = 0
+        @viewport.color.green = 0
+        @viewport.color.blue = 0
+        @viewport.color.alpha = 0
       when PBFieldWeather::Sandstorm; @viewport.tone.set(   @max/2,         0,   -@max/2,  0)
       when PBFieldWeather::Sun
         $game_map.fog_name = nil

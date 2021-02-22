@@ -119,7 +119,7 @@ ShowArea = true
 [022]
 # Azgi Ruins
 SnapEdges = true
-BattleBack = 
+BattleBack =
 Weather = Sandstorm,100
 MapPosition = 0,21,17
 Outdoor = true
@@ -1490,7 +1490,7 @@ SnapEdges = true
 MapPosition = 0,3,16
 #-------------------------------
 [255]
-# Victory Road
+# Victory Road - Reverb Cave
 SnapEdges = true
 Weather = Reverb,100
 MapPosition = 0,14,7
@@ -1518,9 +1518,9 @@ MapPosition = 0,7,11
 ShowArea = true
 #-------------------------------
 [259]
-# Victory Road
+# Victory Road - Wind Path
 SnapEdges = true
-Weather = Windy,100
+Weather = None,0
 MapPosition = 0,14,7
 Outdoor = true
 ShowArea = true
@@ -1529,7 +1529,7 @@ ShowArea = true
 # Victory Road
 SnapEdges = true
 DiveMap = 261
-Weather = Windy,100
+Weather = None,0
 MapPosition = 0,13,7
 Outdoor = true
 ShowArea = true
@@ -1550,4 +1550,52 @@ ShowArea = true
 # Underwater
 SnapEdges = true
 MapPosition = 0,16,7
+ShowArea = true
+#-------------------------------
+[264]
+# Victory Road - Fog Path
+SnapEdges = true
+MapPosition = 0,13,8
+Weather = None,0
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[265]
+# Victory Road - Time Loop Tunnel
+SnapEdges = true
+MapPosition = 0,13,4
+Weather = None,0
+Outdoor = false
+ShowArea = true
+#-------------------------------
+[266]
+# Victory Road - Sleet Mountain
+SnapEdges = true
+MapPosition = 0,13,3
+Weather = None,0
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[267]
+# Victory Road - Haunted Hills
+SnapEdges = true
+MapPosition = 0,13,1
+Weather = None,0
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[268]
+# Victory Road - Borealis Beach
+SnapEdges = true
+MapPosition = 0,10,2
+Weather = None,0
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[269]
+# Ecter Island
+SnapEdges = true
+MapPosition = 0,7,2
+Weather = None,0
+Outdoor = true
 ShowArea = true
