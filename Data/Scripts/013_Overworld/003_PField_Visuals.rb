@@ -649,6 +649,7 @@ def pbStartOver(gameover=false)
     pbRemoveDependencies
     $game_switches[STARTING_OVER_SWITCH] = true
     $game_switches[73] = false
+    $game_switches[80] = false
     $game_switches[125] = false
     $game_temp.player_new_map_id    = $PokemonGlobal.pokecenterMapId
     $game_temp.player_new_x         = $PokemonGlobal.pokecenterX
@@ -675,7 +676,7 @@ def pbStartOver(gameover=false)
       pbRemoveDependencies
       $game_switches[STARTING_OVER_SWITCH] = true
       $game_switches[73] = false
-      for i in 76..79
+      for i in 76..80
         $game_switches[i] = false
       end
       $game_variables[95] = 0
