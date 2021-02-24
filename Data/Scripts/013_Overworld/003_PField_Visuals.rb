@@ -675,6 +675,10 @@ def pbStartOver(gameover=false)
       pbRemoveDependencies
       $game_switches[STARTING_OVER_SWITCH] = true
       $game_switches[73] = false
+      for i in 76..79
+        $game_switches[i] = false
+      end
+      $game_variables[95] = 0
       $game_temp.player_new_map_id    = homedata[0]
       $game_temp.player_new_x         = homedata[1]
       $game_temp.player_new_y         = homedata[2]
