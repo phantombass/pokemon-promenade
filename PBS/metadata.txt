@@ -119,7 +119,7 @@ ShowArea = true
 [022]
 # Azgi Ruins
 SnapEdges = true
-BattleBack =
+BattleBack = 
 Weather = Sandstorm,100
 MapPosition = 0,21,17
 Outdoor = true
@@ -1553,49 +1553,97 @@ MapPosition = 0,16,7
 ShowArea = true
 #-------------------------------
 [264]
-# Victory Road - Fog Path
+# Victory Road - Cosmic Cliffs
 SnapEdges = true
-MapPosition = 0,13,8
 Weather = None,0
+MapPosition = 0,13,8
 Outdoor = true
 ShowArea = true
 #-------------------------------
 [265]
-# Victory Road - Time Loop Tunnel
+# Victory Road - Time Warp Tunnel
 SnapEdges = true
-MapPosition = 0,13,4
 Weather = None,0
+MapPosition = 0,13,4
 Outdoor = false
 ShowArea = true
 #-------------------------------
 [266]
 # Victory Road - Sleet Mountain
 SnapEdges = true
-MapPosition = 0,13,3
 Weather = None,0
+MapPosition = 0,13,3
 Outdoor = true
 ShowArea = true
 #-------------------------------
 [267]
 # Victory Road - Haunted Hills
 SnapEdges = true
-MapPosition = 0,13,1
 Weather = None,0
+MapPosition = 0,13,1
 Outdoor = true
 ShowArea = true
 #-------------------------------
 [268]
 # Victory Road - Borealis Beach
 SnapEdges = true
-MapPosition = 0,10,2
 Weather = None,0
+MapPosition = 0,10,2
 Outdoor = true
 ShowArea = true
 #-------------------------------
 [269]
 # Ecter Island
 SnapEdges = true
-MapPosition = 0,7,2
 Weather = None,0
+MapPosition = 0,7,2
 Outdoor = true
 ShowArea = true
+#-------------------------------
+[270]
+# Pokémon League - Gate
+SnapEdges = true
+MapPosition = 0,7,2
+ShowArea = true
+#-------------------------------
+[271]
+# Pokémon League - Challenge Islands
+SnapEdges = true
+Weather = StrongWinds,100
+MapPosition = 0,7,4
+Outdoor = true
+ShowArea = true
+#-------------------------------
+[272]
+# Psychic Room
+SnapEdges = true
+MapPosition = 0,2,4
+ShowArea = true
+#-------------------------------
+[273]
+# Sound Room
+SnapEdges = true
+MapPosition = 0,5,6
+ShowArea = true
+#-------------------------------
+[274]
+# Cosmic Room
+SnapEdges = true
+MapPosition = 0,8,6
+ShowArea = true
+#-------------------------------
+[275]
+# Time Room
+SnapEdges = true
+MapPosition = 0,11,4
+ShowArea = true
+#-------------------------------
+[276]
+# Champion Tower
+SnapEdges = true
+MapPosition = 0,7,4
+ShowArea = true
+#-------------------------------
+[277]
+# Hall of Fame
+SnapEdges = true
