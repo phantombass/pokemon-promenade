@@ -2200,6 +2200,7 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
   end
   battle.pbShowAbilitySplash(battler)
   battle.field.weather = weatherChange
+  battle.field.weatherDuration = 5
   @weatherType = weatherChange
   case weatherChange
   when PBWeather::Starstorm;   battle.pbDisplay(_INTL("Stars fill the sky."))
