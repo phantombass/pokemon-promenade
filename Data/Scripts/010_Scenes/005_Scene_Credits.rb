@@ -49,15 +49,35 @@ class Scene_Credits
 #Start Editing
 CREDIT=<<_END_
 
-Your credits go here.
+Scripting: Phantombass
 
-Your credits go here.
+Sprites: Caleb & Phantombass
 
-Your credits go here.
+Mapping: Phantombass
 
-Your credits go here.
+Eventing: Phantombass
 
-Your credits go here.
+Playtesting:
+
+DarkDevil26
+ThatWelshOne_
+RGTheAwesome
+ItzMiller
+PokeMaster Mike
+Kyle
+CloudEnvy
+WMAR
+Beta20x
+pizzatacoburger1234
+ChuTheWoop
+
+Dedicated to:
+
+Megan and Sophia
+
+Also thanks to:
+
+Tilly...for walking all over my keyboard many times during development.
 
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 "Pokémon Essentials" was created by:
