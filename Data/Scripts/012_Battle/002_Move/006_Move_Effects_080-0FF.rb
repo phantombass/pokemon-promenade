@@ -3511,7 +3511,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
               :BURNDRIVE,:CHILLDRIVE,:DOUSEDRIVE,:SHOCKDRIVE
              ],
        60 => [:ADAMANTORB,:DAMPROCK,:GRISEOUSORB,:HEATROCK,:LUSTROUSORB,
-              :MACHOBRACE,:ROCKYHELMET,:STICK,:TERRAINEXTENDER
+              :MACHOBRACE,:ROCKYHELMET,:LEEK,:TERRAINEXTENDER
              ],
        50 => [:DUBIOUSDISC,:SHARPBEAK,
               # Memories

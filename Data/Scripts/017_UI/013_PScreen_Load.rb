@@ -59,31 +59,32 @@ class PokemonLoadPanel < SpriteWrapper
       end
       textpos = []
       if @isContinue
-        textpos.push([@title,16*2,5*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
-        textpos.push([_INTL("Badges:"),16*2,56*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
-        textpos.push([@trainer.numbadges.to_s,103*2,56*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
-        textpos.push([_INTL("Pokédex:"),16*2,72*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
-        textpos.push([@trainer.pokedexSeen.to_s,103*2,72*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
-        textpos.push([_INTL("Time:"),16*2,88*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
+        shadowColor = (@selected) ? TEXTSHADOWCOLOR : Color.new(136,136,136)
+        textpos.push([@title,16*2,5*2,0,TEXTCOLOR,shadowColor])
+        textpos.push([_INTL("Chapter:"),16*2,56*2,0,TEXTCOLOR,shadowColor])
+        textpos.push([@trainer.numbadges.to_s,103*2,56*2,1,TEXTCOLOR,shadowColor])
+        textpos.push([_INTL("Pokédex:"),16*2,72*2,0,TEXTCOLOR,shadowColor])
+        textpos.push([@trainer.pokedexSeen.to_s,103*2,72*2,1,TEXTCOLOR,shadowColor])
+        textpos.push([_INTL("Time:"),16*2,88*2,0,TEXTCOLOR,shadowColor])
         hour = @totalsec / 60 / 60
         min  = @totalsec / 60 % 60
         if hour>0
-          textpos.push([_INTL("{1}h {2}m",hour,min),103*2,88*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
+          textpos.push([_INTL("{1}h {2}m",hour,min),103*2,88*2,1,TEXTCOLOR,shadowColor])
         else
-          textpos.push([_INTL("{1}m",min),103*2,88*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
+          textpos.push([_INTL("{1}m",min),103*2,88*2,1,TEXTCOLOR,shadowColor])
         end
         if @trainer.male?
           textpos.push([@trainer.name,56*2,32*2,0,MALETEXTCOLOR,MALETEXTSHADOWCOLOR])
         elsif @trainer.female?
           textpos.push([@trainer.name,56*2,32*2,0,FEMALETEXTCOLOR,FEMALETEXTSHADOWCOLOR])
         else
-          textpos.push([@trainer.name,56*2,32*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
+          textpos.push([@trainer.name,56*2,32*2,0,TEXTCOLOR,shadowColor])
         end
         mapname = pbGetMapNameFromId(@mapid)
         mapname.gsub!(/\\PN/,@trainer.name)
-        textpos.push([mapname,193*2,5*2,1,TEXTCOLOR,TEXTSHADOWCOLOR])
+        textpos.push([mapname,193*2,5*2,1,TEXTCOLOR,shadowColor])
       else
-        textpos.push([@title,16*2,4*2,0,TEXTCOLOR,TEXTSHADOWCOLOR])
+        textpos.push([@title,16*2,4*2,0,TEXTCOLOR,(@selected) ? TEXTSHADOWCOLOR : Color.new(136,136,136)])
       end
       pbDrawTextPositions(self.bitmap,textpos)
     end
@@ -257,10 +258,9 @@ class PokemonLoadScreen
     $game_system   = Game_System.new
     $PokemonSystem = PokemonSystem.new if !$PokemonSystem
     savefile = RTP.getSaveFileName("Game.rxdata")
-    FontInstaller.install
+    FontInstaller.install if !mkxp?
     data_system = pbLoadRxData("Data/System")
-    mapfile = ($RPGVX) ? sprintf("Data/Map%03d.rvdata",data_system.start_map_id) :
-                         sprintf("Data/Map%03d.rxdata",data_system.start_map_id)
+    mapfile = sprintf("Data/Map%03d.rxdata",data_system.start_map_id)
     if data_system.start_map_id==0 || !pbRgssExists?(mapfile)
       pbMessage(_INTL("No starting position was set in the map editor.\1"))
       pbMessage(_INTL("The game cannot continue."))
@@ -357,7 +357,7 @@ class PokemonLoadScreen
           $PokemonBag          = Marshal.load(f)
           $PokemonStorage      = Marshal.load(f)
           $SaveVersion         = Marshal.load(f) unless f.eof?
-          pbRefreshResizeFactor   # To fix Game_Screen pictures
+          pbRefreshResizeFactor if !mkxp?  # To fix Game_Screen pictures
           $game_switches[350] = false
           $game_switches[184] = true
           if $game_switches[142] == false
@@ -461,7 +461,7 @@ class PokemonLoadScreen
         $PokemonStorage      = PokemonStorage.new
         $PokemonEncounters   = PokemonEncounters.new
         $PokemonTemp.begunNewGame = true
-        pbRefreshResizeFactor   # To fix Game_Screen pictures
+        pbRefreshResizeFactor if !mkxp?  # To fix Game_Screen pictures
         $data_system         = pbLoadRxData("Data/System")
         $MapFactory          = PokemonMapFactory.new($data_system.start_map_id)   # calls setMapChanged
         $game_player.moveto($data_system.start_x, $data_system.start_y)
@@ -470,9 +470,11 @@ class PokemonLoadScreen
         $game_map.update
         time = pbGetTimeNow
         $game_variables[99] = time.day
-        $game_variables[28] = $game_variables[99]
         dailyWeather = $game_variables[27]
-        $game_variables[27] = 1+rand(100)
+        if $game_variables[28] > $game_variables[99] || $game_variables[28]<$game_variables[99]
+          $game_variables[27] = 1+rand(100)
+          $game_variables[28] = $game_variables[99]
+        end
         if dailyWeather>=96
           $game_switches[72] = true
           $game_switches[71] = false
@@ -534,6 +536,7 @@ end
 ################################################################################
 # Font installer
 ################################################################################
+if !mkxp?
 module FontInstaller
   # filenames of fonts to be installed
   Filenames = [
@@ -670,4 +673,5 @@ module FontInstaller
       pbMessage(_INTL("To install the necessary fonts, copy the files in this game's Fonts folder to the Fonts folder in Control Panel."))
     end
   end
+end
 end

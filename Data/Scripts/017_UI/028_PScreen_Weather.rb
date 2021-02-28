@@ -11,7 +11,7 @@ class PokemonWeather_Scene
     @sprites["background"] = IconSprite.new(0,0,@viewport)
     @sprites["background"].setBitmap("Graphics/Pictures/Pokegear/bg")
     @sprites["header"] = Window_UnformattedTextPokemon.newWithSize(
-       _INTL("Weather Readout"),2,-18,256,64,@viewport)
+       _INTL("Weather Reader"),2,-18,256,64,@viewport)
     @sprites["header"].baseColor   = Color.new(248,248,248)
     @sprites["header"].shadowColor = Color.new(0,0,0)
     @sprites["header"].windowskin  = nil

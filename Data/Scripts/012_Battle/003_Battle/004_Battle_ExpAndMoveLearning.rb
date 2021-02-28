@@ -150,6 +150,8 @@ class PokeBattle_Battle
       elsif $game_switches[12] == true
         $game_variables[106] = 150
       end
+    else
+      $game_variables[106] = MAXIMUM_LEVEL
     end
     # Don't bother calculating if gainer is already at max Exp
     if pkmn.exp>=PBExperience.pbGetMaxExperience(growthRate)

@@ -31200,6 +31200,42 @@ BattlerShadowX = 0
 BattlerShadowSize = 2
 Evolutions =
 #-------------------------------
+[976]
+Name = Altemper
+InternalName = ALTEMPER
+Type1 = TIME
+Type2 = COSMIC
+BaseStats = 80,50,70,80,100,70
+GenderRate = Female50Percent
+GrowthRate = Medium
+BaseEXP = 302
+EffortPoints = 0,0,0,1,1,0
+Rareness = 45
+Happiness = 70
+Abilities = BAROMETRIC
+Moves = 1,WEATHERSHOT,7,STELLARWIND,7,TIMEWIND,13,EMBER,13,POWDERSNOW,13,WATERGUN,20,STARSTORM,20,TIMEWARP,25,WEATHERBALL,31,PROTECT,37,SCALD,37,LAVAPLUME,37,FREEZEDRY,45,RECOVER,49,STARBEAM,54,QUANTUMWAVE,56,HURRICANE,56,SOLARBEAM,56,THUNDER,59,FLAMETHROWER,59,SURF,59,BLIZZARD,65,BAROMETERBOMB
+Compatibility = Fairy,Amorphous
+StepsToHatch = 6400
+Height = 0.3
+Weight = 0.8
+Color = Gray
+Shape = 1
+Habitat = Grassland
+RegionalNumbers = 62
+Kind = Weather
+Pokedex = A Pokémon created specifically for predicting and altering the weather. It is said to have been inspired by the Zharonian legend of Formeteos.
+FormName = Clear Weather Form
+WildItemCommon = WEATHERROCK
+WildItemUncommon = WEATHERROCK
+WildItemRare = WEATHERROCK
+BattlerPlayerX = 1
+BattlerPlayerY = 0
+BattlerEnemyX = -2
+BattlerEnemyY = 11
+BattlerShadowX = 0
+BattlerShadowSize = 1
+Evolutions =
+#-------------------------------
 [1062]
 Name = Drakeon
 InternalName = DRAKEON

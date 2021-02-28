@@ -26,14 +26,14 @@ BORDER_HEIGHT      = 78
 MAP_VIEW_MODE      = 1
 # To forbid the player from changing the screen size themselves, quote out or
 # delete the relevant bit of code in the PScreen_Options script section.
-IUSEFOLLOWINGPOKEMON = false
+IUSEFOLLOWINGPOKEMON = true
 #===============================================================================
 # * The maximum level Pokémon can reach.
 # * The level of newly hatched Pokémon.
 # * The odds of a newly generated Pokémon being shiny (out of 65536).
 # * The odds of a wild Pokémon/bred egg having Pokérus (out of 65536).
 #===============================================================================
-MAXIMUM_LEVEL        = 150
+MAXIMUM_LEVEL        = 100
 EGG_LEVEL            = 1
 SHINY_POKEMON_CHANCE = 8
 POKERUS_CHANCE       = 3
@@ -41,7 +41,7 @@ POKERUS_CHANCE       = 3
 #===============================================================================
 # * Whether outdoor maps should be shaded according to the time of day.
 #===============================================================================
-TIME_SHADING = true
+TIME_SHADING = false
 
 #===============================================================================
 # * Whether poisoned Pokémon will lose HP while walking around in the field.
@@ -228,7 +228,7 @@ NUM_STORAGE_BOXES = 30
 #===============================================================================
 USE_CURRENT_REGION_DEX = false
 def pbDexNames; return [
-  [_INTL("Zharo Pokédex"), 0],
+  [_INTL("Ufara Pokédex"), 0],
   _INTL("National Pokédex")
 ]; end
 DEX_SHOWS_ALL_FORMS = false

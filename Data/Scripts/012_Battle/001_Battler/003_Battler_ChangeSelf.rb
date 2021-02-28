@@ -237,6 +237,62 @@ class PokeBattle_Battler
           pbChangeForm(0,_INTL("{1} transformed!",pbThis))
         end
       end
+      if isConst?(@species,PBSpecies,:ALTEMPER)
+        if hasActiveAbility?(:BAROMETRIC)
+          newForm = 0
+          case @battle.pbWeather
+          when PBWeather::Fog;                        newForm = 4
+          when PBWeather::Overcast, PBWeather::DWind; newForm = 5
+          when PBWeather::Starstorm;   			        	newForm = 6
+          when PBWeather::DClear; 				          	newForm = 6
+          when PBWeather::Eclipse;                    newForm = 7
+          when PBWeather::Windy;                      newForm = 8
+          when PBWeather::HeatLight;                  newForm = 9
+          when PBWeather::StrongWinds;                newForm = 10
+          when PBWeather::AcidRain, PBWeather::DRain; newForm = 11
+          when PBWeather::Sandstorm;                  newForm = 12
+          when PBWeather::Rainbow;                    newForm = 13
+          when PBWeather::DustDevil;                  newForm = 14
+          when PBWeather::DAshfall;                   newForm = 15
+          when PBWeather::VolcanicAsh;                newForm = 16
+          when PBWeather::Borealis;                   newForm = 17
+          when PBWeather::Humid;                      newForm = 18
+          when PBWeather::TimeWarp;                   newForm = 19
+          when PBWeather::Reverb;                     newForm = 20
+          when PBWeather::Sun, PBWeather::HarshSun;   newForm = 1
+          when PBWeather::Rain, PBWeather::Storm, PBWeather::HeavyRain; newForm = 2
+          when PBWeather::Hail, PBWeather::Sleet;     newForm = 3
+          end
+          if @form!=newForm
+            @battle.pbShowAbilitySplash(self,true)
+            case @battle.pbWeather
+            when PBWeather::Fog;                        @effects[PBEffects::Type3] = getConst(PBTypes,:FAIRY)
+            when PBWeather::None;                       @effects[PBEffects::Type3] = getConst(PBTypes,:NORMAL)
+            when PBWeather::Overcast, PBWeather::DWind; @effects[PBEffects::Type3] = getConst(PBTypes,:GHOST)
+            when PBWeather::Eclipse;                    @effects[PBEffects::Type3] = getConst(PBTypes,:DARK)
+            when PBWeather::Windy;                      @effects[PBEffects::Type3] = getConst(PBTypes,:FLYING)
+            when PBWeather::HeatLight;                  @effects[PBEffects::Type3] = getConst(PBTypes,:ELECTRIC)
+            when PBWeather::StrongWinds;                @effects[PBEffects::Type3] = getConst(PBTypes,:DRAGON)
+            when PBWeather::AcidRain, PBWeather::DRain; @effects[PBEffects::Type3] = getConst(PBTypes,:POISON)
+            when PBWeather::Sandstorm;                  @effects[PBEffects::Type3] = getConst(PBTypes,:ROCK)
+            when PBWeather::Rainbow;                    @effects[PBEffects::Type3] = getConst(PBTypes,:GRASS)
+            when PBWeather::DustDevil;                  @effects[PBEffects::Type3] = getConst(PBTypes,:GROUND)
+            when PBWeather::DAshfall;                   @effects[PBEffects::Type3] = getConst(PBTypes,:FIGHTING)
+            when PBWeather::VolcanicAsh;                @effects[PBEffects::Type3] = getConst(PBTypes,:STEEL)
+            when PBWeather::Borealis;                   @effects[PBEffects::Type3] = getConst(PBTypes,:PSYCHIC)
+            when PBWeather::Humid;                      @effects[PBEffects::Type3] = getConst(PBTypes,:BUG)
+            when PBWeather::Reverb;                     @effects[PBEffects::Type3] = getConst(PBTypes,:SOUND)
+            when PBWeather::Sun, PBWeather::HarshSun;   @effects[PBEffects::Type3] = getConst(PBTypes,:FIRE)
+            when PBWeather::Rain, PBWeather::Storm, PBWeather::HeavyRain; @effects[PBEffects::Type3] = getConst(PBTypes,:WATER)
+            when PBWeather::Hail, PBWeather::Sleet;     @effects[PBEffects::Type3] = getConst(PBTypes,:ICE)
+            end
+            @battle.pbHideAbilitySplash(self)
+            pbChangeForm(newForm,_INTL("{1} transformed!",pbThis))
+          end
+        else
+          pbChangeForm(0,_INTL("{1} transformed!",pbThis))
+        end
+      end
     # Cherrim - Flower Gift
     if isConst?(@species,PBSpecies,:CHERRIM)
       if hasActiveAbility?(:FLOWERGIFT)

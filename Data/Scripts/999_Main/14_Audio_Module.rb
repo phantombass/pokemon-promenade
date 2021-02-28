@@ -7,6 +7,7 @@
 #---
 #Script written by the menbers of the Community Script Project
 #===
+if !mkxp?
 module Audio
   LOOP_TABLE = [
   # [ "Audio/xxx/File_name", begin, end ]
@@ -61,15 +62,21 @@ module Audio
   def bgm_play(file_name, volume = 100, pitch = 100)
     volume = volume * @master_volume / 100
     return @bgm_play.call(file_name, volume, pitch) if(@library != ::FmodEx)
+    return @bgm_play.call(file_name, volume, pitch) if(@library != ::FmodEx)
+    return @bgm_play.call(file_name, volume, pitch) if(@library != ::FmodEx)
     filename = check_file(file_name)
     bgm = ::FmodEx.bgm_play(filename, volume, pitch)
     loop_audio(bgm, file_name)
   end
   def bgm_fade(time)
     return @bgm_fade.call(time) if(@library != ::FmodEx)
+    return @bgm_fade.call(time) if(@library != ::FmodEx)
+    return @bgm_fade.call(time) if(@library != ::FmodEx)
     ::FmodEx.bgm_fade(time)
   end
   def bgm_stop
+    return @bgm_stop.call if(@library != ::FmodEx)
+    return @bgm_stop.call if(@library != ::FmodEx)
     return @bgm_stop.call if(@library != ::FmodEx)
     ::FmodEx.bgm_stop
   end
@@ -91,24 +98,34 @@ module Audio
   def me_play(file_name, volume = 100, pitch = 100)
     volume = volume * @master_volume / 100
     return @me_play.call(file_name, volume, pitch) if(@library != ::FmodEx)
+    return @me_play.call(file_name, volume, pitch) if(@library != ::FmodEx)
+    return @me_play.call(file_name, volume, pitch) if(@library != ::FmodEx)
     file_name = check_file(file_name)
     ::FmodEx.me_play(file_name, volume, pitch)
   end
   def me_fade(time)
     return @me_fade.call(time) if(@library != ::FmodEx)
+    return @me_fade.call(time) if(@library != ::FmodEx)
+    return @me_fade.call(time) if(@library != ::FmodEx)
     ::FmodEx.me_fade(time)
   end
   def me_stop
+    return @me_stop.call if(@library != ::FmodEx)
+    return @me_stop.call if(@library != ::FmodEx)
     return @me_stop.call if(@library != ::FmodEx)
     ::FmodEx.me_stop
   end
   def se_play(file_name, volume = 100, pitch = 100)
     volume = volume * @sfx_volume / 100
     return @se_play.call(file_name, volume, pitch) if(@library != ::FmodEx)
+    return @se_play.call(file_name, volume, pitch) if(@library != ::FmodEx)
+    return @se_play.call(file_name, volume, pitch) if(@library != ::FmodEx)
     file_name = check_file(file_name)
     ::FmodEx.se_play(file_name, volume, pitch)
   end
   def se_stop
+    return @se_stop.call if(@library != ::FmodEx)
+    return @se_stop.call if(@library != ::FmodEx)
     return @se_stop.call if(@library != ::FmodEx)
     ::FmodEx.se_stop
   end
@@ -138,4 +155,5 @@ module Audio
     end
   end
   end
+end
 end
