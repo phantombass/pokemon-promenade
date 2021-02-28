@@ -2241,6 +2241,7 @@ BattleHandlers::EORWeatherAbility.add(:ACCLIMATE,
   }
 )
 
+BattleHandlers::EORWeatherAbility.copy(:ACCLIMATE,:BAROMETRIC)
 #===============================================================================
 # EORHealingAbility handlers
 #===============================================================================

@@ -413,7 +413,8 @@ class PokemonBoxSprite < SpriteWrapper
       pbSetSystemFont(@contents)
       widthval = @contents.text_size(boxname).width
       xval = 162-(widthval/2)
-      pbDrawShadowText(@contents,xval,8,widthval,32,boxname,Color.new(248,248,248),Color.new(40,48,48))
+      pbDrawShadowText(@contents,xval,8 + (mkxp? ? 6 : 0),widthval,32,
+           boxname,Color.new(248,248,248),Color.new(40,48,48))
       @refreshBox = false
     end
     yval = self.y+30
@@ -1716,9 +1717,7 @@ class PokemonStorageScreen
             p = (heldpoke) ? heldpoke : @storage[-1,index]
             p.formTime = nil if p.respond_to?("formTime")
             p.form     = 0 if p.isSpecies?(:SHAYMIN)
-            if $game_switches[73] == false
-              p.heal
-            end
+            p.heal
           end
           @scene.pbStore(selected,heldpoke,destbox,firstfree)
           if heldpoke
@@ -1765,9 +1764,7 @@ class PokemonStorageScreen
     if box>=0
       @heldpkmn.formTime = nil if @heldpkmn.respond_to?("formTime")
       @heldpkmn.form     = 0 if @heldpkmn.isSpecies?(:SHAYMIN)
-      if $game_switches[73] == false
-        @heldpkmn.heal
-      end
+      @heldpkmn.heal
     end
     @scene.pbPlace(selected,@heldpkmn)
     @storage[box,index] = @heldpkmn
@@ -1796,9 +1793,7 @@ class PokemonStorageScreen
     if box>=0
       @heldpkmn.formTime = nil if @heldpkmn.respond_to?("formTime")
       @heldpkmn.form     = 0 if @heldpkmn.isSpecies?(:SHAYMIN)
-      if $game_switches[73] == false
-        @heldpkmn.heal
-      end
+      @heldpkmn.heal
     end
     @scene.pbSwap(selected,@heldpkmn)
     tmp = @storage[box,index]
@@ -1818,6 +1813,9 @@ class PokemonStorageScreen
       return false
     elsif pokemon.mail
       pbDisplay(_INTL("Please remove the mail."))
+      return false
+    elsif pokemon.isSpecies?(:ARENAY)
+      pbDisplay(_INTL("You can't release Arenay! It's Professor Cypress' most prized posession!"))
       return false
     end
     if box==-1 && pbAbleCount<=1 && pbAble?(pokemon) && !heldpoke

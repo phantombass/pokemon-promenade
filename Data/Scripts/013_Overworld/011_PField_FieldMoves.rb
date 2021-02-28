@@ -542,7 +542,7 @@ Events.onAction += proc { |_sender,_e|
 #===============================================================================
 # Surf
 #===============================================================================
-def Kernel.pbSurf
+def pbSurf
   return false if $game_player.pbHasDependentEvents? && (IUSEFOLLOWINGPOKEMON ? !$game_switches[Following_Activated_Switch] : true)
   #return false if $game_player.pbHasDependentEvents? && !$game_switches[Following_Activated_Switch]
   if !$DEBUG && $PokemonBag.pbQuantity(PBItems::HOVERCRAFT)==0
@@ -611,7 +611,7 @@ Events.onAction += proc { |_sender,_e|
   next if pbGetMetadata($game_map.map_id,MetadataBicycleAlways)
   next if !PBTerrain.isSurfable?(pbFacingTerrainTag)
   next if !$game_map.passable?($game_player.x,$game_player.y,$game_player.direction,$game_player)
-  Kernel.pbSurf
+  pbSurf
 }
 
 
@@ -799,7 +799,7 @@ def Kernel.pbRockClimbUp(event=nil)
   terrain = pbFacingTerrainTag
   return if !PBTerrain.isRockClimb?(terrain)
   event.through = true
-  event.move_speed = 2
+  event.move_speed += 2
   loop do
     event.move_up
     terrain = pbGetTerrainTag(event)
@@ -818,7 +818,7 @@ def Kernel.pbRockClimbDown(event=nil)
   terrain = pbFacingTerrainTag
   return if !PBTerrain.isRockClimb?(terrain)
   event.through = true
-  event.move_speed = 2
+  event.move_speed += 2
   loop do
     event.move_down
     terrain = pbGetTerrainTag(event)

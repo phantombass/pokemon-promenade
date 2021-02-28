@@ -6,7 +6,7 @@ class LocationWindow
     @window = Window_AdvancedTextPokemon.new(name)
     @window.resizeToFit(name,Graphics.width)
     @window.x        = -100
-    @window.y        = 155
+    @window.y        = 255
     @window.z        = 99999
     @window.viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
     @window.viewport.z = 600

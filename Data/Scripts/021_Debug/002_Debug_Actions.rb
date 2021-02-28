@@ -105,9 +105,10 @@ class SpriteWindow_DebugVariables < Window_DrawableCommand
     idWidth     = totalWidth*15/100
     nameWidth   = totalWidth*65/100
     statusWidth = totalWidth*20/100
-    self.shadowtext(rect.x,rect.y,idWidth,rect.height,id_text)
-    self.shadowtext(rect.x+idWidth,rect.y,nameWidth,rect.height,name,0,(codeswitch) ? 1 : 0)
-    self.shadowtext(rect.x+idWidth+nameWidth,rect.y,statusWidth,rect.height,status,1,colors)
+    text_y = rect.y + (mkxp? ? 6 : 0)
+    self.shadowtext(rect.x,text_y,idWidth,rect.height,id_text)
+    self.shadowtext(rect.x+idWidth,text_y,nameWidth,rect.height,name,0,(codeswitch) ? 1 : 0)
+    self.shadowtext(rect.x+idWidth+nameWidth,text_y,statusWidth,rect.height,status,1,colors)
   end
 end
 
@@ -119,6 +120,7 @@ def pbDebugSetVariable(id,diff)
     pbPlayCursorSE
     $game_variables[id] = [$game_variables[id]+diff,99999999].min
     $game_variables[id] = [$game_variables[id],-99999999].max
+    $game_map.need_refresh = true
   end
 end
 
@@ -132,10 +134,12 @@ def pbDebugVariableScreen(id)
     value = pbMessageChooseNumber(_INTL("Set variable {1}.",id),params)
     $game_variables[id] = [value,99999999].min
     $game_variables[id] = [$game_variables[id],-99999999].max
+    $game_map.need_refresh = true
   elsif $game_variables[id].is_a?(String)
     value = pbMessageFreeText(_INTL("Set variable {1}.",id),
        $game_variables[id],false,250,Graphics.width)
     $game_variables[id] = value
+    $game_map.need_refresh = true
   end
 end
 
@@ -161,6 +165,7 @@ def pbDebugVariables(mode)
         pbPlayDecisionSE
         $game_switches[current_id] = !$game_switches[current_id]
         right_window.refresh
+        $game_map.need_refresh = true
       end
     elsif mode==1 # Variables
       if Input.repeat?(Input::LEFT)
@@ -180,6 +185,7 @@ def pbDebugVariables(mode)
           $game_variables[current_id] = ""
         end
         right_window.refresh
+        $game_map.need_refresh = true
       elsif Input.trigger?(Input::C)
         pbPlayDecisionSE
         pbDebugVariableScreen(current_id)
@@ -416,7 +422,7 @@ class SpriteWindow_DebugRoamers < Window_DrawableCommand
           # roaming
           curmap = $PokemonGlobal.roamPosition[index]
           if curmap
-            mapinfos = ($RPGVX) ? load_data("Data/MapInfos.rvdata") : load_data("Data/MapInfos.rxdata")
+            mapinfos = load_data("Data/MapInfos.rxdata")
             status = "[ROAMING][#{curmap}: #{mapinfos[curmap].name}]"
           else
             status = "[ROAMING][map not set]"
@@ -426,8 +432,9 @@ class SpriteWindow_DebugRoamers < Window_DrawableCommand
       else
         status = "[NOT ROAMING][Switch #{pkmn[2]} is off]"
       end
-      self.shadowtext(name,rect.x,rect.y,nameWidth,rect.height)
-      self.shadowtext(status,rect.x+nameWidth,rect.y,statusWidth,rect.height,1,statuscolor)
+      text_y = rect.y + (mkxp? ? 6 : 0)
+      self.shadowtext(name,rect.x,text_y,nameWidth,rect.height)
+      self.shadowtext(status,rect.x+nameWidth,text_y,statusWidth,rect.height,1,statuscolor)
     end
   end
 end
@@ -814,7 +821,7 @@ def pbDebugFixInvalidTiles
     changed = false
     map = mapData.getMap(id)
     next if !map || !mapData.mapinfos[id]
-    Win32API.SetWindowText(_INTL("Processing map {1} ({2})", id, mapData.mapinfos[id].name))
+    pbSetWindowText(_INTL("Processing map {1} ({2})", id, mapData.mapinfos[id].name))
     passages = mapData.getTilesetPassages(map, id)
     # Check all tiles in map for non-existent tiles
     for x in 0...map.data.xsize
