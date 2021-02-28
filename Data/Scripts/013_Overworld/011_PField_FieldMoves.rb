@@ -543,19 +543,17 @@ Events.onAction += proc { |_sender,_e|
 # Surf
 #===============================================================================
 def pbSurf
-  return false if $game_player.pbHasDependentEvents? && (IUSEFOLLOWINGPOKEMON ? !$game_switches[Following_Activated_Switch] : true)
-  #return false if $game_player.pbHasDependentEvents? && !$game_switches[Following_Activated_Switch]
-  if !$DEBUG && $PokemonBag.pbQuantity(PBItems::HOVERCRAFT)==0
+  return false if $game_player.pbFacingEvent
+  return false if $game_player.pbHasDependentEvents?
+  move = getID(PBMoves,:SURF)
+  movefinder = pbCheckMove(move)
+  if $PokemonBag.pbQuantity(PBItems::HOVERCRAFT)==0 && !DEBUG || (!$DEBUG && !movefinder)
     return false
   end
-  if Kernel.pbConfirmMessage(_INTL("The water is a deep blue...\nWould you like to surf on it?"))
-    if $PokemonBag.pbQuantity(PBItems::HOVERCRAFT)>0
-      Kernel.pbMessage(_INTL("{1} used the {2}!",$Trainer.name,PBItems.getName(PBItems::HOVERCRAFT)))
-      Kernel.pbCancelVehicles
-      pbHiddenMoveAnimation(nil)
-    end
+  if pbConfirmMessage(_INTL("The water is a deep blue...\nWould you like to surf on it?"))
+    pbMessage(_INTL("{1} used the {2}!",$Trainer.name,PBItems.getName(PBItems::HOVERCRAFT)))
+    pbCancelVehicles
     surfbgm = pbGetMetadata(0,MetadataSurfBGM)
-    $PokemonTemp.dependentEvents.check_surf(true) if IUSEFOLLOWINGPOKEMON == true
     pbCueBGM(surfbgm,0.5) if surfbgm
     pbStartSurfing
     return true

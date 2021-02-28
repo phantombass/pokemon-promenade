@@ -6,7 +6,7 @@ PlayerB = POKEMONTRAINER_Leaf,trchar001,girl_bike,girl_surf,girl_run,girl_surf,g
 TrainerVictoryME = Battle victory trainer.ogg
 WildVictoryME = Battle victory wild.ogg
 TrainerBattleBGM = HGSS-118-BattleTrainer.ogg
-SurfBGM = Surfing.mid
+SurfBGM = HGSS-170-Surf
 BicycleBGM = Bicycle.mid
 Home = 4,1,6,8
 WildBattleBGM = HGSS-110-BattleWild.ogg
@@ -119,7 +119,7 @@ ShowArea = true
 [022]
 # Azgi Ruins
 SnapEdges = true
-BattleBack = 
+BattleBack =
 Weather = Sandstorm,100
 MapPosition = 0,21,17
 Outdoor = true

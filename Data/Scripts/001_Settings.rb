@@ -33,7 +33,7 @@ IUSEFOLLOWINGPOKEMON = true
 # * The odds of a newly generated Pokémon being shiny (out of 65536).
 # * The odds of a wild Pokémon/bred egg having Pokérus (out of 65536).
 #===============================================================================
-MAXIMUM_LEVEL        = 100
+MAXIMUM_LEVEL        = 150
 EGG_LEVEL            = 1
 SHINY_POKEMON_CHANCE = 8
 POKERUS_CHANCE       = 3
