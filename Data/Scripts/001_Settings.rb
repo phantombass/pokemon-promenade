@@ -228,7 +228,7 @@ NUM_STORAGE_BOXES = 30
 #===============================================================================
 USE_CURRENT_REGION_DEX = false
 def pbDexNames; return [
-  [_INTL("Ufara Pokédex"), 0],
+  [_INTL("Zharo Pokédex"), 0],
   _INTL("National Pokédex")
 ]; end
 DEX_SHOWS_ALL_FORMS = false
