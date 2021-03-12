@@ -413,7 +413,8 @@ module DialogueModule
                     battle.field.weather = PBWeather::Eclipse
                     battle.field.weatherDuration = 5
                     battle.pbAnimation(getID(PBMoves,:TOXICSPIKES),battle.battlers[1],battle.battlers[0])
-                    battle.battlers[0].effects[PBEffects::Poison]=2
+                    battle.battlers[0].status = PBStatuses::POISON
+                    battle.battlers[0].effects[PBEffects::Toxic]
                     battle.scene.pbHideOpponent
                     pbWait(16)
                     pbMessage("The darkness returned!")
