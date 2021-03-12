@@ -361,6 +361,44 @@ end
 def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
   ##### VS. animation, by Luka S.J. #####
   ##### Tweaked by Maruno           #####
+  trainerid = (foe[0].trainertype rescue -1)
+  if trainerid >= 0
+    if checkIfSunMoonTransition(trainerid)
+      $PokemonTemp.smAnim[1] = Viewport.new(0,0,Graphics.width,Graphics.height)
+      $PokemonTemp.smAnim[1].z = 100000
+      $PokemonTemp.smAnim[0] = SunMoonBattleTransitions.new($PokemonTemp.smAnim[1],$PokemonTemp.smAnim[1],nil,trainerid)
+      return true
+    end
+    trainername = (foe[0].name rescue "")
+    tbargraphic = sprintf("Graphics/Transitions/vsBarSpecial%s",getConstantName(PBTrainers,trainerid)) rescue nil
+    tbargraphic = sprintf("Graphics/Transitions/vsBarSpecial%d",trainerid) if !pbResolveBitmap(tbargraphic)
+    tgraphic = sprintf("Graphics/Transitions/vsTrainerSpecial%s",getConstantName(PBTrainers,trainerid)) rescue nil
+    tgraphic = sprintf("Graphics/Transitions/vsTrainerSpecial%d",trainerid) if !pbResolveBitmap(tgraphic)
+    if pbResolveBitmap(tgraphic)
+      vsSequenceSpecial(viewport,trainername,trainerid,tbargraphic,tgraphic)
+      return true
+    end
+    tbargraphic = sprintf("Graphics/Transitions/vsBarElite%s",getConstantName(PBTrainers,trainerid)) rescue nil
+    tbargraphic = sprintf("Graphics/Transitions/vsBarElite%d",trainerid) if !pbResolveBitmap(tbargraphic)
+    tgraphic = sprintf("Graphics/Transitions/vsTrainer%s",getConstantName(PBTrainers,trainerid)) rescue nil
+    tgraphic = sprintf("Graphics/Transitions/vsTrainer%d",trainerid) if !pbResolveBitmap(tgraphic)
+    if pbResolveBitmap(tbargraphic) && pbResolveBitmap(tgraphic)
+      vsSequenceElite(viewport,trainername,trainerid,tbargraphic,tgraphic)
+      return true
+    end
+    tbargraphic = sprintf("Graphics/Transitions/vsBarNew%s",getConstantName(PBTrainers,trainerid)) rescue nil
+    tbargraphic = sprintf("Graphics/Transitions/vsBarNew%d",trainerid) if !pbResolveBitmap(tbargraphic)
+    tlogographic = sprintf("Graphics/Transitions/vsLogo%s",getConstantName(PBTrainers,trainerid)) rescue nil
+    tlogographic = sprintf("Graphics/Transitions/vsLogo%d",trainerid) if !pbResolveBitmap(tlogographic)
+    if pbResolveBitmap(tbargraphic) && pbResolveBitmap(tgraphic) && pbResolveBitmap(tlogographic)
+      vsSequenceEvil(viewport,trainername,trainerid,tbargraphic,tgraphic,tlogographic)
+      return true
+    end
+    if pbResolveBitmap(tbargraphic) && pbResolveBitmap(tgraphic)
+      vsSequenceNew(viewport,trainername,trainerid,tbargraphic,tgraphic)
+      return true
+    end
+  end
   if (battletype==1 || battletype==3) && foe.length==1   # Against single trainer
     trainerid = (foe[0].trainertype rescue -1)
     if trainerid>=0
@@ -650,6 +688,8 @@ def pbStartOver(gameover=false)
     $game_switches[STARTING_OVER_SWITCH] = true
     $game_switches[73] = false
     $game_switches[80] = false
+    $game_switches[81] = false
+    $game_switches[82] = false
     $game_switches[125] = false
     $game_temp.player_new_map_id    = $PokemonGlobal.pokecenterMapId
     $game_temp.player_new_x         = $PokemonGlobal.pokecenterX

@@ -98,7 +98,27 @@ class NewDexNav
     mapid = $game_map.map_id
     if encdata.is_a?(Hash) && encdata[mapid]
       enctypes = encdata[mapid][1]
-      @encarray = pbListOfEncounters(enctypes)
+      pLoc = $game_map.terrain_tag($game_player.x,$game_player.y)
+      if PBTerrain.isSnow?(pLoc)
+        encTerr = enctypes[17]
+      elsif PBTerrain.isGrass?(pLoc) || PBTerrain.isLand?(pLoc)
+        encTerr = enctypes[0]
+      elsif PBTerrain.isHighBridge?(pLoc)
+        encTerr = enctypes[14]
+      elsif PBTerrain.isGraveyard?(pLoc)
+        encTerr = enctypes[16]
+      elsif PBTerrain.isSandy?(pLoc) || PBTerrain.isSand?(pLoc)
+        p enctypes[0]
+        encTerr = enctypes[15]
+      elsif PBTerrain.isCave?(pLoc)
+        encTerr = enctypes[1]
+      elsif PBTerrain.isWater?(pLoc)
+        encTerr = enctypes[2]
+      end
+      enc = encTerr.map { |e| e[0]  }
+      enc2 = enc.flatten
+      enc3 = enc2.uniq
+      @encarray = enc3
       @temp = 0
       for i in 0..@encarray.length-1
         j = @encarray.length-2
