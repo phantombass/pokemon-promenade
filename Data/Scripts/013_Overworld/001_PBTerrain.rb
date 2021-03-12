@@ -2,6 +2,7 @@
 # Terrain tags
 #===============================================================================
 module PBTerrain
+  Land            = 0
   Ledge           = 1
   Grass           = 2
   Sand            = 3
@@ -52,6 +53,10 @@ module PBTerrain
 
   def self.isDeepWater?(tag)
     return tag==PBTerrain::DeepWater
+  end
+
+  def self.isLand?(tag)
+    return tag==PBTerrain::Land
   end
 
   def self.isWaterfall?(tag)
@@ -107,6 +112,10 @@ module PBTerrain
 
   def self.isSandy?(tag)
     return tag==PBTerrain::Sandy
+  end
+
+  def self.isSand?(tag)
+    return tag==PBTerrain::Sand
   end
 
   def self.isGraveyard?(tag)

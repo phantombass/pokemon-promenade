@@ -61,7 +61,7 @@ class PokemonLoadPanel < SpriteWrapper
       if @isContinue
         shadowColor = (@selected) ? TEXTSHADOWCOLOR : Color.new(136,136,136)
         textpos.push([@title,16*2,5*2,0,TEXTCOLOR,shadowColor])
-        textpos.push([_INTL("Chapter:"),16*2,56*2,0,TEXTCOLOR,shadowColor])
+        textpos.push([_INTL("Badges:"),16*2,56*2,0,TEXTCOLOR,shadowColor])
         textpos.push([@trainer.numbadges.to_s,103*2,56*2,1,TEXTCOLOR,shadowColor])
         textpos.push([_INTL("Pokédex:"),16*2,72*2,0,TEXTCOLOR,shadowColor])
         textpos.push([@trainer.pokedexSeen.to_s,103*2,72*2,1,TEXTCOLOR,shadowColor])
@@ -360,19 +360,19 @@ class PokemonLoadScreen
           pbRefreshResizeFactor if !mkxp?  # To fix Game_Screen pictures
 #          $game_switches[350] = false
 #          $game_switches[184] = true
-  #        if $game_switches[142] == false
-  #          if $game_switches[128] == true
-  #            $game_switches[141] = true
-  #          end
-  #        end
-  #        if $game_switches[141] == true
-  #          pbMessage(_INTL("You are now ready to play past the demo! Go to Mauselynx Alley to continue your journey!"))
-  #          $game_switches[142] = true
-  #        end
-  #        if $game_switches[184] == true && $game_switches[187] == false && $game_switches[161] == true
-  #          pbMessage(_INTL("Victory Road is now open to you! Go complete your journey!"))
-  #          $game_switches[187] = true
-  #        end
+#          if $game_switches[142] == false
+#            if $game_switches[128] == true
+#              $game_switches[141] = true
+#            end
+#          end
+#          if $game_switches[141] == true
+#            pbMessage(_INTL("You are now ready to play past the demo! Go to Mauselynx Alley to continue your journey!"))
+#            $game_switches[142] = true
+#          end
+#          if $game_switches[184] == true && $game_switches[187] == false && $game_switches[161] == true
+#            pbMessage(_INTL("Victory Road is now open to you! Go complete your journey!"))
+#            $game_switches[187] = true
+#          end
           time = pbGetTimeNow
           $game_variables[99] = time.day
           dailyWeather = $game_variables[27]

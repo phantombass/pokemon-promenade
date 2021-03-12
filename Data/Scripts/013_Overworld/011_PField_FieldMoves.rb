@@ -547,7 +547,7 @@ def pbSurf
   return false if $game_player.pbHasDependentEvents?
   move = getID(PBMoves,:SURF)
   movefinder = pbCheckMove(move)
-  if $PokemonBag.pbQuantity(PBItems::HOVERCRAFT)==0 && !DEBUG || (!$DEBUG && !movefinder)
+  if $PokemonBag.pbQuantity(PBItems::HOVERCRAFT)==0 && !$DEBUG
     return false
   end
   if pbConfirmMessage(_INTL("The water is a deep blue...\nWould you like to surf on it?"))
