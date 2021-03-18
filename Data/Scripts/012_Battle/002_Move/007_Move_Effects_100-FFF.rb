@@ -3528,7 +3528,7 @@ end
 
 ################################################################################
 # Two turn attack. Skips first turn, attacks second turn. (Meteor Shower)
-# Power halved in all weather except sunshine. In starstorm, takes 1 turn instead.
+#  In starstorm, takes 1 turn instead.
 ################################################################################
 class PokeBattle_Move_503 < PokeBattle_TwoTurnMove
   def pbIsChargingTurn?(user)
