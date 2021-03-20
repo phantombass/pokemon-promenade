@@ -360,14 +360,12 @@ class PokemonLoadScreen
           pbRefreshResizeFactor if !mkxp?  # To fix Game_Screen pictures
           $game_switches[350] = false
           $game_switches[184] = true
-          if $game_switches[142] == false
-            if $game_switches[128] == true
+          if $game_switches[142] == false && $game_switches[128] == true
               $game_switches[141] = true
-            end
           end
-          if $game_switches[141] == true
-            pbMessage(_INTL("You are now ready to play past the demo! Go to Mauselynx Alley to continue your journey!"))
-            $game_switches[142] = true
+          if $game_switches[141] == true && $game_switches[142] == false
+              pbMessage(_INTL("You are now ready to play past the demo! Go to Mauselynx Alley to continue your journey!"))
+              $game_switches[142] = true
           end
           if $game_switches[184] == true && $game_switches[187] == false && $game_switches[161] == true
             pbMessage(_INTL("Victory Road is now open to you! Go complete your journey!"))
