@@ -26,14 +26,14 @@ BORDER_HEIGHT      = 78
 MAP_VIEW_MODE      = 1
 # To forbid the player from changing the screen size themselves, quote out or
 # delete the relevant bit of code in the PScreen_Options script section.
-IUSEFOLLOWINGPOKEMON = true
+IUSEFOLLOWINGPOKEMON = false
 #===============================================================================
 # * The maximum level Pokémon can reach.
 # * The level of newly hatched Pokémon.
 # * The odds of a newly generated Pokémon being shiny (out of 65536).
 # * The odds of a wild Pokémon/bred egg having Pokérus (out of 65536).
 #===============================================================================
-MAXIMUM_LEVEL        = 150
+MAXIMUM_LEVEL        = 200
 EGG_LEVEL            = 1
 SHINY_POKEMON_CHANCE = 8
 POKERUS_CHANCE       = 3
