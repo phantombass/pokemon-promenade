@@ -182,26 +182,7 @@ class PokeBattle_Battle
         b.pbFaint if b.fainted?
       when PBWeather::Windy
         next if !b.pbOwnSide.effects[PBEffects::StealthRock] && b.pbOwnSide.effects[PBEffects::Spikes] == 0 && !b.pbOwnSide.effects[PBEffects::CometShards] && !b.pbOwnSide.effects[PBEffects::StickyWeb] && b.pbOwnSide.effects[PBEffects::ToxicSpikes] == 0
-        if b.pbOwnSide.effects[PBEffects::StealthRock] || b.pbOpposingSide.effects[PBEffects::StealthRock]
-          b.pbOwnSide.effects[PBEffects::StealthRock]      = false
-          b.pbOpposingSide.effects[PBEffects::StealthRock] = false
-        end
-        if b.pbOwnSide.effects[PBEffects::Spikes]>0 || b.pbOpposingSide.effects[PBEffects::Spikes]>0
-          b.pbOwnSide.effects[PBEffects::Spikes]      = 0
-          target.pbOpposingSide.effects[PBEffects::Spikes] = 0
-        end
-        if b.pbOwnSide.effects[PBEffects::CometShards] || b.pbOpposingSide.effects[PBEffects::CometShards]
-          b.pbOwnSide.effects[PBEffects::CometShards]      = false
-          b.pbOpposingSide.effects[PBEffects::CometShards] = false
-        end
-        if b.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 || b.pbOpposingSide.effects[PBEffects::ToxicSpikes]>0
-          b.pbOwnSide.effects[PBEffects::ToxicSpikes]      = 0
-          b.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
-        end
-        if b.pbOwnSide.effects[PBEffects::StickyWeb] || b.pbOpposingSide.effects[PBEffects::StickyWeb]
-          b.pbOwnSide.effects[PBEffects::StickyWeb]      = false
-          b.pbOpposingSide.effects[PBEffects::StickyWeb] = false
-        end
+        removeAllHazards(nil)
       end
     end
   end

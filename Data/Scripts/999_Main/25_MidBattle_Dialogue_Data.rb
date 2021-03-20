@@ -399,10 +399,11 @@ module DialogueModule
                     battle.scene.pbShowOpponent(0)
                     pbMessage("Don't think this is over just yet, \\PN!")
                     battle.field.weather = PBWeather::Windy
-                    battle.field.weatherDuration = 5
+                    battle.field.weatherDuration = 8
+                    pbMessage("The wind picked back up!")
+                    removeAllHazards(nil)
                     battle.scene.pbHideOpponent
                     pbWait(16)
-                    pbMessage("The wind picked back up!")
                     battle.scene.disappearBar
                   }
 
@@ -411,13 +412,48 @@ module DialogueModule
                     battle.scene.pbShowOpponent(0)
                     pbMessage("Hoho! Just see what trickery we have for you!")
                     battle.field.weather = PBWeather::Eclipse
-                    battle.field.weatherDuration = 5
+                    battle.field.weatherDuration = 8
+                    pbMessage("The darkness returned!")
+                    pbWait(8)
                     battle.pbAnimation(getID(PBMoves,:TOXICSPIKES),battle.battlers[1],battle.battlers[0])
                     battle.battlers[0].status = PBStatuses::POISON
                     battle.battlers[0].effects[PBEffects::Toxic]
+                    pbMessage("Seth's underhanded tactics badly poisoned \\PN's party!")
                     battle.scene.pbHideOpponent
                     pbWait(16)
-                    pbMessage("The darkness returned!")
+                    battle.scene.disappearBar
+                  }
+
+  Ozzy_Last = Proc.new{|battle|
+                    battle.scene.appearBar
+                    battle.scene.pbShowOpponent(0)
+                    pbMessage("This battle may be saved yet! Observe, \\PN!")
+                    battle.pbAnimation(getID(PBMoves,:SANDSTORM),battle.battlers[1],battle.battlers[0])
+                    battle.field.weather = PBWeather::Sandstorm
+                    battle.field.weatherDuration = 8
+                    pbMessage("The sandstorm resurged!")
+                    pbWait(8)
+                    if battle.battlers[0].effects[PBEffects::StealthRock] == 0
+                      battle.pbAnimation(getID(PBMoves,:STEALTHROCK),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].effects[PBEffects::StealthRock]
+                      pbMessage("Ozzy set Stealth Rocks on \\PN's side!")
+                    end
+                    battle.scene.pbHideOpponent
+                    pbWait(16)
+                    battle.scene.disappearBar
+                  }
+  Ralph_Last = Proc.new{|battle|
+                    battle.scene.appearBar
+                    battle.scene.pbShowOpponent(0)
+                    pbMessage("May the sun rise on our victory!")
+                    battle.field.weather = PBWeather::HarshSun
+                    pbMessage("The sun returned and intensified!")
+                    pbWait(8)
+                    battle.pbAnimation(getID(PBMoves,:EMBER),battle.battlers[1],battle.battlers[0])
+                    burnAllPokemon(nil)
+                    pbMessage("The intense sun left \\PN's team burned!")
+                    battle.scene.pbHideOpponent
+                    pbWait(16)
                     battle.scene.disappearBar
                   }
 
