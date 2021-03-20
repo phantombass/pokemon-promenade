@@ -418,6 +418,7 @@ module DialogueModule
                     battle.pbAnimation(getID(PBMoves,:TOXICSPIKES),battle.battlers[1],battle.battlers[0])
                     battle.battlers[0].status = PBStatuses::POISON
                     battle.battlers[0].effects[PBEffects::Toxic]
+                    poisonAllPokemon(nil)
                     pbMessage("Seth's underhanded tactics badly poisoned \\PN's party!")
                     battle.scene.pbHideOpponent
                     pbWait(16)
@@ -446,12 +447,14 @@ module DialogueModule
                     battle.scene.appearBar
                     battle.scene.pbShowOpponent(0)
                     pbMessage("May the sun rise on our victory!")
-                    battle.field.weather = PBWeather::HarshSun
-                    pbMessage("The sun returned and intensified!")
+                    battle.field.weather = PBWeather::Sun
+                    battle.field.weatherDuration = 8
+                    pbMessage("The sun returned!")
                     pbWait(8)
                     battle.pbAnimation(getID(PBMoves,:EMBER),battle.battlers[1],battle.battlers[0])
+                    battle.battlers[0].status = PBStatuses::BURN
                     burnAllPokemon(nil)
-                    pbMessage("The intense sun left \\PN's team burned!")
+                    pbMessage("The sun left \\PN's team burned!")
                     battle.scene.pbHideOpponent
                     pbWait(16)
                     battle.scene.disappearBar
