@@ -1,7 +1,7 @@
 def poisonAllPokemon(event=nil)
     for pkmn in $Trainer.ablePokemonParty
        next if pkmn.hasType?(:POISON)  || pkmn.hasType?(:STEEL) ||
-          pkmn.hasActiveAbility?(:COMATOSE)  || pkmn.hasActiveAbility?(:SHIELDSDOWN) || pkmn.hasActiveAbility?(:IMMUNITY)
+          pkmn.hasAbility?(:COMATOSE)  || pkmn.hasAbility?(:SHIELDSDOWN) || pkmn.hasAbility?(:IMMUNITY)
           pkmn.status!=0
        pkmn.status = 2
        pkmn.statusCount = 1
@@ -11,7 +11,7 @@ end
 def paralyzeAllPokemon(event=nil)
     for pkmn in $Trainer.ablePokemonParty
        next if pkmn.hasType?(:ELECTRIC) ||
-          pkmn.hasActiveAbility?(:COMATOSE)  || pkmn.hasActiveAbility?(:SHIELDSDOWN) || pkmn.hasActiveAbility?(:LIMBER)
+          pkmn.hasAbility?(:COMATOSE)  || pkmn.hasAbility?(:SHIELDSDOWN) || pkmn.hasAbility?(:LIMBER)
           pkmn.status!=0
        pkmn.status = 4
      end
@@ -20,7 +20,7 @@ end
 def burnAllPokemon(event=nil)
     for pkmn in $Trainer.ablePokemonParty
        next if pkmn.hasType?(:FIRE) ||
-          pkmn.hasAbility?(:COMATOSE)  || pkmn.hasAbility?(:SHIELDSDOWN) || pkmn.hasActiveAbility?(:WATERBUBBLE) || pkmn.hasActiveAbility?(:WATERVEIL)
+          pkmn.hasAbility?(:COMATOSE)  || pkmn.hasAbility?(:SHIELDSDOWN) || pkmn.hasAbility?(:WATERBUBBLE) || pkmn.hasAbility?(:WATERVEIL)
           pkmn.status!=0
        pkmn.status = 3
      end
