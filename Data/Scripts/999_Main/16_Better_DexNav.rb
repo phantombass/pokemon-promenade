@@ -102,19 +102,24 @@ class NewDexNav
       if PBTerrain.isSnow?(pLoc)
         encTerr = enctypes[17]
       elsif PBTerrain.isGrass?(pLoc) || PBTerrain.isLand?(pLoc)
-        if enctypes[1] == nil
-          encTerr = enctypes[0]
+        if enctypes[0] == nil
+          encTerr = enctypes[17] if enctypes[17] != nil
+          encTerr = enctypes[16] if enctypes[16] != nil
+          encTerr = enctypes[15] if enctypes[15] != nil
+          encTerr = enctypes[14] if enctypes[14] != nil
+          encTerr = enctypes[2] if enctypes[2] != nil
+          encTerr = enctypes[1] if enctypes[1] != nil 
         else
-          encTerr = enctypes[1]
+          encTerr = enctypes[0]
         end
       elsif PBTerrain.isHighBridge?(pLoc)
         encTerr = enctypes[14]
       elsif PBTerrain.isGraveyard?(pLoc)
         encTerr = enctypes[16]
+      elsif PBTerrain.isSnow?(pLoc)
+        encTerr = enctypes[17]
       elsif PBTerrain.isSandy?(pLoc) || PBTerrain.isSand?(pLoc)
         encTerr = enctypes[15]
-      elsif EncounterTypes::Cave
-        encTerr = enctypes[1]
       elsif PBTerrain.isSurfable?(pLoc)
         encTerr = enctypes[2]
       end
