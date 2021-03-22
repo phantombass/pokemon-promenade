@@ -49,7 +49,7 @@ class Scene_Credits
 #Start Editing
 CREDIT=<<_END_
 
-Scripting: Phantombass
+Scripting: Phantombass, with resources and scripts from the Pokémon Splice and Pokémon Reborn teams.
 
 Sprites: Caleb & Phantombass
 
