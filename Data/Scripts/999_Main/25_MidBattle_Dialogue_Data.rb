@@ -559,7 +559,7 @@ module DialogueModule
                       battle.scene.pbHideOpponent
                       pbWait(8)
                       battle.pbAnimation(getID(PBMoves,:RECOVER),battle.battlers[1],battle.battlers[1])
-                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/2)
                       battle.battlers[1].status = 0
                       pbMessage("Orrustorm tried its hardest for Burt!")
                       pbMessage("Orrustorm recovered some HP and cured its status!")
@@ -569,9 +569,51 @@ module DialogueModule
                       pbWait(8)
                       pbMessage("Orrustorm's Speed and Special Attack rose!")
                       pbWait(16)
-                      battle.pbAnimation(getID(PBMoves,:SPIKES),battle.battlers[1],battle.battlers[0])
-                      battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] += 1
-                      pbMessage("Burt set another layer of Spikes on \\PN's side!")
+                      battle.pbAnimation(getID(PBMoves,:AURORAVEIL),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 8
+                      pbMessage("Burt set up a protective veil of light!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Andy_Start = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("The end shall come quickly...")
+                      battle.field.weather = PBWeather::TimeWarp
+                      battle.field.weatherDuration = 8
+                      pbMessage("Time stood still!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:STEALTHROCK),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] = true
+                      pbMessage("Andy set up Stealth Rocks on \\PN's side!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:AURORAVEIL),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                      pbMessage("Andy set up a protective veil of light!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Andy_Low = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("This storm could turn! Time to turn it up!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(8)
+                      battle.pbAnimation(getID(PBMoves,:RECOVER),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/2)
+                      battle.battlers[1].status = 0
+                      pbMessage("Caninpu tried its hardest for Burt!")
+                      pbMessage("Caninpu recovered some HP and cured its status!")
+                      pbWait(8)
+                      battle.battlers[1].pbRaiseStatStage(PBStats::SPEED,2,battle.battlers[1])
+                      pbWait(8)
+                      pbMessage("Caninpu's Speed sharply rose!")
+                      pbWait(16)
+                      battle.battlers[0].effects[PBEffects::Trapping] = 5
+                      pbMessage("Andy trapped your Pokémon!")
                       pbWait(16)
                       battle.scene.disappearBar
                     }
