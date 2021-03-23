@@ -448,12 +448,13 @@ module DialogueModule
                     battle.scene.pbShowOpponent(0)
                     pbMessage("May the sun rise on our victory!")
                     battle.field.defaultWeather = PBWeather::HarshSun
+                    battle.field.weather = PBWeather::HarshSun
                     pbMessage("The sun returned and intensified!")
                     pbWait(8)
                     battle.pbAnimation(getID(PBMoves,:EMBER),battle.battlers[1],battle.battlers[0])
                     battle.battlers[0].status = PBStatuses::BURN
                     burnAllPokemon(nil)
-                    pbMessage("The sun left \\PN's team burned!")
+                    pbMessage("The intense sun left \\PN's team burned!")
                     battle.scene.pbHideOpponent
                     pbWait(16)
                     battle.scene.disappearBar
@@ -529,6 +530,48 @@ module DialogueModule
                       battle.battlers[1].pbRaiseStatStage(PBStats::SPDEF,1,battle.battlers[1])
                       pbWait(8)
                       pbMessage("Centisepa's Defense and Special Defense rose!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Tim_Start = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("The wind is at our backs!")
+                      battle.field.defaultWeather = PBWeather::HeavyRain
+                      battle.field.weather = PBWeather::HeavyRain
+                      pbMessage("Rain comes crashing down!")
+                      pbWait(16)
+                      if battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] == 0
+                        battle.pbAnimation(getID(PBMoves,:SPIKES),battle.battlers[1],battle.battlers[0])
+                        battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 1
+                        pbMessage("Burt set a layer of Spikes on \\PN's side!")
+                      end
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Tim_Low = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("This storm could turn! Time to turn it up!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(8)
+                      battle.pbAnimation(getID(PBMoves,:RECOVER),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                      battle.battlers[1].status = 0
+                      pbMessage("Orrustorm tried its hardest for Burt!")
+                      pbMessage("Orrustorm recovered some HP and cured its status!")
+                      pbWait(8)
+                      battle.battlers[1].pbRaiseStatStage(PBStats::SPEED,1,battle.battlers[1])
+                      battle.battlers[1].pbRaiseStatStage(PBStats::SPATK,1,battle.battlers[1])
+                      pbWait(8)
+                      pbMessage("Orrustorm's Speed and Special Attack rose!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:SPIKES),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] += 1
+                      pbMessage("Burt set another layer of Spikes on \\PN's side!")
                       pbWait(16)
                       battle.scene.disappearBar
                     }
