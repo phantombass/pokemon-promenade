@@ -114,7 +114,7 @@ class PokeBattle_Move_087 < PokeBattle_Move
     case @battle.pbWeather
     when PBWeather::Sun, PBWeather::HarshSun
       ret = getConst(PBTypes,:FIRE) || ret
-    when PBWeather::Rain, PBWeather::HeavyRain
+    when PBWeather::Rain, PBWeather::HeavyRain, PBWeather::Storm
       ret = getConst(PBTypes,:WATER) || ret
     when PBWeather::Sandstorm
       ret = getConst(PBTypes,:ROCK) || ret
