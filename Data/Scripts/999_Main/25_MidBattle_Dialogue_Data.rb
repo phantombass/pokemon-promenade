@@ -769,11 +769,11 @@ module DialogueModule
                       pbMessage("Boss said to go all out against you!")
                       battle.field.weather = PBWeather::VolcanicAsh
                       battle.field.weatherDuration = 8
-                      pbMessage("Tuya summoned VolcanicAsh!")
+                      pbMessage("Tuya summoned Volcanic Ash!")
                       pbWait(16)
-                      battle.pbAnimation(getID(PBMoves,:STEALTHROCK),battle.battlers[1],battle.battlers[0])
-                      battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
-                      pbMessage("Tuya set up Comet Shards on \\PN's side!")
+                      battle.pbAnimation(getID(PBMoves,:SPIKES),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 2
+                      pbMessage("Tuya set up 2 layers of Spikes on \\PN's side!")
                       pbWait(8)
                       battle.scene.pbHideOpponent
                       pbWait(16)
@@ -791,7 +791,7 @@ module DialogueModule
                       battle.scene.pbHideOpponent
                       pbWait(8)
                       battle.pbAnimation(getID(PBMoves,:RECOVER),battle.battlers[1],battle.battlers[1])
-                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/2)
+                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
                       battle.battlers[1].status = 0
                       pbMessage("Bastungsten tried its hardest for Tuya!")
                       pbMessage("Bastungsten recovered some HP and cured its status!")
@@ -806,6 +806,50 @@ module DialogueModule
                       battle.battlers[0].effects[PBEffects::Toxic]
                       poisonAllPokemon(nil)
                       pbMessage("Tuya badly poisoned your party!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Seti_Start = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("Boss said to stop you at all costs!")
+                      battle.field.weather = PBWeather::Eclipse
+                      battle.field.weatherDuration = 8
+                      pbMessage("Seti summoned an Eclipse!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:STEALTHROCK),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
+                      pbMessage("Seti set up Comet Shards on \\PN's side!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:AURORAVEIL),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                      pbMessage("Seti set up a protective veil of light!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Seti_Low = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("Time to end this!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(8)
+                      battle.pbAnimation(getID(PBMoves,:RECOVER),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                      battle.battlers[1].status = 0
+                      pbMessage("Fenixet tried its hardest for Seti!")
+                      pbMessage("Fenixet recovered some HP and cured its status!")
+                      pbWait(8)
+                      battle.battlers[1].pbRaiseStatStage(PBStats::SPATK,1,battle.battlers[1])
+                      pbWait(8)
+                      pbMessage("Fenixet's Special Attack rose!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:EMBER),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].status = PBStatuses::BURN
+                      burnAllPokemon(nil)
+                      pbMessage("Tuya burned your party!")
                       pbWait(16)
                       battle.scene.disappearBar
                     }
