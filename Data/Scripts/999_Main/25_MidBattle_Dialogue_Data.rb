@@ -853,5 +853,46 @@ module DialogueModule
                       pbWait(16)
                       battle.scene.disappearBar
                     }
+    Rameses_Start = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("It's time you learned your lesson!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:SPIKES),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
+                      pbMessage("Rameses set up 2 layers of Toxic Spikes on \\PN's side!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:AURORAVEIL),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                      pbMessage("Rameses set up a protective veil of light!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Rameses_Low = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("Time to end this!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(8)
+                      battle.pbAnimation(getID(PBMoves,:RECOVER),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/2)
+                      battle.battlers[1].status = 0
+                      pbMessage("Mauselynx tried its hardest for Rameses!")
+                      pbMessage("Mauselynx recovered some HP and cured its status!")
+                      pbWait(8)
+                      battle.battlers[1].pbRaiseStatStage(PBStats::SPATK,1,battle.battlers[1])
+                      pbWait(8)
+                      pbMessage("Mauselynx's Special Attack rose!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:EMBER),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].status = PBStatuses::BURN
+                      burnAllPokemon(nil)
+                      pbMessage("Rameses burned your party!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
 # DONT DELETE THIS END
 end
