@@ -734,7 +734,7 @@ module DialogueModule
                       pbWait(16)
                       battle.pbAnimation(getID(PBMoves,:AURORAVEIL),battle.battlers[1],battle.battlers[1])
                       battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
-                      pbMessage("Owen set up a protective veil of light!")
+                      pbMessage("Tara set up a protective veil of light!")
                       pbWait(16)
                       battle.scene.disappearBar
                     }
@@ -773,13 +773,13 @@ module DialogueModule
                       pbWait(16)
                       battle.pbAnimation(getID(PBMoves,:STEALTHROCK),battle.battlers[1],battle.battlers[0])
                       battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
-                      pbMessage("Tara set up Comet Shards on \\PN's side!")
+                      pbMessage("Tuya set up Comet Shards on \\PN's side!")
                       pbWait(8)
                       battle.scene.pbHideOpponent
                       pbWait(16)
                       battle.pbAnimation(getID(PBMoves,:AURORAVEIL),battle.battlers[1],battle.battlers[1])
                       battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
-                      pbMessage("Owen set up a protective veil of light!")
+                      pbMessage("Tuya set up a protective veil of light!")
                       pbWait(16)
                       battle.scene.disappearBar
                     }
