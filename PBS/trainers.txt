@@ -331,7 +331,7 @@ Pokemon = ORRUSTORM,70
 [GUARDIAN_Andy,Andy]
 LoseText = "How intriguing."
 Pokemon = CANINPU,75
-    Moves = TIMEWARP,TOXIC,HEX,PROTECT
+    Moves = TIMELOOP,TOXIC,HEX,PROTECT
     Nature = MODEST
     Item = LEFTOVERS
     IV = 31,0,31,31,31,31
@@ -349,7 +349,7 @@ Pokemon = SOBEKODILE,79
 [GUARDIAN_Tara,Tara]
 LoseText = "Young one, you are so talented!"
 Pokemon = OSIRAM,90
-    Moves = THOUSANDARROWS,STARSAP,SHOREUP,COMETSHARDS
+    Moves = THOUSANDARROWS,STARSAP,SHOREUP,COSMICPOWER
     Nature = ADAMANT
     Item = LEFTOVERS
     IV = 31,31,31,31,31,31
