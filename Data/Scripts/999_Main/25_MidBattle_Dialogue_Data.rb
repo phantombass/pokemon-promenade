@@ -894,5 +894,47 @@ module DialogueModule
                       pbWait(16)
                       battle.scene.disappearBar
                     }
+    Eucal_Start = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("You could have been one of my top Scientists...")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:SPIKES),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
+                      pbMessage("Eucal set up 2 layers of Toxic Spikes on \\PN's side!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:AURORAVEIL),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                      pbMessage("Eucal set up a protective veil of light!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Eucal_Low = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("I knew you and \\v[12] would become rather challenging if I let you go.")
+                      pbMessage("But I had to choose between stopping you two early or delaying the coup.")
+                      pbMessage("So clearly you see which choice I made...")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(8)
+                      battle.pbAnimation(getID(PBMoves,:RECOVER),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                      battle.battlers[1].status = 0
+                      pbMessage("Apophicary tried its hardest for Eucal!")
+                      pbMessage("Apophicary recovered some HP and cured its status!")
+                      pbWait(8)
+                      battle.battlers[1].pbRaiseStatStage(PBStats::SPATK,1,battle.battlers[1])
+                      pbWait(8)
+                      pbMessage("Apophicary's Special Attack rose!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:SPIKES),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 2
+                      pbMessage("Eucal set up 2 layers of Spikes on \\PN's side!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
 # DONT DELETE THIS END
 end
