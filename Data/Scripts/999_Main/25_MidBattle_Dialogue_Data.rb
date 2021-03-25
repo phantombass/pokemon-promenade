@@ -505,7 +505,45 @@ module DialogueModule
                     pbWait(8)
                     battle.pbAnimation(getID(PBMoves,:SPIKES),battle.battlers[1],battle.battlers[0])
                     battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
-                    pbMessage("The shadows managed to sneak2 layers of Toxic Spikes onto \\PN's side!")
+                    pbMessage("The shadows managed to sneak 2 layers of Toxic Spikes onto \\PN's side!")
+                    battle.scene.pbHideOpponent
+                    pbWait(16)
+                    battle.scene.disappearBar
+                  }
+  Phoebe_Last = Proc.new{|battle|
+                    battle.scene.appearBar
+                    battle.scene.pbShowOpponent(0)
+                    pbMessage("I haven't have a battle this intense in a long time!")
+                    battle.field.weather = PBWeather::Fog
+                    battle.field.weatherDuration = 8
+                    pbMessage("Fog covers the field!")
+                    pbWait(8)
+                    battle.battlers[1].pbRaiseStatStage(PBStats::DEFENSE,1,battle.battlers[1])
+                    battle.battlers[1].pbRaiseStatStage(PBStats::SPDEF,1,battle.battlers[1])
+                    pbMessage("Phoebe's Pokémon boosted its Defense and Special Defense!")
+                    pbWait(8)
+                    battle.pbAnimation(getID(PBMoves,:STEALTHROCK),battle.battlers[1],battle.battlers[0])
+                    battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] = true
+                    pbWait(8)
+                    battle.pbAnimation(getID(PBMoves,:SPIKES),battle.battlers[1],battle.battlers[0])
+                    battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 3
+                    pbMessage("Phoebe launched Stealth Rocks and 3 layers of Spikes onto \\PN's side!")
+                    battle.scene.pbHideOpponent
+                    pbWait(16)
+                    battle.scene.disappearBar
+                  }
+  Eucal_Last = Proc.new{|battle|
+                    battle.scene.appearBar
+                    battle.scene.pbShowOpponent(0)
+                    pbMessage("I cannot have you ruining my plans. This is MY Zharo! The way I want it!")
+                    battle.field.weather = PBWeather::AcidRain
+                    battle.field.weatherDuration = 8
+                    pbMessage("Acid Rain pours down!")
+                    pbWait(8)
+                    battle.battlers[1].pbRaiseStatStage(PBStats::DEFENSE,1,battle.battlers[1])
+                    battle.battlers[1].pbRaiseStatStage(PBStats::SPDEF,1,battle.battlers[1])
+                    battle.battlers[1].pbRaiseStatStage(PBStats::SPATK,1,battle.battlers[1])
+                    pbMessage("Apophicary boosted its Defense, Special Attack and Special Defense!")
                     battle.scene.pbHideOpponent
                     pbWait(16)
                     battle.scene.disappearBar
@@ -734,7 +772,7 @@ module DialogueModule
                       pbWait(16)
                       battle.pbAnimation(getID(PBMoves,:AURORAVEIL),battle.battlers[1],battle.battlers[1])
                       battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
-                      pbMessage("Owen set up a protective veil of light!")
+                      pbMessage("Tara set up a protective veil of light!")
                       pbWait(16)
                       battle.scene.disappearBar
                     }
@@ -769,17 +807,17 @@ module DialogueModule
                       pbMessage("Boss said to go all out against you!")
                       battle.field.weather = PBWeather::VolcanicAsh
                       battle.field.weatherDuration = 8
-                      pbMessage("Tuya summoned VolcanicAsh!")
+                      pbMessage("Tuya summoned Volcanic Ash!")
                       pbWait(16)
-                      battle.pbAnimation(getID(PBMoves,:STEALTHROCK),battle.battlers[1],battle.battlers[0])
-                      battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
-                      pbMessage("Tara set up Comet Shards on \\PN's side!")
+                      battle.pbAnimation(getID(PBMoves,:SPIKES),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 2
+                      pbMessage("Tuya set up 2 layers of Spikes on \\PN's side!")
                       pbWait(8)
                       battle.scene.pbHideOpponent
                       pbWait(16)
                       battle.pbAnimation(getID(PBMoves,:AURORAVEIL),battle.battlers[1],battle.battlers[1])
                       battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
-                      pbMessage("Owen set up a protective veil of light!")
+                      pbMessage("Tuya set up a protective veil of light!")
                       pbWait(16)
                       battle.scene.disappearBar
                     }
@@ -791,7 +829,7 @@ module DialogueModule
                       battle.scene.pbHideOpponent
                       pbWait(8)
                       battle.pbAnimation(getID(PBMoves,:RECOVER),battle.battlers[1],battle.battlers[1])
-                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/2)
+                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
                       battle.battlers[1].status = 0
                       pbMessage("Bastungsten tried its hardest for Tuya!")
                       pbMessage("Bastungsten recovered some HP and cured its status!")
@@ -806,6 +844,177 @@ module DialogueModule
                       battle.battlers[0].effects[PBEffects::Toxic]
                       poisonAllPokemon(nil)
                       pbMessage("Tuya badly poisoned your party!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Seti_Start = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("Boss said to stop you at all costs!")
+                      battle.field.weather = PBWeather::Eclipse
+                      battle.field.weatherDuration = 8
+                      pbMessage("Seti summoned an Eclipse!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:STEALTHROCK),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
+                      pbMessage("Seti set up Comet Shards on \\PN's side!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:AURORAVEIL),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                      pbMessage("Seti set up a protective veil of light!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Seti_Low = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("Time to end this!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(8)
+                      battle.pbAnimation(getID(PBMoves,:RECOVER),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                      battle.battlers[1].status = 0
+                      pbMessage("Fenixet tried its hardest for Seti!")
+                      pbMessage("Fenixet recovered some HP and cured its status!")
+                      pbWait(8)
+                      battle.battlers[1].pbRaiseStatStage(PBStats::SPATK,1,battle.battlers[1])
+                      pbWait(8)
+                      pbMessage("Fenixet's Special Attack rose!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:EMBER),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].status = PBStatuses::BURN
+                      burnAllPokemon(nil)
+                      pbMessage("Tuya burned your party!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Rameses_Start = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("It's time you learned your lesson!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:SPIKES),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
+                      pbMessage("Rameses set up 2 layers of Toxic Spikes on \\PN's side!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:AURORAVEIL),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                      pbMessage("Rameses set up a protective veil of light!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Rameses_Low = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("Time to end this!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(8)
+                      battle.pbAnimation(getID(PBMoves,:RECOVER),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/2)
+                      battle.battlers[1].status = 0
+                      pbMessage("Mauselynx tried its hardest for Rameses!")
+                      pbMessage("Mauselynx recovered some HP and cured its status!")
+                      pbWait(8)
+                      battle.battlers[1].pbRaiseStatStage(PBStats::SPATK,1,battle.battlers[1])
+                      pbWait(8)
+                      pbMessage("Mauselynx's Special Attack rose!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:EMBER),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].status = PBStatuses::BURN
+                      burnAllPokemon(nil)
+                      pbMessage("Rameses burned your party!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Eucal_Start = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("You could have been one of my top Scientists...")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:SPIKES),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
+                      pbMessage("Eucal set up 2 layers of Toxic Spikes on \\PN's side!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:AURORAVEIL),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                      pbMessage("Eucal set up a protective veil of light!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Eucal_Low = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("I knew you and \\v[12] would become rather challenging if I let you go.")
+                      pbMessage("But I had to choose between stopping you two early or delaying the coup.")
+                      pbMessage("So clearly you see which choice I made...")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(8)
+                      battle.pbAnimation(getID(PBMoves,:RECOVER),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                      battle.battlers[1].status = 0
+                      pbMessage("Apophicary tried its hardest for Eucal!")
+                      pbMessage("Apophicary recovered some HP and cured its status!")
+                      pbWait(8)
+                      battle.battlers[1].pbRaiseStatStage(PBStats::SPATK,1,battle.battlers[1])
+                      pbWait(8)
+                      pbMessage("Apophicary's Special Attack rose!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:SPIKES),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 2
+                      pbMessage("Eucal set up 2 layers of Spikes on \\PN's side!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Lyptus_Start = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("I've had my eye on you and \\v[12] since you both set out!")
+                      pbMessage("I am so excited for this battle!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:STEALTHROCK),battle.battlers[1],battle.battlers[0])
+                      battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
+                      pbMessage("Dr. Lyptus set up Comet Shards on \\PN's side!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:AURORAVEIL),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                      pbMessage("Dr. Lyptus set up a protective veil of light!")
+                      pbWait(16)
+                      battle.scene.disappearBar
+                    }
+    Lyptus_Low = Proc.new{|battle|
+                      battle.scene.appearBar
+                      battle.scene.pbShowOpponent(0)
+                      pbMessage("This is what this challenge is all about!")
+                      pbMessage("Bringing each other to our absolute limit and seeing who is the stronger!")
+                      pbMessage("Now hit me with all you've got!")
+                      pbWait(8)
+                      battle.scene.pbHideOpponent
+                      pbWait(8)
+                      battle.pbAnimation(getID(PBMoves,:RECOVER),battle.battlers[1],battle.battlers[1])
+                      battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                      battle.battlers[1].status = 0
+                      pbMessage("Falkmunra tried its hardest for Dr. Lyptus!")
+                      pbMessage("Falmunra recovered some HP and cured its status!")
+                      pbWait(8)
+                      battle.battlers[1].pbRaiseStatStage(PBStats::SPATK,1,battle.battlers[1])
+                      pbWait(8)
+                      pbMessage("Falkmunra's Special Attack rose!")
+                      pbWait(16)
+                      battle.pbAnimation(getID(PBMoves,:STARSTORM),battle.battlers[1],battle.battlers[1])
+                      battle.field.weather = PBWeather::Starstorm
+                      battle.field.weatherDuration = 8
+                      pbMessage("Dr. Lyptus called down a Starstorm!")
                       pbWait(16)
                       battle.scene.disappearBar
                     }
