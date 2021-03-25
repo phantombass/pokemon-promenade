@@ -274,22 +274,21 @@ class PokeBattle_AI
     battler = @battle.battlers[idxBattler]
     # If Pokémon is within 6 levels of the foe, and foe's last move was
     # super-effective and powerful
-    if !shouldSwitch && battler.turnCount>0 && skill>=PBTrainerAI.highSkill
+    if !shouldSwitch && battler.turnCount>-1 && skill>=PBTrainerAI.highSkill
       target = battler.pbDirectOpposing(true)
-      if !target.fainted? && target.lastMoveUsed>0 &&
-         (target.level-battler.level).abs<=6
+      if !target.fainted? && target.lastMoveUsed>0
         moveData = pbGetMoveData(target.lastMoveUsed)
         moveType = moveData[MOVE_TYPE]
         typeMod = pbCalcTypeMod(moveType,target,battler)
-        if PBTypes.superEffective?(typeMod) && moveData[MOVE_BASE_DAMAGE]>50
-          switchChance = (moveData[MOVE_BASE_DAMAGE]>70) ? 30 : 20
+        if PBTypes.superEffective?(typeMod) && moveData[MOVE_BASE_DAMAGE]>40
+          switchChance = 100
           shouldSwitch = (pbAIRandom(100)<switchChance)
         end
       end
     end
     # Pokémon can't do anything (must have been in battle for at least 5 rounds)
     if !@battle.pbCanChooseAnyMove?(idxBattler) &&
-       battler.turnCount && battler.turnCount>=5
+       battler.turnCount && battler.turnCount>=0
       shouldSwitch = true
     end
     # Pokémon is Perish Songed and has Baton Pass
@@ -517,11 +516,10 @@ class PokeBattle_AI
 		# Decide whether all choices are bad, and if so, try switching instead
 		if !wildBattler && skill>=PBTrainerAI.highSkill
 			badMoves = false
-			if (maxScore<=20 && user.turnCount>2) ||
-				(maxScore<=40 && user.turnCount>5)
-				badMoves = true if pbAIRandom(100)<80
+			if (maxScore<=100 && user.turnCount>0)
+				badMoves = true
 			end
-			if !badMoves && totalScore<100 && user.turnCount>1
+			if !badMoves && totalScore<100 && user.turnCount>0
 				badMoves = true
 				choices.each do |c|
 					next if !user.moves[c[0]].damagingMove?
@@ -532,7 +530,7 @@ class PokeBattle_AI
 			end
 			if badMoves && pbEnemyShouldWithdrawEx?(idxBattler,true)
 				if $INTERNAL
-					PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will switch due to terrible moves lol. you should have better moves tbh")
+					PBDebug.log("[AI] #{user.pbThis} (#{user.index}) will switch due to terrible moves.")
 				end
 				return
 			end
@@ -644,7 +642,7 @@ class PokeBattle_AI
 				if !(skill>=PBTrainerAI.highSkill && @battle.pbAbleNonActiveCount(target.idxOwnSide)>0)
 					if move.statusMove?
 						score /= 1.5
-					elsif target.hp<=target.totalhp/2
+					elsif target.hp<=target.totalhp/3
 						score *= 1.5
 					end
 				end
@@ -705,6 +703,13 @@ class PokeBattle_AI
 					next if m.thawsUser?
 					score -= 60
 					break
+				end
+			end
+		end
+		if target.effects[PBEffects::Substitute]>0
+			user.eachMove do |m|
+				if move.soundMove?
+					score += 40
 				end
 			end
 		end
