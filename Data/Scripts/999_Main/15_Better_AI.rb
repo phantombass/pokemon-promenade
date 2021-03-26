@@ -270,20 +270,48 @@ class PokeBattle_AI
     shouldSwitch = forceSwitch
     batonPass = -1
     moveType = -1
+		faster = false
     skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill || 0
     battler = @battle.battlers[idxBattler]
     # If Pokémon is within 6 levels of the foe, and foe's last move was
     # super-effective and powerful
     if !shouldSwitch && battler.turnCount>-1 && skill>=PBTrainerAI.highSkill
       target = battler.pbDirectOpposing(true)
+			type1Battler = PBTypes.getCombinedEffectiveness(battler.type1,target.type1,target.type2)
+			if battler.type1 != battler.type2
+				type2Battler = PBTypes.getCombinedEffectiveness(battler.type2,target.type1,target.type2)
+			end
+			type1Target = PBTypes.getCombinedEffectiveness(target.type1,battler.type1,battler.type2)
+			if target.type1 != target.type2
+				type2Target = PBTypes.getCombinedEffectiveness(target.type2,battler.type1,battler.type2)
+			end
+			if type1Target == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE || type2Target == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE
+				if type1Battler != PBTypeEffectiveness::SUPER_EFFECTIVE_ONE && type2Battler != PBTypeEffectiveness::SUPER_EFFECTIVE_ONE
+					if !faster
+						switchChance = 80
+						shouldSwitch = (pbAIRandom(100)<switchChance)
+					else
+						switchChance = 10
+						shouldSwitch = (pbAIRandom(100)<switchChance)
+					end
+				end
+			end
       if !target.fainted? && target.lastMoveUsed>0
         moveData = pbGetMoveData(target.lastMoveUsed)
+				moveData2 = pbGetMoveData(battler.lastMoveUsed)
         moveType = moveData[MOVE_TYPE]
+				moveType2 = moveData2[MOVE_TYPE]
         typeMod = pbCalcTypeMod(moveType,target,battler)
+				typeMod2 = pbCalcTypeMod(moveType2,target,battler)
         if PBTypes.superEffective?(typeMod) && moveData[MOVE_BASE_DAMAGE]>40
-          switchChance = 100
+          switchChance = 80
           shouldSwitch = (pbAIRandom(100)<switchChance)
         end
+				if !PBTypes.superEffective?(typeMod2) && target.hp > target.totalhp/3
+					next if faster
+					switchChance = 70
+          shouldSwitch = (pbAIRandom(100)<switchChance)
+				end
       end
     end
     # Pokémon can't do anything (must have been in battle for at least 5 rounds)
@@ -366,17 +394,17 @@ class PokeBattle_AI
         end
         # moveType is the type of the target's last used move
         if moveType>=0 && PBTypes.ineffective?(pbCalcTypeMod(moveType,battler,battler))
-          weight = 65
+          weight = 80
           typeMod = pbCalcTypeModPokemon(pkmn,battler.pbDirectOpposing(true))
-          if PBTypes.superEffective?(typeMod.to_f/PBTypeEffectivenesss::NORMAL_EFFECTIVE)
+          if PBTypes.superEffective?(typeMod.to_f/PBTypeEffectiveness::NORMAL_EFFECTIVE)
             # Greater weight if new Pokemon's type is effective against target
-            weight = 85
+            weight = 100
           end
           list.unshift(i) if pbAIRandom(100)<weight   # Put this Pokemon first
         elsif moveType>=0 && PBTypes.resistant?(pbCalcTypeMod(moveType,battler,battler))
           weight = 40
           typeMod = pbCalcTypeModPokemon(pkmn,battler.pbDirectOpposing(true))
-          if PBTypes.superEffective?(typeMod.to_f/PBTypeEffectivenesss::NORMAL_EFFECTIVE)
+          if PBTypes.superEffective?(typeMod.to_f/PBTypeEffectiveness::NORMAL_EFFECTIVE)
             # Greater weight if new Pokemon's type is effective against target
             weight = 60
           end
@@ -419,7 +447,11 @@ end
 		enemies.each do |i|
 			pkmn = party[i]
 			sum  = 0
-			pkmn.moves.each do |m|
+			sum2 = 0
+			pkmn.each do |t|
+				next if t.fainted
+				eTypes = t.pbTypes(true)
+				pkmn.moves.each do |m|
 				next if m.id==0
 				moveData = movesData[m.id]
 				next if moveData[MOVE_BASE_DAMAGE]==0
@@ -427,11 +459,16 @@ end
 					bTypes = b.pbTypes(true)
 					sum += PBTypes.getCombinedEffectiveness(moveData[MOVE_TYPE],
 						bTypes[0],bTypes[1],bTypes[2])
+					sum2 += (PBTypes.getCombinedEffectiveness(eTypes[0],bTypes[0],bTypes[1],bTypes[2]) + PBTypes.getCombinedEffectiveness(eTypes[1],bTypes[0],bTypes[1],bTypes[2]) + PBTypes.getCombinedEffectiveness(eTypes[2],bTypes[0],bTypes[1],bTypes[2]))
 				end
 			end
 			if best==-1 || sum>bestSum
 				best = i
+				if sum < sum2
+					sum = sum2
+				end
 				bestSum = sum
+				end
 			end
 		end
 		return best

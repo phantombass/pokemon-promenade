@@ -106,19 +106,19 @@ class PokeBattle_AI
         end
         # moveType is the type of the target's last used move
         if moveType>=0 && PBTypes.ineffective?(pbCalcTypeMod(moveType,battler,battler))
-          weight = 85
+          weight = 80
           typeMod = pbCalcTypeModPokemon(pkmn,battler.pbDirectOpposing(true))
           if PBTypes.superEffective?(typeMod.to_f/PBTypeEffectivenesss::NORMAL_EFFECTIVE)
             # Greater weight if new Pokemon's type is effective against target
-            weight = 95
+            weight = 100
           end
           list.unshift(i) if pbAIRandom(100)<weight   # Put this Pokemon first
         elsif moveType>=0 && PBTypes.resistant?(pbCalcTypeMod(moveType,battler,battler))
-          weight = 60
+          weight = 40
           typeMod = pbCalcTypeModPokemon(pkmn,battler.pbDirectOpposing(true))
           if PBTypes.superEffective?(typeMod.to_f/PBTypeEffectivenesss::NORMAL_EFFECTIVE)
             # Greater weight if new Pokemon's type is effective against target
-            weight = 80
+            weight = 60
           end
           list.unshift(i) if pbAIRandom(100)<weight   # Put this Pokemon first
         else
