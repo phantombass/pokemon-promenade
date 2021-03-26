@@ -286,14 +286,16 @@ class PokeBattle_AI
 				type2Target = PBTypes.getCombinedEffectiveness(target.type2,battler.type1,battler.type2)
 			end
 			if type1Target == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE || type2Target == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE
-				if type1Battler != PBTypeEffectiveness::SUPER_EFFECTIVE_ONE && type2Battler != PBTypeEffectiveness::SUPER_EFFECTIVE_ONE
-					if !faster
-						switchChance = 80
-						shouldSwitch = (pbAIRandom(100)<switchChance)
+				if faster
+					if type1Battler == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE || type2Battler == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE
+						shouldSwitch = false
 					else
-						switchChance = 10
+						switchChance = 70
 						shouldSwitch = (pbAIRandom(100)<switchChance)
 					end
+				else
+					switchChance = 70
+					shouldSwitch = (pbAIRandom(100)<switchChance)
 				end
 			end
       if !target.fainted? && target.lastMoveUsed>0
@@ -304,7 +306,7 @@ class PokeBattle_AI
         typeMod = pbCalcTypeMod(moveType,target,battler)
 				typeMod2 = pbCalcTypeMod(moveType2,target,battler)
         if PBTypes.superEffective?(typeMod) && moveData[MOVE_BASE_DAMAGE]>40
-          switchChance = 80
+          switchChance = 90
           shouldSwitch = (pbAIRandom(100)<switchChance)
         end
 				if !PBTypes.superEffective?(typeMod2) && target.hp > target.totalhp/3
@@ -459,15 +461,12 @@ end
 					bTypes = b.pbTypes(true)
 					sum += PBTypes.getCombinedEffectiveness(moveData[MOVE_TYPE],
 						bTypes[0],bTypes[1],bTypes[2])
-					sum2 += (PBTypes.getCombinedEffectiveness(eTypes[0],bTypes[0],bTypes[1],bTypes[2]) + PBTypes.getCombinedEffectiveness(eTypes[1],bTypes[0],bTypes[1],bTypes[2]) + PBTypes.getCombinedEffectiveness(eTypes[2],bTypes[0],bTypes[1],bTypes[2]))
+					sum2 += (PBTypes.getCombinedEffectiveness(eTypes[0],bTypes[0],bTypes[1],bTypes[2]) * PBTypes.getCombinedEffectiveness(eTypes[1],bTypes[0],bTypes[1],bTypes[2]) * PBTypes.getCombinedEffectiveness(eTypes[2],bTypes[0],bTypes[1],bTypes[2]))
 				end
 			end
-			if best==-1 || sum<bestSum
+			if best == -1 || (sum - sum2) > bestSum
 				best = i
-				if sum > sum2
-					sum = sum2
-				end
-				bestSum = sum
+				bestSum = sum - sum2
 				end
 			end
 		end
