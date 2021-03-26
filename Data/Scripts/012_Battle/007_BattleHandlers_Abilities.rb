@@ -2364,6 +2364,7 @@ BattleHandlers::EORHealingAbility.add(:ASPIRANT,
 
 BattleHandlers::EORHealingAbility.add(:HOPEFULTOLL,
   proc { |ability,battler,battle|
+    battler.status = 0
     def pbAromatherapyHeal(pkmn,battler=nil)
       oldStatus = (battler) ? battler.status : pkmn.status
       curedName = (battler) ? battler.pbThis : pkmn.name

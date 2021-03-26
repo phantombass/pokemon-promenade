@@ -462,9 +462,9 @@ end
 					sum2 += (PBTypes.getCombinedEffectiveness(eTypes[0],bTypes[0],bTypes[1],bTypes[2]) + PBTypes.getCombinedEffectiveness(eTypes[1],bTypes[0],bTypes[1],bTypes[2]) + PBTypes.getCombinedEffectiveness(eTypes[2],bTypes[0],bTypes[1],bTypes[2]))
 				end
 			end
-			if best==-1 || sum>bestSum
+			if best==-1 || sum<bestSum
 				best = i
-				if sum < sum2
+				if sum > sum2
 					sum = sum2
 				end
 				bestSum = sum
