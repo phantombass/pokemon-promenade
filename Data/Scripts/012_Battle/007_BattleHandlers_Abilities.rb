@@ -2364,6 +2364,7 @@ BattleHandlers::EORHealingAbility.add(:ASPIRANT,
 
 BattleHandlers::EORHealingAbility.add(:HOPEFULTOLL,
   proc { |ability,battler,battle|
+    battler.status = 0
     def pbAromatherapyHeal(pkmn,battler=nil)
       oldStatus = (battler) ? battler.status : pkmn.status
       curedName = (battler) ? battler.pbThis : pkmn.name
@@ -2382,7 +2383,7 @@ BattleHandlers::EORHealingAbility.add(:HOPEFULTOLL,
     end
     battle.pbParty(battler.index).each_with_index do |pkmn,i|
       next if !pkmn || !pkmn.able? || pkmn.status==PBStatuses::NONE
-      pbAromatherapyHeal(pkmn)
+      pkmn.status = 0
     end
     battle.pbHideAbilitySplash(battler)
   }

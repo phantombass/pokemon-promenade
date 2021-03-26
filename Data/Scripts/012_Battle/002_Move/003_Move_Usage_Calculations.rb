@@ -154,7 +154,7 @@ class PokeBattle_Move
       modifiers[ACC_MULT] *= 1.2
     end
     if @battle.field.weather==PBWeather::Fog
-      modifiers[ACC_MULT] *= 0.75
+      modifiers[ACC_MULT] *= 0.75 if !user.hasType?(:FAIRY)
     end
     modifiers[EVA_STAGE] = 0 if target.effects[PBEffects::Foresight] && modifiers[EVA_STAGE]>0
     modifiers[EVA_STAGE] = 0 if target.effects[PBEffects::MiracleEye] && modifiers[EVA_STAGE]>0
