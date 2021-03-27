@@ -132,8 +132,8 @@ class NewDexNav
         else
           encTerr = enctypes[15]
         end
-      elsif PBTerrain.isSurfable?(pLoc)
-        encTerr = enctypes[2]+entypes[4]+enctypes[5]+enctypes[6]
+      elsif PBTerrain.isSurfable?(pLoc) || PBTerrain.isBridge?(pLoc)
+        encTerr = enctypes[2]
       end
       if encTerr == nil
         @encarray = [7]
