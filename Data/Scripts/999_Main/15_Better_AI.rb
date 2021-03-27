@@ -291,7 +291,7 @@ class PokeBattle_AI
 						if type1Battler == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE || type2Battler == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE
 							shouldSwitch = false
 						else
-							switchChance = 70
+							switchChance = 50
 							shouldSwitch = (pbAIRandom(100)<switchChance)
 						end
 					else
@@ -325,6 +325,7 @@ class PokeBattle_AI
 						switchChance = 40
           	shouldSwitch = (pbAIRandom(100)<switchChance)
 					end
+				end
       end
     end
     # Pokémon can't do anything (must have been in battle for at least 5 rounds)
