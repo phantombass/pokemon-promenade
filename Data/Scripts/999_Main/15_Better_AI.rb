@@ -277,8 +277,7 @@ class PokeBattle_AI
     # super-effective and powerful
     if !shouldSwitch && battler.turnCount>-1 && skill>=PBTrainerAI.highSkill
       target = battler.pbDirectOpposing(true)
-			if skill>=PBTrainerAI.beastMode
-				type1Battler = PBTypes.getCombinedEffectiveness(battler.type1,target.type1,target.type2)
+					type1Battler = PBTypes.getCombinedEffectiveness(battler.type1,target.type1,target.type2)
 				if battler.type1 != battler.type2
 					type2Battler = PBTypes.getCombinedEffectiveness(battler.type2,target.type1,target.type2)
 				end
@@ -286,16 +285,17 @@ class PokeBattle_AI
 				if target.type1 != target.type2
 					type2Target = PBTypes.getCombinedEffectiveness(target.type2,battler.type1,battler.type2)
 				end
+				if skill>=PBTrainerAI.beastMode
 				if type1Target == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE || type2Target == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE
 					if faster
 						if type1Battler == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE || type2Battler == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE
 							shouldSwitch = false
 						else
-							switchChance = 50
+							switchChance = 30
 							shouldSwitch = (pbAIRandom(100)<switchChance)
 						end
 					else
-						switchChance = 70
+						switchChance = 50
 						shouldSwitch = (pbAIRandom(100)<switchChance)
 					end
 				end
@@ -309,20 +309,20 @@ class PokeBattle_AI
 				typeMod2 = pbCalcTypeMod(moveType2,target,battler)
         if PBTypes.superEffective?(typeMod) && moveData[MOVE_BASE_DAMAGE]>50
 					if skill>=PBTrainerAI.beastMode
-          	switchChance = 90
+          	switchChance = 75
           	shouldSwitch = (pbAIRandom(100)<switchChance)
 					else
-						switchChance = 60
+						switchChance = 50
           	shouldSwitch = (pbAIRandom(100)<switchChance)
 					end
         end
 				if !PBTypes.superEffective?(typeMod2) && target.hp > target.totalhp/3
 					next if faster
 					if skill>=PBTrainerAI.beastMode
-          	switchChance = 60
+          	switchChance = 50
           	shouldSwitch = (pbAIRandom(100)<switchChance)
 					else
-						switchChance = 40
+						switchChance = 30
           	shouldSwitch = (pbAIRandom(100)<switchChance)
 					end
 				end
