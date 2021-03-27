@@ -277,25 +277,27 @@ class PokeBattle_AI
     # super-effective and powerful
     if !shouldSwitch && battler.turnCount>-1 && skill>=PBTrainerAI.highSkill
       target = battler.pbDirectOpposing(true)
-			type1Battler = PBTypes.getCombinedEffectiveness(battler.type1,target.type1,target.type2)
-			if battler.type1 != battler.type2
-				type2Battler = PBTypes.getCombinedEffectiveness(battler.type2,target.type1,target.type2)
-			end
-			type1Target = PBTypes.getCombinedEffectiveness(target.type1,battler.type1,battler.type2)
-			if target.type1 != target.type2
-				type2Target = PBTypes.getCombinedEffectiveness(target.type2,battler.type1,battler.type2)
-			end
-			if type1Target == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE || type2Target == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE
-				if faster
-					if type1Battler == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE || type2Battler == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE
-						shouldSwitch = false
+			if skill>=PBTrainerAI.beastMode
+				type1Battler = PBTypes.getCombinedEffectiveness(battler.type1,target.type1,target.type2)
+				if battler.type1 != battler.type2
+					type2Battler = PBTypes.getCombinedEffectiveness(battler.type2,target.type1,target.type2)
+				end
+				type1Target = PBTypes.getCombinedEffectiveness(target.type1,battler.type1,battler.type2)
+				if target.type1 != target.type2
+					type2Target = PBTypes.getCombinedEffectiveness(target.type2,battler.type1,battler.type2)
+				end
+				if type1Target == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE || type2Target == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE
+					if faster
+						if type1Battler == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE || type2Battler == PBTypeEffectiveness::SUPER_EFFECTIVE_ONE
+							shouldSwitch = false
+						else
+							switchChance = 70
+							shouldSwitch = (pbAIRandom(100)<switchChance)
+						end
 					else
 						switchChance = 70
 						shouldSwitch = (pbAIRandom(100)<switchChance)
 					end
-				else
-					switchChance = 70
-					shouldSwitch = (pbAIRandom(100)<switchChance)
 				end
 			end
       if !target.fainted? && target.lastMoveUsed>0
@@ -305,15 +307,24 @@ class PokeBattle_AI
 				moveType2 = moveData2[MOVE_TYPE]
         typeMod = pbCalcTypeMod(moveType,target,battler)
 				typeMod2 = pbCalcTypeMod(moveType2,target,battler)
-        if PBTypes.superEffective?(typeMod) && moveData[MOVE_BASE_DAMAGE]>40
-          switchChance = 90
-          shouldSwitch = (pbAIRandom(100)<switchChance)
+        if PBTypes.superEffective?(typeMod) && moveData[MOVE_BASE_DAMAGE]>50
+					if skill>=PBTrainerAI.beastMode
+          	switchChance = 90
+          	shouldSwitch = (pbAIRandom(100)<switchChance)
+					else
+						switchChance = 60
+          	shouldSwitch = (pbAIRandom(100)<switchChance)
+					end
         end
 				if !PBTypes.superEffective?(typeMod2) && target.hp > target.totalhp/3
 					next if faster
-					switchChance = 70
-          shouldSwitch = (pbAIRandom(100)<switchChance)
-				end
+					if skill>=PBTrainerAI.beastMode
+          	switchChance = 60
+          	shouldSwitch = (pbAIRandom(100)<switchChance)
+					else
+						switchChance = 40
+          	shouldSwitch = (pbAIRandom(100)<switchChance)
+					end
       end
     end
     # Pokémon can't do anything (must have been in battle for at least 5 rounds)

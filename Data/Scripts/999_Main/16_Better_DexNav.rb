@@ -102,42 +102,58 @@ class NewDexNav
       if PBTerrain.isSnow?(pLoc)
         encTerr = enctypes[17]
       elsif PBTerrain.isGrass?(pLoc) || PBTerrain.isLand?(pLoc)
-        if enctypes[0] == nil
-          encTerr = enctypes[17] if enctypes[17] != nil
-          encTerr = enctypes[16] if enctypes[16] != nil
-          encTerr = enctypes[15] if enctypes[15] != nil
-          encTerr = enctypes[14] if enctypes[14] != nil
-          encTerr = enctypes[2] if enctypes[2] != nil
-          encTerr = enctypes[1] if enctypes[1] != nil 
+        if $MapFactory.getFacingTerrainTag == PBTerrain::Water || $MapFactory.getFacingTerrainTag == PBTerrain::StillWater || $MapFactory.getFacingTerrainTag == PBTerrain::DeepWater
+          encTerr = enctypes[4]+enctypes[5]+enctypes[6]
         else
-          encTerr = enctypes[0]
+          if enctypes[0] == nil
+            encTerr = enctypes[17] if enctypes[17] != nil
+            encTerr = enctypes[16] if enctypes[16] != nil
+            encTerr = enctypes[15] if enctypes[15] != nil
+            encTerr = enctypes[14] if enctypes[14] != nil
+            encTerr = enctypes[2] if enctypes[2] != nil
+            encTerr = enctypes[1] if enctypes[1] != nil
+          else
+            encTerr = enctypes[0]
+          end
         end
       elsif PBTerrain.isHighBridge?(pLoc)
         encTerr = enctypes[14]
       elsif PBTerrain.isGraveyard?(pLoc)
         encTerr = enctypes[16]
       elsif PBTerrain.isSnow?(pLoc)
-        encTerr = enctypes[17]
+        if $MapFactory.getFacingTerrainTag== PBTerrain::Water || $MapFactory.getFacingTerrainTag == PBTerrain::StillWater || $MapFactory.getFacingTerrainTag == PBTerrain::DeepWater
+          encTerr = enctypes[4]+enctypes[5]+enctypes[6]
+        else
+          encTerr = enctypes[17]
+        end
       elsif PBTerrain.isSandy?(pLoc) || PBTerrain.isSand?(pLoc)
-        encTerr = enctypes[15]
+        if $MapFactory.getFacingTerrainTag == PBTerrain::Water || $MapFactory.getFacingTerrainTag == PBTerrain::StillWater || $MapFactory.getFacingTerrainTag == PBTerrain::DeepWater
+          encTerr = enctypes[4]+enctypes[5]+enctypes[6]
+        else
+          encTerr = enctypes[15]
+        end
       elsif PBTerrain.isSurfable?(pLoc)
-        encTerr = enctypes[2]
+        encTerr = enctypes[2]+entypes[4]+enctypes[5]+enctypes[6]
       end
-      enc = encTerr.map { |e| e[0]  }
-      enc2 = enc.flatten
-      enc3 = enc2.uniq
-      @encarray = enc3
-      @temp = 0
-      for i in 0..@encarray.length-1
-        j = @encarray.length-2
-        while (j >= i)
-          if getID(PBSpecies,pbGetSpeciesConst(@encarray[j])) > getID(PBSpecies,pbGetSpeciesConst(@encarray[j+1]))
-            #Kernel.pbMessage(_INTL("{1}",PBSpecies::pbGetSpeciesConst(@encarray[j])))
-            @temp = @encarray[j]
-            @encarray[j] = @encarray[j+1]
-            @encarray[j+1] = @temp
+      if encTerr == nil
+        @encarray = [7]
+      else
+        enc = encTerr.map { |e| e[0]  }
+        enc2 = enc.flatten
+        enc3 = enc2.uniq
+        @encarray = enc3
+        @temp = 0
+        for i in 0..@encarray.length-1
+          j = @encarray.length-2
+          while (j >= i)
+            if getID(PBSpecies,pbGetSpeciesConst(@encarray[j])) > getID(PBSpecies,pbGetSpeciesConst(@encarray[j+1]))
+              #Kernel.pbMessage(_INTL("{1}",PBSpecies::pbGetSpeciesConst(@encarray[j])))
+              @temp = @encarray[j]
+              @encarray[j] = @encarray[j+1]
+              @encarray[j+1] = @temp
+            end
+            j -= 1
           end
-          j -= 1
         end
       end
     else
