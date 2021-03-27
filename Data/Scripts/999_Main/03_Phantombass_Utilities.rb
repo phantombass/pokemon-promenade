@@ -27,24 +27,24 @@ def burnAllPokemon(event=nil)
 end
 
 def removeAllHazards(event=nil)
-  if b.pbOwnSide.effects[PBEffects::StealthRock] || b.pbOpposingSide.effects[PBEffects::StealthRock]
-    b.pbOwnSide.effects[PBEffects::StealthRock]      = false
-    b.pbOpposingSide.effects[PBEffects::StealthRock] = false
+  if @battle.battlers.pbOwnSide.effects[PBEffects::StealthRock] || @battle.battlers.pbOpposingSide.effects[PBEffects::StealthRock]
+    @battle.battlers.pbOwnSide.effects[PBEffects::StealthRock]      = false
+    @battle.battlers.pbOpposingSide.effects[PBEffects::StealthRock] = false
   end
-  if b.pbOwnSide.effects[PBEffects::Spikes]>0 || b.pbOpposingSide.effects[PBEffects::Spikes]>0
-    b.pbOwnSide.effects[PBEffects::Spikes]      = 0
-    target.pbOpposingSide.effects[PBEffects::Spikes] = 0
+  if @battle.battlers.pbOwnSide.effects[PBEffects::Spikes]>0 || @battle.battlers.pbOpposingSide.effects[PBEffects::Spikes]>0
+    @battle.battlers.pbOwnSide.effects[PBEffects::Spikes]      = 0
+    @battle.battlers.pbOpposingSide.effects[PBEffects::Spikes] = 0
   end
-  if b.pbOwnSide.effects[PBEffects::CometShards] || b.pbOpposingSide.effects[PBEffects::CometShards]
-    b.pbOwnSide.effects[PBEffects::CometShards]      = false
-    b.pbOpposingSide.effects[PBEffects::CometShards] = false
+  if @battle.battlers.pbOwnSide.effects[PBEffects::CometShards] || @battle.battlers.pbOpposingSide.effects[PBEffects::CometShards]
+    @battle.battlers.pbOwnSide.effects[PBEffects::CometShards]      = false
+    @battle.battlers.pbOpposingSide.effects[PBEffects::CometShards] = false
   end
-  if b.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 || b.pbOpposingSide.effects[PBEffects::ToxicSpikes]>0
-    b.pbOwnSide.effects[PBEffects::ToxicSpikes]      = 0
-    b.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
+  if @battle.battlers.pbOwnSide.effects[PBEffects::ToxicSpikes]>0 || @battle.battlers.pbOpposingSide.effects[PBEffects::ToxicSpikes]>0
+    @battle.battlers.pbOwnSide.effects[PBEffects::ToxicSpikes]      = 0
+    @battle.battlers.pbOpposingSide.effects[PBEffects::ToxicSpikes] = 0
   end
-  if b.pbOwnSide.effects[PBEffects::StickyWeb] || b.pbOpposingSide.effects[PBEffects::StickyWeb]
-    b.pbOwnSide.effects[PBEffects::StickyWeb]      = false
-    b.pbOpposingSide.effects[PBEffects::StickyWeb] = false
+  if @battle.battlers.pbOwnSide.effects[PBEffects::StickyWeb] || @battle.battlers.pbOpposingSide.effects[PBEffects::StickyWeb]
+    @battle.battlers.pbOwnSide.effects[PBEffects::StickyWeb]      = false
+    @battle.battlers.pbOpposingSide.effects[PBEffects::StickyWeb] = false
   end
 end
