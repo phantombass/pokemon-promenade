@@ -401,7 +401,7 @@ module DialogueModule
                     battle.field.weather = PBWeather::Windy
                     battle.field.weatherDuration = 8
                     pbMessage("The wind picked back up!")
-                    removeAllHazards(nil)
+                    battle.removeAllHazards
                     battle.scene.pbHideOpponent
                     pbWait(16)
                     battle.scene.disappearBar
@@ -434,7 +434,7 @@ module DialogueModule
                     battle.field.weatherDuration = 8
                     pbMessage("The sandstorm resurged!")
                     pbWait(8)
-                    if battle.battlers[0].pbOwnSide.ffects[PBEffects::StealthRock] == false
+                    if battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] == false
                       battle.pbAnimation(getID(PBMoves,:STEALTHROCK),battle.battlers[1],battle.battlers[0])
                       battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] = true
                       pbMessage("Ozzy set Stealth Rocks on \\PN's side!")
