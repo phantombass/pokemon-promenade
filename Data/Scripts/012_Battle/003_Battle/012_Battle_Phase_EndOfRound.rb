@@ -182,7 +182,7 @@ class PokeBattle_Battle
         b.pbFaint if b.fainted?
       when PBWeather::Windy
         next if !b.pbOwnSide.effects[PBEffects::StealthRock] && b.pbOwnSide.effects[PBEffects::Spikes] == 0 && !b.pbOwnSide.effects[PBEffects::CometShards] && !b.pbOwnSide.effects[PBEffects::StickyWeb] && b.pbOwnSide.effects[PBEffects::ToxicSpikes] == 0
-        removeAllHazards(nil)
+        b.removeAllHazards
       end
     end
   end
