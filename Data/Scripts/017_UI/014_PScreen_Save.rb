@@ -79,6 +79,9 @@ class PokemonSave_Scene
     if $Trainer.pokedex
       loctext+=_INTL("Pokédex<r><c3={1}>{2}/{3}</c3>",textColor,$Trainer.pokedexOwned,$Trainer.pokedexSeen)
     end
+    if $game_switches[Readouts::Readout]
+      loctext+=_INTL("Readouts<r><c3={1}>{2}</c3>",textColor,$game_variables[Readouts::Count])
+    end
     @sprites["locwindow"]=Window_AdvancedTextPokemon.new(loctext)
     @sprites["locwindow"].viewport=@viewport
     @sprites["locwindow"].x=0
