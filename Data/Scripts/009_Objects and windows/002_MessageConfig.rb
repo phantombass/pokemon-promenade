@@ -1,8 +1,8 @@
 module MessageConfig
-  FontName        = "Power Red and Green"
+  FontName        = "Pokemon DP"
   # in Graphics/Windowskins/ (specify empty string to use the default windowskin)
-  TextSkinName    = "speech frlg"
-  ChoiceSkinName  = "choice 1"
+  TextSkinName    = "frlgtextskin"
+  ChoiceSkinName  = "choice dp"
   WindowOpacity   = 255
   TextSpeed       = nil   # can be positive to wait frames or negative to
                           # show multiple characters in a single frame
