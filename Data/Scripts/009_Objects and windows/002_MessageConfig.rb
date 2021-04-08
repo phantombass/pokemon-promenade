@@ -1,5 +1,5 @@
 module MessageConfig
-  FontName        = "Pokemon DP"
+  FontName        = "Power Clear"
   # in Graphics/Windowskins/ (specify empty string to use the default windowskin)
   TextSkinName    = "frlgtextskin"
   ChoiceSkinName  = "choice dp"
