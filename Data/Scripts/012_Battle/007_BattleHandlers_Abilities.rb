@@ -31,6 +31,7 @@ BattleHandlers::SpeedCalcAbility.add(:SLUSHRUSH,
   proc { |ability,battler,mult|
     w = battler.battle.pbWeather
     next mult*2 if w==PBWeather::Hail
+    next mult*2 if w==PBWeather::Sleet
   }
 )
 
