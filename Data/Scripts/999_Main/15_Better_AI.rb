@@ -331,6 +331,7 @@ class PokeBattle_AI
     # Pokémon can't do anything (must have been in battle for at least 5 rounds)
     if !@battle.pbCanChooseAnyMove?(idxBattler) &&
        battler.turnCount && battler.turnCount>=0
+
       shouldSwitch = true
     end
     # Pokémon is Perish Songed and has Baton Pass
