@@ -20,6 +20,21 @@
     //
     // "rgssVersion": 1,
 
+
+    // Request an OpenGL 4.1 context. This
+    // introduces these minimum requirements
+    // for GPUs:
+    //
+    // +    NVIDIA 400 Series+
+    // +    AMD Radeon HD 5000+
+    // +    Intel HD Graphics 4000+
+    //
+    // If disabled, OpenGL 3.3 is used instead.
+    // (default: disabled)
+    //
+    // "openGL4": false,
+
+
     // Create a debug context and log
     // OpenGL debug information to the console
     // (default: disabled)
@@ -74,7 +89,7 @@
     // in RGSS2 or higher).
     // (default: 0)
     //
-    // "defScreenW": 640,
+    "defScreenW": 512,
 
 
     // Specify the window height on startup. If set to 0,
@@ -83,7 +98,7 @@
     // in RGSS2 or higher).
     // (default: 0)
     //
-    // "defScreenH": 480,
+    "defScreenH": 384,
 
 
     // Override the game window title
@@ -157,7 +172,7 @@
     // Set the base path of the game to '/path/to/game'
     // (default: executable directory)
     //
-    // "gameFolder": ".",
+    // "gameFolder": "/path/to/game",
 
 
     // Use either right or left Alt + Enter to toggle
@@ -284,37 +299,11 @@
     // "rubyLoadpath": ["/usr/lib64/ruby/",
     //                  "/usr/local/share/ruby/site_ruby"],
 
-    // Determines whether JIT is enabled. This probably
-    // won't work unless you also have the header file
-    // that it needs. Only works with Ruby 2.6 or higher.
-    // (default: false)
-    //
-    // "JITEnable": false,
-    
-    // Determines what level of verbosity to use when
-    // logging JIT events. Starts at 0, which is next
-    // to nothing. Set it higher to see more.
-    // (default: 0)
-    //
-    // "JITVerboseLevel": 0,
-    
-    // Determines how many compiled methods that Ruby
-    // will keep in its cache.
-    // (default: 100)
-    //
-    // "JITMaxCache": 100,
-    
-    // Determines how many times a function has to be
-    // called before it is compiled.
-    // (default: 10000)
-    //
-    // "JITMinCalls": 10000,
-
 
     // SoundFont to use for midi playback (via fluidsynth)
     // (default: none)
     //
-    // "midiSoundFont": "Audio/BGM/GMGSx.sf2",
+    "midiSoundFont": "soundfont.sf2",
 
 
     // Activate "chorus" effect for midi playback
