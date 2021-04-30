@@ -661,7 +661,7 @@ class PokeBattle_Battle
       end
     ##### CAUGHT WILD POKÉMON #####
     when 4
-      @scene.pbWildBattleSuccess if !GAIN_EXP_FOR_CAPTURE
+      @scene.pbWildBattleSuccess if !Settings::GAIN_EXP_FOR_CAPTURE
     end
     # Register captured Pokémon in the Pokédex, and store them
     pbRecordAndStoreCaughtPokemon
