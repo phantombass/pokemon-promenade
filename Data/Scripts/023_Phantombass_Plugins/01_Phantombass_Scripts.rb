@@ -4625,6 +4625,24 @@ ItemHandlers::UseOnPokemon.add(:ABILITYPATCH,proc { |item,pkmn,scene|
   end
 })
 
+BattleHandlers::DamageCalcUserItem.add(:STELLARPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :COSMIC
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:SONARPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :SOUND
+  }
+)
+
+BattleHandlers::DamageCalcUserItem.add(:TEMPORALPLATE,
+  proc { |item,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] *= 1.2 if type == :TIME
+  }
+)
+
 ItemHandlers::UseFromBag.add(:CHAINSAW,proc{|item|
    next canUseMoveCut? ? 2 : 0
 })
