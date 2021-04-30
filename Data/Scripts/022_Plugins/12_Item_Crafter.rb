@@ -33,7 +33,7 @@ end
 
 def canItemCraft?(item)
   itemName = GameData::Item.get(item).name
-  return false if hasConst?(PBItems,item) && $PokemonBag.pbHasItem?(item)
+  return false if $PokemonBag.pbHasItem?(item)
   case itemName
   when "Wingsuit"
     return true if $PokemonBag.pbHasItem?(:PRETTYWING) && $PokemonBag.pbHasItem?(:AIRBALLOON) && $PokemonBag.pbHasItem?(:SAFETYGOGGLES)
@@ -59,7 +59,7 @@ def canItemCraft?(item)
 end
 
 def pbItemcraft(item)
-  itemName = PBItems.getName(item)
+  itemName = GameData::Item.get(item).name
   if !canItemCraft?(item)
     if $PokemonBag.pbHasItem?(item)
       pbCallBub(2,@event_id)

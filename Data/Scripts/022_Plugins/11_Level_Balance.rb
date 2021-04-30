@@ -98,9 +98,9 @@ Events.onTrainerPartyLoad+=proc {| sender, trainer |
     end
       party[i].name=GameData::Species.get(species).name
       party[i].species=species
-      party[i].calcStats
+      party[i].calc_stats
       if $game_switches[LvlCap::Gym] == false && $game_switches[LvlCap::Ace] == false
-      party[i].resetMoves
+        party[i].reset_moves
       end
       end #end of for
      end

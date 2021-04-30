@@ -537,6 +537,46 @@ class PokeBattle_Battle
       pbStartWeather(nil,@field.defaultWeather) if @field.defaultWeather != :None
     end
   end
+
+  def pbItemMenu(idxBattler,firstAction)
+    if !@internalBattle || @opponent
+      pbDisplay(_INTL("Items can't be used here."))
+      return false
+    end
+    ret = false
+    @scene.pbItemMenu(idxBattler,firstAction) { |item,useType,idxPkmn,idxMove,itemScene|
+      next false if !item
+      battler = pkmn = nil
+      case useType
+      when 1, 2, 6, 7   # Use on Pokémon/Pokémon's move
+        next false if !ItemHandlers.hasBattleUseOnPokemon(item)
+        battler = pbFindBattler(idxPkmn,idxBattler)
+        pkmn    = pbParty(idxBattler)[idxPkmn]
+        next false if !pbCanUseItemOnPokemon?(item,pkmn,battler,itemScene)
+      when 3, 8   # Use on battler
+        next false if !ItemHandlers.hasBattleUseOnBattler(item)
+        battler = pbFindBattler(idxPkmn,idxBattler)
+        pkmn    = battler.pokemon if battler
+        next false if !pbCanUseItemOnPokemon?(item,pkmn,battler,itemScene)
+      when 4, 9   # Poké Balls
+        next false if idxPkmn<0
+        battler = @battlers[idxPkmn]
+        pkmn    = battler.pokemon if battler
+      when 5, 10   # No target (Poké Doll, Guard Spec., Launcher items)
+        battler = @battlers[idxBattler]
+        pkmn    = battler.pokemon if battler
+      else
+        next false
+      end
+      next false if !pkmn
+      next false if !ItemHandlers.triggerCanUseInBattle(item,
+         pkmn,battler,idxMove,firstAction,self,itemScene)
+      next false if !pbRegisterItem(idxBattler,item,idxPkmn,idxMove)
+      ret = true
+      next true
+    }
+    return ret
+  end
 end
 
 Settings::TIME_SHADING = false
