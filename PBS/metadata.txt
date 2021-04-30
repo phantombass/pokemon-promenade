@@ -610,7 +610,7 @@ Weather = Storm,0
 # Crafter's Hideout
 SnapEdges = true
 MapPosition = 0,11,14
-Weather = Overcast,100
+Weather = Rain,0
 #-------------------------------
 [103]
 # Weather Institute
@@ -858,14 +858,14 @@ ShowArea = false
 SnapEdges = true
 MapPosition = 0,15,8
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [137]
 # Temple of Saturabtu
 SnapEdges = true
 MapPosition = 0,15,8
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [138]
 # Pyget Range
@@ -876,7 +876,7 @@ BattleBack = cave3
 Environment = Cave
 ShowArea = true
 Bicycle = true
-Weather = Reverb,100
+Weather = Rain,0
 #-------------------------------
 [139]
 # Pyget Range
@@ -886,7 +886,7 @@ BattleBack = cave3
 Environment = Cave
 ShowArea = false
 Bicycle = true
-Weather = Reverb,100
+Weather = Rain,0
 #-------------------------------
 [140]
 # Pyget Range
@@ -896,7 +896,7 @@ BattleBack = cave3
 Environment = Cave
 ShowArea = true
 Bicycle = true
-Weather = Reverb,100
+Weather = Rain,0
 #-------------------------------
 [141]
 # Mauselynx Alley
@@ -906,7 +906,7 @@ Outdoor = true
 BattleBack = snow
 ShowArea = true
 Bicycle = true
-Weather = Sleet,100
+Weather = Rain,0
 #-------------------------------
 [142]
 # Narkka Temple
@@ -916,7 +916,7 @@ Outdoor = true
 BattleBack = snow
 ShowArea = true
 Bicycle = true
-Weather = Sleet,100
+Weather = Rain,0
 #-------------------------------
 [143]
 # Rulox Temple
@@ -926,21 +926,21 @@ Outdoor = true
 BattleBack = snow
 ShowArea = true
 Bicycle = true
-Weather = Sleet,100
+Weather = Rain,0
 #-------------------------------
 [144]
 # Temple of Phirenix
 SnapEdges = true
 MapPosition = 0,28,12
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [145]
 # Temple of Bastungsten
 SnapEdges = true
 MapPosition = 0,5,11
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [146]
 # Raqqas Gym
@@ -967,7 +967,7 @@ HealingSpot = 147,6,6
 SnapEdges = true
 MapPosition = 0,21,1
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [150]
 # Route 13
@@ -1004,7 +1004,7 @@ HealingSpot = 152,20,10
 SnapEdges = true
 MapPosition = 0,26,1
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [155]
 # Eloh Gate
@@ -1022,14 +1022,14 @@ MapPosition = 0,27,1
 SnapEdges = true
 HealingSpot = 141,33,7
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [158]
 # Temple of Osiram
 SnapEdges = true
 MapPosition = 0,23,17
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [159]
 # Route 15
@@ -1083,7 +1083,7 @@ ShowArea = false
 SnapEdges = true
 MapPosition = 0,23,17
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [169]
 # Temple of Fenixet
@@ -1091,7 +1091,7 @@ SnapEdges = true
 MapPosition = 0,25,12
 Outdoor = false
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [170]
 # Route 17
@@ -1280,14 +1280,14 @@ MapPosition = 0,22,7
 Outdoor = true
 HealingSpot = 195,15,20
 ShowArea = true
-Weather = Overcast,100
+Weather = Rain,0
 #-------------------------------
 [196]
 # Temple of Caninpu
 SnapEdges = true
 MapPosition = 0,22,9
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [197]
 # Route 22
@@ -1339,7 +1339,7 @@ SnapEdges = true
 MapPosition = 0,24,11
 Outdoor = true
 ShowArea = true
-Weather = Overcast,100
+Weather = Rain,0
 #-------------------------------
 [204]
 # Rex Valley
@@ -1347,14 +1347,14 @@ SnapEdges = true
 MapPosition = 0,24,11
 Outdoor = true
 ShowArea = true
-Weather = Eclipse,100
+Weather = Rain,0
 #-------------------------------
 [205]
 # Temple of Apophicary
 SnapEdges = true
 MapPosition = 0,24,11
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [206]
 # Pyget Range
@@ -1365,7 +1365,7 @@ BattleBack = cave3
 Environment = Cave
 ShowArea = true
 Bicycle = true
-Weather = Reverb,100
+Weather = Rain,0
 #-------------------------------
 [207]
 # Anahu Peak
@@ -1373,14 +1373,14 @@ SnapEdges = true
 MapPosition = 0,22,11
 Outdoor = true
 ShowArea = true
-Weather = Sleet,100
+Weather = Rain,0
 #-------------------------------
 [208]
 # Temple of Falkmunra
 SnapEdges = true
 MapPosition = 0,22,11
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [209]
 # Route 23
@@ -1437,7 +1437,7 @@ ShowArea = true
 SnapEdges = true
 MapPosition = 0,25,17
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [217]
 # Cave of Deceit
@@ -1445,7 +1445,7 @@ SnapEdges = true
 MapPosition = 0,28,3
 Outdoor = false
 ShowArea = true
-Weather = TimeWarp,100
+Weather = Rain,0
 #-------------------------------
 [218]
 # Xandri Gym
@@ -1645,28 +1645,28 @@ MapPosition = 0,3,16
 SnapEdges = true
 MapPosition = 0,14,7
 ShowArea = true
-Weather = Reverb,100
+Weather = Rain,0
 #-------------------------------
 [256]
 # Cave of Discovery
 SnapEdges = true
 MapPosition = 0,7,11
 ShowArea = true
-Weather = Reverb,100
+Weather = Rain,0
 #-------------------------------
 [257]
 # Cave of Discovery
 SnapEdges = true
 MapPosition = 0,7,11
 ShowArea = true
-Weather = Reverb,100
+Weather = Rain,0
 #-------------------------------
 [258]
 # Cave of Discovery
 SnapEdges = true
 MapPosition = 0,7,11
 ShowArea = true
-Weather = Reverb,100
+Weather = Rain,0
 #-------------------------------
 [259]
 # Victory Road - Wind Path
@@ -1763,7 +1763,7 @@ SnapEdges = true
 MapPosition = 0,7,4
 Outdoor = false
 ShowArea = true
-Weather = StrongWinds,100
+Weather = Rain,0
 #-------------------------------
 [272]
 # Psychic Room
