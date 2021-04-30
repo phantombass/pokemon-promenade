@@ -5291,16 +5291,16 @@ class PokemonSummary_Scene
     ivtable = Marshal.load(Marshal.dump(@pokemon.iv))
     evHP = evtable[@pokemon.ev.keys[0]]
     ivHP = ivtable[@pokemon.iv.keys[0]]
-    evAt = evtable[@pokemon.ev.keys[0]]
-    ivAt = ivtable[@pokemon.iv.keys[0]]
-    evDf = evtable[@pokemon.ev.keys[0]]
-    ivDf = ivtable[@pokemon.iv.keys[0]]
-    evSa = evtable[@pokemon.ev.keys[0]]
-    ivSa = ivtable[@pokemon.iv.keys[0]]
-    evSd = evtable[@pokemon.ev.keys[0]]
-    ivSd = ivtable[@pokemon.iv.keys[0]]
-    evSp = evtable[@pokemon.ev.keys[0]]
-    ivSp = ivtable[@pokemon.iv.keys[0]]
+    evAt = evtable[@pokemon.ev.keys[1]]
+    ivAt = ivtable[@pokemon.iv.keys[1]]
+    evDf = evtable[@pokemon.ev.keys[2]]
+    ivDf = ivtable[@pokemon.iv.keys[2]]
+    evSa = evtable[@pokemon.ev.keys[4]]
+    ivSa = ivtable[@pokemon.iv.keys[4]]
+    evSd = evtable[@pokemon.ev.keys[5]]
+    ivSd = ivtable[@pokemon.iv.keys[5]]
+    evSp = evtable[@pokemon.ev.keys[3]]
+    ivSp = ivtable[@pokemon.iv.keys[3]]
     textpos = [
        [_INTL("HP"),292,70,2,base,statshadows[:HP]],
        [sprintf("%d/%d",evHP,ivHP),462,70,1,Color.new(64,64,64),Color.new(176,176,176)],
