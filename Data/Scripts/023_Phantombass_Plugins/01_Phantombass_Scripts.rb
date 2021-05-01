@@ -63,7 +63,7 @@ Events.onMapChange += proc {| sender, e |
     end
   end
     $game_switches[350] = false
-    #$game_switches[184] = true
+    $game_switches[184] = true
     if $game_switches[142] == false && $game_switches[128] == true
         $game_switches[141] = true
     end
