@@ -74,7 +74,7 @@
     // in RGSS2 or higher).
     // (default: 0)
     //
-    // "defScreenW": 640,
+    "defScreenW": 512,
 
 
     // Specify the window height on startup. If set to 0,
@@ -83,7 +83,7 @@
     // in RGSS2 or higher).
     // (default: 0)
     //
-    // "defScreenH": 480,
+    "defScreenH": 384,
 
 
     // Override the game window title
@@ -171,6 +171,20 @@
     // (default: enabled)
     //
     // "enableReset": true,
+
+
+    // Names of the input buttons in the F1 key bindings
+    // window. This only affects the names displayed
+    // there, and won't enable those names as Input
+    // constants in the scripts.
+    "bindingNames": {"c": "Use",
+                     "b": "Back",
+                     "a": "Action",
+					 "x": "JumpUp",
+					 "y": "JumpDown",
+					 "z": "Special",
+					 "l": "(unused)",
+					 "r": "(unused)"},
 
 
     // Allow symlinks for game assets to be followed
@@ -290,20 +304,20 @@
     // (default: false)
     //
     // "JITEnable": false,
-    
+
     // Determines what level of verbosity to use when
     // logging JIT events. Starts at 0, which is next
     // to nothing. Set it higher to see more.
     // (default: 0)
     //
     // "JITVerboseLevel": 0,
-    
+
     // Determines how many compiled methods that Ruby
     // will keep in its cache.
     // (default: 100)
     //
     // "JITMaxCache": 100,
-    
+
     // Determines how many times a function has to be
     // called before it is compiled.
     // (default: 10000)
@@ -314,7 +328,7 @@
     // SoundFont to use for midi playback (via fluidsynth)
     // (default: none)
     //
-    // "midiSoundFont": "Audio/BGM/GMGSx.sf2",
+    "midiSoundFont": "soundfont.sf2",
 
 
     // Activate "chorus" effect for midi playback
