@@ -973,7 +973,7 @@ class PokemonWeather_Scene
     @sprites["header"].shadowColor = Color.new(0,0,0)
     @sprites["header"].windowskin  = nil
     @sprites["commands"] = Window_CommandPokemon.newWithSize(@commands,
-       94,92,324,224,@viewport)
+       14,92,324,224,@viewport)
     @sprites["commands"].baseColor   = Color.new(248,248,248)
     @sprites["commands"].shadowColor = Color.new(0,0,0)
     @sprites["commands"].windowskin = nil
@@ -1044,6 +1044,10 @@ class PokemonWeatherScreen
     cmdNLight  = -1
     cmdRift    = -1
     cmdEcho    = -1
+    @typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/Pokedex/icon_types"))
+    @viewport3 = Viewport.new(0,0,Graphics.width,Graphics.height)
+    @viewport3.z = 999999
+    @sprites = {}
     commands[cmdNone = commands.length]   = _INTL("Clear")
     commands[cmdRain = commands.length] = _INTL("Rain") if $game_variables[52] >0
     commands[cmdSnow = commands.length]     = _INTL("Hail") if $game_variables[53]>0
@@ -1084,6 +1088,8 @@ class PokemonWeatherScreen
             pbMessage(_INTL("Weather: Clear"))
             pbMessage(_INTL("Weather Ball Type: Normal"))
             pbMessage(_INTL("Additional Effects: None"))
+#            @sprites["weather"]=IconSprite.new(240,120,@viewport3)
+#            @sprites["weather"].setBitmap("Graphics/Pictures/testfront")
           else
             pbMessage(_INTL("No Readout Installed for this Weather"))
           end
@@ -1342,8 +1348,17 @@ class PokemonWeatherScreen
         break
       end
     end
-
     @scene.pbEndScene
+  end
+end
+
+class Pokemon
+  def can_relearn_move?
+    return false if egg? || shadowPokemon?
+    this_level = self.level
+    getMoveList.each { |m| return true if m[0] <= this_level && !hasMove?(m[1]) }
+    @first_moves.each { |m| return true if !hasMove?(m) }
+    return false
   end
 end
 
