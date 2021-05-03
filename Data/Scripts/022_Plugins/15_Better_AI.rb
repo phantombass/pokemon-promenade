@@ -301,7 +301,10 @@ class PokeBattle_AI
 					end
 				end
 			end
-      if !target.fainted? && target.lastMoveUsed != nil
+      if !target.fainted? && target.lastMoveUsed != nil &&
+				if battler.lastMoveUsed == nil
+					return false
+				end
         moveData = GameData::Move.get(target.lastMoveUsed)
 				moveData2 = GameData::Move.get(battler.lastMoveUsed)
         moveType = moveData.type
