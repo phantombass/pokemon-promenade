@@ -278,3 +278,42 @@ module RPG
     end
   end
 end
+
+#==============================================================================
+# Fixed being able to give the player a foreign Pokémon with a blank name.
+#==============================================================================
+def pbAddForeignPokemon(pkmn, level = 1, owner_name = nil, nickname = nil, owner_gender = 0, see_form = true)
+  return false if !pkmn || $Trainer.party_full?
+  pkmn = Pokemon.new(pkmn, level) if !pkmn.is_a?(Pokemon)
+  # Set original trainer to a foreign one
+  pkmn.owner = Pokemon::Owner.new_foreign(owner_name || "", owner_gender)
+  # Set nickname
+  pkmn.name = nickname[0, Pokemon::MAX_NAME_SIZE] if !nil_or_empty?(nickname)
+  # Recalculate stats
+  pkmn.calc_stats
+  if owner_name
+    pbMessage(_INTL("\\me[Pkmn get]{1} received a Pokémon from {2}.\1", $Trainer.name, owner_name))
+  else
+    pbMessage(_INTL("\\me[Pkmn get]{1} received a Pokémon.\1", $Trainer.name))
+  end
+  pbStorePokemon(pkmn)
+  $Trainer.pokedex.register(pkmn) if see_form
+  $Trainer.pokedex.set_owned(pkmn.species)
+  return true
+end
+
+#==============================================================================
+# Fixed changing a Pokémon's form with an item not updating the screen or doing
+# certain other things (e.g. removing a Pokémon that was fused with another).
+#==============================================================================
+class Pokemon
+  def setForm(value)
+    oldForm = @form
+    @form = value
+    @ability = nil
+    yield if block_given?
+    MultipleForms.call("onSetForm", self, value, oldForm)
+    calc_stats
+    $Trainer.pokedex.register(self)
+  end
+end

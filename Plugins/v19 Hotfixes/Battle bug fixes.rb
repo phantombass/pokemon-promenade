@@ -510,3 +510,156 @@ class PokeBattle_Battle
     end
   end
 end
+
+#==============================================================================
+# Fixed Illusion not working properly.
+#==============================================================================
+class PokeBattle_Battle
+  def pbLastInTeam(idxBattler)
+    party       = pbParty(idxBattler)
+    partyOrders = pbPartyOrder(idxBattler)
+    idxPartyStart, idxPartyEnd = pbTeamIndexRangeFromBattlerIndex(idxBattler)
+    ret = -1
+    party.each_with_index do |pkmn,i|
+      next if i<idxPartyStart || i>=idxPartyEnd   # Check the team only
+      next if !pkmn || !pkmn.able?   # Can't copy a non-fainted Pokémon or egg
+      ret = i if ret < 0 || partyOrders[i] > partyOrders[ret]
+    end
+    return ret
+  end
+
+  def pbEORSwitch(favorDraws=false)
+    return if @decision>0 && !favorDraws
+    return if @decision==5 && favorDraws
+    pbJudge
+    return if @decision>0
+    # Check through each fainted battler to see if that spot can be filled.
+    switched = []
+    loop do
+      switched.clear
+      @battlers.each do |b|
+        next if !b || !b.fainted?
+        idxBattler = b.index
+        next if !pbCanChooseNonActive?(idxBattler)
+        if !pbOwnedByPlayer?(idxBattler)   # Opponent/ally is switching in
+          next if wildBattle? && opposes?(idxBattler)   # Wild Pokémon can't switch
+          idxPartyNew = pbSwitchInBetween(idxBattler)
+          opponent = pbGetOwnerFromBattlerIndex(idxBattler)
+          # NOTE: The player is only offered the chance to switch their own
+          #       Pokémon when an opponent replaces a fainted Pokémon in single
+          #       battles. In double battles, etc. there is no such offer.
+          if @internalBattle && @switchStyle && trainerBattle? && pbSideSize(0)==1 &&
+             opposes?(idxBattler) && !@battlers[0].fainted? && !switched.include?(0) &&
+             pbCanChooseNonActive?(0) && @battlers[0].effects[PBEffects::Outrage]==0
+            idxPartyForName = idxPartyNew
+            enemyParty = pbParty(idxBattler)
+            if enemyParty[idxPartyNew].ability == :ILLUSION
+              new_index = pbLastInTeam(idxBattler)
+              idxPartyForName = new_index if new_index >= 0 && new_index != idxPartyNew
+            end
+            if pbDisplayConfirm(_INTL("{1} is about to send in {2}. Will you switch your Pokémon?",
+               opponent.full_name, enemyParty[idxPartyForName].name))
+              idxPlayerPartyNew = pbSwitchInBetween(0,false,true)
+              if idxPlayerPartyNew>=0
+                pbMessageOnRecall(@battlers[0])
+                pbRecallAndReplace(0,idxPlayerPartyNew)
+                switched.push(0)
+              end
+            end
+          end
+          pbRecallAndReplace(idxBattler,idxPartyNew)
+          switched.push(idxBattler)
+        elsif trainerBattle?   # Player switches in in a trainer battle
+          idxPlayerPartyNew = pbGetReplacementPokemonIndex(idxBattler)   # Owner chooses
+          pbRecallAndReplace(idxBattler,idxPlayerPartyNew)
+          switched.push(idxBattler)
+        else   # Player's Pokémon has fainted in a wild battle
+          switch = false
+          if !pbDisplayConfirm(_INTL("Use next Pokémon?"))
+            switch = (pbRun(idxBattler,true)<=0)
+          else
+            switch = true
+          end
+          if switch
+            idxPlayerPartyNew = pbGetReplacementPokemonIndex(idxBattler)   # Owner chooses
+            pbRecallAndReplace(idxBattler,idxPlayerPartyNew)
+            switched.push(idxBattler)
+          end
+        end
+      end
+      break if switched.length==0
+      pbPriority(true).each do |b|
+        b.pbEffectsOnSwitchIn(true) if switched.include?(b.index)
+      end
+    end
+  end
+
+  def pbMessagesOnReplace(idxBattler,idxParty)
+    party = pbParty(idxBattler)
+    newPkmnName = party[idxParty].name
+    if party[idxParty].ability == :ILLUSION
+      new_index = pbLastInTeam(idxBattler)
+      newPkmnName = party[new_index].name if new_index >= 0 && new_index != idxParty
+    end
+    if pbOwnedByPlayer?(idxBattler)
+      opposing = @battlers[idxBattler].pbDirectOpposing
+      if opposing.fainted? || opposing.hp==opposing.totalhp
+        pbDisplayBrief(_INTL("You're in charge, {1}!",newPkmnName))
+      elsif opposing.hp>=opposing.totalhp/2
+        pbDisplayBrief(_INTL("Go for it, {1}!",newPkmnName))
+      elsif opposing.hp>=opposing.totalhp/4
+        pbDisplayBrief(_INTL("Just a little more! Hang in there, {1}!",newPkmnName))
+      else
+        pbDisplayBrief(_INTL("Your opponent's weak! Get 'em, {1}!",newPkmnName))
+      end
+    else
+      owner = pbGetOwnerFromBattlerIndex(idxBattler)
+      pbDisplayBrief(_INTL("{1} sent out {2}!",owner.full_name,newPkmnName))
+    end
+  end
+end
+
+#==============================================================================
+# Fix for Pokémon not recognising they are a Mega Evolution once they become
+# one. Fix for inadequate code checking if a Mega Stone is unlosable by a
+# Pokémon.
+#==============================================================================
+class PokeBattle_Battler
+  def unlosableItem?(check_item)
+    return false if !check_item
+    return true if GameData::Item.get(check_item).is_mail?
+    return false if @effects[PBEffects::Transform]
+    # Items that change a Pokémon's form
+    if mega?   # Check if item was needed for this Mega Evolution
+      return true if @pokemon.species_data.mega_stone == check_item
+    else   # Check if item could cause a Mega Evolution
+      GameData::Species.each do |data|
+        next if data.species != @species || data.unmega_form != @form
+        return true if data.mega_stone == check_item
+      end
+    end
+    # Other unlosable items
+    return GameData::Item.get(check_item).unlosable?(@species, self.ability)
+  end
+end
+
+class Pokemon
+  def getMegaForm
+    ret = 0
+    GameData::Species.each do |data|
+      next if data.species != @species || data.unmega_form != form_simple
+      if data.mega_stone && hasItem?(data.mega_stone)
+        ret = data.form
+        break
+      elsif data.mega_move && hasMove?(data.mega_move)
+        ret = data.form
+        break
+      end
+    end
+    return ret   # form number, or 0 if no accessible Mega form
+  end
+
+  def mega?
+    return (species_data.mega_stone || species_data.mega_move) ? true : false
+  end
+end
