@@ -1,6 +1,6 @@
 #==============================================================================#
 #                              Pokémon Essentials                              #
-#                                  Version 19                                  #
+#                                 Version 19.1                                 #
 #                https://github.com/Maruno17/pokemon-essentials                #
 #==============================================================================#
 
@@ -24,8 +24,6 @@ module Settings
   SCREEN_HEIGHT = 384
   # The default screen scale factor. Possible values are 0.5, 1.0, 1.5 and 2.0.
   SCREEN_SCALE  = 1.0
-  # Map view mode (0=original, 1=custom, 2=perspective).
-  MAP_VIEW_MODE = 1
 
   #=============================================================================
 
@@ -357,8 +355,7 @@ module Settings
     "speech hgss 18",
     "speech hgss 19",
     "speech hgss 20",
-    "speech pl 18",
-    "frlgtextskin"
+    "speech pl 18"
   ]
 
   # Available menu frames. These are graphic files in "Graphics/Windowskins/".
@@ -390,21 +387,12 @@ module Settings
     "choice 25",
     "choice 26",
     "choice 27",
-    "choice 28",
-    "frlgtextskin"
-  ]
-
-  # Available fonts, as selectable in the Options Screen.
-  FONT_OPTIONS = [
-    "Power Green",
-    "Power Red and Blue",
-    "Power Red and Green",
-    "Power Clear"
+    "choice 28"
   ]
 end
 
 # DO NOT EDIT THESE!
 module Essentials
-  VERSION = "19"
+  VERSION = "19.1"
   ERROR_TEXT = ""
 end

@@ -19,7 +19,6 @@ module BattleHandlers
   # Battler's stat stages
   StatLossImmunityAbility             = AbilityHandlerHash.new
   StatLossImmunityAbilityNonIgnorable = AbilityHandlerHash.new   # Full Metal Body
-  StatLossImmunityAbilityNonIgnorableSandy = AbilityHandlerHash.new   # Unshaken
   StatLossImmunityAllyAbility         = AbilityHandlerHash.new   # Flower Veil
   AbilityOnStatGain                   = AbilityHandlerHash.new   # None!
   AbilityOnStatLoss                   = AbilityHandlerHash.new

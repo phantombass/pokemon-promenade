@@ -115,54 +115,17 @@ Events.onStepTaken += proc {
       if $PokemonBag.pbHasItem?(:REPEL) ||
          $PokemonBag.pbHasItem?(:SUPERREPEL) ||
          $PokemonBag.pbHasItem?(:MAXREPEL)
-         if pbConfirmMessage(_INTL("The repellent's effect wore off! Would you like to use another one?"))
-           if $PokemonBag.pbHasItem?(:REPEL) && !$PokemonBag.pbHasItem?(:SUPERREPEL) && !$PokemonBag.pbHasItem?(:MAXREPEL)
-             pbMessage(_INTL("Which one?\\ch[34,2,Repel]"))
-             if pbGet(34) == 0
-               pbUseItem($PokemonBag,:REPEL)
-             end
-           elsif !$PokemonBag.pbHasItem?(:REPEL) && $PokemonBag.pbHasItem?(:SUPERREPEL) && !$PokemonBag.pbHasItem?(:MAXREPEL)
-             pbMessage(_INTL("\\ch[34,2,Super Repel]"))
-             if pbGet(34) == 0
-               pbUseItem($PokemonBag,:SUPERREPEL)
-             end
-           elsif !$PokemonBag.pbHasItem?(:REPEL) && !$PokemonBag.pbHasItem?(:SUPERREPEL) && $PokemonBag.pbHasItem?(:MAXREPEL)
-             pbMessage(_INTL("\\ch[34,2,Max Repel]"))
-             if pbGet(34) == 0
-               pbUseItem($PokemonBag,:MAXREPEL)
-             end
-           elsif $PokemonBag.pbHasItem?(:REPEL) && $PokemonBag.pbHasItem?(:SUPERREPEL) && !$PokemonBag.pbHasItem?(:MAXREPEL)
-             pbMessage(_INTL("\\ch[34,3,Repel,Super Repel]"))
-             if pbGet(34) == 0
-               pbUseItem($PokemonBag,:REPEL)
-             elsif pbGet(34) == 1
-               pbUseItem($PokemonBag,:SUPERREPEL)
-             end
-           elsif !$PokemonBag.pbHasItem?(:REPEL) && $PokemonBag.pbHasItem?(:SUPERREPEL) && $PokemonBag.pbHasItem?(:MAXREPEL)
-             pbMessage(_INTL("\\ch[34,3,Super Repel,Max Repel]"))
-             if pbGet(34) == 0
-               pbUseItem($PokemonBag,:SUPERREPEL)
-             elsif pbGet(34) == 1
-               pbUseItem($PokemonBag,:MAXREPEL)
-             end
-           elsif $PokemonBag.pbHasItem?(:REPEL) && !$PokemonBag.pbHasItem?(:SUPERREPEL) && $PokemonBag.pbHasItem?(:MAXREPEL)
-             pbMessage(_INTL("\\ch[34,3,Repel,Max Repel]"))
-             if pbGet(34) == 0
-               pbUseItem($PokemonBag,:REPEL)
-             elsif pbGet(34) == 1
-               pbUseItem($PokemonBag,:MAXREPEL)
-             end
-           elsif $PokemonBag.pbHasItem?(:REPEL) && $PokemonBag.pbHasItem?(:SUPERREPEL) && $PokemonBag.pbHasItem?(:MAXREPEL)
-             pbMessage(_INTL("\\ch[34,3,Repel,Super Repel,Max Repel]"))
-             if pbGet(34) == 0
-               pbUseItem($PokemonBag,:REPEL)
-             elsif pbGet(34) == 1
-               pbUseItem($PokemonBag,:SUPERREPEL)
-             elsif pbGet(34) == 2
-               pbUseItem($PokemonBag,:MAXREPEL)
-             end
-           end
-         end
+        if pbConfirmMessage(_INTL("The repellent's effect wore off! Would you like to use another one?"))
+          ret = nil
+          pbFadeOutIn {
+            scene = PokemonBag_Scene.new
+            screen = PokemonBagScreen.new(scene,$PokemonBag)
+            ret = screen.pbChooseItemScreen(Proc.new { |item|
+              [:REPEL, :SUPERREPEL, :MAXREPEL].include?(item)
+            })
+          }
+          pbUseItem($PokemonBag,ret) if ret
+        end
       else
         pbMessage(_INTL("The repellent's effect wore off!"))
       end
@@ -983,7 +946,7 @@ ItemHandlers::UseOnPokemon.add(:DNASPLICERS,proc { |item,pkmn,scene|
     next false
   end
   # Fusing
-  if pkmn.fused==nil
+  if pkmn.fused.nil?
     chosen = scene.pbChoosePokemon(_INTL("Fuse with which Pokémon?"))
     next false if chosen<0
     poke2 = $Trainer.party[chosen]
@@ -1036,7 +999,7 @@ ItemHandlers::UseOnPokemon.add(:NSOLARIZER,proc { |item,pkmn,scene|
     next false
   end
   # Fusing
-  if pkmn.fused==nil
+  if pkmn.fused.nil?
     chosen = scene.pbChoosePokemon(_INTL("Fuse with which Pokémon?"))
     next false if chosen<0
     poke2 = $Trainer.party[chosen]
@@ -1085,7 +1048,7 @@ ItemHandlers::UseOnPokemon.add(:NLUNARIZER,proc { |item,pkmn,scene|
     next false
   end
   # Fusing
-  if pkmn.fused==nil
+  if pkmn.fused.nil?
     chosen = scene.pbChoosePokemon(_INTL("Fuse with which Pokémon?"))
     next false if chosen<0
     poke2 = $Trainer.party[chosen]

@@ -692,7 +692,7 @@ class PokeBattle_AI
 			end
 			# Pick a good move for the Choice items
 			if user.hasActiveItem?([:CHOICEBAND,:CHOICESPECS,:CHOICESCARF])
-				if user.effects[PBEffects::ChoiceBand]>=0 && move.id == user.effects[PBEffects::ChoiceBand]
+				if user.effects[PBEffects::ChoiceBand] != -1 && move.id == user.effects[PBEffects::ChoiceBand]
 					score += 100
 					shouldSwitch = false if @battle.pbSideSize(user.index)==1
 			  elsif move.baseDamage>=60;     score += 60

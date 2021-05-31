@@ -1,0 +1,45 @@
+#-------------------------------
+[RIVAL1]
+BattleBGM        = HGSS-138-RivalBattle.ogg
+#-------------------------------
+[RIVAL1,Blue]
+BattleVS         = forestSM
+#-------------------------------
+[RIVAL1,Blue,1]
+BattleVS         = flamesSM
+#-------------------------------
+[RIVAL1,Blue,2]
+BattleVS         = wavesSM
+#-------------------------------
+[LEADER_Brock]
+TrainerPositionX = -8
+BattleEnv        = STAGE
+BattleVS         = classicVS
+#-------------------------------
+[LEADER_Brock,Brock]
+BattleScript     = BROCK
+#-------------------------------
+[TEAMROCKET_M]
+BattleIntro      = evilTeam
+BattleVS         = trainerSM
+#-------------------------------
+[TEAMROCKET_F]
+BattleIntro      = evilTeam
+BattleVS         = trainerSM
+#-------------------------------
+[LEADER_Boris]
+BattleEnv        = INDOOR
+BattleVS         = classicVS
+#-------------------------------
+[LEADER_Ozzy]
+BattleEnv        = INDOOR
+BattleVS         = classicVS
+#-------------------------------
+[LEADER_Ralph]
+BattleEnv        = INDOOR
+BattleVS         = classicVS
+#-------------------------------
+[LEADER_Seth]
+BattleEnv        = INDOOR
+BattleVS         = classicVS
+#-------------------------------

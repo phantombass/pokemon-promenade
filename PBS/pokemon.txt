@@ -2367,7 +2367,7 @@ BattlerEnemyX = 5
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = VICTREEBEL,Item,LEAFSTONE
+Evolutions = VICTREEBEL,Item,LEAFSTONE,BELLOOM,HasMove,RHYTHMICRUSH
 #-------------------------------
 [71]
 Name = Victreebel
@@ -2609,7 +2609,7 @@ BattlerEnemyX = 5
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = RAPIDASH,Level,40
+Evolutions = RAPIDASH,Level,40,PEGASOOT,Item,PIXIEDUST
 #-------------------------------
 [78]
 Name = Rapidash
@@ -7809,7 +7809,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 24
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = DONPHAN,Level,25
+Evolutions = DONPHAN,Level,25,PHANFAIR,ZharoPhanpy,25
 #-------------------------------
 [232]
 Name = Donphan
@@ -15066,7 +15066,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 19
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = LUCARIO,HappinessDay,
+Evolutions = LUCARIO,Flarocuda,129
 #-------------------------------
 [448]
 Name = Lucario
@@ -17503,6 +17503,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 16
 BattlerShadowX = 0
 BattlerShadowSize = 3
+Evolutions = ZEBOLTRA,Fairicuda,165
 #-------------------------------
 [524]
 Name = Roggenrola
@@ -18600,6 +18601,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 14
 BattlerShadowX = 0
 BattlerShadowSize = 2
+Evolutions = CACTAMBORINE,Level,33
 #-------------------------------
 [557]
 Name = Dwebble
@@ -18740,7 +18742,7 @@ BattlerShadowSize = 2
 [561]
 Name = Sigilyph
 InternalName = SIGILYPH
-Type1 = PSYCHIC
+Type1 = COSMIC
 Type2 = FLYING
 BaseStats = 72,58,80,97,103,80
 GenderRate = Female50Percent
@@ -18749,9 +18751,9 @@ BaseEXP = 172
 EffortPoints = 0,0,0,0,2,0
 Rareness = 45
 Happiness = 70
-Abilities = WONDERSKIN,MAGICGUARD
+Abilities = GALEFORCE,MAGICGUARD
 HiddenAbility = TINTEDLENS
-Moves = 1,GUST,1,MIRACLEEYE,4,HYPNOSIS,8,PSYWAVE,11,TAILWIND,14,WHIRLWIND,18,PSYBEAM,21,AIRCUTTER,24,LIGHTSCREEN,28,REFLECT,31,SYNCHRONOISE,34,MIRRORMOVE,38,GRAVITY,41,AIRSLASH,44,PSYCHIC,48,COSMICPOWER,50,SKYATTACK
+Moves = 1,GUST,1,MIRACLEEYE,4,HYPNOSIS,8,STELLARWIND,11,TAILWIND,14,WHIRLWIND,18,AURORABEAM,21,AIRCUTTER,24,LIGHTSCREEN,28,REFLECT,31,AIRSLASH,34,MIRRORMOVE,38,GRAVITY,41,WINDDRILL,44,STARBEAM,48,COSMICPOWER,50,ASTROBOMB
 TutorMoves = WEATHERBALL,AERIALACE,ATTRACT,CALMMIND,CHARGEBEAM,CONFIDE,DARKPULSE,DAZZLINGGLEAM,DEFOG,DOUBLETEAM,DREAMEATER,ENERGYBALL,FACADE,FLASHCANNON,FLY,FRUSTRATION,GRAVITY,HEATWAVE,HIDDENPOWER,HYPERBEAM,ICEBEAM,ICYWIND,LIGHTSCREEN,MAGICCOAT,MAGICROOM,PROTECT,PSYCHIC,PSYCHUP,PSYSHOCK,RAINDANCE,REFLECT,REST,RETURN,ROOST,ROUND,SAFEGUARD,SHADOWBALL,SHOCKWAVE,SIGNALBEAM,SKILLSWAP,SKYATTACK,SLEEPTALK,SMACKDOWN,SNORE,SOLARBEAM,STEELWING,SUBSTITUTE,SWAGGER,TAILWIND,TELEKINESIS,THIEF,THUNDERWAVE,TOXIC,TRICK,TRICKROOM,ZENHEADBUTT
 EggMoves = ANCIENTPOWER,FUTURESIGHT,PSYCHOSHIFT,ROOST,SKILLSWAP,STEELWING,STOREDPOWER
 Compatibility = Flying
@@ -18801,7 +18803,7 @@ BattlerEnemyX = 2
 BattlerEnemyY = 12
 BattlerShadowX = 0
 BattlerShadowSize = 1
-Evolutions = COFAGRIGUS,Level,34
+Evolutions = RUNERIGUS,Location,32,COFAGRIGUS,Ferrocuda,281
 #-------------------------------
 [563]
 Name = Cofagrigus
@@ -30260,7 +30262,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 37
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = FERROCUDA,Ferrocuda,80,FLORACUDA,Floracuda,152,FLAROCUDA,Flarocuda,129,FEAROCUDA,Fearocuda,195,FAIRICUDA,Fairicuda,165,FRIOCUDA,Friocuda,207
+Evolutions = FERROCUDA,Ferrocuda,281,FLORACUDA,Floracuda,152,FLAROCUDA,Flarocuda,129,FEAROCUDA,Fearocuda,195,FAIRICUDA,Fairicuda,165,FRIOCUDA,Friocuda,207
 #-------------------------------
 [925]
 Name = Ferrocuda

@@ -349,8 +349,11 @@ class PokeBattle_AI
     end
     if skill>=PBTrainerAI.bestSkill && target.itemActive?
       # NOTE: Type-weakening berries aren't suitable for checking at the start
-      #       of the round.l
-        BattleHandlers.triggerDamageCalcTargetItem(target.item,user,target,move,multipliers,baseDmg,type)
+      #       of the round.
+      if target.item && !target.item.is_berry?
+        BattleHandlers.triggerDamageCalcTargetItem(target.item,
+           user,target,move,multipliers,baseDmg,type)
+      end
     end
     # Global abilities
     if skill>=PBTrainerAI.mediumSkill
