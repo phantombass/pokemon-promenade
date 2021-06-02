@@ -3689,3 +3689,43 @@ BattlerAltitude = 0
 BattlerPlayerY  = 14
 BattlerEnemyY   = 16
 BattlerAltitude = 0
+#-------------------------------
+[HOPPALM]
+SpriteScaleEnemy = 1
+#-------------------------------
+[CHARPHINCH]
+SpriteScaleEnemy = 1
+#-------------------------------
+[BARBOL]
+SpriteScaleEnemy = 1
+#-------------------------------
+[PLOVERT]
+SpriteScaleEnemy = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[SPECIDAE]
+BattlerAltitude = 0
+BattlerEnemyY   = 46
+#-------------------------------
+[STONAT]
+SpriteScaleEnemy = 1
+#-------------------------------
+[MAGATE]
+SpriteScaleEnemy = 1
+#-------------------------------
+[SCAREUB]
+SpriteScaleEnemy = 1
+#-------------------------------
+[JERBUZZ]
+SpriteScaleEnemy = 1
+#-------------------------------
+[ALKALEON]
+SpriteScaleEnemy = 1
+#-------------------------------
+[DRAKEON]
+SpriteScaleEnemy = 1
+#-------------------------------
+[ASTREON]
+SpriteScaleEnemy = 1
+#-------------------------------

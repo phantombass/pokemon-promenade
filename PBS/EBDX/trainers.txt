@@ -43,3 +43,15 @@ BattleVS         = classicVS
 BattleEnv        = INDOOR
 BattleVS         = classicVS
 #-------------------------------
+[LEADER_Boris,"Boris"]
+BattleScript     = BORIS
+#-------------------------------
+[LEADER_Ozzy,"Ozzy"]
+BattleScript     = OZZY
+#-------------------------------
+[LEADER_Ralph,"Ralph"]
+BattleScript     = RALPH
+#-------------------------------
+[LEADER_Seth,"Seth"]
+BattleScript     = SETH
+#-------------------------------
