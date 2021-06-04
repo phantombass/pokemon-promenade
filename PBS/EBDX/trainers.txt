@@ -1,15 +1,25 @@
 #-------------------------------
 [RIVAL1]
 BattleBGM        = HGSS-138-RivalBattle.ogg
+BattleVS         = classicVS
 #-------------------------------
 [RIVAL1,Blue]
-BattleVS         = forestSM
+BattleScript     = RIVAL1
 #-------------------------------
 [RIVAL1,Blue,1]
-BattleVS         = flamesSM
+BattleScript     = RIVAL1
 #-------------------------------
 [RIVAL1,Blue,2]
-BattleVS         = wavesSM
+BattleScript     = RIVAL1
+#-------------------------------
+[RIVAL1,Blue,3]
+BattleScript     = RIVAL2
+#-------------------------------
+[RIVAL1,Blue,4]
+BattleScript     = RIVAL2
+#-------------------------------
+[RIVAL1,Blue,5]
+BattleScript     = RIVAL2
 #-------------------------------
 [LEADER_Brock]
 TrainerPositionX = -8

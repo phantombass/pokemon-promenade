@@ -25,55 +25,30 @@ module Items
   HikingGear = 88
 end
 
-ItemHandlers::UseFromBag.add(:ITEMCRAFTER,proc { |item|
-  next 2
-})
-
-ItemHandlers::UseInField.add(:ITEMCRAFTER,proc { |item|
-  useItemCrafter
-})
-
-def useItemCrafter
-  pbMessage(_INTL("What would you like to Craft?\\ch[34,11,Chainsaw,Torch,Fulcrum,Hiking Gear,Aqua Rocket, Scuba Tank,Hovercraft,Escape Rope,Hammer,Wingsuit]"))
-  choice = $game_variables[Items::Choice]
-  case choice
-  when 0; pbItemcraft(GameData::Item.get(:CHAINSAW))
-  when 1; pbItemcraft(GameData::Item.get(:TORCH))
-  when 2; pbItemcraft(GameData::Item.get(:FULCRUM))
-  when 3; pbItemcraft(GameData::Item.get(:HIKINGGEAR))
-  when 4; pbItemcraft(GameData::Item.get(:AQUAROCKET))
-  when 5; pbItemcraft(GameData::Item.get(:SCUBATANK))
-  when 6; pbItemcraft(GameData::Item.get(:HOVERCRAFT))
-  when 7; pbItemcraft(GameData::Item.get(:ESCAPEROPE))
-  when 8; pbItemcraft(GameData::Item.get(:HAMMER))
-  when 9; pbItemcraft(GameData::Item.get(:WINGSUIT))
-  end
-end
-
 def canItemCraft?(item)
   itemName = GameData::Item.get(item).name
   return false if $PokemonBag.pbHasItem?(item)
   case itemName
   when "Wingsuit"
-    return true if $PokemonBag.pbHasItem?(:WINGSUIT1) && $PokemonBag.pbHasItem?(:WINGSUIT2) && $PokemonBag.pbHasItem?(:WINGSUIT3)
+    return true if $PokemonBag.pbHasItem?(:PRETTYWING) && $PokemonBag.pbHasItem?(:AIRBALLOON) && $PokemonBag.pbHasItem?(:SAFETYGOGGLES)
   when "Torch"
-    return true if $PokemonBag.pbHasItem?(:TORCH1) && $PokemonBag.pbHasItem?(:TORCH2) && $PokemonBag.pbHasItem?(:TORCH3)
+    return true if $PokemonBag.pbHasItem?(:CELLBATTERY) && $PokemonBag.pbHasItem?(:BRIGHTPOWDER) && $PokemonBag.pbHasItem?(:IRON)
   when "Chainsaw"
-    return true if $PokemonBag.pbHasItem?(:CHAINSAW1) && $PokemonBag.pbHasItem?(:CHAINSAW2) && $PokemonBag.pbHasItem?(:CHAINSAW3)
+    return true if $PokemonBag.pbHasItem?(:LEEK) && $PokemonBag.pbHasItem?(:METALCOAT) && $PokemonBag.pbHasItem?(:RAZORCLAW)
   when "Hammer"
-    return true if $PokemonBag.pbHasItem?(:HAMMER1) && $PokemonBag.pbHasItem?(:HAMMER2) && $PokemonBag.pbHasItem?(:HAMMER3)
+    return true if $PokemonBag.pbHasItem?(:LEEK) && $PokemonBag.pbHasItem?(:METALCOAT) && $PokemonBag.pbHasItem?(:THICKCLUB)
   when "Hovercraft"
-    return true if $PokemonBag.pbHasItem?(:HOVER1) && $PokemonBag.pbHasItem?(:HOVER2) && $PokemonBag.pbHasItem?(:HOVER3)
+    return true if $PokemonBag.pbHasItem?(:SPLASHPLATE) && $PokemonBag.pbHasItem?(:MYSTICWATER) && $PokemonBag.pbHasItem?(:FRESHWATER)
   when "Aqua Rocket"
-    return true if $PokemonBag.pbHasItem?(:ROCKET1) && $PokemonBag.pbHasItem?(:ROCKET2) && $PokemonBag.pbHasItem?(:ROCKET3)
+    return true if $PokemonBag.pbHasItem?(:DESTINYKNOT) && $PokemonBag.pbHasItem?(:EJECTBUTTON) && $PokemonBag.pbHasItem?(:MYSTICWATER)
   when "Scuba Tank"
-    return true if $PokemonBag.pbHasItem?(:SCUBA1) && $PokemonBag.pbHasItem?(:SCUBA2) && $PokemonBag.pbHasItem?(:SCUBA3)
+    return true if $PokemonBag.pbHasItem?(:PROTECTIVEPADS) && $PokemonBag.pbHasItem?(:METALCOAT) && $PokemonBag.pbHasItem?(:MYSTICWATER)
   when "Fulcrum"
-    return true if $PokemonBag.pbHasItem?(:FULCRUM1) && $PokemonBag.pbHasItem?(:FULCRUM2) && $PokemonBag.pbHasItem?(:FULCRUM3)
+    return true if $PokemonBag.pbHasItem?(:PROTEIN) && $PokemonBag.pbHasItem?(:HARDSTONE) && $PokemonBag.pbHasItem?(:LUCKYPUNCH)
   when "Hiking Gear"
-    return true if $PokemonBag.pbHasItem?(:HIKE1) && $PokemonBag.pbHasItem?(:HIKE2) && $PokemonBag.pbHasItem?(:HIKE3)
+    return true if $PokemonBag.pbHasItem?(:DESTINYKNOT) && $PokemonBag.pbHasItem?(:STICKYBARB) && $PokemonBag.pbHasItem?(:IRON)
   when "Escape Rope"
-    return true if $PokemonBag.pbHasItem?(:ESCAPE1) && $PokemonBag.pbHasItem?(:ESCAPE2) && $PokemonBag.pbHasItem?(:ESCAPE3)
+    return true if $PokemonBag.pbHasItem?(:DESTINYKNOT) && $PokemonBag.pbHasItem?(:METALCOAT) && $PokemonBag.pbHasItem?(:BRIGHTPOWDER)
   end
 end
 
@@ -81,41 +56,43 @@ def pbItemcraft(item)
   itemName = GameData::Item.get(item).name
   if !canItemCraft?(item)
     if $PokemonBag.pbHasItem?(item)
-      pbMessage(_INTL("You already have a {1}! You do not need another!",itemName))
+      pbCallBub(2,@event_id)
+      pbMessage(_INTL("<c2=7FE00000>You already have a {1}! You do not need another!</c2>",itemName))
     else
-      pbMessage(_INTL("It appears you do not have the required items to craft the {1} yet.",itemName))
+      pbCallBub(2,@event_id)
+      pbMessage(_INTL("<c2=7FE00000>It appears you do not have the required items to craft the {1} yet.</c2>",itemName))
     end
   end
   if canItemCraft?(item)
   case itemName
   when "Wingsuit"
-    $PokemonBag.pbDeleteItem(:WINGSUIT1,1)
-    $PokemonBag.pbDeleteItem(:WINGSUIT2,1)
-    $PokemonBag.pbDeleteItem(:WINGSUIT3,1)
+    $PokemonBag.pbDeleteItem(:PRETTYWING,1)
+    $PokemonBag.pbDeleteItem(:AIRBALLOON,1)
+    $PokemonBag.pbDeleteItem(:SAFETYGOGGLES,1)
     pbReceiveItem(:WINGSUIT)
     $game_variables[Items::Wingsuit] = 1
   when "Torch"
-    $PokemonBag.pbDeleteItem(:TORCH1,1)
-    $PokemonBag.pbDeleteItem(:TORCH2,1)
-    $PokemonBag.pbDeleteItem(:TORCH3,1)
+    $PokemonBag.pbDeleteItem(:CELLBATTERY,1)
+    $PokemonBag.pbDeleteItem(:BRIGHTPOWDER,1)
+    $PokemonBag.pbDeleteItem(:IRON,1)
     pbReceiveItem(:TORCH)
     $game_variables[Items::Torch] = 1
   when "Chainsaw"
-    $PokemonBag.pbDeleteItem(:CHAINSAW1,1)
-    $PokemonBag.pbDeleteItem(:CHAINSAW2,1)
-    $PokemonBag.pbDeleteItem(:CHAINSAW3,1)
+    $PokemonBag.pbDeleteItem(:LEEK,1)
+    $PokemonBag.pbDeleteItem(:METALCOAT,1)
+    $PokemonBag.pbDeleteItem(:RAZORCLAW,1)
     pbReceiveItem(:CHAINSAW)
     $game_variables[Items::Chainsaw] = 1
   when "Hammer"
-    $PokemonBag.pbDeleteItem(:HAMMER1,1)
-    $PokemonBag.pbDeleteItem(:HAMMER2,1)
-    $PokemonBag.pbDeleteItem(:HAMMER3,1)
+    $PokemonBag.pbDeleteItem(:LEEK,1)
+    $PokemonBag.pbDeleteItem(:METALCOAT,1)
+    $PokemonBag.pbDeleteItem(:THICKCLUB,1)
     pbReceiveItem(:HAMMER)
     $game_variables[Items::Hammer] = 1
   when "Hovercraft"
-    $PokemonBag.pbDeleteItem(:HOVER1,1)
-    $PokemonBag.pbDeleteItem(:HOVER2,1)
-    $PokemonBag.pbDeleteItem(:HOVER3,1)
+    $PokemonBag.pbDeleteItem(:FRESHWATER,1)
+    $PokemonBag.pbDeleteItem(:SPLASHPLATE,1)
+    $PokemonBag.pbDeleteItem(:MYSTICWATER,1)
     pbReceiveItem(:HOVERCRAFT)
     $game_variables[Items::Hovercraft] = 1
   when "Aqua Rocket"
@@ -131,9 +108,9 @@ def pbItemcraft(item)
     pbReceiveItem(:SCUBATANK)
     $game_variables[Items::ScubaTank] = 1
   when "Fulcrum"
-    $PokemonBag.pbDeleteItem(:FULCRUM1,1)
-    $PokemonBag.pbDeleteItem(:FULCRUM2,1)
-    $PokemonBag.pbDeleteItem(:FULCRUM3,1)
+    $PokemonBag.pbDeleteItem(:PROTEIN,1)
+    $PokemonBag.pbDeleteItem(:HARDSTONE,1)
+    $PokemonBag.pbDeleteItem(:LUCKYPUNCH,1)
     pbReceiveItem(:FULCRUM)
     $game_variables[Items::Fulcrum] = 1
   when "Hiking Gear"
@@ -143,9 +120,9 @@ def pbItemcraft(item)
     pbReceiveItem(:HIKINGGEAR)
     $game_variables[Items::HikingGear] = 1
   when "Escape Rope"
-    $PokemonBag.pbDeleteItem(:ESCAPE1,1)
-    $PokemonBag.pbDeleteItem(:ESCAPE2,1)
-    $PokemonBag.pbDeleteItem(:ESCAPE3,1)
+    $PokemonBag.pbDeleteItem(:DESTINYKNOT,1)
+    $PokemonBag.pbDeleteItem(:METALCOAT,1)
+    $PokemonBag.pbDeleteItem(:BRIGHTPOWDER,1)
     pbReceiveItem(:ESCAPEROPE)
   end
 end

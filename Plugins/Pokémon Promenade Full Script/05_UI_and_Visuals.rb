@@ -1077,3 +1077,88 @@ class BattleSceneRoom
     end
   end
 end
+
+
+class PokemonOption_Scene
+  def pbStartScene(inloadscreen=false)
+    @sprites = {}
+    @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
+    @viewport.z = 99999
+    @sprites["title"] = Window_UnformattedTextPokemon.newWithSize(
+       _INTL("Options"),0,0,Graphics.width,64,@viewport)
+    @sprites["textbox"] = pbCreateMessageWindow
+    @sprites["textbox"].text           = _INTL("Speech frame {1}.",1+$PokemonSystem.textskin)
+    @sprites["textbox"].letterbyletter = false
+    pbSetSystemFont(@sprites["textbox"].contents)
+    # These are the different options in the game. To add an option, define a
+    # setter and a getter for that option. To delete an option, comment it out
+    # or delete it. The game's options may be placed in any order.
+    @PokemonOptions = [
+       SliderOption.new(_INTL("Music Volume"),0,100,5,
+         proc { $PokemonSystem.bgmvolume },
+         proc { |value|
+           if $PokemonSystem.bgmvolume!=value
+             $PokemonSystem.bgmvolume = value
+             if $game_system.playing_bgm!=nil && !inloadscreen
+               playingBGM = $game_system.getPlayingBGM
+               $game_system.bgm_pause
+               $game_system.bgm_resume(playingBGM)
+             end
+           end
+         }
+       ),
+       SliderOption.new(_INTL("SE Volume"),0,100,5,
+         proc { $PokemonSystem.sevolume },
+         proc { |value|
+           if $PokemonSystem.sevolume!=value
+             $PokemonSystem.sevolume = value
+             if $game_system.playing_bgs!=nil
+               $game_system.playing_bgs.volume = value
+               playingBGS = $game_system.getPlayingBGS
+               $game_system.bgs_pause
+               $game_system.bgs_resume(playingBGS)
+             end
+             pbPlayCursorSE
+           end
+         }
+       ),
+       EnumOption.new(_INTL("Text Speed"),[_INTL("Slow"),_INTL("Normal"),_INTL("Fast")],
+         proc { $PokemonSystem.textspeed },
+         proc { |value|
+           $PokemonSystem.textspeed = value
+           MessageConfig.pbSetTextSpeed(MessageConfig.pbSettingToTextSpeed(value))
+         }
+       ),
+       EnumOption.new(_INTL("Battle Effects"),[_INTL("On"),_INTL("Off")],
+         proc { $PokemonSystem.battlescene },
+         proc { |value| $PokemonSystem.battlescene = value }
+       ),
+       EnumOption.new(_INTL("Default Movement"),[_INTL("Walking"),_INTL("Running")],
+         proc { $PokemonSystem.runstyle },
+         proc { |value| $PokemonSystem.runstyle = value }
+       ),
+       EnumOption.new(_INTL("Screen Size"),[_INTL("S"),_INTL("M"),_INTL("L"),_INTL("XL"),_INTL("Full")],
+         proc { [$PokemonSystem.screensize, 4].min },
+         proc { |value|
+           if $PokemonSystem.screensize != value
+             $PokemonSystem.screensize = value
+             pbSetResizeFactor($PokemonSystem.screensize)
+           end
+         }
+       )
+    ]
+    @PokemonOptions = pbAddOnOptions(@PokemonOptions)
+    @sprites["option"] = Window_PokemonOption.new(@PokemonOptions,0,
+       @sprites["title"].height,Graphics.width,
+       Graphics.height-@sprites["title"].height-@sprites["textbox"].height)
+    @sprites["option"].viewport = @viewport
+    @sprites["option"].visible  = true
+    # Get the values of each option
+    for i in 0...@PokemonOptions.length
+      @sprites["option"].setValueNoRefresh(i,(@PokemonOptions[i].get || 0))
+    end
+    @sprites["option"].refresh
+    pbDeactivateWindows(@sprites)
+    pbFadeInAndShow(@sprites) { pbUpdate }
+  end
+end

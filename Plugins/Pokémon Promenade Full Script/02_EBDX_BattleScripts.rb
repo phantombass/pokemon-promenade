@@ -255,23 +255,26 @@ module BattleScripts
     "turnStart0" => "Let's see just what you're made of!"
     }
 
-RALPH = {
-    "lastOpp" => proc do
-              @scene.pbTrainerSpeak("May the sun rise on our victory!")
-              @sprites["battlebg"].reconfigure(:MAGMA, :DISTORTION)
-              @battle.field.defaultWeather = :HarshSun
-              @battle.field.weather = :HarshSun
-              @scene.pbDisplay("The sun returned and intensified!")
-              @scene.wait(16,false)
-              EliteBattle.playCommonAnimation(:BURN,@scene,0)
-              @battle.battlers[0].status = :BURN
-              burnAllPokemon(nil)
-              @scene.pbDisplay("The intense sun left \\PN's team burned!")
-            end,
-    "turnStart0" => "Let's get this place heated up!"
-            }
+  RALPH = {
+      "lastOpp" => proc do
+                @scene.pbTrainerSpeak("May the sun rise on our victory!")
+                @sprites["battlebg"].reconfigure(:MAGMA, :DISTORTION)
+                @battle.field.defaultWeather = :HarshSun
+                @battle.field.weather = :HarshSun
+                @scene.pbDisplay("The sun returned and intensified!")
+                @scene.wait(16,false)
+                EliteBattle.playCommonAnimation(:BURN,@scene,0)
+                @battle.battlers[0].status = :BURN
+                burnAllPokemon(nil)
+                @scene.pbDisplay("The intense sun left \\PN's team burned!")
+              end,
+      "turnStart0" => "Let's get this place heated up!"
+              }
 
   RIVAL1 = { "turnStart0" => "I'm so stoked to see your Pokémon!",
              "lowHPOpp" => "Whoa, that little guy is strong!"
-  }
+           }
+  RIVAL2 = { "turnStart0" => "Let's see what kind of team you're rocking!",
+            "lowHPOpp" => "Oh this is gonna be a good battle!"
+           }
 end
