@@ -234,6 +234,12 @@ EliteBattle.defineMoveAnimation(:TIMEWIND) do
   @scene.wait(16,true)
 end
 
+#=====================
+#
+#Mid Battle Scripts
+#
+#=====================
+
 module BattleScripts
   BORIS = {
     "lastOpp" => proc do
