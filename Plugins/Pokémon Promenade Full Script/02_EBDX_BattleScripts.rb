@@ -382,7 +382,6 @@ module BattleScripts
 MARIE = {
     "turnStart0" => proc do
               @scene.pbTrainerSpeak("Be prepared for the terrible sound of defeat!")
-              @sprites["battlebg"].reconfigure(:GUARDIAN, :DISTORTION)
               @battle.field.weather = :Reverb
               @battle.field.weatherDuration = 8
               @scene.pbDisplay("An echo chamber surrounds the field!")
@@ -411,7 +410,6 @@ MARIE = {
 BURT = {
   "turnStart0" => proc do
                     @scene.pbTrainerSpeak("It takes more than just power to win some battles!")
-                    @sprites["battlebg"].reconfigure(:GUARDIAN, :DISTORTION)
                     @battle.field.weather = :Humid
                     @battle.field.weatherDuration = 8
                     @scene.pbDisplay("The air becomes humid!")
@@ -441,7 +439,6 @@ BURT = {
 TIM = {
   "turnStart0" => proc do
                     @scene.pbTrainerSpeak("The wind is at our backs!")
-                    @sprites["battlebg"].reconfigure(:GUARDIAN, :DISTORTION)
                     @battle.field.defaultWeather = :HeavyRain
                     @battle.field.weather = :HeavyRain
                     @scene.pbDisplay("Rain comes crashing down!")
@@ -475,7 +472,6 @@ TIM = {
 ANDY = {
     "turnStart0" => proc do
                   @scene.pbTrainerSpeak("The end shall come quickly...")
-                  @sprites["battlebg"].reconfigure(:GUARDIAN, :DISTORTION)
                   @battle.field.weather = :TimeWarp
                   @battle.field.weatherDuration = 8
                   @scene.pbDisplay("Time stood still!")
@@ -506,6 +502,82 @@ ANDY = {
                 end
                 }
 
+OWEN = {
+    "turnStart0" => proc do
+                  @scene.pbTrainerSpeak("I've been looking forward to this battle!")
+                  @battle.field.weather = :Rain
+                  @battle.field.weatherDuration = 8
+                  @scene.pbDisplay("Rain began to fall!")
+                  @scene.wait(16,false)
+                  @battle.field.terrain = PBBattleTerrains::Psychic
+                  @battle.field.terrainDuration = 5
+                  @scene.pbDisplay("The battlefield got weird!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
+                  @battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
+                  @scene.pbDisplay("Owen set up Comet Shards on \\PN's side!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                  @scene.pbDisplay("Owen set up a protective veil of light!")
+
+                end,
+    "lowHPOpp" => proc do
+                  @scene.pbTrainerSpeak("This is getting really good! Let's finish this out!")
+                  @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
+                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/2)
+                  @battle.battlers[1].status = 0
+                  @scene.pbDisplay("Sobekodile tried its hardest for Owen!")
+                  @scene.pbDisplay("Sobekodile recovered some HP and cured its status!")
+                  @scene.wait(16,false)
+                  @battlers[1].pbRaiseStatStageBasic(:SPEED,1)
+                  @scene.wait(16,false)
+                  @scene.pbDisplay("Sobekodile's Speed rose!")
+                  @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:POISON,@scene,0)
+                  @battle.battlers[0].status = :POISON
+                  @battle.battlers[0].effects[PBEffects::Toxic]
+                  poisonAllPokemon(nil)
+                  @scene.pbDisplay("Owen badly poisoned your party!")
+                }
+
+TARA1 = {
+  "turnStart0" => proc do
+                  @scene.pbTrainerSpeak("Well child, let's see how you fare!")
+                  @battle.field.weather = :Starstorm
+                  @battle.field.weatherDuration = 8
+                  @scene.pbDisplay("Tara summoned a Starstorm!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(getID(PBMoves,:STEALTHROCK),battle.battlers[1],battle.battlers[0])
+                  @battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
+                  @scene.pbDisplay("Tara set up Comet Shards on \\PN's side!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                  @scene.pbDisplay("Tara set up a protective veil of light!")
+                end,
+"lowHPOpp" => proc do
+                  @scene.pbTrainerSpeak("Child, you're pushing me to my limits!")
+                  @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
+                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                  @battle.battlers[1].status = 0
+                  @scene.pbDisplay("Osiram tried its hardest for Tara!")
+                  @scene.pbDisplay("Osiram recovered some HP and cured its status!")
+                  @scene.wait(16,false)
+                  @battlers[1].pbRaiseStatStageBasic(:ATTACK,1)
+                  @scene.wait(16,false)
+                  @scene.pbDisplay("Osiram's Attack rose!")
+                  @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:POISON,@scene,0)
+                  @battle.battlers[0].status = :POISON
+                  @battle.battlers[0].effects[PBEffects::Toxic]
+                  poisonAllPokemon(nil)
+                  @scene.pbDisplay("Tara badly poisoned your party!")
+                end
+                }
+#
   RIVAL1 = { "turnStart0" => "I'm so stoked to see your Pokémon!",
              "lowHPOpp" => "Whoa, that little guy is strong!"
            }
