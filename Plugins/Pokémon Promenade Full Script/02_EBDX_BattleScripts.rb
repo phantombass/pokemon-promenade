@@ -31,6 +31,35 @@ module EliteBattle
   REPLACE_MISSING_ANIM = true
 end
 
+module EnvironmentEBDX
+  GUARDIAN = {
+    "backdrop" => "Sapphire",
+    "vacuum" => "dark006",
+    "img001" => {
+      :scrolling => true, :vertical => true, :speed => 1,
+      :bitmap => "decor003a",
+      :oy => 180, :y => 90, :flat => true
+    }, "img002" => {
+      :bitmap => "shade",
+      :oy => 100, :y => 98, :flat => false
+    }, "img003" => {
+      :scrolling => true, :speed => 16,
+      :bitmap => "decor005",
+      :oy => 0, :y => 4, :z => 4, :flat => true
+    }, "img004" => {
+      :scrolling => true, :speed => 16, :direction => -1,
+      :bitmap => "decor006",
+      :oy => 0, :z => 4, :flat => true
+    }, "img005" => {
+      :scrolling => true, :speed => 0.5,
+      :bitmap => "base001a",
+      :oy => 0, :y => 122, :z => 1, :flat => true
+    }, "img006" => {
+      :bitmap => "pillars",
+      :oy => 100, :x => 96, :y => 98, :flat => false, :zoom => 0.5
+    }
+  }
+end
 class PokeBattle_Battle
   def removeAllHazards
     if @battlers[0].pbOwnSide.effects[PBEffects::StealthRock] || @battlers[0].pbOpposingSide.effects[PBEffects::StealthRock]
@@ -241,13 +270,13 @@ module BattleScripts
     "lastOpp" => proc do
       @scene.pbTrainerSpeak("This battle may be saved yet! Observe, \\PN!")
       @sprites["battlebg"].reconfigure(:CAVE, :DISTORTION)
-      @battle.pbAnimation(getID(GameData::Move,:SANDSTORM),battle.battlers[1],battle.battlers[0])
+      @battle.pbAnimation(getID(GameData::Move,:SANDSTORM),@battle.battlers[1],@battle.battlers[0])
       @battle.field.weather = :Sandstorm
       @battle.field.weatherDuration = 8
       @scene.pbDisplay("The sandstorm resurged!")
       @scene.wait(16,false)
       if @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] == false
-        @battle.pbAnimation(getID(GameData::Move,:STEALTHROCK),battle.battlers[1],battle.battlers[0])
+        @battle.pbAnimation(getID(GameData::Move,:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
         @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] = true
         @scene.pbDisplay("Ozzy set Stealth Rocks on \\PN's side!")
       end
@@ -256,20 +285,220 @@ module BattleScripts
     }
 
   RALPH = {
-      "lastOpp" => proc do
-                @scene.pbTrainerSpeak("May the sun rise on our victory!")
-                @sprites["battlebg"].reconfigure(:MAGMA, :DISTORTION)
-                @battle.field.defaultWeather = :HarshSun
-                @battle.field.weather = :HarshSun
-                @scene.pbDisplay("The sun returned and intensified!")
-                @scene.wait(16,false)
-                EliteBattle.playCommonAnimation(:BURN,@scene,0)
-                @battle.battlers[0].status = :BURN
-                burnAllPokemon(nil)
-                @scene.pbDisplay("The intense sun left \\PN's team burned!")
-              end,
-      "turnStart0" => "Let's get this place heated up!"
+    "lastOpp" => proc do
+              @scene.pbTrainerSpeak("May the sun rise on our victory!")
+              @sprites["battlebg"].reconfigure(:MAGMA, :DISTORTION)
+              @battle.field.defaultWeather = :HarshSun
+              @battle.field.weather = :HarshSun
+              @scene.pbDisplay("The sun returned and intensified!")
+              @scene.wait(16,false)
+              EliteBattle.playCommonAnimation(:BURN,@scene,0)
+              @battle.battlers[0].status = :BURN
+              burnAllPokemon(nil)
+              @scene.pbDisplay("The intense sun left \\PN's team burned!")
+            end,
+    "turnStart0" => "Let's get this place heated up!"
+            }
+
+  DELTA = {
+    "lastOpp" => proc do
+              @scene.pbTrainerSpeak("It's time for the tidal wave to come crashing down!")
+              @sprites["battlebg"].reconfigure(:UNDERWATER, :DISTORTION)
+              @battle.field.defaultWeather = :HeavyRain
+              @battle.field.weather = :HeavyRain
+              @scene.pbDisplay("The rain returned and intensified!")
+              @scene.wait(16,false)
+              if @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] == false
+                @battle.pbAnimation(GameData::Move.get(:STEALTHROCK).id,@battle.battlers[1],@battle.battlers[0])
+                @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] = true
+                @scene.pbDisplay("Ozzy set Stealth Rocks on \\PN's side!")
+              end
+            end,
+    "turnStart0" => "Come at me with all you've got!"
+            }
+
+  SEBASTIAN = {
+    "lastOpp" => proc do
+              @scene.pbTrainerSpeak("It's time for the curtain call!")
+              @sprites["battlebg"].reconfigure(:STAGE, :DISTORTION)
+              @battle.field.weather = :Reverb
+              @battle.field.weatherDuration = 8
+              @scene.pbDisplay("The Echo Chamber returned!")
+              @scene.wait(16,false)
+              @battle.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
+              @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 3
+              @scene.pbDisplay("The reverberation shook 3 layers of Spikes onto \\PN's side!")
+            end,
+    "turnStart0" => "Come! Let us make a masterpiece!"
               }
+  ANN = {
+        "lastOpp" => proc do
+          @scene.pbTrainerSpeak("...let the shadows come to my side.")
+          @sprites["battlebg"].reconfigure(:DARKNESS, :DISTORTION)
+          @battle.field.weather = :TimeWarp
+          @battle.field.weatherDuration = 8
+          @scene.pbDisplay("Time stopped again!")
+          @scene.wait(16,false)
+          @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
+          @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)
+          @scene.pbDisplay("Ann's Pokémon boosted its Defense and Special Defense!")
+          @scene.wait(16,false)
+          @battle.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
+          @battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
+          @scene.pbDisplay("The shadows managed to sneak 2 layers of Toxic Spikes onto \\PN's side!")
+        end,
+        "turnStart0" => "...let's begin."
+      }
+
+  PHOEBE = {
+    "lastOpp" => proc do
+              @scene.pbTrainerSpeak("I haven't have a battle this intense in a long time!")
+              @battle.field.weather = :Fog
+              @battle.field.weatherDuration = 8
+              @scene.pbDisplay("Fog covers the field!")
+              @scene.wait(16,false)
+              @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
+              @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)
+              @scene.pbDisplay("Phoebe's Pokémon boosted its Defense and Special Defense!")
+              @scene.wait(16,false)
+              @battle.pbAnimation(GameData::Move.get(:STEALTHROCK).id,@battle.battlers[1],@battle.battlers[0])
+              @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] = true
+              @scene.wait(16,false)
+              @battle.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
+              @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 3
+              @scene.pbDisplay("Phoebe launched Stealth Rocks and 3 layers of Spikes onto \\PN's side!")
+            end,
+            "turnStart0" => "I'm excited to have my first Gym Battle!"
+            }
+#============================
+# Temple Guardian Battles
+#============================
+MARIE = {
+    "turnStart0" => proc do
+              @scene.pbTrainerSpeak("Be prepared for the terrible sound of defeat!")
+              @sprites["battlebg"].reconfigure(:GUARDIAN, :DISTORTION)
+              @battle.field.weather = :Reverb
+              @battle.field.weatherDuration = 8
+              @scene.pbDisplay("An echo chamber surrounds the field!")
+              @scene.wait(16,false)
+              if battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] == nil
+                @battle.pbAnimation(GameData::Move.get(:STEALTHROCK).id,@battle.battlers[1],@battle.battlers[0])
+                @battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
+                @scene.pbDisplay("Marie set Comet Shards on \\PN's side!")
+              end
+            end,
+
+"lowHPOpp" => proc do
+                @scene.pbTrainerSpeak("Don't think I've given up so soon!")
+                @scene.wait(16,false)
+                EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
+                @battle.battlers[1].pbRecoverHP(@battle.battlers[1].totalhp/3)
+                @scene.pbDisplay("Meritempo tried its hardest for Marie!")
+                @scene.pbDisplay("Meritempo recovered some HP!")
+                @scene.wait(16,false)
+                @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
+                @battlers[1].pbRaiseStatStageBasic(:SPEED,1)
+                @scene.wait(16,false)
+                @scene.pbDisplay("Meritempo's Defense and Speed rose!")
+              end
+              }
+BURT = {
+  "turnStart0" => proc do
+                    @scene.pbTrainerSpeak("It takes more than just power to win some battles!")
+                    @sprites["battlebg"].reconfigure(:GUARDIAN, :DISTORTION)
+                    @battle.field.weather = :Humid
+                    @battle.field.weatherDuration = 8
+                    @scene.pbDisplay("The air becomes humid!")
+                    @scene.wait(16,false)
+                    if @battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] == 0
+                      @battle.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
+                      @battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
+                      @scene.pbDisplay("Burt set Toxic Spikes on \\PN's side!")
+                    end
+                  end,
+"lowHPOpp" => proc do
+                    @scene.pbTrainerSpeak("I can't let you break through yet. We've just begun!")
+                    @scene.wait(16,false)
+                    EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
+                    @battle.battlers[1].pbRecoverHP(@battle.battlers[1].totalhp/3)
+                    @battle.battlers[1].status = 0
+                    @scene.pbDisplay("Centisepa tried its hardest for Burt!")
+                    @scene.pbDisplay("Centisepa recovered some HP and cured its status!")
+                    @scene.wait(16,false)
+                    @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
+                    @battlers[1].pbRaiseStatStageBasic(:SPDEF,1,)
+                    @scene.wait(16,false)
+                    @scene.pbDisplay("Centisepa's Defense and Special Defense rose!")
+                  end
+                  }
+
+TIM = {
+  "turnStart0" => proc do
+                    @scene.pbTrainerSpeak("The wind is at our backs!")
+                    @sprites["battlebg"].reconfigure(:GUARDIAN, :DISTORTION)
+                    @battle.field.defaultWeather = :HeavyRain
+                    @battle.field.weather = :HeavyRain
+                    @scene.pbDisplay("Rain comes crashing down!")
+                    @scene.wait(16,false)
+                    if battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] == 0
+                      @battle.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
+                      @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 1
+                      @scene.pbDisplay("Tim set a layer of Spikes on \\PN's side!")
+                    end
+                  end,
+  "lowHPOpp" => proc do
+                    @scene.pbTrainerSpeak("This storm could turn! Time to turn it up!")
+                    @scene.wait(16,false)
+                    EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
+                    @battle.battlers[1].pbRecoverHP(@battle.battlers[1].totalhp/2)
+                    @battle.battlers[1].status = 0
+                    @scene.pbDisplay("Orrustorm tried its hardest for Tim!")
+                    @scene.pbDisplay("Orrustorm recovered some HP and cured its status!")
+                    @scene.wait(16,false)
+                    @battlers[1].pbRaiseStatStageBasic(:SPEED,1)
+                    @battlers[1].pbRaiseStatStageBasic(:SPATK,1)
+                    @scene.wait(16,false)
+                    pbMessage("Orrustorm's Speed and Special Attack rose!")
+                    @scene.wait(16,false)
+                    @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                    @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 8
+                    @scene.pbDisplay("Tim set up a protective veil of light!")
+                  end
+      }
+
+ANDY = {
+    "turnStart0" => proc do
+                  @scene.pbTrainerSpeak("The end shall come quickly...")
+                  @sprites["battlebg"].reconfigure(:GUARDIAN, :DISTORTION)
+                  @battle.field.weather = :TimeWarp
+                  @battle.field.weatherDuration = 8
+                  @scene.pbDisplay("Time stood still!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
+                  @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] = true
+                  @scene.pbDisplay("Andy set up Stealth Rocks on \\PN's side!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                  @scene.pbDisplay("Andy set up a protective veil of light!")
+                end,
+      "lowHPOpp" => proc do
+                  @scene.pbTrainerSpeak("This storm could turn! Time to turn it up!")
+                  @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
+                  @battle.battlers[1].pbRecoverHP(@battle.battlers[1].totalhp/3)
+                  @battle.battlers[1].status = 0
+                  @scene.pbDisplay("Caninpu tried its hardest for Andy!")
+                  @scene.pbDisplay("Caninpu recovered some HP and cured its status!")
+                  @scene.wait(16,false)
+                  @battle.battlers[1].pbRaiseStatStageBasic(:SPEED,2)
+                  @scene.wait(16,false)
+                  @scene.pbDisplay("Caninpu's Speed sharply rose!")
+                  @scene.wait(16,false)
+                  @battle.battlers[0].effects[PBEffects::Trapping] = 5
+                  @scene.pbDisplay("Andy trapped your Pokémon!")
+                end
+                }
 
   RIVAL1 = { "turnStart0" => "I'm so stoked to see your Pokémon!",
              "lowHPOpp" => "Whoa, that little guy is strong!"

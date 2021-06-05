@@ -1,4 +1,5 @@
 Settings::TIME_SHADING = false
+Settings::MECHANICS_GENERATION = 8
 Settings::SPEECH_WINDOWSKINS = [
 #    "speech hgss 1",
 #    "speech hgss 2",
