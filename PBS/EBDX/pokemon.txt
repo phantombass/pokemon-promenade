@@ -3692,12 +3692,15 @@ BattlerAltitude = 0
 #-------------------------------
 [HOPPALM]
 SpriteScaleEnemy = 1
+BattlerAltitude = 0
 #-------------------------------
 [CHARPHINCH]
 SpriteScaleEnemy = 1
+BattlerAltitude = 0
 #-------------------------------
 [BARBOL]
 SpriteScaleEnemy = 1
+BattlerAltitude = 0
 #-------------------------------
 [PLOVERT]
 SpriteScaleEnemy = 1
@@ -3710,15 +3713,21 @@ BattlerEnemyY   = 46
 #-------------------------------
 [STONAT]
 SpriteScaleEnemy = 1
+BattlerAltitude = 1
 #-------------------------------
 [MAGATE]
 SpriteScaleEnemy = 1
+BattlerAltitude = 0
 #-------------------------------
 [SCAREUB]
 SpriteScaleEnemy = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 46
 #-------------------------------
 [JERBUZZ]
 SpriteScaleEnemy = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 46
 #-------------------------------
 [ALKALEON]
 SpriteScaleEnemy = 1

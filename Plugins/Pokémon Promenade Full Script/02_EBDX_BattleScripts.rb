@@ -359,6 +359,7 @@ module BattleScripts
   PHOEBE = {
     "lastOpp" => proc do
               @scene.pbTrainerSpeak("I haven't have a battle this intense in a long time!")
+              @sprites["battlebg"].reconfigure(:NET, :DISTORTION)
               @battle.field.weather = :Fog
               @battle.field.weatherDuration = 8
               @scene.pbDisplay("Fog covers the field!")
@@ -459,9 +460,9 @@ TIM = {
                     @scene.pbDisplay("Orrustorm recovered some HP and cured its status!")
                     @scene.wait(16,false)
                     @battlers[1].pbRaiseStatStageBasic(:SPEED,1)
-                    @battlers[1].pbRaiseStatStageBasic(:SPATK,1)
+                    @battlers[1].pbRaiseStatStageBasic(:SPECIAL_ATTACK,1)
                     @scene.wait(16,false)
-                    pbMessage("Orrustorm's Speed and Special Attack rose!")
+                    @scene.pbDisplay("Orrustorm's Speed and Special Attack rose!")
                     @scene.wait(16,false)
                     @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
                     @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 8
@@ -520,7 +521,6 @@ OWEN = {
                   @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
                   @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
                   @scene.pbDisplay("Owen set up a protective veil of light!")
-
                 end,
     "lowHPOpp" => proc do
                   @scene.pbTrainerSpeak("This is getting really good! Let's finish this out!")
@@ -540,6 +540,7 @@ OWEN = {
                   @battle.battlers[0].effects[PBEffects::Toxic]
                   poisonAllPokemon(nil)
                   @scene.pbDisplay("Owen badly poisoned your party!")
+                end
                 }
 
 TARA1 = {
@@ -549,7 +550,7 @@ TARA1 = {
                   @battle.field.weatherDuration = 8
                   @scene.pbDisplay("Tara summoned a Starstorm!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(getID(PBMoves,:STEALTHROCK),battle.battlers[1],battle.battlers[0])
+                  @battle.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
                   @battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
                   @scene.pbDisplay("Tara set up Comet Shards on \\PN's side!")
                   @scene.wait(16,false)
@@ -577,11 +578,194 @@ TARA1 = {
                   @scene.pbDisplay("Tara badly poisoned your party!")
                 end
                 }
-#
+
+TUYA = {
+  "turnStart0" => proc do
+                  @scene.pbTrainerSpeak("Boss said to go all out against you!")
+                  @battle.field.weather = :VolcanicAsh
+                  @battle.field.weatherDuration = 8
+                  @scene.pbDisplay("Tuya summoned Volcanic Ash!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:SPIKES),@battle.battlers[1],@battle.battlers[0])
+                  @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 2
+                  @scene.pbDisplay("Tuya set up 2 layers of Spikes on \\PN's side!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                  @scene.pbDisplay("Tuya set up a protective veil of light!")
+                end,
+  "lowHPOpp" => proc do
+                  @scene.pbTrainerSpeak("You are testing my patience!")
+                  @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
+                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                  @battle.battlers[1].status = 0
+                  @scene.pbDisplay("Bastungsten tried its hardest for Tuya!")
+                  @scene.pbDisplay("Bastungsten recovered some HP and cured its status!")
+                  @scene.wait(16,false)
+                  @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
+                  @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)
+                  @scene.wait(16,false)
+                  @scene.pbDisplay("Bastungsten's Defense and Special Defense rose!")
+                  @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:POISON,@scene,0)
+                  @battle.battlers[0].status = :POISON
+                  @battle.battlers[0].effects[PBEffects::Toxic]
+                  poisonAllPokemon(nil)
+                  @scene.pbDisplay("Tuya badly poisoned your party!")
+                end
+                }
+SETI = {
+    "turnStart0" => proc do
+                  @scene.pbTrainerSpeak("Boss said to stop you at all costs!")
+                  @battle.field.weather = :Eclipse
+                  @battle.field.weatherDuration = 8
+                  @scene.pbDisplay("Seti summoned an Eclipse!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
+                  battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
+                  @scene.pbDisplay("Seti set up Comet Shards on \\PN's side!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                  @scene.pbDisplay("Seti set up a protective veil of light!")
+                end,
+  "lowHPOpp" => proc do
+                  @scene.pbTrainerSpeak("Time to end this!")
+                  @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
+                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                  @battle.battlers[1].status = 0
+                  @scene.pbDisplay("Fenixet tried its hardest for Seti!")
+                  @scene.pbDisplay("Fenixet recovered some HP and cured its status!")
+                  @scene.wait(16,false)
+                  @battlers[1].pbRaiseStatStageBasic(:SPECIAL_ATTACK,1)
+                  @scene.wait(16,false)
+                  @scene.pbDisplay("Fenixet's Special Attack rose!")
+                  @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:BURN,@scene,0)
+                  @battle.battlers[0].status = :BURN
+                  burnAllPokemon(nil)
+                  @scene.pbDisplay("Tuya burned your party!")
+                end
+                }
+RAMESES = {
+      "turnStart0" => proc do
+                  @scene.pbTrainerSpeak("It's time you learned your lesson!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:SPIKES),@battle.battlers[1],@battle.battlers[0])
+                  @battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
+                  @scene.pbDisplay("Rameses set up 2 layers of Toxic Spikes on \\PN's side!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                  @scene.pbDisplay("Rameses set up a protective veil of light!")
+                end,
+  "lowHPOpp" => proc do
+                  @scene.pbTrainerSpeak("Time to end this!")
+                  @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
+                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/2)
+                  @battle.battlers[1].status = 0
+                  @scene.pbDisplay("Mauselynx tried its hardest for Rameses!")
+                  @scene.pbDisplay("Mauselynx recovered some HP and cured its status!")
+                  @scene.wait(16,false)
+                  @battlers[1].pbRaiseStatStageBasic(:SPECIAL_ATTACK,1)
+                  @scene.wait(16,false)
+                  @scene.pbDisplay("Mauselynx's Special Attack rose!")
+                  @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:BURN,@scene,0)
+                  @battle.battlers[0].status = :BURN
+                  burnAllPokemon(nil)
+                  @scene.pbDisplay("Rameses burned your party!")
+                end
+                }
+EUCAL = {
+      "turnStart0" => proc do
+                  @scene.pbTrainerSpeak("You could have been one of my top Scientists...")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:SPIKES),@battle.battlers[1],@battle.battlers[0])
+                  @battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
+                  @scene.pbDisplay("Eucal set up 2 layers of Toxic Spikes on \\PN's side!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                  @scene.pbDisplay("Eucal set up a protective veil of light!")
+                end,
+  "lowHPOpp" => proc do
+                  @scene.pbTrainerSpeak("I knew you and \\v[12] would become rather challenging if I let you go.")
+                  @scene.pbTrainerSpeak("But I had to choose between stopping you two early or delaying the coup.")
+                  @scene.pbTrainerSpeak("So clearly you see which choice I made...")
+                  @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
+                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                  @battle.battlers[1].status = 0
+                  @scene.pbDisplay("Apophicary tried its hardest for Eucal!")
+                  @scene.pbDisplay("Apophicary recovered some HP and cured its status!")
+                  @scene.wait(16,false)
+                  @battlers[1].pbRaiseStatStageBasic(:SPECIAL_ATTACK,1)
+                  @scene.wait(16,false)
+                  @scene.pbDisplay("Apophicary's Special Attack rose!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:SPIKES),@battle.battlers[1],@battle.battlers[0])
+                  @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 2
+                  @scene.pbDisplay("Eucal set up 2 layers of Spikes on \\PN's side!")
+                end
+                }
+LYPTUS = {
+      "turnStart0" => proc do
+                  @scene.pbTrainerSpeak("I've had my eye on you and \\v[12] since you both set out!")
+                  @scene.pbTrainerSpeak("I am so excited for this battle!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
+                  @battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
+                  @scene.pbDisplay("Dr. Lyptus set up Comet Shards on \\PN's side!")
+                  @scene.wait(16,false)
+                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                  @scene.pbDisplay("Dr. Lyptus set up a protective veil of light!")
+                end,
+  "lowHPOpp" => proc do
+                  @scene.pbTrainerSpeak("This is what this challenge is all about!")
+                  @scene.pbTrainerSpeak("Bringing each other to our absolute limit and seeing who is the stronger!")
+                  @scene.pbTrainerSpeak("Now hit me with all you've got!")
+                  @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
+                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                  @battle.battlers[1].status = 0
+                  @scene.pbDisplay("Falkmunra tried its hardest for Dr. Lyptus!")
+                  @scene.pbDisplay("Falmunra recovered some HP and cured its status!")
+                  @scene.wait(16,false)
+                  @battlers[1].pbRaiseStatStageBasic(:SPECIAL_ATTACK,1)
+                  @scene.wait(16,false)
+                  @scene.pbDisplay("Falkmunra's Special Attack rose!")
+                  @scene.wait(16,false)
+                  @battle.field.weather = :Starstorm
+                  @battle.field.weatherDuration = 8
+                  @scene.pbDisplay("Dr. Lyptus called down a Starstorm!")
+                end
+                }
+EUCALFINAL = {
+  "lastOpp" => proc do
+                  @scene.pbTrainerSpeak("I cannot have you ruining my plans. This is MY Zharo! The way I want it!")
+                  @battle.field.weather = :AcidRain
+                  @battle.field.weatherDuration = 8
+                  @scene.pbDisplay("Acid Rain pours down!")
+                  @scene.wait(16,false)
+                  @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
+                  @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)
+                  @battlers[1].pbRaiseStatStageBasic(:SPECIAL_ATTACK,1)
+                  @scene.pbDisplay("Apophicary boosted its Defense, Special Attack and Special Defense!")
+                end
+                }
   RIVAL1 = { "turnStart0" => "I'm so stoked to see your Pokémon!",
              "lowHPOpp" => "Whoa, that little guy is strong!"
            }
   RIVAL2 = { "turnStart0" => "Let's see what kind of team you're rocking!",
             "lowHPOpp" => "Oh this is gonna be a good battle!"
+           }
+
+  RIVAL2 = { "turnStart0" => "Just wait til you see the team I've raised!",
+            "lowHPOpp" => "Wow! Your team is looking really good, \\PN!"
            }
 end

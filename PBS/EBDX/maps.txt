@@ -3,3 +3,13 @@
 BattleEnv       = MOUNTAIN
 WINTER
   BattleEnv     = SNOW
+#-------------------------------
+[101]
+BattleEnv       = OUTDOOR
+#-------------------------------
+[104]
+BattleEnv       = OUTDOOR
+#-------------------------------
+[110]
+BattleEnv       = OUTDOOR
+#-------------------------------

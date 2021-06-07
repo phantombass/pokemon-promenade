@@ -1,6 +1,64 @@
 #===================================
 #Items
 #===================================
+class PokeBattle_Battle
+  def pbItemMenu(idxBattler,firstAction)
+    if !@internalBattle || @opponent
+      pbDisplay(_INTL("Items can't be used here."))
+      return false
+    end
+    ret = false
+    @scene.pbItemMenu(idxBattler,firstAction) { |item,useType,idxPkmn,idxMove,itemScene|
+      next false if !item
+      battler = pkmn = nil
+      case useType
+      when 1, 2, 6, 7   # Use on Pokémon/Pokémon's move
+        pbDisplay(_INTL("Healing items can't be used here."))
+        next false
+      when 3, 8   # Use on battler
+        pbDisplay(_INTL("Healing items can't be used here."))
+        next false
+      when 4, 9   # Poké Balls
+        next false if idxPkmn<0
+        battler = @battlers[idxPkmn]
+        pkmn    = battler.pokemon if battler
+      when 5, 10   # No target (Poké Doll, Guard Spec., Launcher items)
+        pbDisplay(_INTL("Boosin items can't be used here."))
+        next false
+      else
+        next false
+      end
+      next false if !pkmn
+      next false if !ItemHandlers.triggerCanUseInBattle(item,
+         pkmn,battler,idxMove,firstAction,self,itemScene)
+      next false if !pbRegisterItem(idxBattler,item,idxPkmn,idxMove)
+      ret = true
+      next true
+    }
+    return ret
+  end
+end
+
+class BagWindowEBDX
+  def confirm
+    pbSEPlay("EBDX/SE_Select2")
+    if @index != 1
+      hide
+      @scene.pbDisplay(_INTL("Healing items can't be used."))
+      show
+    elsif @index < 4
+      cmd = [2, 3, 5, 7]
+      cmd = [2, 1, 4, 5] if Settings.bag_pocket_names.length == 6
+      self.drawPocket(cmd[@index], @index)
+      @sprites["sel"].target(@back ? @sprites["pocket5"] : @items["#{@item}"])
+    else
+      @selPocket = 0
+      @page = -1
+      @ret = @lastUsed
+      @lastUsed = 0 if !($PokemonBag.pbQuantity(@lastUsed) > 1)
+    end
+  end
+end
 module ItemHandlers
 
   def pbRaiseHappinessAndLowerEV(pkmn,scene,stat,messages)

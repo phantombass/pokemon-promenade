@@ -429,7 +429,7 @@ Events.onWildPokemonCreate+=proc {|sender,e|
         pokemon.species=$currentDexSearch[0]
         pokemon.level=pokemon.level
         pokemon.name=GameData::Species.get(pokemon.species).name
-        pokemon.setAbility($game_variables[400])
+        pokemon.ability_index = $game_variables[400]
         maps = GameData::MapMetadata.try_get($game_map.map_id)
         pform = 0
         if pform == 0 && maps && maps==0
