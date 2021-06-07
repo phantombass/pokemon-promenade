@@ -17,10 +17,6 @@ EliteBattle.configProcess(:ENVIRONMENTS) do
   EliteBattle.add_data(:Underwater, :Environment, :BACKDROP, EnvironmentEBDX::UNDERWATER)
   # Forest
   EliteBattle.add_data(:Forest, :Environment, :BACKDROP, EnvironmentEBDX::FOREST)
-  # Indoor
-  EliteBattle.add_data(:None, :Environment, :BACKDROP, EnvironmentEBDX::INDOOR)
-  # Outdoor
-  EliteBattle.add_data(:Grass, :Environment, :BACKDROP, EnvironmentEBDX::OUTDOOR)
   # Mountains
   EliteBattle.add_data(:Rock, :Environment, :BACKDROP, EnvironmentEBDX::MOUNTAIN)
   #---------------------------------------------------------------------------

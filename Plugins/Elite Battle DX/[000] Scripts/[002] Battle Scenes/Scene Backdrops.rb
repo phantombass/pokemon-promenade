@@ -7,8 +7,6 @@ class PokeBattle_Scene
   #-----------------------------------------------------------------------------
   def loadBackdrop
     data = EliteBattle.getNextBattleEnv(@battle)
-    # applies predefined battle backdrop for map
-    backdrop = EliteBattle.get_map_data(:BACKDROP)
     # applies predefined battle backdrops for Trainer or Pokemon
     if @battle.opponent
       bgdrop = EliteBattle.get_trainer_data(@battle.opponent[0].trainer_type, :BACKDROP, @battle.opponent[0])
@@ -55,15 +53,13 @@ module EliteBattle
     environ = battleRules["environment"].nil? ? pbGetEnvironment : battleRules["environment"]
     terrain = $game_player.terrain_tag.id
     # base battle scene room data
-    # outdoor field
-    try = EliteBattle.get_data(:Grass, :Environment, :BACKDROP)
+    # load basic room
+    const = (EliteBattle.outdoor_map? ? :OUTDOOR : :INDOOR)
+    try = EnvironmentEBDX.const_defined?(const) ? EnvironmentEBDX.const_get(const) : nil
     data = try.clone if !try.nil?
-    # defines indoor room
-    if !$game_map || !EliteBattle.outdoor_map?
-      try = EliteBattle.get_data(:None, :Environment, :BACKDROP)
-      data = try.clone if !try.nil?
-      base = "indoor"
-    end
+    # applies predefined battle backdrop for map
+    try = EliteBattle.get_map_data(:BACKDROP)
+    data = try.clone if !try.nil?
     # applies room data for specific environment if defined
     unless [0, 1].include?(environ)
       try = EliteBattle.get_data(environ, :Environment, :BACKDROP)
@@ -92,7 +88,7 @@ module EliteBattle
       data["trees"][:y] = [108,117,118,122,122,127,127,128,132]
     end
     # cuts down on grass if in double battle
-    if data.has_key?("tallGrass") && !battle.nil? && battle.doublebattle?
+    if data.has_key?("tallGrass") && !battle.nil? && (battle.doublebattle? || battle.triplebattle?)
       data["tallGrass"][:elements] = 5 if data["tallGrass"][:elements] > 5
     end
     return data.nil? ? {} : data
@@ -240,10 +236,10 @@ class BattleSceneRoom
         @sprites["ec#{j}"].opacity = 0
         @sprites["ec#{j}"].ex = 234
       end
-      @sprites["ec#{j}"].opacity += @sprites["ec#{j}"].param < 0.75 ? -4 : 4
-      @sprites["ec#{j}"].ex += 2 if @fpIndex%4 == 0 && @sprites["ec#{j}"].ex < 284
-      @sprites["ec#{j}"].ey -= 2 if @fpIndex%4 == 0 && @sprites["ec#{j}"].ey > 108
-      @sprites["ec#{j}"].param -= 0.01
+      @sprites["ec#{j}"].opacity += (@sprites["ec#{j}"].param < 0.75 ? -4 : 4)/self.delta
+      @sprites["ec#{j}"].ex += [1, 2/self.delta].max if (@fpIndex*self.delta)%4 == 0 && @sprites["ec#{j}"].ex < 284
+      @sprites["ec#{j}"].ey -= [1, 2/self.delta].min if (@fpIndex*self.delta)%4 == 0 && @sprites["ec#{j}"].ey > 108
+      @sprites["ec#{j}"].param -= 0.01/self.delta
     end
     # updates bubble particles
     for j in 0...18
@@ -264,7 +260,7 @@ class BattleSceneRoom
       max = @sprites["bg"].bitmap.height/2
       scale = (2*Math::PI)/((@sprites["bubble#{j}"].bitmap.width/64.0)*(max - min) + min)
       @sprites["bubble#{j}"].opacity += 4 if @sprites["bubble#{j}"].opacity < @sprites["bubble#{j}"].end_y
-      @sprites["bubble#{j}"].ey -= @sprites["bubble#{j}"].speed
+      @sprites["bubble#{j}"].ey -= [1, @sprites["bubble#{j}"].speed/self.delta].max
       @sprites["bubble#{j}"].ex = @sprites["bubble#{j}"].end_x + @sprites["bubble#{j}"].bitmap.width*0.25*Math.sin(@sprites["bubble#{j}"].ey*scale)*@sprites["bubble#{j}"].toggle
     end
     # update weather particles
@@ -290,19 +286,21 @@ class BattleSceneRoom
     end
     # adjusts for wind affected elements
     if @strongwind
-      @wind -= @toggle*2
+      mod = [@toggle, @toggle*2/self.delta]
+      @wind -= @toggle > 0 ? mod.max : mod.min
       @toggle *= -1 if @wind < 65 || (@wind >= 70 && @toggle < 0)
     else
       @wWait += 1
       if @wWait > Graphics.frame_rate*4
-        @wind -= @toggle*(2 + (@wind >= 88 && @wind <= 92 ? 2 : 0))
+        mod = [@toggle, @toggle*(2 + (@wind >= 88 && @wind <= 92 ? 2 : 0))/self.delta]
+        @wind -= @toggle > 0 ? mod.max : mod.min
         @toggle *= -1 if @wind <= 80 || @wind >= 100
         @wWait = 0 if @wWait > Graphics.frame_rate*4 + 33
       end
     end
     # additional metrics
     @fpIndex += 1
-    @fpIndex = 150 if @fpIndex > 255
+    @fpIndex = 150 if @fpIndex > 255*self.delta
   end
   #-----------------------------------------------------------------------------
   # positions all the elements inside of the room
@@ -345,17 +343,17 @@ class BattleSceneRoom
       end
       # effect for rotating elements
       if key.include?("img") && (@data[key].has_key?(:effect) && @data[key][:effect] == "rotate")
-        @sprites[key].angle += @sprites[key].direction * @sprites[key].speed
+        @sprites[key].angle += @sprites[key].direction * @sprites[key].speed/self.delta
       end
       # effect for lighting updates
       if key.include?("aLight") || key.include?("cLight")
-        @sprites[key].opacity -= @sprites[key].toggle*@sprites[key].speed
+        @sprites[key].opacity -= @sprites[key].toggle*@sprites[key].speed/self.delta
         @sprites[key].toggle *= -1 if @sprites[key].opacity <= 95 || @sprites[key].opacity >= @sprites[key].end_x*255
       end
       if key.include?("bLight")
-        if @wWait % @sprites[key].speed == 0
+        if @wWait*self.delta % @sprites[key].speed == 0
           @sprites[key].bitmap = @sprites[key].storedBitmap.clone
-          @sprites[key].bitmap.hue_change(rand(8)*45)
+          @sprites[key].bitmap.hue_change((rand(8)*45/self.delta).round)
           @sprites[key].opacity = (rand(4) < 2 ? 192 : 0)
         end
       end
@@ -423,29 +421,28 @@ class BattleSceneRoom
     return if !@data.try_key?("sky", "outdoor")
     # apply daytime shading
     for key in @sprites.keys
-      next if key.include?("sky") || key.include?("sun") || key.include?("star") || key.include?("cloud") ||
-              key.include?("Light") || (@data[key].is_a?(Hash) && @data[key].has_key?(:shading) && !@data[key][:shading])
-      @sprites[key].color = Color.new(0, 0, 0, 0)
-      @sprites[key].tone = Tone.new(0, 0, 0)
-      next if @sunny
-      if PBDayNight.isNight?
-        @sprites[key].color = Color.new(38, 87, 140, 255*0.35)
-        @sprites[key].tone = Tone.new(-92, -92, -92)
+      next if key.include?("trainer") || key.include?("battler")
+      next if key.include?("sky") || key.include?("sun") || key.include?("star") || key.include?("cloud") ||  key.include?("Light") || (@data[key].is_a?(Hash) && @data[key].has_key?(:shading) && !@data[key][:shading])
+      if PBDayNight.isNight? && !@sunny
+        @sprites[key].tone = Tone.new(-120, -100, -60)
+      elsif (PBDayNight.isEvening? || PBDayNight.isMorning?) && !@sunny
+        @sprites[key].tone = Tone.new(-16, -52, -56)
+      else
+        @sprites[key].tone = Tone.new(0, 0, 0)
       end
-      @sprites[key].color = Color.new(167, 89, 40, 255*0.35) if PBDayNight.isEvening? || PBDayNight.isMorning?
     end
   end
   #-----------------------------------------------------------------------------
   # frame update for the skybox
   #-----------------------------------------------------------------------------
   def updateSky
-    return if !@data.try_key?("sky","outdoor")
+    return if !@data.try_key?("sky", "outdoor")
     minutes = Time.now.hour*60 + Time.now.min
     # animates twinkling stars
     for i in 0...24
       break if !(PBDayNight.isNight? && @data.try_key?("outdoor"))
       next if !@sprites["star#{i}"]
-      @sprites["star#{i}"].opacity += @sprites["star#{i}"].toggle * @sprites["star#{i}"].speed
+      @sprites["star#{i}"].opacity += @sprites["star#{i}"].toggle * @sprites["star#{i}"].speed/self.delta
       @sprites["star#{i}"].toggle *= -1 if @sprites["star#{i}"].opacity <= 125 || @sprites["star#{i}"].opacity >= @sprites["star#{i}"].end_x
     end
     # applies sun positioning if it is rendered
@@ -498,8 +495,8 @@ class BattleSceneRoom
       min = @sprites["bg"].bitmap.height/4
       max = @sprites["bg"].bitmap.height/2
       scale = (2*Math::PI)/((@sprites["w_snow#{j}"].bitmap.width/64.0)*(max - min) + min)
-      @sprites["w_snow#{j}"].opacity -= @sprites["w_snow#{j}"].speed
-      @sprites["w_snow#{j}"].ey += @sprites["w_snow#{j}"].speed
+      @sprites["w_snow#{j}"].opacity -= @sprites["w_snow#{j}"].speed/self.delta
+      @sprites["w_snow#{j}"].ey += [1, @sprites["w_snow#{j}"].speed/self.delta].max
       @sprites["w_snow#{j}"].ex = @sprites["w_snow#{j}"].end_x + @sprites["w_snow#{j}"].bitmap.width*0.25*Math.sin(@sprites["w_snow#{j}"].ey*scale)*@sprites["w_snow#{j}"].toggle
     end
     # rain particles
@@ -515,16 +512,16 @@ class BattleSceneRoom
         @sprites["w_rain#{j}"].z = z - (@focused ? 0 : 100)
         @sprites["w_rain#{j}"].opacity = 255
       end
-      @sprites["w_rain#{j}"].opacity -= @sprites["w_rain#{j}"].speed*(harsh ? 3 : 2)
-      @sprites["w_rain#{j}"].ox += @sprites["w_rain#{j}"].speed*(harsh ? 8 : 6)
+      @sprites["w_rain#{j}"].opacity -= @sprites["w_rain#{j}"].speed*(harsh ? 3 : 2)/self.delta
+      @sprites["w_rain#{j}"].ox += [1, @sprites["w_rain#{j}"].speed*(harsh ? 8 : 6)/self.delta].max
     end
     # sun particles
     for j in 0...3
       next if !@sprites["w_sunny#{j}"]
       #next if j > @shine["count"]/6
-      @sprites["w_sunny#{j}"].zoom_x += 0.04*[0.5, 0.8, 0.7][j]
-      @sprites["w_sunny#{j}"].zoom_y += 0.03*[0.5, 0.8, 0.7][j]
-      @sprites["w_sunny#{j}"].opacity += @sprites["w_sunny#{j}"].zoom_x < 1 ? 8 : -12
+      @sprites["w_sunny#{j}"].zoom_x += 0.04*[0.5, 0.8, 0.7][j]/self.delta
+      @sprites["w_sunny#{j}"].zoom_y += 0.03*[0.5, 0.8, 0.7][j]/self.delta
+      @sprites["w_sunny#{j}"].opacity += (@sprites["w_sunny#{j}"].zoom_x < 1 ? 8 : -12)/self.delta
       if @sprites["w_sunny#{j}"].opacity <= 0
         @sprites["w_sunny#{j}"].zoom_x = 0
         @sprites["w_sunny#{j}"].zoom_y = 0
@@ -982,6 +979,7 @@ class BattleSceneRoom
   #-----------------------------------------------------------------------------
   # battler sprite positioning
   #-----------------------------------------------------------------------------
+  def delta; return Graphics.frame_rate/40.0; end
   def scale_y; return @sprites["bg"].zoom_y; end
   def battler(i); return @sprites["battler#{i}"]; end
   def trainer(i); return @sprites["trainer_#{i}"]; end

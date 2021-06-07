@@ -1,15 +1,21 @@
-#-------------------------------
-[005]
-BattleEnv       = MOUNTAIN
-WINTER
-  BattleEnv     = SNOW
-#-------------------------------
 [101]
 BattleEnv       = OUTDOOR
 #-------------------------------
 [104]
 BattleEnv       = OUTDOOR
 #-------------------------------
-[110]
-BattleEnv       = OUTDOOR
+[124]
+BattleEnv       = MOUNTAIN
+#-------------------------------
+[126]
+BattleEnv       = MOUNTAIN
+#-------------------------------
+[127]
+BattleEnv       = MOUNTAIN
+#-------------------------------
+[131]
+BattleEnv       = MOUNTAIN
+#-------------------------------
+[132]
+BattleEnv       = MOUNTAIN
 #-------------------------------

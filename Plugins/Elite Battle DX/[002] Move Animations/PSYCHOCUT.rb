@@ -2,7 +2,7 @@
 #  Psycho Cut
 #-------------------------------------------------------------------------------
 EliteBattle.defineMoveAnimation(:PSYCHOCUT) do
-  vector2 = @scene.getRealVector(@userSprite, @userIsPlayer)
+  vector2 = @scene.getRealVector(@userIndex, @userIsPlayer)
   # extra parameters
   xt,yt = @targetSprite.getCenter(true)
   xp,yp = @userSprite.getCenter(true)

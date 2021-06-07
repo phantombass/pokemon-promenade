@@ -21,6 +21,15 @@ BattleScript     = RIVAL2
 [RIVAL1,Blue,5]
 BattleScript     = RIVAL2
 #-------------------------------
+[RIVAL1,Blue,6]
+BattleScript     = RIVAL3
+#-------------------------------
+[RIVAL1,Blue,7]
+BattleScript     = RIVAL3
+#-------------------------------
+[RIVAL1,Blue,8]
+BattleScript     = RIVAL3
+#-------------------------------
 [LEADER_Brock]
 TrainerPositionX = -8
 BattleEnv        = STAGE
@@ -56,4 +65,84 @@ BattleScript     = RALPH
 BattleEnv        = INDOOR
 BattleVS         = classicVS
 BattleScript     = SETH
+#-------------------------------
+[LEADER_Delta]
+BattleEnv        = INDOOR
+BattleVS         = classicVS
+BattleScript     = DELTA
+#-------------------------------
+[LEADER_Ann]
+BattleEnv        = INDOOR
+BattleVS         = classicVS
+BattleScript     = ANN
+#-------------------------------
+[LEADER_Sebastian]
+BattleEnv        = INDOOR
+BattleVS         = classicVS
+BattleScript     = SEBASTIAN
+#-------------------------------
+[LEADER_Phoebe]
+BattleEnv        = INDOOR
+BattleVS         = classicVS
+BattleScript     = PHOEBE
+#-------------------------------
+[GUARDIAN_Marie]
+BattleEnv        = TEMPLE
+BattleVS         = classicVS
+BattleScript     = MARIE
+#-------------------------------
+[GUARDIAN_Burt]
+BattleEnv        = TEMPLE
+BattleVS         = classicVS
+BattleScript     = BURT
+#-------------------------------
+[GUARDIAN_Owen]
+BattleEnv        = TEMPLE
+BattleVS         = classicVS
+BattleScript     = OWEN
+#-------------------------------
+[GUARDIAN_Tim]
+BattleEnv        = TEMPLE
+BattleVS         = classicVS
+BattleScript     = TIM
+#-------------------------------
+[GUARDIAN_Andy]
+BattleEnv        = TEMPLE
+BattleVS         = classicVS
+BattleScript     = ANDY
+#-------------------------------
+[GUARDIAN_Tara]
+BattleEnv        = TEMPLE
+BattleVS         = classicVS
+BattleScript     = TARA
+#-------------------------------
+[GUARDIAN_Tuya]
+BattleEnv        = TEMPLE
+BattleVS         = classicVS
+BattleScript     = TUYA
+#-------------------------------
+[GUARDIAN_Seti]
+BattleEnv        = TEMPLE
+BattleVS         = classicVS
+BattleScript     = SETI
+#-------------------------------
+[GUARDIAN_Rameses]
+BattleEnv        = TEMPLE
+BattleVS         = classicVS
+BattleScript     = RAMESES
+#-------------------------------
+[GUARDIAN_Eucal]
+BattleEnv        = TEMPLE
+BattleVS         = classicVS
+BattleScript     = EUCAL
+#-------------------------------
+[GUARDIAN_Lyptus]
+BattleEnv        = TEMPLE
+BattleVS         = classicVS
+BattleScript     = LYPTUS
+#-------------------------------
+[CHANCELLOR]
+BattleEnv        = TEMPLE
+BattleVS         = classicVS
+BattleScript     = EUCALFINAL
 #-------------------------------

@@ -1,5 +1,8 @@
-{"RIVAL1{I"__pk__:ET{"BattleBGM["HGSS-138-RivalBattle.ogg"BattleVS["classicVS"RIVAL1,Blue{@{"BattleScript["RIVAL1"RIVAL1,Blue,1{@{@["RIVAL1"RIVAL1,Blue,2{@{@["RIVAL1"RIVAL1,Blue,3{@{@["RIVAL2"RIVAL1,Blue,4{@{@["RIVAL2"RIVAL1,Blue,5{@{@["RIVAL2"LEADER_Brock{@{"TrainerPositionX[ió"BattleEnv["
+{'"RIVAL1{I"__pk__:ET{"BattleBGM["HGSS-138-RivalBattle.ogg"BattleVS["classicVS"RIVAL1,Blue{@{"BattleScript["RIVAL1"RIVAL1,Blue,1{@{@["RIVAL1"RIVAL1,Blue,2{@{@["RIVAL1"RIVAL1,Blue,3{@{@["RIVAL2"RIVAL1,Blue,4{@{@["RIVAL2"RIVAL1,Blue,5{@{@["RIVAL2"RIVAL1,Blue,6{@{@["RIVAL3"RIVAL1,Blue,7{@{@["RIVAL3"RIVAL1,Blue,8{@{@["RIVAL3"LEADER_Brock{@{"TrainerPositionX[ió"BattleEnv["
 STAGE@["classicVS"LEADER_Brock,Brock{@{@["
-BROCK"TEAMROCKET_M{@{"BattleIntro["evilTeam@["trainerSM"TEAMROCKET_F{@{@A["evilTeam@["trainerSM"LEADER_Boris{@{@4["INDOOR@["classicVS@["
-BORIS"LEADER_Ozzy{@{@4["INDOOR@["classicVS@["	OZZY"LEADER_Ralph{@{@4["INDOOR@["classicVS@["
-RALPH"LEADER_Seth{@{@4["INDOOR@["classicVS@["	SETH
+BROCK"TEAMROCKET_M{@{"BattleIntro["evilTeam@["trainerSM"TEAMROCKET_F{@{@P["evilTeam@["trainerSM"LEADER_Boris{@{@C["INDOOR@["classicVS@["
+BORIS"LEADER_Ozzy{@{@C["INDOOR@["classicVS@["	OZZY"LEADER_Ralph{@{@C["INDOOR@["classicVS@["
+RALPH"LEADER_Seth{@{@C["INDOOR@["classicVS@["	SETH"LEADER_Delta{@{@C["INDOOR@["classicVS@["
+DELTA"LEADER_Ann{@{@C["INDOOR@["classicVS@["ANN"LEADER_Sebastian{@{@C["INDOOR@["classicVS@["SEBASTIAN"LEADER_Phoebe{@{@C["INDOOR@["classicVS@["PHOEBE"GUARDIAN_Marie{@{@C["TEMPLE@["classicVS@["
+MARIE"GUARDIAN_Burt{@{@C["TEMPLE@["classicVS@["	BURT"GUARDIAN_Owen{@{@C["TEMPLE@["classicVS@["	OWEN"GUARDIAN_Tim{@{@C["TEMPLE@["classicVS@["TIM"GUARDIAN_Andy{@{@C["TEMPLE@["classicVS@["	ANDY"GUARDIAN_Tara{@{@C["TEMPLE@["classicVS@["	TARA"GUARDIAN_Tuya{@{@C["TEMPLE@["classicVS@["	TUYA"GUARDIAN_Seti{@{@C["TEMPLE@["classicVS@["	SETI"GUARDIAN_Rameses{@{@C["TEMPLE@["classicVS@["RAMESES"GUARDIAN_Eucal{@{@C["TEMPLE@["classicVS@["
+EUCAL"GUARDIAN_Lyptus{@{@C["TEMPLE@["classicVS@["LYPTUS"CHANCELLOR{@{@C["TEMPLE@["classicVS@["EUCALFINAL

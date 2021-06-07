@@ -100,9 +100,9 @@ end
 alias pbLoadTrainer_ebdx pbLoadTrainer unless defined?(pbLoadTrainer_ebdx)
 def pbLoadTrainer(trainerid, trainername, partyid = 0)
   ret = pbLoadTrainer_ebdx(trainerid, trainername, partyid)
-  ret.partyID = partyid
+  ret.partyID = partyid if ret
   # try to load the next battle speech
-  speech = EliteBattle.get_trainer_data(trainerid, :BATTLESCRIPT, ret)
+  speech = ret ? EliteBattle.get_trainer_data(trainerid, :BATTLESCRIPT, ret) : nil
   EliteBattle.set(:nextBattleScript, speech.to_sym) if !speech.nil?
   return ret
 end

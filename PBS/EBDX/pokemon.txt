@@ -3690,6 +3690,21 @@ BattlerPlayerY  = 14
 BattlerEnemyY   = 16
 BattlerAltitude = 0
 #-------------------------------
+[SANDYGAST,1]
+SpriteScaleEnemy = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[PALOSSAND,1]
+SpriteScaleEnemy = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[ROCKRUFF]
+SpriteScaleEnemy = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
 [HOPPALM]
 SpriteScaleEnemy = 1
 BattlerAltitude = 0

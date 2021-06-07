@@ -148,7 +148,7 @@ Land
 #-------------------------------
 126 # Route 6
 25,10,10
-Sand
+Sandy
     TRAPINCH,16,19
     SANDILE,16,19
     DRILBUR,16,19
@@ -164,7 +164,7 @@ Sand
 #-------------------------------
 127 # Route 7
 25,10,10
-Sand
+Sandy
     TRAPINCH,16,19
     SANDILE,16,19
     DRILBUR,16,19
@@ -193,7 +193,7 @@ Land
     RIOLU,18,21
     SANDYGAST,18,21
     ROCKRUFF,16,19
-Sand
+Sandy
     TRAPINCH,16,19
     SANDILE,16,19
     DRILBUR,16,19
@@ -209,7 +209,7 @@ Sand
 #-------------------------------
 132 # Route 9
 25,10,10
-Sand
+Sandy
     TRAPINCH,16,19
     SANDILE,16,19
     DRILBUR,16,19
@@ -471,7 +471,7 @@ Land
     LARVESTA,33,36
     YESOMNIA,35,38
     LARVESTA,33,36
-Sand
+Sandy
     SAPHYRFLY,35,38
     DRILBUR,35,38
     SAPHYRFLY,35,38
