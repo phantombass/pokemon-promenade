@@ -3718,11 +3718,16 @@ BattlerAltitude = 1
 [MAGATE]
 SpriteScaleEnemy = 1
 BattlerAltitude = 0
+BattlerEnemyY   = 46
 #-------------------------------
 [SCAREUB]
 SpriteScaleEnemy = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 46
+#-------------------------------
+[FISHOOS]
+BattlerAltitude = 0
+BattlerEnemyY   = 36
 #-------------------------------
 [JERBUZZ]
 SpriteScaleEnemy = 1

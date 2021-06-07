@@ -48,68 +48,11 @@ MultipleForms.register(:CACNEA,{
 MultipleForms.copy(:CACNEA,:CACTURNE,:SANDYGAST,:PALOSSAND,:DEINO,:ZWEILOUS,:HYDREIGON,:TRAPINCH,:HORSEA,:SEADRA,:EXEGGCUTE,:EXEGGUTOR,:SEEL,:DEWGONG,:QWILFISH,:LUVDISC)
 
 GameData::Evolution.register({
-  :id            => :Ferrocuda,
+  :id            => :Fishoos,
   :parameter     => Integer,
   :minimum_level => 1,   # Needs any level up
   :level_up_proc => proc { |pkmn, parameter|
-    if $game_switches[116] == true
-      next $game_map.map_id == parameter
-    end
-  }
-})
-
-GameData::Evolution.register({
-  :id            => :Friocuda,
-  :parameter     => Integer,
-  :minimum_level => 1,   # Needs any level up
-  :level_up_proc => proc { |pkmn, parameter|
-    if $game_switches[117] == true
-      next $game_map.map_id == parameter
-    end
-  }
-})
-
-GameData::Evolution.register({
-  :id            => :Flarocuda,
-  :parameter     => Integer,
-  :minimum_level => 1,   # Needs any level up
-  :level_up_proc => proc { |pkmn, parameter|
-    if $game_switches[118] == true
-      next $game_map.map_id == parameter
-    end
-  }
-})
-
-GameData::Evolution.register({
-  :id            => :Fearocuda,
-  :parameter     => Integer,
-  :minimum_level => 1,   # Needs any level up
-  :level_up_proc => proc { |pkmn, parameter|
-    if $game_switches[119] == true
-      next $game_map.map_id == parameter
-    end
-  }
-})
-
-GameData::Evolution.register({
-  :id            => :Fairicuda,
-  :parameter     => Integer,
-  :minimum_level => 1,   # Needs any level up
-  :level_up_proc => proc { |pkmn, parameter|
-    if $game_switches[120] == true
-      next $game_map.map_id == parameter
-    end
-  }
-})
-
-GameData::Evolution.register({
-  :id            => :Floracuda,
-  :parameter     => Integer,
-  :minimum_level => 1,   # Needs any level up
-  :level_up_proc => proc { |pkmn, parameter|
-    if $game_switches[121] == true
-      next $game_map.map_id == parameter
-    end
+    next $game_switches[parameter] == true
   }
 })
 

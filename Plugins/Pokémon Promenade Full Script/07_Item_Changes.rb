@@ -885,6 +885,12 @@ Events.onStepTaken += proc {
   end
 }
 
+BattleHandlers::WeatherExtenderItem.add(:WEATHERROCK,
+  proc { |item,weather,duration,battler,battle|
+    next 8 if weather != :None
+  }
+)
+
 ItemHandlers::UseOnPokemon.add(:RARECANDY,proc { |item,pkmn,scene|
   if pkmn.level>=GameData::GrowthRate.max_level || pkmn.shadowPokemon? || pkmn.level>=$game_variables[106]
     scene.pbDisplay(_INTL("It won't have any effect."))

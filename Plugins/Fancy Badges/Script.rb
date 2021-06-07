@@ -10,23 +10,9 @@
 #
 #  Enjoy the script, and make sure to give credit!
 #===============================================================================
-#  Fancy Badges (settings)
-#===============================================================================
-# Names for your gym badges
-FANCY_BADGE_NAMES = [
-    "Mercury Badge",
-    "Maelstrom Badge",
-    "Mortar Badge",
-    "Solar Badge",
-    "River Badge",
-    "Opera Badge",
-    "Epitaph Badge",
-    "New Life Badge",
-]
-#===============================================================================
 #  Gets the edges of the sprite for path extrusions
 #-------------------------------------------------------------------------------
-def analyzeBitmap3D(bitmap,reverse = false)
+def analyzeBitmap3D(bitmap, reverse = false)
   points = []
   layer = 0
   x0 = reverse ? bitmap.width-1 : 0
@@ -64,7 +50,7 @@ end
 #-------------------------------------------------------------------------------
 #  Method of getting gradual skews
 #-------------------------------------------------------------------------------
-def splitGradient(point1,point2,frames,reverse=false)
+def splitGradient(point1, point2, frames, reverse = false)
   points = []
   dif = (point1.to_f - point2.to_f)*0.5/frames.to_f
   point1 += dif*frames*0.5*(reverse ? -1 : 1)
@@ -77,7 +63,7 @@ end
 #-------------------------------------------------------------------------------
 #  Alternative method of getting gradual skews
 #-------------------------------------------------------------------------------
-def splitGradient2(point1,point2,frames,reverse=false)
+def splitGradient2(point1, point2, frames, reverse = false)
   points = []
   dif = (point1.to_f - point2.to_f)/frames.to_f
   point1 -= dif*frames if reverse
@@ -90,7 +76,7 @@ end
 #-------------------------------------------------------------------------------
 #  Def used for playing badge obtain animation
 #-------------------------------------------------------------------------------
-def renderBadgeAnimation(badge_number=0)
+def renderBadgeAnimation(badge_number = 0)
   $Trainer.badges[badge_number] = true
   badges = $Trainer.badge_count
   if $game_switches[112] == true
@@ -152,9 +138,9 @@ def renderBadgeAnimation(badge_number=0)
       $game_variables[106] = 150
     end
   end
-  pbMEPlay("getBadge")
-  height = defined?(SCREENDUALHEIGHT) ? DEFAULTSCREENHEIGHT : Graphics.height
-  viewport = Viewport.new(0,0,Graphics.width,height)
+  height = Graphics.height
+  screen = Graphics.snap_to_bitmap
+  viewport = Viewport.new(0, 0, Graphics.width, height)
   viewport.z = 99999
   viewport.color = Color.new(255,255,255)
   # handling additional particles
@@ -163,7 +149,7 @@ def renderBadgeAnimation(badge_number=0)
   for i in 0...8; rangle.push((300/8)*i +  15); end
   for j in 0...8
     fp["#{j}"] = Sprite.new(viewport)
-    fp["#{j}"].bitmap = BitmapCache.load_bitmap("Graphics/Transitions/badgeShine")
+    fp["#{j}"].bitmap = pbBitmap("Graphics/Transitions/badgeShine")
     fp["#{j}"].ox = 0
     fp["#{j}"].oy = fp["#{j}"].bitmap.height/2
     fp["#{j}"].opacity = 0
@@ -178,7 +164,7 @@ def renderBadgeAnimation(badge_number=0)
   end
   for j in 0...16
     fp["p#{j}"] = Sprite.new(viewport)
-    fp["p#{j}"].bitmap = BitmapCache.load_bitmap("Graphics/Transitions/badgeParticle")
+    fp["p#{j}"].bitmap = pbBitmap("Graphics/Transitions/badgeParticle")
     fp["p#{j}"].ox = fp["p#{j}"].bitmap.width/2
     fp["p#{j}"].oy = fp["p#{j}"].bitmap.height/2
     fp["p#{j}"].opacity = 0
@@ -188,11 +174,11 @@ def renderBadgeAnimation(badge_number=0)
   end
   # handling of background
   fp["bg"] = Sprite.new(viewport)
-  fp["bg"].bitmap = Graphics.snap_to_bitmap
+  fp["bg"].bitmap = screen
   fp["bg"].blur_sprite(3)
-  fp["bg"].bitmap.blt(0,0,BitmapCache.load_bitmap("Graphics/Transitions/badgeShade"),Rect.new(0,0,viewport.rect.width,viewport.rect.height))
+  fp["bg"].bitmap.blt(0, 0, pbBitmap("Graphics/Transitions/badgeShade"), Rect.new(0,0,viewport.rect.width,viewport.rect.height))
   fp["eff"] = Sprite.new(viewport)
-  fp["eff"].bitmap = BitmapCache.load_bitmap("Graphics/Transitions/badgeEffect")
+  fp["eff"].bitmap = pbBitmap("Graphics/Transitions/badgeEffect")
   fp["eff"].ox = fp["eff"].bitmap.width/2
   fp["eff"].oy = fp["eff"].bitmap.height/2
   fp["eff"].x = viewport.rect.width/2
@@ -206,10 +192,10 @@ def renderBadgeAnimation(badge_number=0)
   fp["text"].y = viewport.rect.height*0.9
   fp["text"].z = 45
   pbSetSystemFont(fp["text"].bitmap)
-  pbDrawOutlineText(fp["text"].bitmap,0,0,fp["text"].bitmap.width,fp["text"].bitmap.height,FANCY_BADGE_NAMES[badge_number],Color.new(255,255,255),Color.new(0,0,0),1)
+  pbDrawOutlineText(fp["text"].bitmap,0,0,fp["text"].bitmap.width,fp["text"].bitmap.height,FancyBadges::NAMES[badge_number], Color.white, Color.black, 1)
   # calculating badge dimensions
   isBack = false
-  bmp = BitmapCache.load_bitmap("Graphics/Transitions/getBadge#{badge_number}")
+  bmp = pbBitmap("Graphics/Transitions/getBadge#{badge_number}")
   height = bmp.height
   width = bmp.height
   width_side = bmp.width - width*2
@@ -249,13 +235,14 @@ def renderBadgeAnimation(badge_number=0)
   zoom_x = 1.0 # don't change
   zoom_y = 1.0 # don't change
   zoom_s = 0.9 # don't change
-  speed = 0.75 # increase/decrease to speed up/down
+  speed = 0.75.delta_sub(false) # increase/decrease to speed up/down
   k = 1 # don't change
   m = 1 # don't change
   series = 0 # don't change
   reverse = false # don't change
   tone = -64 # controls 'shaders'
   # start of animation
+  pbMEPlay("getBadge")
   for frame in 0...224
     # viewport flash
     viewport.color.alpha -= 5 if viewport.color.alpha > 0
@@ -264,7 +251,7 @@ def renderBadgeAnimation(badge_number=0)
     badge_s.bitmap.clear
     temp.clear
     side_temp.clear
-    points = (isBack ? pointsB : pointsF)[reverse ? 1 : 0] #analyzeBitmap3D(temp,reverse)
+    points = (isBack ? pointsB : pointsF)[reverse ? 1 : 0]
     ratio1 = splitGradient(1.0,zoom_y,width,reverse)
     ratio2 = splitGradient2(1.0,zoom_s,width_side,reverse)
     y2 = 0
@@ -372,3 +359,4 @@ def renderBadgeAnimation(badge_number=0)
   pbDisposeSpriteHash(fp)
   viewport.dispose
 end
+#-------------------------------------------------------------------------------

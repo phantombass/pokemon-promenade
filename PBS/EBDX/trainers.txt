@@ -40,28 +40,20 @@ BattleVS         = trainerSM
 [LEADER_Boris]
 BattleEnv        = INDOOR
 BattleVS         = classicVS
+BattleScript     = BORIS
 #-------------------------------
 [LEADER_Ozzy]
 BattleEnv        = INDOOR
 BattleVS         = classicVS
+BattleScript     = OZZY
 #-------------------------------
 [LEADER_Ralph]
 BattleEnv        = INDOOR
 BattleVS         = classicVS
+BattleScript     = RALPH
 #-------------------------------
 [LEADER_Seth]
 BattleEnv        = INDOOR
 BattleVS         = classicVS
-#-------------------------------
-[LEADER_Boris,"Boris"]
-BattleScript     = BORIS
-#-------------------------------
-[LEADER_Ozzy,"Ozzy"]
-BattleScript     = OZZY
-#-------------------------------
-[LEADER_Ralph,"Ralph"]
-BattleScript     = RALPH
-#-------------------------------
-[LEADER_Seth,"Seth"]
 BattleScript     = SETH
 #-------------------------------
