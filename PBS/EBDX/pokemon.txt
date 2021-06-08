@@ -3705,6 +3705,11 @@ SpriteScaleEnemy = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 36
 #-------------------------------
+[LYCANROC,2]
+SpriteScaleEnemy = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
 [HOPPALM]
 SpriteScaleEnemy = 1
 BattlerAltitude = 0

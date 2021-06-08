@@ -279,13 +279,12 @@ module BattleScripts
       pname = $Trainer.name
       @scene.pbTrainerSpeak("This battle may be saved yet! Observe, #{pname}!")
       @sprites["battlebg"].reconfigure(:CAVE, :DISTORTION)
-      @battle.pbAnimation(getID(GameData::Move,:SANDSTORM),@battle.battlers[1],@battle.battlers[0])
       @battle.field.weather = :Sandstorm
       @battle.field.weatherDuration = 8
       @scene.pbDisplay("The sandstorm resurged!")
       @scene.wait(16,false)
       if @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] == false
-        @battle.pbAnimation(getID(GameData::Move,:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
+        @scene.pbAnimation(getID(GameData::Move,:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
         @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] = true
         @scene.pbDisplay("Ozzy set Stealth Rocks on #{pname}'s side!")
       end
@@ -320,7 +319,7 @@ module BattleScripts
               @scene.pbDisplay("The rain returned and intensified!")
               @scene.wait(16,false)
               if @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] == false
-                @battle.pbAnimation(GameData::Move.get(:STEALTHROCK).id,@battle.battlers[1],@battle.battlers[0])
+                @scene.pbAnimation(GameData::Move.get(:STEALTHROCK).id,@battle.battlers[1],@battle.battlers[0])
                 @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] = true
                 @scene.pbDisplay("Ozzy set Stealth Rocks on #{pname}'s side!")
               end
@@ -337,7 +336,7 @@ module BattleScripts
               @battle.field.weatherDuration = 8
               @scene.pbDisplay("The Echo Chamber returned!")
               @scene.wait(16,false)
-              @battle.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
+              @scene.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
               @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 3
               @scene.pbDisplay("The reverberation shook 3 layers of Spikes onto #{pname}'s side!")
             end,
@@ -356,7 +355,7 @@ module BattleScripts
           @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)
           @scene.pbDisplay("Ann's Pokémon boosted its Defense and Special Defense!")
           @scene.wait(16,false)
-          @battle.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
+          @scene.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
           @battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
           @scene.pbDisplay("The shadows managed to sneak 2 layers of Toxic Spikes onto #{pname}'s side!")
         end,
@@ -376,10 +375,10 @@ module BattleScripts
               @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)
               @scene.pbDisplay("Phoebe's Pokémon boosted its Defense and Special Defense!")
               @scene.wait(16,false)
-              @battle.pbAnimation(GameData::Move.get(:STEALTHROCK).id,@battle.battlers[1],@battle.battlers[0])
+              @scene.pbAnimation(GameData::Move.get(:STEALTHROCK).id,@battle.battlers[1],@battle.battlers[0])
               @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] = true
               @scene.wait(16,false)
-              @battle.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
+              @scene.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
               @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 3
               @scene.pbDisplay("Phoebe launched Stealth Rocks and 3 layers of Spikes onto #{pname}'s side!")
             end,
@@ -397,7 +396,7 @@ MARIE = {
               @scene.pbDisplay("An echo chamber surrounds the field!")
               @scene.wait(16,false)
               if battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] == nil
-                @battle.pbAnimation(GameData::Move.get(:STEALTHROCK).id,@battle.battlers[1],@battle.battlers[0])
+                @scene.pbAnimation(GameData::Move.get(:STEALTHROCK).id,@battle.battlers[1],@battle.battlers[0])
                 @battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
                 @scene.pbDisplay("Marie set Comet Shards on #{pname}'s side!")
               end
@@ -427,7 +426,7 @@ BURT = {
                     @scene.pbDisplay("The air becomes humid!")
                     @scene.wait(16,false)
                     if @battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] == 0
-                      @battle.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
+                      @scene.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
                       @battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
                       @scene.pbDisplay("Burt set Toxic Spikes on #{pname}'s side!")
                     end
@@ -458,7 +457,7 @@ TIM = {
                     @scene.pbDisplay("Rain comes crashing down!")
                     @scene.wait(16,false)
                     if battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] == 0
-                      @battle.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
+                      @scene.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
                       @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 1
                       @scene.pbDisplay("Tim set a layer of Spikes on #{pname}'s side!")
                     end
@@ -478,7 +477,7 @@ TIM = {
                     @scene.wait(16,false)
                     @scene.pbDisplay("Orrustorm's Speed and Special Attack rose!")
                     @scene.wait(16,false)
-                    @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                    @scene.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
                     @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 8
                     @scene.pbDisplay("Tim set up a protective veil of light!")
                   end
@@ -492,11 +491,11 @@ ANDY = {
                   @battle.field.weatherDuration = 8
                   @scene.pbDisplay("Time stood still!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
+                  @scene.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
                   @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] = true
                   @scene.pbDisplay("Andy set up Stealth Rocks on #{pname}'s side!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @scene.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
                   @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
                   @scene.pbDisplay("Andy set up a protective veil of light!")
                 end,
@@ -531,11 +530,11 @@ OWEN = {
                   @battle.field.terrainDuration = 5
                   @scene.pbDisplay("The battlefield got weird!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
+                  @scene.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
                   @battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
                   @scene.pbDisplay("Owen set up Comet Shards on #{pname}'s side!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @scene.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
                   @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
                   @scene.pbDisplay("Owen set up a protective veil of light!")
                 end,
@@ -569,11 +568,11 @@ TARA = {
                   @battle.field.weatherDuration = 8
                   @scene.pbDisplay("Tara summoned a Starstorm!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
+                  @scene.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
                   @battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
                   @scene.pbDisplay("Tara set up Comet Shards on #{pname}'s side!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @scene.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
                   @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
                   @scene.pbDisplay("Tara set up a protective veil of light!")
                 end,
@@ -607,11 +606,11 @@ TUYA = {
                   @battle.field.weatherDuration = 8
                   @scene.pbDisplay("Tuya summoned Volcanic Ash!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:SPIKES),@battle.battlers[1],@battle.battlers[0])
+                  @scene.pbAnimation(GameData::Move.get(:SPIKES),@battle.battlers[1],@battle.battlers[0])
                   @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 2
                   @scene.pbDisplay("Tuya set up 2 layers of Spikes on #{pname}'s side!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @scene.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
                   @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
                   @scene.pbDisplay("Tuya set up a protective veil of light!")
                 end,
@@ -645,11 +644,11 @@ SETI = {
                   @battle.field.weatherDuration = 8
                   @scene.pbDisplay("Seti summoned an Eclipse!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
+                  @scene.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
                   battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
                   @scene.pbDisplay("Seti set up Comet Shards on #{pname}'s side!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @scene.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
                   @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
                   @scene.pbDisplay("Seti set up a protective veil of light!")
                 end,
@@ -678,11 +677,11 @@ RAMESES = {
         pname = $Trainer.name
                   @scene.pbTrainerSpeak("It's time you learned your lesson!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:SPIKES),@battle.battlers[1],@battle.battlers[0])
+                  @scene.pbAnimation(GameData::Move.get(:SPIKES),@battle.battlers[1],@battle.battlers[0])
                   @battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
                   @scene.pbDisplay("Rameses set up 2 layers of Toxic Spikes on #{pname}'s side!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @scene.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
                   @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
                   @scene.pbDisplay("Rameses set up a protective veil of light!")
                 end,
@@ -711,11 +710,11 @@ EUCAL = {
         pname = $Trainer.name
                   @scene.pbTrainerSpeak("You could have been one of my top Scientists...")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:SPIKES),@battle.battlers[1],@battle.battlers[0])
+                  @scene.pbAnimation(GameData::Move.get(:SPIKES),@battle.battlers[1],@battle.battlers[0])
                   @battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
                   @scene.pbDisplay("Eucal set up 2 layers of Toxic Spikes on #{pname}'s side!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @scene.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
                   @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
                   @scene.pbDisplay("Eucal set up a protective veil of light!")
                 end,
@@ -736,7 +735,7 @@ EUCAL = {
                   @scene.wait(16,false)
                   @scene.pbDisplay("Apophicary's Special Attack rose!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:SPIKES),@battle.battlers[1],@battle.battlers[0])
+                  @scene.pbAnimation(GameData::Move.get(:SPIKES),@battle.battlers[1],@battle.battlers[0])
                   @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 2
                   @scene.pbDisplay("Eucal set up 2 layers of Spikes on #{pname}'s side!")
                 end
@@ -748,11 +747,11 @@ LYPTUS = {
                   @scene.pbTrainerSpeak("I've had my eye on you and #{rname} since you both set out!")
                   @scene.pbTrainerSpeak("I am so excited for this battle!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
+                  @scene.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
                   @battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
                   @scene.pbDisplay("Dr. Lyptus set up Comet Shards on #{pname}'s side!")
                   @scene.wait(16,false)
-                  @battle.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @scene.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
                   @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
                   @scene.pbDisplay("Dr. Lyptus set up a protective veil of light!")
                 end,

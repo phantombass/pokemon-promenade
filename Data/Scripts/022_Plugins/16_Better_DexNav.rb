@@ -361,23 +361,21 @@ class NewDexNav
       searchmon = GameData::Species.get($currentDexSearch[0]).id
       maps = GameData::MapMetadata.try_get($game_map.map_id)   # Map IDs for Zharonian Forme
       form = 0
-      if form == 0 && maps && maps==0
-        if isConst?(searchmon,GameData::Species,:RIOLU)||isConst?(searchmon,GameData::Species,:LUCARIO)||isConst?(searchmon,GameData::Species,:BUNEARY)||isConst?(searchmon,GameData::Species,:LOPUNNY)||isConst?(searchmon,GameData::Species,:NUMEL)||isConst?(searchmon,GameData::Species,:CAMERUPT)||isConst?(searchmon,GameData::Species,:ROCKRUFF)||isConst?(searchmon,GameData::Species,:YAMASK)
+        if searchmon == :RIOLU || searchmon == :LUCARIO || searchmon == :BUNEARY|| searchmon == :LOPUNNY|| searchmon == :NUMEL|| searchmon == :CAMERUPT|| searchmon == :ROCKRUFF || searchmon == :LYCANROC|| searchmon == :YAMASK || searchmon == :COFAGRIGUS
           form = 2
-        elsif isConst?(searchmon,GameData::Species,:CACNEA)||isConst?(searchmon,GameData::Species,:CACTURNE)||isConst?(searchmon,GameData::Species,:SANDYGAST)||isConst?(searchmon,GameData::Species,:PALOSSAND)||isConst?(searchmon,GameData::Species,:DEINO)||isConst?(searchmon,GameData::Species,:ZWEILOUS)||isConst?(searchmon,GameData::Species,:HYDREIGON)||isConst?(searchmon,GameData::Species,:TRAPINCH)||isConst?(searchmon,GameData::Species,:HORSEA)||isConst?(searchmon,GameData::Species,:SEADRA)||isConst?(searchmon,GameData::Species,:EXEGGCUTE)||isConst?(searchmon,GameData::Species,:EXEGGUTOR)||isConst?(searchmon,GameData::Species,:SEEL)||isConst?(searchmon,GameData::Species,:DEWGONG)||isConst?(searchmon,GameData::Species,:DROWZEE)||isConst?(searchmon,GameData::Species,:PHANPY)||isConst?(searchmon,GameData::Species,:ZEBSTRIKA)
+        elsif searchmon == :CACNEA || searchmon == :CACTURNE || searchmon == :SANDYGAST || searchmon == :PALOSSAND || searchmon == :DEINO || searchmon == :ZWEILOUS || searchmon == :HYDREIGON || searchmon == :TRAPINCH || searchmon == :HORSEA || searchmon == :SEADRA || searchmon == :EXEGGCUTE || searchmon == :EXEGGUTOR || searchmon == :SEEL || searchmon == :DEWGONG || searchmon == :DROWZEE || searchmon == :PHANPY
           form = 1
         else
           form = form
         end
-      end
       navRand = rand(3)
       $game_variables[400] = navRand
       hAbil = GameData::Species.get_species_form(searchmon,form).hidden_abilities
       navAbil1 = GameData::Species.get_species_form(searchmon,form).abilities
-      if navAbil1[1] != nil
-        navAbil = [navAbil1[0],navAbil1[1],hAbil[0]]
-      else
+      if navAbil1.length == 1
         navAbil = [navAbil1[0],navAbil1[0],hAbil[0]]
+      else
+        navAbil = [navAbil1[0],navAbil1[1],hAbil[0]]
       end
       ab = GameData::Ability.get(navAbil[navRand]).name
       Graphics.update
@@ -448,10 +446,6 @@ Events.onWildPokemonCreate+=proc {|sender,e|
           pokemon.moves[3]=Pokemon::Move.new($currentDexSearch[2]) if $currentDexSearch[2]
         end
         # There is a higher chance for shininess, so we give it another chance to force it to be shiny
-        tempInt = $PokemonBag.pbQuantity(GameData::Item.get(:SHINYCHARM))>0 ? 256 : 768
-        if rand(tempInt)==1
-         pokemon.makeShiny
-       end
         $currentDexSearch = nil
     end
 }
@@ -484,14 +478,6 @@ class DexNav
 
 
   # This method gets the appropriate shiny rate multiplier for a certain chain value
-  def self.getShinyMultiplier(datum)
-    value=1
-    if datum[0]<80
-      return value*datum[0]
-    else
-      return 80
-    end
-  end
 
   # This method gets a random ID of a legal egg move and returns it as a move object.
   def self.addRandomEggMove(species)
