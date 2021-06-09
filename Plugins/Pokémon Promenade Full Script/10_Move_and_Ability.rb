@@ -2684,8 +2684,8 @@ end
 #===============================================================================
 class PokeBattle_Move_17D < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
-    if target.effects[PBEffects::JawLockUser]<0 && !target.effects[PBEffects::JawLock] &&
-      user.effects[PBEffects::JawLockUser]<0 && !user.effects[PBEffects::JawLock]
+    if target.effects[PBEffects::JawLockUser] == -1 && !target.effects[PBEffects::JawLock] &&
+      user.effects[PBEffects::JawLockUser] == -1 && !user.effects[PBEffects::JawLock]
       user.effects[PBEffects::JawLock]       = true
       target.effects[PBEffects::JawLock]     = true
       user.effects[PBEffects::JawLockUser]   = user.index
