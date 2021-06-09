@@ -482,12 +482,12 @@ class PokemonSummary_Scene
     ivAt = ivtable[@pokemon.iv.keys[1]]
     evDf = evtable[@pokemon.ev.keys[2]]
     ivDf = ivtable[@pokemon.iv.keys[2]]
-    evSa = evtable[@pokemon.ev.keys[4]]
-    ivSa = ivtable[@pokemon.iv.keys[4]]
-    evSd = evtable[@pokemon.ev.keys[5]]
-    ivSd = ivtable[@pokemon.iv.keys[5]]
-    evSp = evtable[@pokemon.ev.keys[3]]
-    ivSp = ivtable[@pokemon.iv.keys[3]]
+    evSa = evtable[@pokemon.ev.keys[3]]
+    ivSa = ivtable[@pokemon.iv.keys[3]]
+    evSd = evtable[@pokemon.ev.keys[4]]
+    ivSd = ivtable[@pokemon.iv.keys[4]]
+    evSp = evtable[@pokemon.ev.keys[5]]
+    ivSp = ivtable[@pokemon.iv.keys[5]]
     textpos = [
        [_INTL("HP"),292,70,2,base,statshadows[:HP]],
        [sprintf("%d/%d",evHP,ivHP),462,70,1,Color.new(64,64,64),Color.new(176,176,176)],
@@ -500,7 +500,7 @@ class PokemonSummary_Scene
        [_INTL("Sp. Def"),248,210,0,base,statshadows[:SPECIAL_DEFENSE]],
        [sprintf("%d/%d",evSd,ivSd),456,210,1,Color.new(64,64,64),Color.new(176,176,176)],
        [_INTL("Speed"),248,242,0,base,statshadows[:SPEED]],
-       [sprintf("%d/%d",evSd,ivSd),456,242,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [sprintf("%d/%d",evSp,ivSp),456,242,1,Color.new(64,64,64),Color.new(176,176,176)],
        [_INTL("Ability"),224,278,0,base,shadow]
     ]
     ability = @pokemon.ability
