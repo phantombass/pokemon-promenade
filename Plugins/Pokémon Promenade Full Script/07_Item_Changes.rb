@@ -59,27 +59,26 @@ class BagWindowEBDX
     end
   end
 end
-module ItemHandlers
 
-  def pbRaiseHappinessAndLowerEV(pkmn,scene,stat,messages)
-    h = pkmn.happiness<255
-    e = pkmn.ev[stat]>0
-    if !h && !e
-      scene.pbDisplay(_INTL("It won't have any effect."))
-      return false
-    end
-    if h
-      pkmn.changeHappiness("evberry")
-    end
-    if e
-      pkmn.ev[stat] = 0
-      pkmn.calc_stats
-    end
-    scene.pbRefresh
-    scene.pbDisplay(messages[2-(h ? 0 : 2)-(e ? 0 : 1)])
-    return true
+def pbRaiseHappinessAndLowerEV(pkmn,scene,stat,messages)
+  h = pkmn.happiness<255
+  e = pkmn.ev[stat]>0
+  if !h && !e
+    scene.pbDisplay(_INTL("It won't have any effect."))
+    return false
   end
+  if h
+    pkmn.changeHappiness("evberry")
+  end
+  if e
+    pkmn.ev[stat] = 0
+    pkmn.calc_stats
+  end
+  scene.pbRefresh
+  scene.pbDisplay(messages[2-(h ? 0 : 2)-(e ? 0 : 1)])
+  return true
 end
+
 
 def pbCut
   if $PokemonBag.pbQuantity(:CHAINSAW)==0

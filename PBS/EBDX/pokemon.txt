@@ -3710,6 +3710,11 @@ SpriteScaleEnemy = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 36
 #-------------------------------
+[SYLVEON]
+SpriteScaleEnemy = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
 [HOPPALM]
 SpriteScaleEnemy = 1
 BattlerAltitude = 0
@@ -3756,10 +3761,13 @@ BattlerEnemyY   = 46
 #-------------------------------
 [ALKALEON]
 SpriteScaleEnemy = 1
+BattlerEnemyY   = 36
 #-------------------------------
 [DRAKEON]
 SpriteScaleEnemy = 1
+BattlerEnemyY   = 36
 #-------------------------------
 [ASTREON]
 SpriteScaleEnemy = 1
+BattlerEnemyY   = 36
 #-------------------------------
