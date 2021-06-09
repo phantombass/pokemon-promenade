@@ -794,11 +794,11 @@ EUCALFINAL = {
              "lowHPOpp" => "Whoa, that little guy is strong!"
            }
   RIVAL2 = { "turnStart0" => "Let's see what kind of team you're rocking!",
-            "lowHPOpp" => "Oh this is gonna be a good battle!"
+            "lastOpp" => "Oh this is gonna be a good battle!"
            }
 
   RIVAL3 = { "turnStart0" => "Just wait til you see the team I've raised!",
-            "lowHPOpp" => proc do
+            "lastOpp" => proc do
               pname = $Trainer.name
               @scene.pbTrainerSpeak("Wow! Your team is looking really good, #{pname}!")
             end
