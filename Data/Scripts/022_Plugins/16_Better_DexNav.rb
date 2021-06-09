@@ -35,8 +35,21 @@ class NewDexNav
       i = 0
       @encarray.each do |specie|
      #   loctext += _INTL("<ar><c2=7FFF5EF7>{1}</c2></ar>",PBSpecies.getName(specie))
+         iform = 0
+       if specie == :RIOLU || specie == :LUCARIO || specie == :BUNEARY|| specie == :LOPUNNY|| specie == :NUMEL|| specie == :CAMERUPT|| specie == :ROCKRUFF || specie == :LYCANROC|| specie == :YAMASK || specie == :COFAGRIGUS
+         iform = 2
+       elsif specie == :CACNEA || specie == :CACTURNE || specie == :SANDYGAST || specie == :PALOSSAND || specie == :DEINO || specie == :ZWEILOUS || specie == :HYDREIGON || specie == :TRAPINCH || specie == :HORSEA || specie == :SEADRA || specie == :EXEGGCUTE || specie == :EXEGGUTOR || specie == :SEEL || specie == :DEWGONG || specie == :DROWZEE || specie == :PHANPY
+         iform = 1
+       else
+         iform = iform
+       end
          encstringarray.push(GameData::Species.get(specie).name)#+", ")
-         @pkmnsprite[i]=PokemonSpeciesIconSprite.new(specie,@viewport2)
+         if iform != 0
+           speciepic = "#{specie}_#{iform}"
+         else
+           speciepic = specie
+         end
+         @pkmnsprite[i]=PokemonSpeciesIconSprite.new(speciepic,@viewport2)
          if i > 6 && i < 14
            @pkmnsprite[i].y += 64
            @pkmnsprite[i].x = (64 * (i-7))
@@ -385,6 +398,7 @@ class NewDexNav
         dexMove = $currentDexSearch[1]
       end
       searchtext = [GameData::Species.get(searchmon).name,ab,GameData::Move.get(dexMove).name]
+      searchpic = "#{searchmon}_#{form}"
       @sprites["search"] = Window_AdvancedTextPokemon.newWithSize("",265,130,250,126,@viewport3)
       if navRand == 2
         @sprites["search"].text = _INTL("{1}\n<c2=463F0000>{2}</c2>\n{3}",searchtext[0],searchtext[1],searchtext[2])
@@ -393,7 +407,11 @@ class NewDexNav
       end
       @sprites["search"].setSkin("Graphics/Windowskins/frlgtextskin")
       @sprites["search"].opacity = 200
-      @sprites["searchIcon"] = PokemonSpeciesIconSprite.new(getID(GameData::Species,searchmon),@viewport3)
+      if form != 0
+        @sprites["searchIcon"] = PokemonSpeciesIconSprite.new(searchpic,@viewport3)
+      else
+        @sprites["searchIcon"] = PokemonSpeciesIconSprite.new(searchmon,@viewport3)
+      end
       @sprites["searchIcon"].x = 450
       @sprites["searchIcon"].y = 65
       $viewport1 = @viewport3
@@ -430,14 +448,12 @@ Events.onWildPokemonCreate+=proc {|sender,e|
         pokemon.ability_index = $game_variables[400]
         maps = GameData::MapMetadata.try_get($game_map.map_id)
         pform = 0
-        if pform == 0 && maps && maps==0
-          if isConst?(pokemon.species,GameData::Species,:RIOLU)||isConst?(pokemon.species,GameData::Species,:LUCARIO)||isConst?(pokemon.species,GameData::Species,:BUNEARY)||isConst?(pokemon.species,GameData::Species,:LOPUNNY)||isConst?(pokemon.species,GameData::Species,:NUMEL)||isConst?(pokemon.species,GameData::Species,:CAMERUPT)||isConst?(pokemon.species,GameData::Species,:ROCKRUFF)||isConst?(pokemon.species,GameData::Species,:YAMASK)
-            pform += 2
-          elsif isConst?(pokemon.species,GameData::Species,:CACNEA)||isConst?(pokemon.species,GameData::Species,:CACTURNE)||isConst?(pokemon.species,GameData::Species,:SANDYGAST)||isConst?(pokemon.species,GameData::Species,:PALOSSAND)||isConst?(pokemon.species,GameData::Species,:DEINO)||isConst?(pokemon.species,GameData::Species,:ZWEILOUS)||isConst?(pokemon.species,GameData::Species,:HYDREIGON)||isConst?(pokemon.species,GameData::Species,:TRAPINCH)||isConst?(pokemon.species,GameData::Species,:HORSEA)||isConst?(pokemon.species,GameData::Species,:SEADRA)||isConst?(pokemon.species,GameData::Species,:EXEGGCUTE)||isConst?(pokemon.species,GameData::Species,:EXEGGUTOR)||isConst?(pokemon.species,GameData::Species,:SEEL)||isConst?(pokemon.species,GameData::Species,:DEWGONG)||isConst?(pokemon.species,GameData::Species,:DROWZEE)||isConst?(pokemon.species,GameData::Species,:PHANPY)||isConst?(pokemon.species,GameData::Species,:ZEBSTRIKA)
-            pform += 1
-          else
-            pform = pform
-          end
+        if pokemon.species == :RIOLU || pokemon.species == :LUCARIO || pokemon.species == :BUNEARY|| pokemon.species == :LOPUNNY|| pokemon.species == :NUMEL|| pokemon.species == :CAMERUPT|| pokemon.species == :ROCKRUFF || pokemon.species == :LYCANROC|| pokemon.species == :YAMASK || pokemon.species == :COFAGRIGUS
+          pform = 2
+        elsif pokemon.species == :CACNEA || pokemon.species == :CACTURNE || pokemon.species == :SANDYGAST || pokemon.species == :PALOSSAND || pokemon.species == :DEINO || pokemon.species == :ZWEILOUS || pokemon.species == :HYDREIGON || pokemon.species == :TRAPINCH || pokemon.species == :HORSEA || pokemon.species == :SEADRA || pokemon.species == :EXEGGCUTE || pokemon.species == :EXEGGUTOR || pokemon.species == :SEEL || pokemon.species == :DEWGONG || pokemon.species == :DROWZEE || pokemon.species == :PHANPY
+          pform = 1
+        else
+          pform = pform
         end
         pokemon.form = pform
         pokemon.reset_moves
@@ -484,14 +500,12 @@ class DexNav
     baby = GameData::Species.get(species).get_baby_species
     maps = GameData::MapMetadata.try_get($game_map.map_id)
     form = 0
-    if form == 0 && maps && maps==0
-      if isConst?(baby,GameData::Species,:RIOLU)||isConst?(baby,GameData::Species,:LUCARIO)||isConst?(baby,GameData::Species,:BUNEARY)||isConst?(baby,GameData::Species,:LOPUNNY)||isConst?(baby,GameData::Species,:NUMEL)||isConst?(baby,GameData::Species,:CAMERUPT)||isConst?(baby,GameData::Species,:ROCKRUFF)||isConst?(baby,GameData::Species,:YAMASK)
-        form += 2
-      elsif isConst?(baby,GameData::Species,:CACNEA)||isConst?(baby,GameData::Species,:CACTURNE)||isConst?(baby,GameData::Species,:SANDYGAST)||isConst?(baby,GameData::Species,:PALOSSAND)||isConst?(baby,GameData::Species,:DEINO)||isConst?(baby,GameData::Species,:ZWEILOUS)||isConst?(baby,GameData::Species,:HYDREIGON)||isConst?(baby,GameData::Species,:TRAPINCH)||isConst?(baby,GameData::Species,:HORSEA)||isConst?(baby,GameData::Species,:SEADRA)||isConst?(baby,GameData::Species,:EXEGGCUTE)||isConst?(baby,GameData::Species,:EXEGGUTOR)||isConst?(baby,GameData::Species,:SEEL)||isConst?(baby,GameData::Species,:DEWGONG)||isConst?(baby,GameData::Species,:DROWZEE)||isConst?(baby,GameData::Species,:PHANPY)||isConst?(baby,GameData::Species,:ZEBSTRIKA)
-        form += 1
-      else
-        form = form
-      end
+    if baby == :RIOLU || baby == :LUCARIO || baby == :BUNEARY|| baby == :LOPUNNY|| baby == :NUMEL|| baby == :CAMERUPT|| baby == :ROCKRUFF || baby == :LYCANROC|| baby == :YAMASK || baby == :COFAGRIGUS
+      form = 2
+    elsif baby == :CACNEA || baby == :CACTURNE || baby == :SANDYGAST || baby == :PALOSSAND || baby == :DEINO || baby == :ZWEILOUS || baby == :HYDREIGON || baby == :TRAPINCH || baby == :HORSEA || baby == :SEADRA || baby == :EXEGGCUTE || baby == :EXEGGUTOR || baby == :SEEL || baby == :DEWGONG || baby == :DROWZEE || baby == :PHANPY
+      form = 1
+    else
+      form = form
     end
     egg = GameData::Species.get_species_form(baby,form).egg_moves
     moveChoice = rand(egg.length)
