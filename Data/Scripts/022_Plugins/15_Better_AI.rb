@@ -192,7 +192,7 @@ class PokeBattle_AI
 						move_super = true
 					end
 				end
-				if battler.stats[PBStats::SPEED]>o.stats[PBStats::SPEED] && battler.status != PBStatuses::PARALYSIS
+				if battler.stats[:SPEED]>o.stats[:SPEED] && battler.status != :PARALYSIS
 					faster = true
 				end
 				oppmoves = o.moves
@@ -254,7 +254,7 @@ class PokeBattle_AI
 					end
 				end
 			end
-			if battler.status==GameData::Status.get(:POISON).id && battler.statusCount>0
+			if battler.status==:POISON && battler.statusCount>0
 				toxicHP = battler.totalhp/16
 				nextToxicHP = toxicHP*(battler.effects[PBEffects::Toxic]+1)
 				if battler.hp<=nextToxicHP && battler.hp>toxicHP*2
@@ -296,7 +296,7 @@ class PokeBattle_AI
 							shouldSwitch = (pbAIRandom(100)<switchChance)
 						end
 					else
-						switchChance = 50
+						switchChance = 70
 						shouldSwitch = (pbAIRandom(100)<switchChance)
 					end
 				end
@@ -313,7 +313,7 @@ class PokeBattle_AI
 				typeMod2 = pbCalcTypeMod(moveType2,target,battler)
         if typeMod == Effectiveness::SUPER_EFFECTIVE_ONE && moveData.base_damage>50
 					if skill>=PBTrainerAI.beastMode
-          	switchChance = 75
+          	switchChance = 85
           	shouldSwitch = (pbAIRandom(100)<switchChance)
 					else
 						switchChance = 50
@@ -323,7 +323,7 @@ class PokeBattle_AI
 				if typeMod2 != Effectiveness::SUPER_EFFECTIVE_ONE && target.hp > target.totalhp/3
 					if !faster
 						if skill>=PBTrainerAI.beastMode
-	          	switchChance = 50
+	          	switchChance = 80
 	          	shouldSwitch = (pbAIRandom(100)<switchChance)
 						else
 							switchChance = 30
