@@ -334,9 +334,7 @@ class PokeBattle_AI
       end
     end
     # Pokémon can't do anything (must have been in battle for at least 5 rounds)
-    if !@battle.pbCanChooseAnyMove?(idxBattler) &&
-       battler.turnCount && battler.turnCount>=0
-
+    if !@battle.pbCanChooseAnyMove?(idxBattler) && battler.turnCount && battler.turnCount>=0
       shouldSwitch = true
     end
     # Pokémon is Perish Songed and has Baton Pass
@@ -502,6 +500,14 @@ class PokeBattle_AI
 			PBDebug.log(logMsg)
 		end
 		# Find any preferred moves and just choose from them
+		if skill == PBTrainerAI.minimumSkill
+			battler = @battle.battlers[idxBattler]
+			battler.eachMoveWithIndex do |_m,i|
+        next if !@battle.pbCanChooseMove?(idxBattler,i,false)
+        choices.push(i)   # Move index, score, target
+      end
+			@battle.pbRegisterMove(idxBattler,choices[0],false)
+		end
 		if !wildBattler && skill>=PBTrainerAI.highSkill && maxScore>100
 			stDev = pbStdDev(choices)
 			if stDev>=40
