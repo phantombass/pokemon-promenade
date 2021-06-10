@@ -3182,3 +3182,19 @@ Pokemon = SAPHYRFLY,117
   Ability = 2
   Moves = SIGNALBEAM,PALEOBEAM,STARBEAM,ICEBEAM
 #-------------------------------
+#Level Trainer
+#-------------------------------
+[SCIENTIST1,Nivel]
+Pokemon = AUDINO,15
+	Moves = MEMENTO
+Pokemon = AUDINO,15
+	Moves = MEMENTO
+Pokemon = AUDINO,15
+	Moves = MEMENTO
+Pokemon = AUDINO,15
+	Moves = MEMENTO
+Pokemon = AUDINO,15
+	Moves = MEMENTO
+Pokemon = AUDINO,15
+	Moves = MEMENTO
+#-------------------------------

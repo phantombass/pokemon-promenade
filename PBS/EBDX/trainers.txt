@@ -1,34 +1,7 @@
 #-------------------------------
 [RIVAL1]
-BattleBGM        = HGSS-138-RivalBattle.ogg
+BattleBGM        = B2W2-RivalTheme.ogg
 BattleVS         = classicVS
-#-------------------------------
-[RIVAL1,Blue]
-BattleScript     = RIVAL1
-#-------------------------------
-[RIVAL1,Blue,1]
-BattleScript     = RIVAL1
-#-------------------------------
-[RIVAL1,Blue,2]
-BattleScript     = RIVAL1
-#-------------------------------
-[RIVAL1,Blue,3]
-BattleScript     = RIVAL2
-#-------------------------------
-[RIVAL1,Blue,4]
-BattleScript     = RIVAL2
-#-------------------------------
-[RIVAL1,Blue,5]
-BattleScript     = RIVAL2
-#-------------------------------
-[RIVAL1,Blue,6]
-BattleScript     = RIVAL3
-#-------------------------------
-[RIVAL1,Blue,7]
-BattleScript     = RIVAL3
-#-------------------------------
-[RIVAL1,Blue,8]
-BattleScript     = RIVAL3
 #-------------------------------
 [LEADER_Brock]
 TrainerPositionX = -8

@@ -242,7 +242,7 @@ end
 
 module BattleScripts
   BORIS = {
-    "lastOpp" => proc do
+    "afterLastOpp" => proc do
       pname = $Trainer.name
       @scene.pbTrainerSpeak("Don't think this is over just yet, #{pname}!")
       @sprites["battlebg"].reconfigure(:SKY, :DISTORTION)
@@ -256,7 +256,7 @@ module BattleScripts
   }
 
   SETH = {
-    "lastOpp" => proc do
+    "afterLastOpp" => proc do
       pname = $Trainer.name
       @scene.pbTrainerSpeak("Hoho! Just see what trickery we have for you!")
       @sprites["battlebg"].reconfigure(:DARKNESS, :DISTORTION)
@@ -275,7 +275,7 @@ module BattleScripts
   }
 
   OZZY = {
-    "lastOpp" => proc do
+    "afterLastOpp" => proc do
       pname = $Trainer.name
       @scene.pbTrainerSpeak("This battle may be saved yet! Observe, #{pname}!")
       @sprites["battlebg"].reconfigure(:CAVE, :DISTORTION)
@@ -293,7 +293,7 @@ module BattleScripts
     }
 
   RALPH = {
-    "lastOpp" => proc do
+    "afterLastOpp" => proc do
       pname = $Trainer.name
               @scene.pbTrainerSpeak("May the sun rise on our victory!")
               @sprites["battlebg"].reconfigure(:MAGMA, :DISTORTION)
@@ -310,7 +310,7 @@ module BattleScripts
             }
 
   DELTA = {
-    "lastOpp" => proc do
+    "afterLastOpp" => proc do
       pname = $Trainer.name
               @scene.pbTrainerSpeak("It's time for the tidal wave to come crashing down!")
               @sprites["battlebg"].reconfigure(:UNDERWATER, :DISTORTION)
@@ -328,7 +328,7 @@ module BattleScripts
             }
 
   SEBASTIAN = {
-    "lastOpp" => proc do
+    "afterLastOpp" => proc do
       pname = $Trainer.name
               @scene.pbTrainerSpeak("It's time for the curtain call!")
               @sprites["battlebg"].reconfigure(:STAGE, :DISTORTION)
@@ -343,7 +343,7 @@ module BattleScripts
     "turnStart0" => "Come! Let us make a masterpiece!"
               }
   ANN = {
-        "lastOpp" => proc do
+        "afterLastOpp" => proc do
           pname = $Trainer.name
           @scene.pbTrainerSpeak("...let the shadows come to my side.")
           @sprites["battlebg"].reconfigure(:DARKNESS, :DISTORTION)
@@ -363,7 +363,7 @@ module BattleScripts
       }
 
   PHOEBE = {
-    "lastOpp" => proc do
+    "afterLastOpp" => proc do
       pname = $Trainer.name
               @scene.pbTrainerSpeak("I haven't have a battle this intense in a long time!")
               @sprites["battlebg"].reconfigure(:NET, :DISTORTION)
@@ -395,7 +395,7 @@ MARIE = {
               @battle.field.weatherDuration = 8
               @scene.pbDisplay("An echo chamber surrounds the field!")
               @scene.wait(16,false)
-              if battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] == nil
+              if @battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] == nil
                 @scene.pbAnimation(GameData::Move.get(:STEALTHROCK).id,@battle.battlers[1],@battle.battlers[0])
                 @battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
                 @scene.pbDisplay("Marie set Comet Shards on #{pname}'s side!")
@@ -406,11 +406,11 @@ MARIE = {
   pname = $Trainer.name
                 @scene.pbTrainerSpeak("Don't think I've given up so soon!")
                 @scene.wait(16,false)
-                EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
                 @battle.battlers[1].pbRecoverHP(@battle.battlers[1].totalhp/3)
                 @scene.pbDisplay("Meritempo tried its hardest for Marie!")
                 @scene.pbDisplay("Meritempo recovered some HP!")
                 @scene.wait(16,false)
+                EliteBattle.playCommonAnimation(:STATUP,@scene,1)
                 @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
                 @battlers[1].pbRaiseStatStageBasic(:SPEED,1)
                 @scene.wait(16,false)
@@ -435,14 +435,14 @@ BURT = {
   pname = $Trainer.name
                     @scene.pbTrainerSpeak("I can't let you break through yet. We've just begun!")
                     @scene.wait(16,false)
-                    EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
                     @battle.battlers[1].pbRecoverHP(@battle.battlers[1].totalhp/3)
                     @battle.battlers[1].status = 0
                     @scene.pbDisplay("Centisepa tried its hardest for Burt!")
                     @scene.pbDisplay("Centisepa recovered some HP and cured its status!")
                     @scene.wait(16,false)
+                    EliteBattle.playCommonAnimation(:STATUP,@scene,1)
                     @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
-                    @battlers[1].pbRaiseStatStageBasic(:SPDEF,1,)
+                    @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1,)
                     @scene.wait(16,false)
                     @scene.pbDisplay("Centisepa's Defense and Special Defense rose!")
                   end
@@ -456,7 +456,7 @@ TIM = {
                     @battle.field.weather = :HeavyRain
                     @scene.pbDisplay("Rain comes crashing down!")
                     @scene.wait(16,false)
-                    if battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] == 0
+                    if @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] == 0
                       @scene.pbAnimation(GameData::Move.get(:SPIKES).id,@battle.battlers[1],@battle.battlers[0])
                       @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 1
                       @scene.pbDisplay("Tim set a layer of Spikes on #{pname}'s side!")
@@ -466,12 +466,12 @@ TIM = {
     pname = $Trainer.name
                     @scene.pbTrainerSpeak("This storm could turn! Time to turn it up!")
                     @scene.wait(16,false)
-                    EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
                     @battle.battlers[1].pbRecoverHP(@battle.battlers[1].totalhp/2)
                     @battle.battlers[1].status = 0
                     @scene.pbDisplay("Orrustorm tried its hardest for Tim!")
                     @scene.pbDisplay("Orrustorm recovered some HP and cured its status!")
                     @scene.wait(16,false)
+                    EliteBattle.playCommonAnimation(:STATUP,@scene,1)
                     @battlers[1].pbRaiseStatStageBasic(:SPEED,1)
                     @battlers[1].pbRaiseStatStageBasic(:SPECIAL_ATTACK,1)
                     @scene.wait(16,false)
@@ -503,12 +503,12 @@ ANDY = {
         pname = $Trainer.name
                   @scene.pbTrainerSpeak("This storm could turn! Time to turn it up!")
                   @scene.wait(16,false)
-                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
                   @battle.battlers[1].pbRecoverHP(@battle.battlers[1].totalhp/3)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Caninpu tried its hardest for Andy!")
                   @scene.pbDisplay("Caninpu recovered some HP and cured its status!")
                   @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:STATUP,@scene,1)
                   @battle.battlers[1].pbRaiseStatStageBasic(:SPEED,2)
                   @scene.wait(16,false)
                   @scene.pbDisplay("Caninpu's Speed sharply rose!")
@@ -542,12 +542,12 @@ OWEN = {
       pname = $Trainer.name
                   @scene.pbTrainerSpeak("This is getting really good! Let's finish this out!")
                   @scene.wait(16,false)
-                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
                   @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/2)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Sobekodile tried its hardest for Owen!")
                   @scene.pbDisplay("Sobekodile recovered some HP and cured its status!")
                   @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:STATUP,@scene,1)
                   @battlers[1].pbRaiseStatStageBasic(:SPEED,1)
                   @scene.wait(16,false)
                   @scene.pbDisplay("Sobekodile's Speed rose!")
@@ -580,12 +580,12 @@ TARA = {
   pname = $Trainer.name
                   @scene.pbTrainerSpeak("Child, you're pushing me to my limits!")
                   @scene.wait(16,false)
-                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
                   @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Osiram tried its hardest for Tara!")
                   @scene.pbDisplay("Osiram recovered some HP and cured its status!")
                   @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:STATUP,@scene,1)
                   @battlers[1].pbRaiseStatStageBasic(:ATTACK,1)
                   @scene.wait(16,false)
                   @scene.pbDisplay("Osiram's Attack rose!")
@@ -618,12 +618,12 @@ TUYA = {
     pname = $Trainer.name
                   @scene.pbTrainerSpeak("You are testing my patience!")
                   @scene.wait(16,false)
-                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
                   @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Bastungsten tried its hardest for Tuya!")
                   @scene.pbDisplay("Bastungsten recovered some HP and cured its status!")
                   @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:STATUP,@scene,1)
                   @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
                   @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)
                   @scene.wait(16,false)
@@ -645,7 +645,7 @@ SETI = {
                   @scene.pbDisplay("Seti summoned an Eclipse!")
                   @scene.wait(16,false)
                   @scene.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
-                  battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
+                  @battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
                   @scene.pbDisplay("Seti set up Comet Shards on #{pname}'s side!")
                   @scene.wait(16,false)
                   @scene.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
@@ -656,12 +656,12 @@ SETI = {
     pname = $Trainer.name
                   @scene.pbTrainerSpeak("Time to end this!")
                   @scene.wait(16,false)
-                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
                   @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Fenixet tried its hardest for Seti!")
                   @scene.pbDisplay("Fenixet recovered some HP and cured its status!")
                   @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:STATUP,@scene,1)
                   @battlers[1].pbRaiseStatStageBasic(:SPECIAL_ATTACK,1)
                   @scene.wait(16,false)
                   @scene.pbDisplay("Fenixet's Special Attack rose!")
@@ -689,12 +689,12 @@ RAMESES = {
     pname = $Trainer.name
                   @scene.pbTrainerSpeak("Time to end this!")
                   @scene.wait(16,false)
-                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
                   @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/2)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Mauselynx tried its hardest for Rameses!")
                   @scene.pbDisplay("Mauselynx recovered some HP and cured its status!")
                   @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:STATUP,@scene,1)
                   @battlers[1].pbRaiseStatStageBasic(:SPECIAL_ATTACK,1)
                   @scene.wait(16,false)
                   @scene.pbDisplay("Mauselynx's Special Attack rose!")
@@ -725,12 +725,12 @@ EUCAL = {
                   @scene.pbTrainerSpeak("But I had to choose between stopping you two early or delaying the coup.")
                   @scene.pbTrainerSpeak("So clearly you see which choice I made...")
                   @scene.wait(16,false)
-                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
                   @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Apophicary tried its hardest for Eucal!")
                   @scene.pbDisplay("Apophicary recovered some HP and cured its status!")
                   @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:STATUP,@scene,1)
                   @battlers[1].pbRaiseStatStageBasic(:SPECIAL_ATTACK,1)
                   @scene.wait(16,false)
                   @scene.pbDisplay("Apophicary's Special Attack rose!")
@@ -761,12 +761,12 @@ LYPTUS = {
                   @scene.pbTrainerSpeak("Bringing each other to our absolute limit and seeing who is the stronger!")
                   @scene.pbTrainerSpeak("Now hit me with all you've got!")
                   @scene.wait(16,false)
-                  EliteBattle.playCommonAnimation(:HEALTHUP,@scene,0)
                   @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Falkmunra tried its hardest for Dr. Lyptus!")
                   @scene.pbDisplay("Falmunra recovered some HP and cured its status!")
                   @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:STATUP,@scene,1)
                   @battlers[1].pbRaiseStatStageBasic(:SPECIAL_ATTACK,1)
                   @scene.wait(16,false)
                   @scene.pbDisplay("Falkmunra's Special Attack rose!")
@@ -777,13 +777,14 @@ LYPTUS = {
                 end
                 }
 EUCALFINAL = {
-  "lastOpp" => proc do
+  "afterLastOpp" => proc do
     pname = $Trainer.name
                   @scene.pbTrainerSpeak("I cannot have you ruining my plans. This is MY Zharo! The way I want it!")
                   @battle.field.weather = :AcidRain
                   @battle.field.weatherDuration = 8
                   @scene.pbDisplay("Acid Rain pours down!")
                   @scene.wait(16,false)
+                  EliteBattle.playCommonAnimation(:STATUP,@scene,1)
                   @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
                   @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)
                   @battlers[1].pbRaiseStatStageBasic(:SPECIAL_ATTACK,1)
@@ -794,13 +795,26 @@ EUCALFINAL = {
              "lowHPOpp" => "Whoa, that little guy is strong!"
            }
   RIVAL2 = { "turnStart0" => "Let's see what kind of team you're rocking!",
-            "lastOpp" => "Oh this is gonna be a good battle!"
+            "afterLastOpp" => "Oh this is gonna be a good battle!"
            }
 
   RIVAL3 = { "turnStart0" => "Just wait til you see the team I've raised!",
-            "lastOpp" => proc do
+            "afterLastOpp" => proc do
               pname = $Trainer.name
               @scene.pbTrainerSpeak("Wow! Your team is looking really good, #{pname}!")
             end
            }
+  RIVAL4 = { "turnStart0" => "Burt has been teaching me a few things!",
+           "afterLastOpp" => proc do
+             pname = $Trainer.name
+             rname = $game_variables[12]
+             poke = @battlers[1].name
+             @scene.pbTrainerSpeak("Your team is looking great as ever, #{pname}! Now check this out!")
+             EliteBattle.playCommonAnimation(:STATUP,@scene,1)
+             @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
+             @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)
+             @battlers[1].pbRaiseStatStageBasic(:SPEED,1)
+             @scene.pbDisplay("#{rname} boosted #{poke}'s defenses and Speed!")
+           end
+          }
 end

@@ -84,3 +84,4 @@
 81,GUARDIAN_Tuya,Temple Guardian,200,Legendary,Battle victory leader,,Male,200,
 82,GUARDIAN_Eucal,Temple Guardian,200,Legendary,Battle victory leader,,Male,200,
 83,GUARDIAN_Lyptus,Temple Guardian,200,Legendary,Battle victory leader,,Male,200,
+84,SCIENTIST1,Level Trainer,0,,,,Male,1,
