@@ -49,6 +49,9 @@ BattleEnv       = TEMPLE
 [205]
 BattleEnv       = TEMPLE
 #-------------------------------
+[207]
+BattleEnv       = SNOW
+#-------------------------------
 [208]
 BattleEnv       = TEMPLE
 #-------------------------------

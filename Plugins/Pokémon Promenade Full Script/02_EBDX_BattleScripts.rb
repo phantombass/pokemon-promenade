@@ -461,6 +461,10 @@ TIM = {
                       @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 1
                       @scene.pbDisplay("Tim set a layer of Spikes on #{pname}'s side!")
                     end
+                    @scene.wait(16,false)
+                    @scene.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                    @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 8
+                    @scene.pbDisplay("Tim set up a protective veil of light!")
                   end,
   "lowHPOpp" => proc do
     pname = $Trainer.name
@@ -810,6 +814,19 @@ EUCALFINAL = {
              rname = $game_variables[12]
              poke = @battlers[1].name
              @scene.pbTrainerSpeak("Your team is looking great as ever, #{pname}! Now check this out!")
+             EliteBattle.playCommonAnimation(:STATUP,@scene,1)
+             @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
+             @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)
+             @battlers[1].pbRaiseStatStageBasic(:SPEED,1)
+             @scene.pbDisplay("#{rname} boosted #{poke}'s defenses and Speed!")
+           end
+          }
+  RIVAL5 = { "turnStart0" => "You ready to head back to the Mainland?",
+           "afterLastOpp" => proc do
+             pname = $Trainer.name
+             rname = $game_variables[12]
+             poke = @battlers[1].name
+             @scene.pbTrainerSpeak("You look fired up, #{pname}! Let's get this going!")
              EliteBattle.playCommonAnimation(:STATUP,@scene,1)
              @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
              @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)

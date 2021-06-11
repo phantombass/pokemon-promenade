@@ -324,7 +324,7 @@ LoseText = "What a whirlwind!"
 Pokemon = ORRUSTORM,70
     Moves = WEATHERBALL,THUNDERBOLT,ROOST,WINDDRILL
     Nature = TIMID
-    Item = FOCUSSASH
+    Item = CHARTIBERRY
     IV = 31,0,31,31,31,31
     EV = 0,0,0,252,252,0
 #-------------------------------
