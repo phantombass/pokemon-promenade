@@ -682,8 +682,8 @@ RAMESES = {
                   @scene.pbTrainerSpeak("It's time you learned your lesson!")
                   @scene.wait(16,false)
                   @scene.pbAnimation(GameData::Move.get(:SPIKES),@battle.battlers[1],@battle.battlers[0])
-                  @battle.battlers[0].pbOwnSide.effects[PBEffects::Spikes] = 2
-                  @scene.pbDisplay("Rameses set up 2 layers of Spikes on #{pname}'s side!")
+                  @battle.battlers[0].pbOwnSide.effects[PBEffects::ToxicSpikes] = 2
+                  @scene.pbDisplay("Rameses set up 2 layers of Toxic Spikes on #{pname}'s side!")
                   @scene.wait(16,false)
                   @scene.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
                   @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
@@ -703,10 +703,9 @@ RAMESES = {
                   @scene.wait(16,false)
                   @scene.pbDisplay("Mauselynx's Special Attack rose!")
                   @scene.wait(16,false)
-                  EliteBattle.playCommonAnimation(:BURN,@scene,0)
-                  @battle.battlers[0].status = :BURN
-                  burnAllPokemon(nil)
-                  @scene.pbDisplay("Rameses burned your party!")
+                  @scene.pbAnimation(GameData::Move.get(:AURORAVEIL).id,@battle.battlers[1],@battle.battlers[1])
+                  @battle.battlers[1].pbOwnSide.effects[PBEffects::AuroraVeil] = 5
+                  @scene.pbDisplay("Rameses set up a protective veil of light!")
                 end
                 }
 EUCAL = {
