@@ -148,6 +148,14 @@ Events.onStepTaken += proc {| sender, e |
   end
 }
 
+class Trainer
+  def heal_party
+    if $game_switches[73]
+      @party.each { |pkmn| pkmn.heal if !pkmn.fainted? }
+    end
+  end
+end
+
 class PokemonTemp
   def pbPrepareBattle(battle)
     battleRules = $PokemonTemp.battleRules
