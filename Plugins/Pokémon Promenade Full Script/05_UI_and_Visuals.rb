@@ -22,7 +22,7 @@ class PokemonSave_Scene
       loctext+=_INTL("Pokédex<r><c2={1}>{2}/{3}</c2><br>",textColor,$Trainer.pokedex.owned_count,$Trainer.pokedex.seen_count)
     end
     if $game_switches[Readouts::Readout]
-      loctext+=_INTL("Readouts<r><c2={1}>{2}</c2>",textColor,$game_variables[Readouts::Count])
+      loctext+=_INTL("Readouts<r><c2={1}>{2}/24</c2>",textColor,$game_variables[Readouts::Count])
     end
     @sprites["locwindow"]=Window_AdvancedTextPokemon.new(loctext)
     @sprites["locwindow"].viewport=@viewport
@@ -37,6 +37,7 @@ class PokemonPauseMenu_Scene
   def pbStartScene
     @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z = 99999
+    capColor = "90F090,000000"
     @sprites = {}
     @sprites["cmdwindow"] = Window_CommandPokemon.new([])
     @sprites["cmdwindow"].visible = false
@@ -45,6 +46,8 @@ class PokemonPauseMenu_Scene
     @sprites["infowindow"].visible = false
     @sprites["helpwindow"] = Window_UnformattedTextPokemon.newWithSize("",0,0,32,32,@viewport)
     @sprites["helpwindow"].visible = false
+    @sprites["levelcapwindow"] = Window_UnformattedTextPokemon.newWithSize("Level Cap: #{$game_variables[LvlCap::LevelCap]}",0,0,200,64,@viewport)
+    @sprites["levelcapwindow"].visible = true
     @infostate = false
     @helpstate = false
     $viewport4 = @viewport

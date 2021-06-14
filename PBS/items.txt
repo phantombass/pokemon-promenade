@@ -768,3 +768,6 @@
 781,APOPHITE,Apophite,Apophites,1,0,"One variety of the mysterious Mega Stones. Have Apophicary hold it, and this stone will enable it to Mega Evolve during battle.",0,0,12,
 782,FALKMUNRITE,Falkmunrite,Falkmunrites,1,0,"One variety of the mysterious Mega Stones. Have Falkmunra hold it, and this stone will enable it to Mega Evolve during battle.",0,0,12,
 783,TM108,TM108,TM108s,4,30000,"The user attacks with a powerfully projected voice.",3,0,0,HYPERVOICE
+784,TM115,TM115,TM115s,4,30000,"The user attacks with a wave of time energy.",3,0,0,QUANTUMWAVE
+785,TM116,TM116,TM116s,4,30000,"The user attacks with the crushing weight of time itsekf.",3,0,0,QUANTUMCRUSH
+

@@ -39,6 +39,14 @@ class PokeBattle_Battle
   end
 end
 
+class PokeBattle_Battler
+  def hasActiveItem?(check_item, ignore_fainted = false)
+    return false if !itemActive?(ignore_fainted)
+    return check_item.include?(@item_id) if check_item.is_a?(Array)
+    return self.item == check_item
+  end
+end
+
 class BagWindowEBDX
   def confirm
     pbSEPlay("EBDX/SE_Select2")
@@ -367,6 +375,10 @@ def useMoveFly
     $game_temp.player_new_map_id    = $PokemonTemp.flydata[0]
     $game_temp.player_new_x         = $PokemonTemp.flydata[1]
     $game_temp.player_new_y         = $PokemonTemp.flydata[2]
+    for i in 115..121
+      $game_switches[i] = false
+    end
+    $game_switches[125] = false
     $game_temp.player_new_direction = 2
     $PokemonTemp.flydata = nil
     $scene.transfer_player
