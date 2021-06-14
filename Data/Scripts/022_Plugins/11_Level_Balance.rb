@@ -46,16 +46,16 @@ Events.onTrainerPartyLoad+=proc {| sender, trainer |
       party[i].level = level
       #now we evolve the pokémon, if applicable
       species = party[i].species
-      if badges > 4
-      newspecies = pbGetBabySpecies(species) # revert to the first evolution
+      if badges > 8
+      newspecies = GameData::Species.get(species).get_baby_species # revert to the first evolution
       evoflag=0 #used to track multiple evos not done by lvl
       endevo=false
       loop do #beginning of loop to evolve species
       nl = level + 5
       nl = levelcap if nl > levelcap
-      pkmn = PokeBattle_Pokemon.new(newspecies, nl)
-      cevo = Kernel.pbCheckEvolution(pkmn)
-      evo = pbGetEvolvedFormData(newspecies)
+      pkmn = Pokemon.new(newspecies, nl)
+      cevo = GameData::Species.get(newspecies).evolutions
+      evo = GameData::Species.get(newspecies).get_evolutions
       if evo
         evo = evo[rand(evo.length - 1)]
         # here we evolve things that don't evolve through level
@@ -88,9 +88,9 @@ Events.onTrainerPartyLoad+=proc {| sender, trainer |
     end #end of loop do
     #fixing some things such as Bellossom would turn into Vileplume
     #check if original species could evolve (Bellosom couldn't)
-    couldevo=pbGetEvolvedFormData(species)
+    couldevo=GameData::Species.get(species).get_evolutions
     #check if current species can evolve
-    evo = pbGetEvolvedFormData(newspecies)
+    evo = GameData::Species.get(newspecies).get_evolutions
       if evo.length<1 && couldevo.length<1
       else
          species=newspecies

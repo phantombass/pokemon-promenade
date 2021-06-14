@@ -530,7 +530,7 @@ OWEN = {
                   @battle.field.weatherDuration = 8
                   @scene.pbDisplay("Rain began to fall!")
                   @scene.wait(16,false)
-                  @battle.field.terrain = PBBattleTerrains::Psychic
+                  @battle.field.terrain = :Psychic
                   @battle.field.terrainDuration = 5
                   @scene.pbDisplay("The battlefield got weird!")
                   @scene.wait(16,false)
@@ -546,7 +546,7 @@ OWEN = {
       pname = $Trainer.name
                   @scene.pbTrainerSpeak("This is getting really good! Let's finish this out!")
                   @scene.wait(16,false)
-                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/2)
+                  @battle.battlers[1].pbRecoverHP(@battle.battlers[0].totalhp/2)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Sobekodile tried its hardest for Owen!")
                   @scene.pbDisplay("Sobekodile recovered some HP and cured its status!")
@@ -584,7 +584,7 @@ TARA = {
   pname = $Trainer.name
                   @scene.pbTrainerSpeak("Child, you're pushing me to my limits!")
                   @scene.wait(16,false)
-                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                  @battle.battlers[1].pbRecoverHP(@battle.battlers[0].totalhp/3)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Osiram tried its hardest for Tara!")
                   @scene.pbDisplay("Osiram recovered some HP and cured its status!")
@@ -622,7 +622,7 @@ TUYA = {
     pname = $Trainer.name
                   @scene.pbTrainerSpeak("You are testing my patience!")
                   @scene.wait(16,false)
-                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                  @battle.battlers[1].pbRecoverHP(@battle.battlers[0].totalhp/3)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Bastungsten tried its hardest for Tuya!")
                   @scene.pbDisplay("Bastungsten recovered some HP and cured its status!")
@@ -660,7 +660,7 @@ SETI = {
     pname = $Trainer.name
                   @scene.pbTrainerSpeak("Time to end this!")
                   @scene.wait(16,false)
-                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                  @battle.battlers[1].pbRecoverHP(@battle.battlers[0].totalhp/3)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Fenixet tried its hardest for Seti!")
                   @scene.pbDisplay("Fenixet recovered some HP and cured its status!")
@@ -693,7 +693,7 @@ RAMESES = {
     pname = $Trainer.name
                   @scene.pbTrainerSpeak("Time to end this!")
                   @scene.wait(16,false)
-                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/2)
+                  @battle.battlers[1].pbRecoverHP(@battle.battlers[0].totalhp/2)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Mauselynx tried its hardest for Rameses!")
                   @scene.pbDisplay("Mauselynx recovered some HP and cured its status!")
@@ -729,7 +729,7 @@ EUCAL = {
                   @scene.pbTrainerSpeak("But I had to choose between stopping you two early or delaying the coup.")
                   @scene.pbTrainerSpeak("So clearly you see which choice I made...")
                   @scene.wait(16,false)
-                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                  @battle.battlers[1].pbRecoverHP(@battle.battlers[0].totalhp/3)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Apophicary tried its hardest for Eucal!")
                   @scene.pbDisplay("Apophicary recovered some HP and cured its status!")
@@ -765,7 +765,7 @@ LYPTUS = {
                   @scene.pbTrainerSpeak("Bringing each other to our absolute limit and seeing who is the stronger!")
                   @scene.pbTrainerSpeak("Now hit me with all you've got!")
                   @scene.wait(16,false)
-                  @battle.battlers[1].pbRecoverHP(battle.battlers[0].totalhp/3)
+                  @battle.battlers[1].pbRecoverHP(@battle.battlers[0].totalhp/3)
                   @battle.battlers[1].status = 0
                   @scene.pbDisplay("Falkmunra tried its hardest for Dr. Lyptus!")
                   @scene.pbDisplay("Falmunra recovered some HP and cured its status!")
@@ -834,4 +834,25 @@ EUCALFINAL = {
              @scene.pbDisplay("#{rname} boosted #{poke}'s defenses and Speed!")
            end
           }
+  RIVAL6 = { "turnStart0" => "I really hope you're ready...",
+         "afterLastOpp" => proc do
+           pname = $Trainer.name
+           rname = $game_variables[12]
+           poke = @battlers[1].name
+           @scene.pbTrainerSpeak("I think you got this, #{pname}! But let's toss one final test in!")
+           EliteBattle.playCommonAnimation(:STATUP,@scene,1)
+           @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
+           @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)
+           @battlers[1].pbRaiseStatStageBasic(:SPEED,1)
+           @scene.pbDisplay("#{rname} boosted #{poke}'s defenses and Speed!")
+         end
+        }
+  RIVAL6 = { "turnStart0" => "Let's see who's more ready for the Pokémon League!",
+         "afterLastOpp" => proc do
+           pname = $Trainer.name
+           rname = $game_variables[12]
+           poke = @battlers[1].name
+           @scene.pbTrainerSpeak("No shenanigans this time, #{pname}! Let's finish this!")
+         end
+        }
 end
