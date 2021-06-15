@@ -212,8 +212,10 @@ end
 
 class Trainer
   def heal_party
-    if $game_switches[73]
+    if $game_switches[73] == true
       @party.each { |pkmn| pkmn.heal if !pkmn.fainted? }
+    else
+      @party.each { |pkmn| pkmn.heal }
     end
   end
 end
