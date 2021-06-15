@@ -396,9 +396,9 @@ LoseText = "Amazing. Simply amazing!"
 Pokemon = FALKMUNRA,125
     Moves = RECOVER,FLAMETHROWER,QUANTUMWAVE,STARBEAM
     Nature = TIMID
-    Item = LIFEORB
+    Item = LEFTOVERS
     IV = 31,0,31,31,31,31
-    EV = 4,0,0,252,252,0
+    EV = 252,0,4,0,252,0
 #-------------------------------
 [CHANCELLOR,Eucal]
 LoseText = "HOW CAN THIS BE?!?!"
