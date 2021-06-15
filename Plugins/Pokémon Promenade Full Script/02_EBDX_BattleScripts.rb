@@ -351,6 +351,7 @@ module BattleScripts
           @battle.field.weatherDuration = 8
           @scene.pbDisplay("Time stopped again!")
           @scene.wait(16,false)
+          EliteBattle.playCommonAnimation(:STATUP,@scene,1)
           @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
           @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)
           @scene.pbDisplay("Ann's Pokémon boosted its Defense and Special Defense!")
@@ -371,6 +372,7 @@ module BattleScripts
               @battle.field.weatherDuration = 8
               @scene.pbDisplay("Fog covers the field!")
               @scene.wait(16,false)
+              EliteBattle.playCommonAnimation(:STATUP,@scene,1)
               @battlers[1].pbRaiseStatStageBasic(:DEFENSE,1)
               @battlers[1].pbRaiseStatStageBasic(:SPECIAL_DEFENSE,1)
               @scene.pbDisplay("Phoebe's Pokémon boosted its Defense and Special Defense!")
@@ -724,9 +726,7 @@ EUCAL = {
   "lowHPOpp" => proc do
     pname = $Trainer.name
     rname = $game_variables[12]
-                  @scene.pbTrainerSpeak("I knew you and #{rname} would become rather challenging if I let you go.")
-                  @scene.pbTrainerSpeak("But I had to choose between stopping you two early or delaying the coup.")
-                  @scene.pbTrainerSpeak("So clearly you see which choice I made...")
+                  @scene.pbTrainerSpeak("I knew you and #{rname} would become rather challenging if I let you go.\nBut I had to choose between stopping you two early or delaying the coup.\nSo clearly you see which choice I made...")
                   @scene.wait(16,false)
                   @battle.battlers[1].pbRecoverHP(@battle.battlers[1].totalhp/3)
                   @battle.battlers[1].status = 0
@@ -747,8 +747,7 @@ LYPTUS = {
       "turnStart0" => proc do
         pname = $Trainer.name
         rname = $game_variables[12]
-                  @scene.pbTrainerSpeak("I've had my eye on you and #{rname} since you both set out!")
-                  @scene.pbTrainerSpeak("I am so excited for this battle!")
+                  @scene.pbTrainerSpeak("I've had my eye on you and #{rname} since you both set out!\nI am so excited for this battle!")
                   @scene.wait(16,false)
                   @scene.pbAnimation(GameData::Move.get(:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
                   @battle.battlers[0].pbOwnSide.effects[PBEffects::CometShards] = true
@@ -760,9 +759,7 @@ LYPTUS = {
                 end,
   "lowHPOpp" => proc do
     pname = $Trainer.name
-                  @scene.pbTrainerSpeak("This is what this challenge is all about!")
-                  @scene.pbTrainerSpeak("Bringing each other to our absolute limit and seeing who is the stronger!")
-                  @scene.pbTrainerSpeak("Now hit me with all you've got!")
+                  @scene.pbTrainerSpeak("This is what this challenge is all about!\nBringing each other to our absolute limit and seeing who is the stronger!\nNow hit me with all you've got!")
                   @scene.wait(16,false)
                   @battle.battlers[1].pbRecoverHP(@battle.battlers[1].totalhp/3)
                   @battle.battlers[1].status = 0

@@ -4065,7 +4065,7 @@ class PokeBattle_Battle
     curWeather = @field.weather
     priority.each do |b|
       # Weather-related abilities
-      if b.ability == :BAROMETRIC
+      if b.ability == :BAROMETRIC || b.ability == :ACCLIMATE
         BattleHandlers.triggerEORWeatherAbility(b.ability,curWeather,b,self)
         b.pbFaint if b.fainted?
       end
@@ -4133,7 +4133,7 @@ class PokeBattle_Battle
         b.pbCheckFormOnWeatherChange
       end
       b.pbFaint if b.fainted?
-      if !b.isSpecies?(:ALTEMPER)
+      if !b.isSpecies?(:ALTEMPER) && !b.isSpecies?(:FORMETEOS)
         BattleHandlers.triggerEORWeatherAbility(b.ability,curWeather,b,self)
       end
       case curWeather
