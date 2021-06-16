@@ -36,9 +36,9 @@ class NewDexNav
       @encarray.each do |specie|
      #   loctext += _INTL("<ar><c2=7FFF5EF7>{1}</c2></ar>",PBSpecies.getName(specie))
          iform = 0
-       if specie == :RIOLU || specie == :LUCARIO || specie == :BUNEARY|| specie == :LOPUNNY|| specie == :NUMEL|| specie == :CAMERUPT|| specie == :ROCKRUFF || specie == :LYCANROC|| specie == :YAMASK || specie == :COFAGRIGUS
+       if specie == :LUCARIO || specie == :BUNEARY|| specie == :LOPUNNY|| specie == :NUMEL|| specie == :CAMERUPT|| specie == :ROCKRUFF || specie == :LYCANROC|| specie == :YAMASK || specie == :COFAGRIGUS
          iform = 2
-       elsif specie == :CACNEA || specie == :CACTURNE || specie == :SANDYGAST || specie == :PALOSSAND || specie == :DEINO || specie == :ZWEILOUS || specie == :HYDREIGON || specie == :TRAPINCH || specie == :HORSEA || specie == :SEADRA || specie == :EXEGGCUTE || specie == :EXEGGUTOR || specie == :SEEL || specie == :DEWGONG || specie == :DROWZEE || specie == :PHANPY
+       elsif specie == :CACNEA || specie == :CACTURNE || specie == :SANDYGAST || specie == :PALOSSAND || specie == :DEINO || specie == :ZWEILOUS || specie == :HYDREIGON || specie == :TRAPINCH || specie == :HORSEA || specie == :SEADRA || specie == :EXEGGCUTE || specie == :EXEGGUTOR || specie == :SEEL || specie == :DEWGONG
          iform = 1
        else
          iform = iform
@@ -180,22 +180,11 @@ class NewDexNav
         e48 = enc_list4[11][1] if eLength4 >= 11
       end
       pLoc = $game_map.terrain_tag($game_player.x,$game_player.y)
-      if GameData::TerrainTag.get(pLoc).id == :Snow
-        encTerr = :Snow
-      elsif GameData::TerrainTag.get(pLoc).id == :Grass || GameData::TerrainTag.get(pLoc).id == :None
+      if GameData::TerrainTag.get(pLoc).id == :Grass || GameData::TerrainTag.get(pLoc).id == :None
         if $MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
           encTerr = :OldRod
         else
-          if !$PokemonEncounters.has_normal_land_encounters?
-            encTerr = :Sand if $PokemonEncounters.has_sandy_encounters?
-            encTerr = :Graveyard if $PokemonEncounters.has_graveyard_encounters?
-            encTerr = :Snow if $PokemonEncounters.has_snow_encounters?
-            encTerr = :HighBridge if $PokemonEncounters.has_high_bridge_encounters?
-            encTerr = :Water if $PokemonEncounters.has_water_encounters?
-            encTerr = :Cave if $PokemonEncounters.has_cave_encounters?
-          else
-            encTerr = :Land
-          end
+          encTerr = :Land
         end
       elsif GameData::TerrainTag.get(pLoc).id == :HighBridge
         encTerr = :HighBridge
@@ -205,23 +194,13 @@ class NewDexNav
         if $MapFactory.getFacingTerrainTag== :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
           encTerr = :OldRod
         else
-          encTerr = :Sand if $PokemonEncounters.has_sandy_encounters?
-          encTerr = :Graveyard if $PokemonEncounters.has_graveyard_encounters?
           encTerr = :Snow if $PokemonEncounters.has_snow_encounters?
-          encTerr = :HighBridge if $PokemonEncounters.has_high_bridge_encounters?
-          encTerr = :Water if $PokemonEncounters.has_water_encounters?
-          encTerr = :Cave if $PokemonEncounters.has_cave_encounters?
         end
       elsif GameData::TerrainTag.get(pLoc).id == :Sandy || GameData::TerrainTag.get(pLoc).id == :Sand
         if $MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
           encTerr = :OldRod
         else
-          encTerr = :Sand if $PokemonEncounters.has_sandy_encounters?
-          encTerr = :Graveyard if $PokemonEncounters.has_graveyard_encounters?
-          encTerr = :Snow if $PokemonEncounters.has_snow_encounters?
-          encTerr = :HighBridge if $PokemonEncounters.has_high_bridge_encounters?
-          encTerr = :Water if $PokemonEncounters.has_water_encounters?
-          encTerr = :Cave if $PokemonEncounters.has_cave_encounters?
+          encTerr = :Sandy if $PokemonEncounters.has_sandy_encounters?
         end
       elsif GameData::TerrainTag.can_surf(pLoc) || GameData::TerrainTag.get(pLoc).id == :Bridge
         encTerr = :Water
@@ -374,9 +353,9 @@ class NewDexNav
       searchmon = GameData::Species.get($currentDexSearch[0]).id
       maps = GameData::MapMetadata.try_get($game_map.map_id)   # Map IDs for Zharonian Forme
       form = 0
-        if searchmon == :RIOLU || searchmon == :LUCARIO || searchmon == :BUNEARY|| searchmon == :LOPUNNY|| searchmon == :NUMEL|| searchmon == :CAMERUPT|| searchmon == :ROCKRUFF || searchmon == :LYCANROC|| searchmon == :YAMASK || searchmon == :COFAGRIGUS
+        if searchmon == :LUCARIO || searchmon == :BUNEARY|| searchmon == :LOPUNNY|| searchmon == :NUMEL|| searchmon == :CAMERUPT|| searchmon == :ROCKRUFF || searchmon == :LYCANROC|| searchmon == :YAMASK || searchmon == :COFAGRIGUS
           form = 2
-        elsif searchmon == :CACNEA || searchmon == :CACTURNE || searchmon == :SANDYGAST || searchmon == :PALOSSAND || searchmon == :DEINO || searchmon == :ZWEILOUS || searchmon == :HYDREIGON || searchmon == :TRAPINCH || searchmon == :HORSEA || searchmon == :SEADRA || searchmon == :EXEGGCUTE || searchmon == :EXEGGUTOR || searchmon == :SEEL || searchmon == :DEWGONG || searchmon == :DROWZEE || searchmon == :PHANPY
+        elsif searchmon == :CACNEA || searchmon == :CACTURNE || searchmon == :SANDYGAST || searchmon == :PALOSSAND || searchmon == :DEINO || searchmon == :ZWEILOUS || searchmon == :HYDREIGON || searchmon == :TRAPINCH || searchmon == :HORSEA || searchmon == :SEADRA || searchmon == :EXEGGCUTE || searchmon == :EXEGGUTOR || searchmon == :SEEL || searchmon == :DEWGONG
           form = 1
         else
           form = form
@@ -448,9 +427,9 @@ Events.onWildPokemonCreate+=proc {|sender,e|
         pokemon.ability_index = $game_variables[400]
         maps = GameData::MapMetadata.try_get($game_map.map_id)
         pform = 0
-        if pokemon.species == :RIOLU || pokemon.species == :LUCARIO || pokemon.species == :BUNEARY|| pokemon.species == :LOPUNNY|| pokemon.species == :NUMEL|| pokemon.species == :CAMERUPT|| pokemon.species == :ROCKRUFF || pokemon.species == :LYCANROC|| pokemon.species == :YAMASK || pokemon.species == :COFAGRIGUS
+        if pokemon.species == :LUCARIO || pokemon.species == :BUNEARY|| pokemon.species == :LOPUNNY|| pokemon.species == :NUMEL|| pokemon.species == :CAMERUPT|| pokemon.species == :ROCKRUFF || pokemon.species == :LYCANROC|| pokemon.species == :YAMASK || pokemon.species == :COFAGRIGUS
           pform = 2
-        elsif pokemon.species == :CACNEA || pokemon.species == :CACTURNE || pokemon.species == :SANDYGAST || pokemon.species == :PALOSSAND || pokemon.species == :DEINO || pokemon.species == :ZWEILOUS || pokemon.species == :HYDREIGON || pokemon.species == :TRAPINCH || pokemon.species == :HORSEA || pokemon.species == :SEADRA || pokemon.species == :EXEGGCUTE || pokemon.species == :EXEGGUTOR || pokemon.species == :SEEL || pokemon.species == :DEWGONG || pokemon.species == :DROWZEE || pokemon.species == :PHANPY
+        elsif pokemon.species == :CACNEA || pokemon.species == :CACTURNE || pokemon.species == :SANDYGAST || pokemon.species == :PALOSSAND || pokemon.species == :DEINO || pokemon.species == :ZWEILOUS || pokemon.species == :HYDREIGON || pokemon.species == :TRAPINCH || pokemon.species == :HORSEA || pokemon.species == :SEADRA || pokemon.species == :EXEGGCUTE || pokemon.species == :EXEGGUTOR || pokemon.species == :SEEL || pokemon.species == :DEWGONG
           pform = 1
         else
           pform = pform
@@ -500,9 +479,9 @@ class DexNav
     baby = GameData::Species.get(species).get_baby_species
     maps = GameData::MapMetadata.try_get($game_map.map_id)
     form = 0
-    if baby == :RIOLU || baby == :LUCARIO || baby == :BUNEARY|| baby == :LOPUNNY|| baby == :NUMEL|| baby == :CAMERUPT|| baby == :ROCKRUFF || baby == :LYCANROC|| baby == :YAMASK || baby == :COFAGRIGUS
+    if baby == :LUCARIO || baby == :BUNEARY || baby == :LOPUNNY || baby == :NUMEL || baby == :CAMERUPT || baby == :ROCKRUFF || baby == :LYCANROC || baby == :YAMASK || baby == :COFAGRIGUS
       form = 2
-    elsif baby == :CACNEA || baby == :CACTURNE || baby == :SANDYGAST || baby == :PALOSSAND || baby == :DEINO || baby == :ZWEILOUS || baby == :HYDREIGON || baby == :TRAPINCH || baby == :HORSEA || baby == :SEADRA || baby == :EXEGGCUTE || baby == :EXEGGUTOR || baby == :SEEL || baby == :DEWGONG || baby == :DROWZEE || baby == :PHANPY
+    elsif baby == :CACNEA || baby == :CACTURNE || baby == :SANDYGAST || baby == :PALOSSAND || baby == :DEINO || baby == :ZWEILOUS || baby == :HYDREIGON || baby == :TRAPINCH || baby == :HORSEA || baby == :SEADRA || baby == :EXEGGCUTE || baby == :EXEGGUTOR || baby == :SEEL || baby == :DEWGONG
       form = 1
     else
       form = form
