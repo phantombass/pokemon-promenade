@@ -3727,6 +3727,7 @@ BattlerEnemyY   = 36
 [HOPPALM]
 SpriteScaleEnemy = 1
 BattlerAltitude = 0
+BattlerEnemyY   = 16
 #-------------------------------
 [CHARPHINCH]
 SpriteScaleEnemy = 1
