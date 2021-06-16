@@ -293,22 +293,46 @@ class NewDexNav
           @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name)
           @sprites["nav"].x -= 64
         else
-          @navChoice +=6
-          navMon +=6
-          @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name)
-          @sprites["nav"].x = 384
+          if lastMon < 6 && @navChoice == 0 || (lastMon < 13 && lastMon > 6 && @navChoice > 6) || (lastMon < 20 && lastMon > 13 && @navChoice > 13)
+            @navChoice = lastMon
+            navMon = lastMon
+            @sprites["nav"].x = 5 + (64*navMon)
+            @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name)
+          else
+            @navChoice +=6
+            navMon +=6
+            @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name)
+            @sprites["nav"].x = 384
+          end
         end
       elsif Input.trigger?(Input::RIGHT)
         if @navChoice == 6 || @navChoice == 13 || @navChoice == 20 || @navChoice == lastMon
-          @navChoice -= 6
-          navMon -= 6
-          @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name)
-          @sprites["nav"].x -= 384
+          if lastMon < 6 && @navChoice == lastMon || (lastMon < 13 && lastMon > 6 && @navChoice > 6) || (lastMon < 20 && lastMon > 13 && @navChoice > 13)
+            if lastMon < 6 && @navChoice == lastMon
+              @navChoice = 0
+              navMon = 0
+              @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name)
+            elsif (lastMon < 13 && lastMon > 6 && @navChoice > 6)
+              @navChoice = 7
+              navMon = 7
+              @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name)
+            elsif (lastMon < 20 && lastMon > 13 && @navChoice > 13)
+              @navChoice = 14
+              navMon = 14
+              @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name)
+            end
+            @sprites["nav"].x = 5
+          else
+            @navChoice -= 6
+            navMon -= 6
+            @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name)
+            @sprites["nav"].x -= 384
+          end
         elsif (@navChoice !=6 && @navChoice !=13 && @navChoice !=20) || (@navChoice != lastMon)
-        @navChoice +=1
-        navMon +=1
-        @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name)
-        @sprites["nav"].x += 64
+          @navChoice +=1
+          navMon +=1
+          @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name)
+          @sprites["nav"].x += 64
         end
       elsif Input.trigger?(Input::C)
         if !$Trainer.pokedex.seen?(@encarray[navMon])
