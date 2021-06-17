@@ -12,6 +12,7 @@ module LvlCap
   LevelCap = 106             #Variable for the Level Cap
   Gym = 70                   #Switch for Gym Battles
   Rival = 69                 #Switch for Rival Battles
+  LvlTrainer = 83
   Ace = 129                  #Switch for Ace Trainer Battles
 end
 
@@ -28,6 +29,8 @@ Events.onTrainerPartyLoad+=proc {| sender, trainer |
         level=1 if level<1
       if mlv<levelcap && mlv < party[i].level && $game_switches[LvlCap::Gym] == true
         level = levelcap
+      elsif $game_switches[LvlCap::LvlTrainer] == true
+        level = levelcap - 5
       elsif mlv<levelcap && mlv>party[i].level && $game_switches[LvlCap::Rival] == true
         level = mlv
       elsif mlv<levelcap && mlv<=party[i].level && $game_switches[LvlCap::Rival] == true
