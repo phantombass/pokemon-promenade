@@ -215,7 +215,7 @@ GameData::Weather.register({
   :id               => :Borealis,
   :id_number        => 28,
   :category         => :Borealis,
-  :graphics         => [["hail_1", "hail_2", "hail_3"],["borealis_tile"]],
+  :graphics         => [["hail_1", "hail_2", "hail_3"]],
   :particle_delta_x => -10,
   :particle_delta_y => 10,
   :tone_proc        => proc { |strength|

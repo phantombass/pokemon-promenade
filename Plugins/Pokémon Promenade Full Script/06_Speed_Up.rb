@@ -6,7 +6,9 @@ module Input
       pbScreenCapture
     end
     if $CanToggle && trigger?(Input::AUX1) #remap your Q button on the F1 screen to change your speedup switch
-      $GameSpeed += 1
+      if $game_switches[LvlCap::Gym] == false && $game_switches[LvlCap::Ace] == false
+        $GameSpeed += 1
+      end
       $GameSpeed = 0 if $GameSpeed >= SPEEDUP_STAGES.size
     end
   end

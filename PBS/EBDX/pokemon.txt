@@ -3719,6 +3719,12 @@ SpriteScaleEnemy = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 36
 #-------------------------------
+[LOPUNNY,2]
+SpriteScaleEnemy = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+BattlerPlayerY  = 36
+#-------------------------------
 [SYLVEON]
 SpriteScaleEnemy = 1
 BattlerAltitude = 0
