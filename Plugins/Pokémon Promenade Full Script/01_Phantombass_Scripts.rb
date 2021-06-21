@@ -146,6 +146,13 @@ Events.onStepTaken += proc {| sender, e |
   end
 }
 
+Events.onWildPokemonCreate+=proc {|sender,e|
+  pokemon = e[0]
+  if pokemon.level > $game_variables[LvlCap::LevelCap]
+    $game_switches[81] = true
+  end
+}
+
 def pbStartOver(gameover=false)
   if pbInBugContest?
     pbBugContestStartOver
@@ -457,6 +464,7 @@ class PokeBattle_Battle
     EliteBattle.set(:setBoss, false)
     EliteBattle.set(:colorAlpha, 0)
     EliteBattle.set(:smAnim, false)
+    $game_switches[81] = false
     # return final output
     return @decision
   end
@@ -472,6 +480,8 @@ class PokeBattle_Battle
     isPartic    = defeatedBattler.participants.include?(idxParty)
     hasExpShare = expShare.include?(idxParty)
     level = defeatedBattler.level
+    level_cap = $game_variables[106]
+    level_cap_gap = growth_rate.exp_values[level_cap] - pkmn.exp
     # Main Exp calculation
     exp = 0
     a = level*defeatedBattler.pokemon.base_exp
@@ -482,26 +492,14 @@ class PokeBattle_Battle
         exp = a/(2*numPartic) if isPartic
         exp += a/(2*expShare.length) if hasExpShare
       else   # Gain from participating and/or Exp Share (Exp not split)
-        if pkmn.level >= $game_variables[106]
-          exp = a/1000
-        else
-          exp = (isPartic) ? a : a/2
-        end
+        exp = (isPartic) ? a : a/2
       end
     elsif isPartic   # Participated in battle, no Exp Shares held by anyone
-      if pkmn.level >= $game_variables[106]
-        exp = a/1000
-      else
-        exp = a / (Settings::SPLIT_EXP_BETWEEN_GAINERS ? numPartic : 1)
-      end
+      exp = a / (Settings::SPLIT_EXP_BETWEEN_GAINERS ? numPartic : 1)
     elsif expAll   # Didn't participate in battle, gaining Exp due to Exp All
       # NOTE: Exp All works like the Exp Share from Gen 6+, not like the Exp All
       #       from Gen 1, i.e. Exp isn't split between all Pokémon gaining it.
-      if pkmn.level >= $game_variables[106]
-        exp = a/1000
-      else
-        exp = a/2
-      end
+      exp = a/2
     end
     return if exp<=0
     # Pokémon gain more Exp from trainer battles
@@ -515,8 +513,18 @@ class PokeBattle_Battle
       exp *= levelAdjust
       exp = exp.floor
       exp += 1 if isPartic || hasExpShare
+      if pkmn.level >= level_cap
+        exp /= 250
+      end
+      if exp >= level_cap_gap
+        exp = level_cap_gap + 1
+      end
     else
-      exp /= 7
+      if a = level_cap_gap
+        exp = a
+      else
+        exp /= 7
+      end
     end
     # Foreign Pokémon gain more Exp
     isOutsider = (pkmn.owner.id != pbPlayer.id ||

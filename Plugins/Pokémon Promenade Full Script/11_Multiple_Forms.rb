@@ -61,8 +61,8 @@ GameData::Evolution.register({
   :parameter     => Integer,
   :minimum_level => 1,   # Needs any level up
   :level_up_proc => proc { |pkmn, parameter|
-    return false if $game_map.map_id != 0
-    next pkmn.level >= parameter
+    map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
+    next map_metadata.town_map_position[0] == 0 && pkmn.level >= parameter
   }
 })
 
@@ -71,8 +71,8 @@ GameData::Evolution.register({
   :parameter     => Integer,
   :minimum_level => 1,   # Needs any level up
   :level_up_proc => proc { |pkmn, parameter|
-    return false if $game_map.map_id != 0
-    next pkmn.level >= parameter
+    map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
+    next map_metadata.town_map_position[0] == 0 && pkmn.level >= parameter
   }
 })
 
@@ -81,8 +81,8 @@ GameData::Evolution.register({
   :parameter     => Integer,
   :minimum_level => 1,   # Needs any level up
   :level_up_proc => proc { |pkmn, parameter|
-    return false if $game_map.map_id != 0
-    next pkmn.level >= parameter
+    map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
+    next map_metadata.town_map_position[0] == 0 && pkmn.level >= parameter
   }
 })
 
