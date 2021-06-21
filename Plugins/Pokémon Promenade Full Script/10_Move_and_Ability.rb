@@ -3465,7 +3465,6 @@ end
 
 class PokeBattle_Battle
   def pbRecallAndReplace(idxBattler,idxParty,randomReplacement=false,batonPass=false)
-    @scene.pbRecall(idxBattler) if !@battlers[idxBattler].fainted?
     @battlers[idxBattler].pbAbilitiesOnSwitchOut   # Inc. primordial weather check
     if (@battlers[idxBattler].ability == :BAROMETRIC && @battlers[idxBattler].isSpecies?(:ALTEMPER)) || (@battlers[idxBattler].ability == :FORECAST && @battlers[idxBattler].isSpecies?(:CASTFORM))
       if @battlers[idxBattler].form >= 21
@@ -3483,6 +3482,15 @@ class PokeBattle_Battle
     @scene.pbShowPartyLineup(idxBattler&1) if pbSideSize(idxBattler)==1
     pbMessagesOnReplace(idxBattler,idxParty) if !randomReplacement
     pbReplace(idxBattler,idxParty,batonPass)
+  end
+  alias pbRecallAndReplace_ebdx pbRecallAndReplace unless self.method_defined?(:pbRecallAndReplace_ebdx)
+  def pbRecallAndReplace(*args)
+    # displays trainer dialogue if applicable
+    @scene.pbTrainerBattleSpeech(playerBattler?(@battlers[args[0]]) ? "recall" : "recallOpp")
+    @replaced = true
+    # specifies sendout toggle
+    @scene.sendingOut = true if args[0]%2 == 0
+    return pbRecallAndReplace_ebdx(*args)
   end
 
   alias pbReplace_ebdx pbReplace unless self.method_defined?(:pbReplace_ebdx)
