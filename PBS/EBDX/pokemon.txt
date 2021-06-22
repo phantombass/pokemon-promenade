@@ -3725,6 +3725,12 @@ BattlerAltitude = 0
 BattlerEnemyY   = 36
 BattlerPlayerY  = 36
 #-------------------------------
+[QWILFISH,1]
+SpriteScaleEnemy = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+BattlerPlayerY  = 36
+#-------------------------------
 [SYLVEON]
 SpriteScaleEnemy = 1
 BattlerAltitude = 0

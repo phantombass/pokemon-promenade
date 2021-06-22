@@ -284,7 +284,7 @@ module BattleScripts
       @scene.pbDisplay("The sandstorm resurged!")
       @scene.wait(16,false)
       if @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] == false
-        @scene.pbAnimation(getID(GameData::Move,:STEALTHROCK),@battle.battlers[1],@battle.battlers[0])
+        @scene.pbAnimation(GameData::Move.get(:STEALTHROCK).id,@battle.battlers[1],@battle.battlers[0])
         @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] = true
         @scene.pbDisplay("Ozzy set Stealth Rocks on #{pname}'s side!")
       end

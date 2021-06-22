@@ -705,27 +705,130 @@ Generation = 6
 [CASTFORM,1]
 FormName = Sunny Form
 Type1 = FIRE
+Type2 = COSMIC
 Color = Red
 Pokedex = This is the form Castform takes on the brightest of days. Its skin is unexpectedly hot to the touch, so approach with care.
-BattlerEnemyX = 0
-BattlerShadowSize = 2
+BattlerPlayerY = 0
+BattlerEnemyY = 21
 #-------------------------------
 [CASTFORM,2]
 FormName = Rainy Form
 Type1 = WATER
+Type2 = COSMIC
 Color = Blue
 Pokedex = This is the form Castform takes when soaked with rain. When its body is compressed, water will seep out as if from a sponge.
-BattlerEnemyX = 0
-BattlerShadowSize = 2
+BattlerPlayerY = 0
+BattlerEnemyY = 21
 #-------------------------------
 [CASTFORM,3]
 FormName = Snowy Form
 Type1 = ICE
+Type2 = COSMIC
 Color = White
 Pokedex = This is the form Castform takes when covered in snow. Its body becomes an ice-like material, with a temperature near -5 degrees Celsius.
-BattlerPlayerX = -1
-BattlerEnemyX = 0
-BattlerShadowSize = 2
+BattlerPlayerY = 0
+BattlerEnemyY = 20
+#-------------------------------
+[CASTFORM,4]
+FormName = Foggy Form
+Type1 = FAIRY
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,5]
+FormName = Overcast Form
+Type1 = GHOST
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,6]
+FormName = Starry Form
+Type1 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,7]
+FormName = Eclipse Form
+Type1 = DARK
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,8]
+FormName = Windy Form
+Type1 = FLYING
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,9]
+FormName = Heat Lightning Form
+Type1 = ELECTRIC
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,10]
+FormName = Delta Stream Form
+Type1 = DRAGON
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,11]
+FormName = Acid Rain Form
+Type1 = POISON
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,12]
+FormName = Sandstorm Form
+Type1 = ROCK
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,13]
+FormName = Rainbow Form
+Type1 = GRASS
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,14]
+FormName = Dust Devil Form
+Type1 = GROUND
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,15]
+FormName = Distortion Ashfall Form
+Type1 = FIGHTING
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,16]
+FormName = Volcanic Ash Form
+Type1 = STEEL
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,17]
+FormName = Borealis Form
+Type1 = PSYCHIC
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,18]
+FormName = Humid Form
+Type1 = BUG
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,19]
+FormName = Time Warp Form
+Type1 = TIME
+Type2 = COSMIC
+BattlerEnemyY = 28
+#-------------------------------
+[CASTFORM,20]
+FormName = Echo Chamber Form
+Type1 = SOUND
+Type2 = COSMIC
+BattlerEnemyY = 28
 #-------------------------------
 [BANETTE,1]
 FormName = Mega Banette
