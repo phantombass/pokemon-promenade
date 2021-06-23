@@ -1279,3 +1279,90 @@ class PokemonOption_Scene
     pbFadeInAndShow(@sprites) { pbUpdate }
   end
 end
+
+class Scene_Credits
+  CREDIT = <<_END_
+
+  Scripting: Phantombass
+
+  Some resources from the Pokémon Reborn team.
+
+  Regional Variant and Fakemon Sprites:
+  Caleb
+  Bl00dy
+  Phantombass
+
+  Mapping: Phantombass
+
+  Eventing: Phantombass
+
+  Tilesets:
+  WesleyFG
+  KyleDove
+
+  Playtesting:
+
+  DarkDevil26
+  ThatWelshOne_
+  RGTheAwesome
+  ItzMiller
+  PokeMaster Mike
+  Kyle
+  CloudEnvy
+  WMAR
+  Beta20x
+  pizzatacoburger1234
+  ChuTheWoop
+  TenaciousFoxYT
+  FlameHorizon
+
+  Dedicated to:
+
+  Megan and Sophia
+
+  Also thanks to:
+
+  Tilly...for walking all over my keyboard many times during development.
+
+{INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
+
+"Pokémon Essentials" was created by:
+Flameguru
+Poccil (Peter O.)
+Maruno
+
+With contributions from:
+AvatarMonkeyKirby<s>Marin
+Boushy<s>MiDas Mike
+Brother1440<s>Near Fantastica
+FL.<s>PinkMan
+Genzai Kawakami<s>Popper
+Golisopod User<s>Rataime
+help-14<s>Savordez
+IceGod64<s>SoundSpawn
+Jacob O. Wobbrock<s>the__end
+KitsuneKouta<s>Venom12
+Lisa Anthony<s>Wachunga
+Luka S.J.<s>
+and everyone else who helped out
+
+"mkxp-z" by:
+Roza
+Based on MKXP by Ancurio et al.
+
+"RPG Maker XP" by:
+Enterbrain
+
+Pokémon is owned by:
+The Pokémon Company
+Nintendo
+Affiliated with Game Freak
+
+
+
+This is a non-profit fan-made game.
+No copyright infringements intended.
+Please support the official games!
+
+_END_
+end

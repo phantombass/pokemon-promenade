@@ -3726,10 +3726,9 @@ BattlerEnemyY   = 36
 BattlerPlayerY  = 36
 #-------------------------------
 [QWILFISH,1]
-SpriteScaleEnemy = 1
 BattlerAltitude = 0
+SpriteScalePlayer = 1
 BattlerEnemyY   = 36
-BattlerPlayerY  = 36
 #-------------------------------
 [SYLVEON]
 SpriteScaleEnemy = 1
@@ -3751,11 +3750,24 @@ BattlerAltitude = 0
 #-------------------------------
 [PLOVERT]
 SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[DUSTERN]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 36
 #-------------------------------
 [SPECIDAE]
 BattlerAltitude = 0
+BattlerEnemyY   = 46
+#-------------------------------
+[SPECTRAMYS]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 1
 BattlerEnemyY   = 46
 #-------------------------------
 [STONAT]
@@ -3767,8 +3779,26 @@ SpriteScaleEnemy = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 46
 #-------------------------------
+[SAPHYRFLY]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 1
+BattlerEnemyY   = 46
+#-------------------------------
 [SCAREUB]
 SpriteScaleEnemy = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 46
+#-------------------------------
+[SCARAPACE]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 46
+#-------------------------------
+[SPOOKHEPRI]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 46
 #-------------------------------

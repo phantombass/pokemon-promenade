@@ -14,10 +14,19 @@ module LvlCap
   Rival = 69                 #Switch for Rival Battles
   LvlTrainer = 83
   Ace = 129                  #Switch for Ace Trainer Battles
+  Guardian = 189
 end
 
 
 Events.onTrainerPartyLoad+=proc {| sender, trainer |
+  if $game_switches[129] == true || $game_switches[69] == true || $game_switches[70] == true || $game_switches[LvlCap::Guardian] == true
+    $CanToggle = false
+    $GameSpeed = 0
+  end
+  if $game_switches[129] == false && $game_switches[69] == false && $game_switches[70] == false && $game_switches[LvlCap::Guardian] == false
+    $CanToggle = true
+    $GameSpeed = 0
+  end
    if trainer # Trainer data should exist to be loaded, but may not exist somehow
      party = trainer[0].party   # An array of the trainer's Pokémon
     if $game_switches && $game_switches[LvlCap::Switch] && $Trainer
