@@ -210,7 +210,9 @@ class NewDexNav
         else
           encTerr = :Sandy if $PokemonEncounters.has_sandy_encounters?
         end
-      elsif GameData::TerrainTag.can_surf(pLoc) || GameData::TerrainTag.get(pLoc).id == :Bridge
+      elsif GameData::TerrainTag.get(pLoc).can_surf
+        encTerr = :OldRod
+      elsif GameData::TerrainTag.get(pLoc).id == :Bridge
         encTerr = :Water
       end
       terr = 0
