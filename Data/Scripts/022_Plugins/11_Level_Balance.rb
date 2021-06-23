@@ -25,7 +25,6 @@ Events.onTrainerPartyLoad+=proc {| sender, trainer |
   end
   if $game_switches[129] == false && $game_switches[69] == false && $game_switches[70] == false && $game_switches[LvlCap::Guardian] == false
     $CanToggle = true
-    $GameSpeed = 0
   end
    if trainer # Trainer data should exist to be loaded, but may not exist somehow
      party = trainer[0].party   # An array of the trainer's Pokémon

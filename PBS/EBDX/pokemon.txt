@@ -3794,13 +3794,13 @@ BattlerEnemyY   = 46
 SpriteScaleEnemy = 1
 SpriteScalePlayer = 1
 BattlerAltitude = 0
-BattlerEnemyY   = 46
+BattlerEnemyY   = 36
 #-------------------------------
 [SPOOKHEPRI]
 SpriteScaleEnemy = 1
 SpriteScalePlayer = 1
 BattlerAltitude = 0
-BattlerEnemyY   = 46
+BattlerEnemyY   = 36
 #-------------------------------
 [FISHOOS]
 BattlerAltitude = 0
