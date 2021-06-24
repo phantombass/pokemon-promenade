@@ -568,11 +568,7 @@ class PokeBattle_Move
         multipliers[:final_damage_multiplier] /= 2
       end
     when :Reverb
-      if type == :SOUND
-        multipliers[:final_damage_multiplier] *= 1.5
-      elsif soundMove?
-        multipliers[:final_damage_multiplier] *= 1.5
-      elsif target.pbHasType?(:SOUND) && (physicalMove? || @function="122")
+      if target.pbHasType?(:SOUND) && (physicalMove? || @function="122")
         multipliers[:defense_multiplier] *= 1.5
       end
     when :Sleet
@@ -586,6 +582,8 @@ class PokeBattle_Move
     when :AcidRain
       if type == :POISON
         multipliers[:final_damage_multiplier] *= 1.5
+      elsif target.pbHasType?(:POISON) && (physicalMove? || @function="122")
+        multipliers[:defense_multiplier] *= 1.5
       end
     when :Sandstorm
       if target.pbHasType?(:ROCK) && specialMove? && @function != "122"   # Psyshock

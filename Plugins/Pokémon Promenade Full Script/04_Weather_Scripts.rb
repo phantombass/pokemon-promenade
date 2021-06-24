@@ -666,6 +666,7 @@ class PokemonWeatherScreen
           pbMessage(_INTL("Additional Effects: Non-Cosmic types take 1/16 damage"))
           pbMessage(_INTL("Cosmic x 1.5, Fairy/Dragon/Steel x .5"))
           pbMessage(_INTL("Meteor Shower requires no charge"))
+          pbMessage(_INTL("Cosmic types gain 50% Defense boost"))
           else
             pbMessage(_INTL("No Readout Installed for this Weather"))
           end
@@ -686,6 +687,7 @@ class PokemonWeatherScreen
           pbMessage(_INTL("Weather Ball Type: Ice"))
           pbMessage(_INTL("Additional Effects: Non-Ice types take 1/8 damage"))
           pbMessage(_INTL("Blizzard 100% accurate"))
+          pbMessage(_INTL("Fire x .5"))
           else
             pbMessage(_INTL("No Readout Installed for this Weather"))
           end
@@ -725,7 +727,7 @@ class PokemonWeatherScreen
           pbMessage(_INTL("Weather: Acid Rain"))
           pbMessage(_INTL("Weather Ball Type: Poison"))
           pbMessage(_INTL("Additional Effects: Non-Poison and Steel types take 1/16 damage"))
-          pbMessage(_INTL("Poison types gain 30% Defense boost"))
+          pbMessage(_INTL("Poison types gain 50% Defense boost"))
           else
             pbMessage(_INTL("No Readout Installed for this Weather"))
           end
@@ -734,6 +736,7 @@ class PokemonWeatherScreen
 	  if $game_variables[65]>=1
           pbMessage(_INTL("Weather: Humid"))
           pbMessage(_INTL("Weather Ball Type: Bug"))
+          pbMessage(_INTL("Bug x 1.5"))
           pbMessage(_INTL("Fire x .5"))
           else
             pbMessage(_INTL("No Readout Installed for this Weather"))
@@ -834,8 +837,8 @@ class PokemonWeatherScreen
       if $game_variables[112]>=1
             pbMessage(_INTL("Weather: Echo Chamber"))
             pbMessage(_INTL("Weather Ball Type: Sound"))
-            pbMessage(_INTL("Additional Effects: Sound x 1.5"))
             pbMessage(_INTL("Sound moves hit a second time at a lesser power."))
+            pbMessage(_INTL("Sound types gain 50% Defense boost"))
             else
               pbMessage(_INTL("No Readout Installed for this Weather"))
             end

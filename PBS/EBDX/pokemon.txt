@@ -3737,15 +3737,18 @@ BattlerEnemyY   = 36
 #-------------------------------
 [HOPPALM]
 SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 16
 #-------------------------------
 [CHARPHINCH]
 SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
 BattlerAltitude = 0
 #-------------------------------
 [BARBOL]
 SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
 BattlerAltitude = 0
 #-------------------------------
 [PLOVERT]
@@ -3755,6 +3758,12 @@ BattlerAltitude = 0
 BattlerEnemyY   = 36
 #-------------------------------
 [DUSTERN]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[KESTRAIA]
 SpriteScaleEnemy = 1
 SpriteScalePlayer = 1
 BattlerAltitude = 0
@@ -3810,6 +3819,12 @@ BattlerEnemyY   = 36
 SpriteScaleEnemy = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 46
+#-------------------------------
+[GRIMMERA]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 26
 #-------------------------------
 [ALKALEON]
 SpriteScaleEnemy = 1

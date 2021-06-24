@@ -38,7 +38,7 @@ class NewDexNav
          iform = 0
        if specie == :RIOLU || specie == :LUCARIO || specie == :BUNEARY|| specie == :LOPUNNY|| specie == :NUMEL|| specie == :CAMERUPT|| specie == :ROCKRUFF || specie == :LYCANROC|| specie == :YAMASK || specie == :COFAGRIGUS
          iform = 2
-       elsif specie == :CACNEA || specie == :CACTURNE || specie == :SANDYGAST || specie == :PALOSSAND || specie == :DEINO || specie == :ZWEILOUS || specie == :HYDREIGON || specie == :TRAPINCH || specie == :HORSEA || specie == :SEADRA || specie == :EXEGGUTOR || specie == :SEEL || specie == :DEWGONG || specie == :LUVDISC
+       elsif specie == :CACNEA || specie == :CACTURNE || specie == :SANDYGAST || specie == :PALOSSAND || specie == :DEINO || specie == :ZWEILOUS || specie == :HYDREIGON || specie == :TRAPINCH || specie == :HORSEA || specie == :SEADRA || specie == :EXEGGUTOR || specie == :SEEL || specie == :DEWGONG || specie == :LUVDISC || specie == :QWILFISH
          iform = 1
        else
          iform = iform
@@ -389,7 +389,7 @@ class NewDexNav
       form = 0
         if searchmon == :RIOLU || searchmon == :LUCARIO || searchmon == :BUNEARY|| searchmon == :LOPUNNY|| searchmon == :NUMEL|| searchmon == :CAMERUPT|| searchmon == :ROCKRUFF || searchmon == :LYCANROC|| searchmon == :YAMASK || searchmon == :COFAGRIGUS
           form = 2
-        elsif searchmon == :CACNEA || searchmon == :CACTURNE || searchmon == :SANDYGAST || searchmon == :PALOSSAND || searchmon == :DEINO || searchmon == :ZWEILOUS || searchmon == :HYDREIGON || searchmon == :TRAPINCH || searchmon == :HORSEA || searchmon == :SEADRA || searchmon == :EXEGGUTOR || searchmon == :SEEL || searchmon == :DEWGONG || searchmon == :LUVDISC
+        elsif searchmon == :CACNEA || searchmon == :CACTURNE || searchmon == :SANDYGAST || searchmon == :PALOSSAND || searchmon == :DEINO || searchmon == :ZWEILOUS || searchmon == :HYDREIGON || searchmon == :TRAPINCH || searchmon == :HORSEA || searchmon == :SEADRA || searchmon == :EXEGGUTOR || searchmon == :SEEL || searchmon == :DEWGONG || searchmon == :LUVDISC || searchmon == :QWILFISH
           form = 1
         else
           form = form
@@ -408,9 +408,10 @@ class NewDexNav
       if $currentDexSearch[1] == nil
         dexMove = "-"
       else
-        dexMove = $currentDexSearch[1]
+        dexMove = GameData::Move.get($currentDexSearch[1]).name
       end
-      searchtext = [GameData::Species.get(searchmon).name,ab,GameData::Move.get(dexMove).name]
+      searchmonName = GameData::Species.get($currentDexSearch[0]).name
+      searchtext = [searchmonName,ab,dexMove]
       searchpic = "#{searchmon}_#{form}"
       @sprites["search"] = Window_AdvancedTextPokemon.newWithSize("",265,130,250,126,@viewport3)
       if navRand == 2
@@ -463,7 +464,7 @@ Events.onWildPokemonCreate+=proc {|sender,e|
         pform = 0
         if pokemon.species == :RIOLU || pokemon.species == :LUCARIO || pokemon.species == :BUNEARY|| pokemon.species == :LOPUNNY|| pokemon.species == :NUMEL|| pokemon.species == :CAMERUPT|| pokemon.species == :ROCKRUFF || pokemon.species == :LYCANROC|| pokemon.species == :YAMASK || pokemon.species == :COFAGRIGUS
           pform = 2
-        elsif pokemon.species == :CACNEA || pokemon.species == :CACTURNE || pokemon.species == :SANDYGAST || pokemon.species == :PALOSSAND || pokemon.species == :DEINO || pokemon.species == :ZWEILOUS || pokemon.species == :HYDREIGON || pokemon.species == :TRAPINCH || pokemon.species == :HORSEA || pokemon.species == :SEADRA || pokemon.species == :EXEGGUTOR || pokemon.species == :SEEL || pokemon.species == :DEWGONG || pokemon.species == :LUVDISC
+        elsif pokemon.species == :CACNEA || pokemon.species == :CACTURNE || pokemon.species == :SANDYGAST || pokemon.species == :PALOSSAND || pokemon.species == :DEINO || pokemon.species == :ZWEILOUS || pokemon.species == :HYDREIGON || pokemon.species == :TRAPINCH || pokemon.species == :HORSEA || pokemon.species == :SEADRA || pokemon.species == :EXEGGUTOR || pokemon.species == :SEEL || pokemon.species == :DEWGONG || pokemon.species == :LUVDISC || pokemon.species == :QWILFISH
           pform = 1
         else
           pform = pform
@@ -515,7 +516,7 @@ class DexNav
     form = 0
     if baby == :RIOLU || baby == :LUCARIO || baby == :BUNEARY || baby == :LOPUNNY || baby == :NUMEL || baby == :CAMERUPT || baby == :ROCKRUFF || baby == :LYCANROC || baby == :YAMASK || baby == :COFAGRIGUS
       form = 2
-    elsif baby == :CACNEA || baby == :CACTURNE || baby == :SANDYGAST || baby == :PALOSSAND || baby == :DEINO || baby == :ZWEILOUS || baby == :HYDREIGON || baby == :TRAPINCH || baby == :HORSEA || baby == :SEADRA || baby == :EXEGGUTOR || baby == :SEEL || baby == :DEWGONG || baby == :LUVDISC
+    elsif baby == :CACNEA || baby == :CACTURNE || baby == :SANDYGAST || baby == :PALOSSAND || baby == :DEINO || baby == :ZWEILOUS || baby == :HYDREIGON || baby == :TRAPINCH || baby == :HORSEA || baby == :SEADRA || baby == :EXEGGUTOR || baby == :SEEL || baby == :DEWGONG || baby == :LUVDISC || baby == :QWILFISH
       form = 1
     else
       form = form
