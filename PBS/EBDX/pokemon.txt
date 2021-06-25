@@ -3826,6 +3826,12 @@ SpriteScalePlayer = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 26
 #-------------------------------
+[CHIMORA]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 16
+#-------------------------------
 [ALKALEON]
 SpriteScaleEnemy = 1
 BattlerEnemyY   = 36
