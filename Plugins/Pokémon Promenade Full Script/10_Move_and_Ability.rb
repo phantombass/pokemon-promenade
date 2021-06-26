@@ -457,6 +457,7 @@ class PokeBattle_Move
       multipliers[:base_damage_multiplier] *= 1.5 if type == :PSYCHIC && user.affectedByTerrain?
     when :Poison
       multipliers[:base_damage_multiplier] *= 1.5 if type == :POISON && user.affectedByTerrain?
+      multipliers[:base_damage_multiplier] /= 2 if type == :PSYCHIC && target.affectedByTerrain?
     when :Misty
       multipliers[:base_damage_multiplier] /= 2 if type == :DRAGON && target.affectedByTerrain?
     end
@@ -3022,6 +3023,8 @@ class PokeBattle_Move_18A < PokeBattle_Move
         ret = :FAIRY if GameData::Type.exists?(:FAIRY)
       when :Psychic
         ret = :PSYCHIC if GameData::Type.exists?(:PSYCHIC)
+      when :Poison
+        ret = :POISON if GameData::Type.exists?(:POISON)
       end
     end
     return ret

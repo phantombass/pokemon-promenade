@@ -3712,12 +3712,12 @@ BattlerEnemyY   = 46
 [ROCKRUFF]
 SpriteScaleEnemy = 1
 BattlerAltitude = 0
-BattlerEnemyY   = 36
+BattlerEnemyY   = 54
 #-------------------------------
 [LYCANROC,2]
 SpriteScaleEnemy = 1
 BattlerAltitude = 0
-BattlerEnemyY   = 36
+BattlerEnemyY   = 54
 #-------------------------------
 [LOPUNNY,2]
 SpriteScaleEnemy = 1
@@ -3771,7 +3771,9 @@ BattlerEnemyY   = 36
 #-------------------------------
 [SPECIDAE]
 BattlerAltitude = 0
+SpriteScalePlayer = 1
 BattlerEnemyY   = 46
+BattlerPlayerY = 26
 #-------------------------------
 [SPECTRAMYS]
 SpriteScaleEnemy = 1
@@ -3797,7 +3799,7 @@ BattlerEnemyY   = 46
 [SCAREUB]
 SpriteScaleEnemy = 1
 BattlerAltitude = 0
-BattlerEnemyY   = 46
+BattlerEnemyY   = 56
 #-------------------------------
 [SCARAPACE]
 SpriteScaleEnemy = 1
@@ -3831,6 +3833,12 @@ SpriteScaleEnemy = 1
 SpriteScalePlayer = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 16
+#-------------------------------
+[ECHOMERA]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
 #-------------------------------
 [ALKALEON]
 SpriteScaleEnemy = 1

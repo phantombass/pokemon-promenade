@@ -379,6 +379,7 @@ def useMoveFly
       $game_switches[i] = false
     end
     $game_switches[125] = false
+    $CanToggle = true
     $game_temp.player_new_direction = 2
     $PokemonTemp.flydata = nil
     $scene.transfer_player
