@@ -3826,7 +3826,7 @@ BattlerEnemyY   = 46
 SpriteScaleEnemy = 1
 SpriteScalePlayer = 1
 BattlerAltitude = 0
-BattlerEnemyY   = 46
+BattlerEnemyY   = 26
 #-------------------------------
 [GRIMMERA]
 SpriteScaleEnemy = 1
