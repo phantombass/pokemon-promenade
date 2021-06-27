@@ -114,16 +114,19 @@ class NewDexNav
     enc_type2 = encounters.types.keys[1]
     enc_type3 = encounters.types.keys[2]
     enc_type4 = encounters.types.keys[3]
+    enc_type5 = encounters.types.keys[4]
     encounter_tables = Marshal.load(Marshal.dump(encounters.types))
     enc_list = encounter_tables[enc_type]
     enc_list2 = encounter_tables[enc_type2]
     enc_list3 = encounter_tables[enc_type3]
     enc_list4 = encounter_tables[enc_type4]
+    enc_list5 = encounter_tables[enc_type5]
     encdata = []
     eLength = enc_list.length-1
     eLength2 = enc_list2.length-1 if enc_list2 != nil
     eLength3 = enc_list3.length-1 if enc_list3 != nil
     eLength4 = enc_list4.length-1 if enc_list4 != nil
+    eLength5 = enc_list5.length-1 if enc_list5 != nil
       e1 = enc_list[0][1] if eLength >= 0
       e2 = enc_list[1][1] if eLength >= 1
       e3 = enc_list[2][1] if eLength >= 2
@@ -165,7 +168,6 @@ class NewDexNav
         e36 = enc_list3[11][1] if eLength3 >= 11
       end
       if enc_list4 != nil
-        e1 = enc_list[0][1] if eLength >= 0
         e37 = enc_list4[0][1] if eLength4 >= 0
         e38 = enc_list4[1][1] if eLength4 >= 1
         e39 = enc_list4[2][1] if eLength4 >= 2
@@ -179,8 +181,28 @@ class NewDexNav
         e47 = enc_list4[10][1] if eLength4 >= 10
         e48 = enc_list4[11][1] if eLength4 >= 11
       end
+      if enc_list5 != nil
+        e49 = enc_list5[0][1] if eLength5 >= 0
+        e50 = enc_list5[1][1] if eLength5 >= 1
+        e51 = enc_list5[2][1] if eLength5 >= 2
+        e52 = enc_list5[3][1] if eLength5 >= 3
+        e53 = enc_list5[4][1] if eLength5 >= 4
+        e54 = enc_list5[5][1] if eLength5 >= 5
+        e55 = enc_list5[6][1] if eLength5 >= 6
+        e56 = enc_list5[7][1] if eLength5 >= 7
+        e57 = enc_list5[8][1] if eLength5 >= 8
+        e58 = enc_list5[9][1] if eLength5 >= 9
+        e59 = enc_list5[10][1] if eLength5 >= 10
+        e60 = enc_list5[11][1] if eLength5 >= 11
+      end
       pLoc = $game_map.terrain_tag($game_player.x,$game_player.y)
-      if GameData::TerrainTag.get(pLoc).id == :HighBridge
+      if GameData::TerrainTag.get(pLoc).id == :Grass || GameData::TerrainTag.get(pLoc).id == :None
+        if $MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
+          encTerr = :OldRod
+        else
+          encTerr = :Land
+        end
+      elsif GameData::TerrainTag.get(pLoc).id == :HighBridge
         if $MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
           encTerr = :OldRod
         else
@@ -208,13 +230,8 @@ class NewDexNav
         encTerr = :OldRod
       elsif GameData::TerrainTag.get(pLoc).id == :Bridge
         encTerr = :Water
-      else
-        if $MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
-          encTerr = :OldRod
-        else
-          encTerr = :Land
-        end
       end
+      p encTerr
       terr = 0
       case encTerr
       when enc_type
@@ -225,11 +242,13 @@ class NewDexNav
         terr = 2
       when enc_type4
         terr = 3
+      when enc_type5
+        terr = 4
       end
       if encTerr == :OldRod
         terr += 4
       end
-
+      p terr
       case terr
       when 0
         encdata = [e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12]
@@ -243,7 +262,10 @@ class NewDexNav
         encdata = [e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14,e15,e16,e17,e18,e19,e20,e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32,e33,e34,e35,e36]
       when 5
         encdata = [e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14,e15,e16,e17,e18,e19,e20,e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32,e33,e34,e35,e36,e37,e38,e39,e40,e41,e42,e43,e44,e45,e46,e47,e48]
+      when 6
+        encdata = [e13,e14,e15,e16,e17,e18,e19,e20,e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32,e33,e34,e35,e36,e37,e38,e39,e40,e41,e42,e43,e44,e45,e46,e47,e48,e49,e50,e51,e52,e53,e54,e55,e56,e57,e58,e59,e60]
       end
+      encdata = encdata.uniq
       encdata = encdata.compact
 
       if encTerr == nil
