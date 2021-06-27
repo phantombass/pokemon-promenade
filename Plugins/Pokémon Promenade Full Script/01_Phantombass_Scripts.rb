@@ -153,6 +153,10 @@ Events.onWildPokemonCreate+=proc {|sender,e|
   end
 }
 
+Events.onEndBattle += proc { |_sender,e|
+  $game_switches[81] = false
+}
+
 def pbStartOver(gameover=false)
   if pbInBugContest?
     pbBugContestStartOver

@@ -457,7 +457,12 @@ Events.onWildPokemonCreate+=proc {|sender,e|
     # Checks current search value, if it exists, sets the Pokemon to it
     if $currentDexSearch != nil && $currentDexSearch.is_a?(Array)
         pokemon.species=$currentDexSearch[0]
-        pokemon.level=pokemon.level
+        lvl = rand(100)
+        if lvl > 80
+          pokemon.level = pokemon.level + 10
+        else
+          pokemon.level = pokemon.level
+        end
         pokemon.name=GameData::Species.get(pokemon.species).name
         pokemon.ability_index = $game_variables[400]
         maps = GameData::MapMetadata.try_get($game_map.map_id)
@@ -476,6 +481,10 @@ Events.onWildPokemonCreate+=proc {|sender,e|
           pokemon.moves[3]=Pokemon::Move.new($currentDexSearch[2]) if $currentDexSearch[2]
         end
         # There is a higher chance for shininess, so we give it another chance to force it to be shiny
+        tempInt = $PokemonBag.pbQuantity(GameData::Item.get(:SHINYCHARM))>0 ? 256 : 768
+        if rand(tempInt)==1
+         pokemon.makeShiny
+        end
         $currentDexSearch = nil
     end
 }
@@ -492,13 +501,21 @@ class DexNav
       $dexNavData[1]=true
     end
     $dexNavData[2]=DexNav.addRandomEggMove(pokemon)
-    $dexNavData[3]=DexNav.getAppropriateLevel($dexNavData)
+    $dexNavData[2]=DexNav.getAppropriateLevel($dexNavData)
   end
 
   def self.getAppropriateLevel(datum)
       return ((datum[0]%100)/5).floor
   end
 
+  def self.getShinyMultiplier(datum)
+    value=1
+    if datum[0]<80
+      return value*datum[0]
+    else
+      return 80
+    end
+  end
 
   #This method just returns the temporary data for the next pokemon to be encountered.
   def self.getThisPokemonData

@@ -93,7 +93,7 @@ Events.onTrainerPartyLoad+=proc {| sender, trainer |
         newspecies = evo[2]
       end
       end
-    end #end of loop do
+      end #end of loop do
     #fixing some things such as Bellossom would turn into Vileplume
     #check if original species could evolve (Bellosom couldn't)
     couldevo=GameData::Species.get(species).get_evolutions

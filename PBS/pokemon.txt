@@ -30131,7 +30131,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = AMPERBOA,HoldItem,BLACKBELT
+Evolutions = AMPERBOA,Item,BLACKBELT
 #-------------------------------
 [921]
 Name = Amperboa
@@ -30200,7 +30200,7 @@ BattlerEnemyX = 0
 BattlerEnemyY = 37
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = BARBASTELLA,HoldItem,POISONBARB
+Evolutions = BARBASTELLA,Item,POISONBARB
 #-------------------------------
 [923]
 Name = Barbastella

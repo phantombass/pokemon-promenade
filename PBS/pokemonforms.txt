@@ -2000,7 +2000,7 @@ Evolutions =
 Evolutions = LUCARIO,Fishoos,118
 #-------------------------------
 [BUNEARY,2]
-Evolutions = LOPUNNY,HoldItem,BLACKBELT
+Evolutions = LOPUNNY,Item,BLACKBELT
 #-------------------------------
 [LOPUNNY,2]
 FormName = Zharonian
@@ -2064,7 +2064,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = TINSNARE,HoldItem,SOOTHEBELL,SATELLYDRA,HoldItem,DRAGONSCALE
+Evolutions = TINSNARE,Item,SOOTHEBELL,SATELLYDRA,Item,DRAGONSCALE
 #-------------------------------
 [NUMEL,2]
 FormName = Zharonian
