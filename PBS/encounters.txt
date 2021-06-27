@@ -3,18 +3,88 @@
 042 # Route 1
 25,10,10
 Land
-    PLOVERT,1,2
-    SPECIDAE,1,2
-    PLOVERT,1,2
-    SPECIDAE,1,2
-    PLOVERT,1,2
-    SPECIDAE,1,2
-    PLOVERT,1,2
-    SPECIDAE,1,2
-    PLOVERT,1,2
-    SPECIDAE,1,2
-    PLOVERT,1,2
-    SPECIDAE,1,2
+    PLOVERT,2,4
+    SPECIDAE,2,4
+    BUNEARY,2,4
+    POOCHYENA,2,4
+    BUNEARY,2,4
+    POOCHYENA,2,4
+    PLOVERT,2,4
+    SPECIDAE,2,4
+    BUNEARY,2,4
+    POOCHYENA,2,4
+    BUNEARY,2,4
+    POOCHYENA,2,4
+Water
+    LUVDISC,14,19
+    POLIWAG,15,16
+    FISHOOS,14,16
+    FISHOOS,14,16
+    FISHOOS,14,16
+OldRod
+    FISHOOS,5
+    HORSEA,10
+GoodRod
+    FISHOOS,15
+    HORSEA,15
+    LUVDISC,20
+SuperRod
+    FISHOOS,15
+    HORSEA,25
+    LUVDISC,25,30
+    LUVDISC,25,30
+    SEADRA,25,30
+#-------------------------------
+281 # Icaro City
+25,10,10
+Land
+    EEVEE,5
+    SHINX,5
+    GRIMMERA,5
+    DROWZEE,5
+    POLIWAG,5
+    CUBCHOO,5
+    RIOLU,5
+    ABRA,5
+    PONYTA,5
+    BLITZLE,5
+    DEINO,5
+    CHINGLING,5
+Water
+    LUVDISC,14,19
+    POLIWAG,15,16
+    FISHOOS,14,16
+    FISHOOS,14,16
+    FISHOOS,14,16
+OldRod
+    FISHOOS,5
+    HORSEA,10
+GoodRod
+    FISHOOS,15
+    HORSEA,15
+    LUVDISC,20
+SuperRod
+    FISHOOS,15
+    HORSEA,25
+    LUVDISC,25,30
+    LUVDISC,25,30
+    SEADRA,25,30
+#-------------------------------
+283 # Sibel Fortress
+25,10,10
+Cave
+    STELLAVAMP,19,22
+    GRIMMERA,19,22
+    STELLAVAMP,19,22
+    GRIMMERA,19,22
+    TABLU,19,22
+    WHISMUR,19,22
+    TABLU,19,22
+    WHISMUR,19,22
+    YAMASK,19,22
+    CHINGLING,19,22
+    YAMASK,19,22
+    CHINGLING,19,22
 #-------------------------------
 101 # Route 2
 25,10,10

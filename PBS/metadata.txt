@@ -1838,3 +1838,11 @@ ShowArea = true
 Weather = Rain,0
 MapPosition = 0,11,16
 SnapEdges = true
+#-------------------------------
+[283]
+# Sibel Fortress
+ShowArea = true
+Weather = Rain,0
+MapPosition = 0,6,11
+SnapEdges = true
+#-------------------------------

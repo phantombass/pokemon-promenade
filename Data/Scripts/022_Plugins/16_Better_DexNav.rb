@@ -180,13 +180,7 @@ class NewDexNav
         e48 = enc_list4[11][1] if eLength4 >= 11
       end
       pLoc = $game_map.terrain_tag($game_player.x,$game_player.y)
-      if GameData::TerrainTag.get(pLoc).id == :Grass || GameData::TerrainTag.get(pLoc).id == :None
-        if $MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
-          encTerr = :OldRod
-        else
-          encTerr = :Land
-        end
-      elsif GameData::TerrainTag.get(pLoc).id == :HighBridge
+      if GameData::TerrainTag.get(pLoc).id == :HighBridge
         if $MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
           encTerr = :OldRod
         else
@@ -214,6 +208,12 @@ class NewDexNav
         encTerr = :OldRod
       elsif GameData::TerrainTag.get(pLoc).id == :Bridge
         encTerr = :Water
+      else
+        if $MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
+          encTerr = :OldRod
+        else
+          encTerr = :Land
+        end
       end
       terr = 0
       case encTerr
@@ -244,7 +244,6 @@ class NewDexNav
       when 5
         encdata = [e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12,e13,e14,e15,e16,e17,e18,e19,e20,e21,e22,e23,e24,e25,e26,e27,e28,e29,e30,e31,e32,e33,e34,e35,e36,e37,e38,e39,e40,e41,e42,e43,e44,e45,e46,e47,e48]
       end
-      encdata = encdata.uniq!
       encdata = encdata.compact
 
       if encTerr == nil
@@ -272,7 +271,11 @@ class NewDexNav
     @navChoice = 0
     lastMon = @encarray.length - 1
     return if lastMon == -1
-    @sprites["navMon"]=Window_AdvancedTextPokemon.new(_INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name))
+    if @encarray[navMon] == nil
+      @sprites["navMon"]=Window_AdvancedTextPokemon.new(_INTL("<c2=FFCADE00>-</c2>"))
+    else
+      @sprites["navMon"]=Window_AdvancedTextPokemon.new(_INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name))
+    end
     @sprites["navMon"].viewport = @viewport1
     @sprites["navMon"].x=340
     @sprites["navMon"].y=52
@@ -457,6 +460,18 @@ Events.onWildPokemonCreate+=proc {|sender,e|
     # Checks current search value, if it exists, sets the Pokemon to it
     if $currentDexSearch != nil && $currentDexSearch.is_a?(Array)
         pokemon.species=$currentDexSearch[0]
+        $chainNav = [$currentDexSearch[0],0] if $chain == nil
+        $chain = 0 if $chain == nil
+        if $chain == 0
+          $chainNav[0]=$currentDexSearch[0]
+          $chainNav[1]=1
+        elsif $chain != nil && $currentDexSearch[0] == $chainNav[0]
+          $chainNav[1]+=1
+        elsif $chain != nil && $currentDexSearch[0] != $chainNav[0]
+          $chainNav[0]=$currentDexSearch[0]
+          $chainNav[1]=1
+        end
+        $chain = $chainNav[1]
         lvl = rand(100)
         if lvl > 80
           pokemon.level = pokemon.level + 10
@@ -474,15 +489,58 @@ Events.onWildPokemonCreate+=proc {|sender,e|
         else
           pform = pform
         end
+        if $chain >= 0
+          ivRand1 = rand(6)
+        elsif $chain >= 5
+          ivRand1 = rand(6)
+          ivRand2 = rand(6)
+        elsif $chain >= 10
+          ivRand2 = rand(6)
+          ivRand1 = rand(6)
+          ivRand3 = rand(6)
+        end
+        if ivRand1 != nil
+          case ivRand1
+          when 0 then pokemon.iv[:HP] = 31
+          when 1 then pokemon.iv[:ATTACK] = 31
+          when 2 then pokemon.iv[:DEFENSE] = 31
+          when 3 then pokemon.iv[:SPECIAL_ATTACK] = 31
+          when 4 then pokemon.iv[:SPECIAL_DEFENSE] = 31
+          when 5 then pokemon.iv[:SPEED] = 31
+          end
+        end
+        if ivRand2 != nil
+          case ivRand2
+          when 0 then pokemon.iv[:HP] = 31
+          when 1 then pokemon.iv[:ATTACK] = 31
+          when 2 then pokemon.iv[:DEFENSE] = 31
+          when 3 then pokemon.iv[:SPECIAL_ATTACK] = 31
+          when 4 then pokemon.iv[:SPECIAL_DEFENSE] = 31
+          when 5 then pokemon.iv[:SPEED] = 31
+          end
+        end
+        if ivRand3 != nil
+          case ivRand3
+          when 0 then pokemon.iv[:HP] = 31
+          when 1 then pokemon.iv[:ATTACK] = 31
+          when 2 then pokemon.iv[:DEFENSE] = 31
+          when 3 then pokemon.iv[:SPECIAL_ATTACK] = 31
+          when 4 then pokemon.iv[:SPECIAL_DEFENSE] = 31
+          when 5 then pokemon.iv[:SPEED] = 31
+          end
+        end
         pokemon.form = pform
         pokemon.reset_moves
-        pokemon.moves[2]=Pokemon::Move.new($currentDexSearch[1]) if $currentDexSearch[1]
-        if $currentDexSearch[1] != $currentDexSearch[2]
-          pokemon.moves[3]=Pokemon::Move.new($currentDexSearch[2]) if $currentDexSearch[2]
+        if pokemon.moves[1] == nil
+          pokemon.moves[1]=Pokemon::Move.new($currentDexSearch[1]) if $currentDexSearch[1]
+        elsif pokemon.moves[1] != nil && pokemon.moves[2] == nil
+          pokemon.moves[2]=Pokemon::Move.new($currentDexSearch[1]) if $currentDexSearch[1]
+        elsif pokemon.moves[1] != nil && pokemon.moves[2] != nil
+          pokemon.moves[3]=Pokemon::Move.new($currentDexSearch[1]) if $currentDexSearch[1]
         end
         # There is a higher chance for shininess, so we give it another chance to force it to be shiny
         tempInt = $PokemonBag.pbQuantity(GameData::Item.get(:SHINYCHARM))>0 ? 256 : 768
-        if rand(tempInt)==1
+        if rand(tempInt)<=1+($chain/5).floor && $chain<46
          pokemon.makeShiny
         end
         $currentDexSearch = nil
@@ -490,43 +548,6 @@ Events.onWildPokemonCreate+=proc {|sender,e|
 }
 
 class DexNav
-
-  # This method triggers every time the dexnav is used (1 more to the chain)
-  # It recalculates the odds for a shiny, adds egg moves and so on
-  # It updates into $dexNavData which is retrieved with getThisPokemonData
-  def self.addToChain
-    $dexNavData=[0,0,0] if !$dexNavData
-    $dexNavData += 1
-    if rand(8192/DexNav.getShinyMultiplier($dexNavData).floor)==0
-      $dexNavData[1]=true
-    end
-    $dexNavData[2]=DexNav.addRandomEggMove(pokemon)
-    $dexNavData[2]=DexNav.getAppropriateLevel($dexNavData)
-  end
-
-  def self.getAppropriateLevel(datum)
-      return ((datum[0]%100)/5).floor
-  end
-
-  def self.getShinyMultiplier(datum)
-    value=1
-    if datum[0]<80
-      return value*datum[0]
-    else
-      return 80
-    end
-  end
-
-  #This method just returns the temporary data for the next pokemon to be encountered.
-  def self.getThisPokemonData
-    $dexNavData=[0,0,0] if !$dexNavData
-    return $dexNavData
-  end
-
-
-  # This method gets the appropriate shiny rate multiplier for a certain chain value
-
-  # This method gets a random ID of a legal egg move and returns it as a move object.
   def self.addRandomEggMove(species)
     baby = GameData::Species.get(species).get_baby_species
     maps = GameData::MapMetadata.try_get($game_map.map_id)

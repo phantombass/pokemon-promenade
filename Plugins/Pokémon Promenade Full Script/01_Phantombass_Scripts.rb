@@ -151,6 +151,10 @@ Events.onWildPokemonCreate+=proc {|sender,e|
   if pokemon.level > $game_variables[LvlCap::LevelCap]
     $game_switches[81] = true
   end
+  abilRand = rand(100)
+  if abilRand > 80 && $game_map.map_id == 281 && $currentDexSearch == nil
+    pokemon.ability_index = 2
+  end
 }
 
 Events.onEndBattle += proc { |_sender,e|

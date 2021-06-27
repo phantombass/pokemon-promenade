@@ -374,9 +374,10 @@ class PokemonPauseMenu
         pbFadeOutIn {
           if $currentDexSearch != nil && $currentDexSearch.is_a?(Array)
             pbMessage(_INTL("<c2=7FE00000>You are already searching!</c2>"))
-            break
+            pbShowMenu
+          else
+            @scene = NewDexNav.new
           end
-          @scene = NewDexNav.new
           return
         }
       elsif cmdTrainer>=0 && command==cmdTrainer
