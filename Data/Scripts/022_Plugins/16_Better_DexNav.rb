@@ -231,7 +231,6 @@ class NewDexNav
       elsif GameData::TerrainTag.get(pLoc).id == :Bridge
         encTerr = :Water
       end
-      p encTerr
       terr = 0
       case encTerr
       when enc_type
@@ -248,7 +247,6 @@ class NewDexNav
       if encTerr == :OldRod
         terr += 4
       end
-      p terr
       case terr
       when 0
         encdata = [e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,e11,e12]

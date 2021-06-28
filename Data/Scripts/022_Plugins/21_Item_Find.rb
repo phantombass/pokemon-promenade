@@ -142,7 +142,7 @@ def pbItemBall(item, quantity = 1)
   return false if !item || item<=0 || quantity<1
   itemname = (quantity>1) ? GameData::Item.get(item).name_plural : GameData::Item.get(item).name
   pocket = pbGetPocket(item)
-  meName = $PokemonBag.pbCanStore?(item,quantity) ? ((pbIsKeyItem?(item)) ? "Key item get" : "Item get") : ""
+  meName = $PokemonBag.pbCanStore?(item,quantity) ? ((pbIsKeyItem?(item) || (pbIsMachine?(item))) ? "Key item get" : "Item get") : ""
   if $PokemonBag.pbCanStore?(item,quantity)
     scene = $game_player.addFoundItem(item)
   else

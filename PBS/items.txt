@@ -772,4 +772,9 @@
 785,TM116,TM116,TM116s,4,30000,"The user attacks with the crushing weight of time itself.",3,0,0,QUANTUMCRUSH
 786,TM117,TM117,TM117s,4,30000,"A beam of energy is fired at the opponent.",3,0,0,SIMPLERAY
 787,TM118,TM118,TM118s,4,30000,"The user endearingly approaches the target, then steals the target's held item.",3,0,0,COVET
+788,TM119,TM119,TM119s,4,30000,"The user attacks the foe with an echoing voice. If this move is used every turn, it does greater damage.",3,0,0,ECHOEDVOICE
+789,TM120,TM120,TM120s,4,30000,"The user throws scorching sand at the target to attack. This may also leave the target with a burn.",3,0,0,SCORCHINGSANDS
+790,TM121,TM121,TM121s,4,30000,"The user attacks with sharp gust of wind. It can also break any barrier such as Light Screen and Reflect.",3,0,0,WINDDRILL
+791,TM122,TM122,TM122s,4,30000,"The user looses a blast of aura power from deep within its body. This move is certain to hit.",3,0,0,AURASPHERE
+792,TM123,TM123,TM123s,4,30000,"An energy-draining punch. The user's HP is restored by half the damage taken by the target.",3,0,0,DRAINPUNCH
 

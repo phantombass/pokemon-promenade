@@ -1846,3 +1846,10 @@ Weather = Rain,0
 MapPosition = 0,6,11
 SnapEdges = true
 #-------------------------------
+[284]
+# Azgi Underpass
+ShowArea = true
+Weather = Rain,0
+MapPosition = 0,23,17
+SnapEdges = true
+#-------------------------------

@@ -216,6 +216,35 @@ Land
     CHINGLING,11,14
     BLITZLE,11,14
 #-------------------------------
+284 # Azgi Underpass
+25,10,10
+Sandy
+    TRAPINCH,22,25
+    KROKOROK,22,25
+    DRILBUR,22,25
+    SANDYGAST,22,25
+    CACNEA,22,25
+    NUMEL,22,25
+    STELLAVAMP,22,25
+    DEINO,22,25
+    CHIMORA,22,25
+    ROCKRUFF,22,25
+    PHANFAIR,23,26
+    LUCARIO,23,26
+OldRod
+    FISHOOS,5
+    HORSEA,10
+GoodRod
+    FISHOOS,15
+    LUVDISC,15
+    HORSEA,20
+SuperRod
+    FISHOOS,15
+    FISHOOS,25
+    LUVDISC,25,30
+    LUVDISC,25,30
+    QWILFISH,25,30
+#-------------------------------
 126 # Route 6
 25,10,10
 Sandy
