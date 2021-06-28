@@ -80,9 +80,9 @@ Cave
     TABLU,19,22
     WHISMUR,19,22
     TABLU,19,22
-    WHISMUR,19,22
-    YAMASK,19,22
     CHINGLING,19,22
+    YAMASK,19,22
+    SPEAKOBRA,19,22
     YAMASK,19,22
     CHINGLING,19,22
 #-------------------------------
@@ -156,6 +156,22 @@ Land
     YAMASK,10,12
     BELLSPROUT,9,11
 #-------------------------------
+285 # Xandri Forest
+25,10,10
+Land
+    SCAREUB,22,25
+    STONAT,22,25
+    STELLAVAMP,22,25
+    BELLSPROUT,22,25
+    AUDINO,22,25
+    YAMASK,22,25
+    SCARAPACE,22,25
+    MAGATE,22,25
+    LARVESTA,22,25
+    HYPIXIE,22,25
+    HYENASTY,23,26
+    SPECTRAMYS,23,26
+#-------------------------------
 111 # Xandri
 25,10,10
 Water
@@ -223,12 +239,12 @@ Sandy
     KROKOROK,22,25
     DRILBUR,22,25
     SANDYGAST,22,25
-    CACNEA,22,25
-    NUMEL,22,25
+    YAMASK,22,25
+    ROCKRUFF,22,25
     STELLAVAMP,22,25
     DEINO,22,25
     CHIMORA,22,25
-    ROCKRUFF,22,25
+    SPOOKLOTH,22,25
     PHANFAIR,23,26
     LUCARIO,23,26
 OldRod

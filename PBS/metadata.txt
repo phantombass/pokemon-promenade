@@ -1853,3 +1853,10 @@ Weather = Rain,0
 MapPosition = 0,23,17
 SnapEdges = true
 #-------------------------------
+[285]
+# Xandri Forest
+ShowArea = true
+Weather = Rain,0
+MapPosition = 0,11,11
+SnapEdges = true
+#-------------------------------

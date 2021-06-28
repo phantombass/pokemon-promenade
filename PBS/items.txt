@@ -777,4 +777,5 @@
 790,TM121,TM121,TM121s,4,30000,"The user attacks with sharp gust of wind. It can also break any barrier such as Light Screen and Reflect.",3,0,0,WINDDRILL
 791,TM122,TM122,TM122s,4,30000,"The user looses a blast of aura power from deep within its body. This move is certain to hit.",3,0,0,AURASPHERE
 792,TM123,TM123,TM123s,4,30000,"An energy-draining punch. The user's HP is restored by half the damage taken by the target.",3,0,0,DRAINPUNCH
+793,TM124,TM124,TM124s,4,30000,"An energy-draining punch. The user's HP is restored by half the damage taken by the target.",3,0,0,SIGNALBEAM
 
