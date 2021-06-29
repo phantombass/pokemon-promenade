@@ -4329,3 +4329,67 @@ EliteBattle.defineMoveAnimation(:BASSDROP) do
   @vector.inc = 0.2
   pbDisposeSpriteHash(fp)
 end
+EliteBattle.defineMoveAnimation(:DRAINPUNCH) do | args |
+  kick = args[0]; kick = false if kick.nil?
+  # set up animation
+  fp = {}
+  rndx = []
+  rndy = []
+  fp["bg"] = Sprite.new(@viewport)
+  fp["bg"].bitmap = Bitmap.new(@viewport.width,@viewport.height)
+  fp["bg"].bitmap.fill_rect(0,0,fp["bg"].bitmap.width,fp["bg"].bitmap.height,Color.new(130,52,42))
+  fp["bg"].opacity = 0
+  fp["punch"] = Sprite.new(@viewport)
+  fp["punch"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb#{kick ? 137 : 108}")
+  fp["punch"].ox = fp["punch"].bitmap.width/2
+  fp["punch"].oy = fp["punch"].bitmap.height/2
+  fp["punch"].opacity = 0
+  fp["punch"].z = 40
+  fp["punch"].angle = 180
+  fp["punch"].zoom_x = @targetIsPlayer ? 6 : 4
+  fp["punch"].zoom_y = @targetIsPlayer ? 6 : 4
+  fp["punch"].tone = Tone.new(48,16,6)
+  shake = 4
+  # start animation
+  @vector.set(@scene.getRealVector(@targetIndex, @targetIsPlayer))
+  pbSEPlay("Anim/fog2", 75)
+  @sprites["battlebg"].defocus
+  for i in 0...36
+    cx, cy = @targetSprite.getCenter(true)
+    fp["punch"].x = cx
+    fp["punch"].y = cy
+    fp["punch"].angle -= 45 if i < 20
+    fp["punch"].zoom_x -= @targetIsPlayer ? 0.2 : 0.15 if i < 20
+    fp["punch"].zoom_y -= @targetIsPlayer ? 0.2 : 0.15 if i < 20
+    fp["punch"].opacity += 8 if i < 20
+    if i >= 20
+      fp["punch"].tone = Tone.new(255,255,255) if i == 20
+      fp["punch"].tone.all -= 25.5
+      fp["punch"].opacity -= 25.5
+    end
+    pbSEPlay("Anim/Fire3") if i==20
+    fp["bg"].opacity += 4 if  i < 20
+    if i >= 20
+      if i >= 28
+        @targetSprite.tone.red -= 3*2
+        @targetSprite.tone.green += 1.5*2
+        @targetSprite.tone.blue += 3*2
+        fp["bg"].opacity -= 10
+      else
+        @targetSprite.tone.red += 3*2 if @targetSprite.tone.red < 48*2
+        @targetSprite.tone.green -= 1.5*2 if @targetSprite.tone.green > -24*2
+        @targetSprite.tone.blue -= 3*2 if @targetSprite.tone.blue > -48*2
+      end
+      @targetSprite.ox += shake
+      shake = -4 if @targetSprite.ox > @targetSprite.bitmap.width/2 + 2
+      shake = 4 if @targetSprite.ox < @targetSprite.bitmap.width/2 - 2
+      @targetSprite.still
+    end
+    @scene.wait(1,true)
+  end
+  @sprites["battlebg"].focus
+  @targetSprite.ox = @targetSprite.bitmap.width/2
+  @vector.reset if !@multiHit
+  pbDisposeSpriteHash(fp)
+  EliteBattle.playMoveAnimation(:ABSORB, @scene, @userIndex, @targetIndex, @hitNum, @multiHit, nil, true)
+end
