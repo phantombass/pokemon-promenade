@@ -254,20 +254,7 @@ EliteBattle.defineMoveAnimation(:BOOMBURST) do
   fp["bg"].opacity = 0
   for i in 0...128
     fp["#{i}"] = Sprite.new(@viewport)
-    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound1")
-    fp["#{i}"].ox = fp["#{i}"].bitmap.width/2
-    fp["#{i}"].oy = fp["#{i}"].bitmap.height/2
-    fp["#{i}"].visible = false
-    fp["#{i}"].z = 50
-    rndx.push(rand(256)); prndx.push(rand(72))
-    rndy.push(rand(256)); prndy.push(rand(72))
-    rangl.push(rand(9))
-    dx.push(0)
-    dy.push(0)
-  end
-  for i in 0...128
-    fp["#{i}"] = Sprite.new(@viewport)
-    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound2")
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb519_5")
     fp["#{i}"].ox = fp["#{i}"].bitmap.width/2
     fp["#{i}"].oy = fp["#{i}"].bitmap.height/2
     fp["#{i}"].visible = false
@@ -280,7 +267,7 @@ EliteBattle.defineMoveAnimation(:BOOMBURST) do
   end
   for i in 0...8
     fp["#{i}s"] = Sprite.new(@viewport)
-    fp["#{i}s"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb191_3")
+    fp["#{i}s"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound2")
     fp["#{i}s"].ox = fp["#{i}s"].bitmap.width/2
     fp["#{i}s"].oy = fp["#{i}s"].bitmap.height + 8*factor
     fp["#{i}s"].angle = rand(360)
@@ -382,7 +369,7 @@ EliteBattle.defineMoveAnimation(:HYPERVOICE) do
   dy = []
   for i in 0...128
     fp["#{i}"] = Sprite.new(@viewport)
-    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound1")
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb536_2")
     fp["#{i}"].ox = fp["#{i}"].bitmap.width/2
     fp["#{i}"].oy = fp["#{i}"].bitmap.height/2
     fp["#{i}"].visible = false
@@ -395,7 +382,7 @@ EliteBattle.defineMoveAnimation(:HYPERVOICE) do
   end
   for i in 0...128
     fp["#{i}"] = Sprite.new(@viewport)
-    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound2")
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb536_2")
     fp["#{i}"].ox = fp["#{i}"].bitmap.width/2
     fp["#{i}"].oy = fp["#{i}"].bitmap.height/2
     fp["#{i}"].visible = false
@@ -408,7 +395,7 @@ EliteBattle.defineMoveAnimation(:HYPERVOICE) do
   end
   for i in 0...8
     fp["#{i}s"] = Sprite.new(@viewport)
-    fp["#{i}s"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb191_3")
+    fp["#{i}s"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound2")
     fp["#{i}s"].ox = fp["#{i}s"].bitmap.width/2
     fp["#{i}s"].oy = fp["#{i}s"].bitmap.height + 8*factor
     fp["#{i}s"].angle = rand(360)
