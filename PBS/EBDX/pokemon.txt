@@ -3734,6 +3734,7 @@ BattlerEnemyY   = 36
 SpriteScaleEnemy = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 36
+BattlerPlayerY   = 36
 #-------------------------------
 [HOPPALM]
 SpriteScaleEnemy = 1
@@ -3783,6 +3784,7 @@ BattlerEnemyY   = 46
 #-------------------------------
 [STONAT]
 SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
 BattlerAltitude = 1
 #-------------------------------
 [MAGATE]

@@ -117,19 +117,19 @@ statusMove   = NASTYPLOT
 allOpposing  = DARKVOID
 #-------------------------------
 [COSMIC]
-physicalMove = NIGHTSLASH
-specialMove  = AURORABEAM
+physicalMove = ASTROPUNCH
+specialMove  = STARBEAM
 statusMove   = NASTYPLOT
-allOpposing  = WHIRLWIND
+allOpposing  = STELLARWIND
 #-------------------------------
 [TIME]
-physicalMove = DRAGONCLAW
-specialMove  = AURASPHERE
+physicalMove = RHYTHMICRUSH
+specialMove  = QUANTUMWAVE
 statusMove   = NASTYPLOT
-allOpposing  = EARTPOWER
+allOpposing  = QUANTUMCRUSH
 #-------------------------------
 [SOUND]
-physicalMove = CLOSECOMBAT
+physicalMove = DOPPLERPUNCH
 specialMove  = HYPERVOICE
 statusMove   = GROWL
 allOpposing  = HYPERVOICE
