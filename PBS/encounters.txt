@@ -82,7 +82,7 @@ Cave
     TABLU,19,22
     CHINGLING,19,22
     YAMASK,19,22
-    SPEAKOBRA,19,22
+    SUBWINDER,19,22
     YAMASK,19,22
     CHINGLING,19,22
 #-------------------------------
