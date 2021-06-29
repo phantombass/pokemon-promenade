@@ -972,6 +972,839 @@ EliteBattle.defineMoveAnimation(:TUNGSTENTOMB) do
   pbDisposeSpriteHash(fp)
   @vector.reset if !@multiHit
 end
+EliteBattle.defineMoveAnimation(:RHYTHMICRUSH) do | args |
+  kick = args[0]; kick = false if kick.nil?
+  # set up animation
+  fp = {}
+  rndx = []
+  rndy = []
+  fp["bg"] = Sprite.new(@viewport)
+  fp["bg"].bitmap = Bitmap.new(@viewport.width,@viewport.height)
+  fp["bg"].bitmap.fill_rect(0,0,fp["bg"].bitmap.width,fp["bg"].bitmap.height,Color.new(130,52,42))
+  fp["bg"].opacity = 0
+  for i in 0...12
+    fp["#{i}"] = Sprite.new(@viewport)
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb129_3")
+    fp["#{i}"].src_rect.set(0,101*rand(3),53,101)
+    fp["#{i}"].ox = 26
+    fp["#{i}"].oy = 50
+    fp["#{i}"].opacity = 0
+    fp["#{i}"].z = 50
+    fp["#{i}"].zoom_x = (@targetSprite.zoom_x)/2
+    fp["#{i}"].zoom_y = (@targetSprite.zoom_y)/2
+    rndx.push(rand(144))
+    rndy.push(rand(144))
+  end
+  fp["punch"] = Sprite.new(@viewport)
+  fp["punch"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb#{kick ? 137 : 108}")
+  fp["punch"].ox = fp["punch"].bitmap.width/2
+  fp["punch"].oy = fp["punch"].bitmap.height/2
+  fp["punch"].opacity = 0
+  fp["punch"].z = 40
+  fp["punch"].angle = 180
+  fp["punch"].zoom_x = @targetIsPlayer ? 6 : 4
+  fp["punch"].zoom_y = @targetIsPlayer ? 6 : 4
+  fp["punch"].tone = Tone.new(48,16,6)
+  shake = 4
+  # start animation
+  @vector.set(@scene.getRealVector(@targetIndex, @targetIsPlayer))
+  pbSEPlay("Anim/fog2", 75)
+  @sprites["battlebg"].defocus
+  for i in 0...36
+    cx, cy = @targetSprite.getCenter(true)
+    fp["punch"].x = cx
+    fp["punch"].y = cy
+    fp["punch"].angle -= 45 if i < 20
+    fp["punch"].zoom_x -= @targetIsPlayer ? 0.2 : 0.15 if i < 20
+    fp["punch"].zoom_y -= @targetIsPlayer ? 0.2 : 0.15 if i < 20
+    fp["punch"].opacity += 8 if i < 20
+    if i >= 20
+      fp["punch"].tone = Tone.new(255,255,255) if i == 20
+      fp["punch"].tone.all -= 25.5
+      fp["punch"].opacity -= 25.5
+    end
+    pbSEPlay("Anim/Fire3") if i==20
+    for j in 0...12
+      next if i < 20
+      if fp["#{j}"].opacity == 0 && fp["#{j}"].tone.gray == 0
+        fp["#{j}"].x = cx
+        fp["#{j}"].y = cy
+      end
+      x2 = cx - 72*@targetSprite.zoom_x + rndx[j]*@targetSprite.zoom_x
+      y2 = cy - 72*@targetSprite.zoom_y + rndy[j]*@targetSprite.zoom_y
+      x0 = fp["#{j}"].x
+      y0 = fp["#{j}"].y
+      fp["#{j}"].x += (x2 - x0)*0.2
+      fp["#{j}"].y += (y2 - y0)*0.2
+      fp["#{j}"].src_rect.x += 53 if i%2==0
+      fp["#{j}"].src_rect.x = 0 if fp["#{j}"].src_rect.x >= fp["#{j}"].bitmap.width
+      if (x2 - x0)*0.2 < 1 && (y2 - y0)*0.2 < 1
+        fp["#{j}"].opacity -= 16
+        fp["#{j}"].tone.gray += 16
+        fp["#{j}"].tone.red -= 4; fp["#{j}"].tone.green -= 4; fp["#{j}"].tone.blue -= 4
+        fp["#{j}"].zoom_x -= 0.005
+        fp["#{j}"].zoom_y += 0.01
+      else
+        fp["#{j}"].opacity += 45
+      end
+    end
+    fp["bg"].opacity += 4 if  i < 20
+    if i >= 20
+      if i >= 28
+        @targetSprite.tone.red -= 3*2
+        @targetSprite.tone.green += 1.5*2
+        @targetSprite.tone.blue += 3*2
+        fp["bg"].opacity -= 10
+      else
+        @targetSprite.tone.red += 3*2 if @targetSprite.tone.red < 48*2
+        @targetSprite.tone.green -= 1.5*2 if @targetSprite.tone.green > -24*2
+        @targetSprite.tone.blue -= 3*2 if @targetSprite.tone.blue > -48*2
+      end
+      @targetSprite.ox += shake
+      shake = -4 if @targetSprite.ox > @targetSprite.bitmap.width/2 + 2
+      shake = 4 if @targetSprite.ox < @targetSprite.bitmap.width/2 - 2
+      @targetSprite.still
+    end
+    @scene.wait(1,true)
+  end
+  @sprites["battlebg"].focus
+  @targetSprite.ox = @targetSprite.bitmap.width/2
+  @vector.reset if !@multiHit
+  pbDisposeSpriteHash(fp)
+end
+EliteBattle.defineMoveAnimation(:MACHPULSE) do | args |
+  kick = args[0]; kick = false if kick.nil?
+  # set up animation
+  fp = {}
+  rndx = []
+  rndy = []
+  fp["bg"] = Sprite.new(@viewport)
+  fp["bg"].bitmap = Bitmap.new(@viewport.width,@viewport.height)
+  fp["bg"].bitmap.fill_rect(0,0,fp["bg"].bitmap.width,fp["bg"].bitmap.height,Color.new(130,52,42))
+  fp["bg"].opacity = 0
+  for i in 0...12
+    fp["#{i}"] = Sprite.new(@viewport)
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound1")
+    fp["#{i}"].src_rect.set(0,101*rand(3),53,101)
+    fp["#{i}"].ox = 26
+    fp["#{i}"].oy = 50
+    fp["#{i}"].opacity = 0
+    fp["#{i}"].z = 50
+    fp["#{i}"].zoom_x = (@targetSprite.zoom_x)/2
+    fp["#{i}"].zoom_y = (@targetSprite.zoom_y)/2
+    rndx.push(rand(144))
+    rndy.push(rand(144))
+  end
+  for i in 0...12
+    fp["#{i}"] = Sprite.new(@viewport)
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound2")
+    fp["#{i}"].src_rect.set(0,101*rand(3),53,101)
+    fp["#{i}"].ox = 26
+    fp["#{i}"].oy = 50
+    fp["#{i}"].opacity = 0
+    fp["#{i}"].z = 50
+    fp["#{i}"].zoom_x = (@targetSprite.zoom_x)/2
+    fp["#{i}"].zoom_y = (@targetSprite.zoom_y)/2
+    rndx.push(rand(144))
+    rndy.push(rand(144))
+  end
+  for i in 0...6
+    fp["#{i}"] = Sprite.new(@viewport)
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound1")
+    fp["#{i}"].src_rect.set(0,101*rand(3),53,101)
+    fp["#{i}"].ox = 26
+    fp["#{i}"].oy = 50
+    fp["#{i}"].opacity = 0
+    fp["#{i}"].z = 50
+    fp["#{i}"].zoom_x = (@targetSprite.zoom_x)/2
+    fp["#{i}"].zoom_y = (@targetSprite.zoom_y)/2
+    rndx.push(rand(144))
+    rndy.push(rand(144))
+  end
+  for i in 0...6
+    fp["#{i}"] = Sprite.new(@viewport)
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound2")
+    fp["#{i}"].src_rect.set(0,101*rand(3),53,101)
+    fp["#{i}"].ox = 26
+    fp["#{i}"].oy = 50
+    fp["#{i}"].opacity = 0
+    fp["#{i}"].z = 50
+    fp["#{i}"].zoom_x = (@targetSprite.zoom_x)/2
+    fp["#{i}"].zoom_y = (@targetSprite.zoom_y)/2
+    rndx.push(rand(144))
+    rndy.push(rand(144))
+  end
+  fp["punch"] = Sprite.new(@viewport)
+  fp["punch"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/ebItem1")
+  fp["punch"].ox = fp["punch"].bitmap.width/2
+  fp["punch"].oy = fp["punch"].bitmap.height/2
+  fp["punch"].opacity = 0
+  fp["punch"].z = 40
+  fp["punch"].angle = 180
+  fp["punch"].zoom_x = @targetIsPlayer ? 6 : 4
+  fp["punch"].zoom_y = @targetIsPlayer ? 6 : 4
+  fp["punch"].tone = Tone.new(48,16,6)
+  shake = 4
+  # start animation
+  @vector.set(@scene.getRealVector(@targetIndex, @targetIsPlayer))
+  pbSEPlay("Anim/fog2", 75)
+  @sprites["battlebg"].defocus
+  for i in 0...36
+    cx, cy = @targetSprite.getCenter(true)
+    fp["punch"].x = cx
+    fp["punch"].y = cy
+    fp["punch"].angle -= 45 if i < 20
+    fp["punch"].zoom_x -= @targetIsPlayer ? 0.2 : 0.15 if i < 20
+    fp["punch"].zoom_y -= @targetIsPlayer ? 0.2 : 0.15 if i < 20
+    fp["punch"].opacity += 8 if i < 20
+    if i >= 20
+      fp["punch"].tone = Tone.new(255,255,255) if i == 20
+      fp["punch"].tone.all -= 25.5
+      fp["punch"].opacity -= 25.5
+    end
+    pbSEPlay("Anim/Fire3") if i==20
+    for j in 0...12
+      next if i < 20
+      if fp["#{j}"].opacity == 0 && fp["#{j}"].tone.gray == 0
+        fp["#{j}"].x = cx
+        fp["#{j}"].y = cy
+      end
+      x2 = cx - 72*@targetSprite.zoom_x + rndx[j]*@targetSprite.zoom_x
+      y2 = cy - 72*@targetSprite.zoom_y + rndy[j]*@targetSprite.zoom_y
+      x0 = fp["#{j}"].x
+      y0 = fp["#{j}"].y
+      fp["#{j}"].x += (x2 - x0)*0.2
+      fp["#{j}"].y += (y2 - y0)*0.2
+      fp["#{j}"].src_rect.x += 53 if i%2==0
+      fp["#{j}"].src_rect.x = 0 if fp["#{j}"].src_rect.x >= fp["#{j}"].bitmap.width
+      if (x2 - x0)*0.2 < 1 && (y2 - y0)*0.2 < 1
+        fp["#{j}"].opacity -= 16
+        fp["#{j}"].tone.gray += 16
+        fp["#{j}"].tone.red -= 4; fp["#{j}"].tone.green -= 4; fp["#{j}"].tone.blue -= 4
+        fp["#{j}"].zoom_x -= 0.005
+        fp["#{j}"].zoom_y += 0.01
+      else
+        fp["#{j}"].opacity += 45
+      end
+    end
+    fp["bg"].opacity += 4 if  i < 20
+    if i >= 20
+      if i >= 28
+        @targetSprite.tone.red -= 3*2
+        @targetSprite.tone.green += 1.5*2
+        @targetSprite.tone.blue += 3*2
+        fp["bg"].opacity -= 10
+      else
+        @targetSprite.tone.red += 3*2 if @targetSprite.tone.red < 48*2
+        @targetSprite.tone.green -= 1.5*2 if @targetSprite.tone.green > -24*2
+        @targetSprite.tone.blue -= 3*2 if @targetSprite.tone.blue > -48*2
+      end
+      @targetSprite.ox += shake
+      shake = -4 if @targetSprite.ox > @targetSprite.bitmap.width/2 + 2
+      shake = 4 if @targetSprite.ox < @targetSprite.bitmap.width/2 - 2
+      @targetSprite.still
+    end
+    @scene.wait(1,true)
+  end
+  @sprites["battlebg"].focus
+  @targetSprite.ox = @targetSprite.bitmap.width/2
+  @vector.reset if !@multiHit
+  pbDisposeSpriteHash(fp)
+end
+EliteBattle.defineMoveAnimation(:ECHORUSH) do | args |
+  kick = args[0]; kick = false if kick.nil?
+  # set up animation
+  fp = {}
+  rndx = []
+  rndy = []
+  fp["bg"] = Sprite.new(@viewport)
+  fp["bg"].bitmap = Bitmap.new(@viewport.width,@viewport.height)
+  fp["bg"].bitmap.fill_rect(0,0,fp["bg"].bitmap.width,fp["bg"].bitmap.height,Color.new(130,52,42))
+  fp["bg"].opacity = 0
+  for i in 0...12
+    fp["#{i}"] = Sprite.new(@viewport)
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound1")
+    fp["#{i}"].src_rect.set(0,101*rand(3),53,101)
+    fp["#{i}"].ox = 26
+    fp["#{i}"].oy = 50
+    fp["#{i}"].opacity = 0
+    fp["#{i}"].z = 50
+    fp["#{i}"].zoom_x = (@targetSprite.zoom_x)/2
+    fp["#{i}"].zoom_y = (@targetSprite.zoom_y)/2
+    rndx.push(rand(144))
+    rndy.push(rand(144))
+  end
+  for i in 0...12
+    fp["#{i}"] = Sprite.new(@viewport)
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound2")
+    fp["#{i}"].src_rect.set(0,101*rand(3),53,101)
+    fp["#{i}"].ox = 26
+    fp["#{i}"].oy = 50
+    fp["#{i}"].opacity = 0
+    fp["#{i}"].z = 50
+    fp["#{i}"].zoom_x = (@targetSprite.zoom_x)/2
+    fp["#{i}"].zoom_y = (@targetSprite.zoom_y)/2
+    rndx.push(rand(144))
+    rndy.push(rand(144))
+  end
+  for i in 0...6
+    fp["#{i}"] = Sprite.new(@viewport)
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound1")
+    fp["#{i}"].src_rect.set(0,101*rand(3),53,101)
+    fp["#{i}"].ox = 26
+    fp["#{i}"].oy = 50
+    fp["#{i}"].opacity = 0
+    fp["#{i}"].z = 50
+    fp["#{i}"].zoom_x = (@targetSprite.zoom_x)/2
+    fp["#{i}"].zoom_y = (@targetSprite.zoom_y)/2
+    rndx.push(rand(144))
+    rndy.push(rand(144))
+  end
+  for i in 0...6
+    fp["#{i}"] = Sprite.new(@viewport)
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound2")
+    fp["#{i}"].src_rect.set(0,101*rand(3),53,101)
+    fp["#{i}"].ox = 26
+    fp["#{i}"].oy = 50
+    fp["#{i}"].opacity = 0
+    fp["#{i}"].z = 50
+    fp["#{i}"].zoom_x = (@targetSprite.zoom_x)/2
+    fp["#{i}"].zoom_y = (@targetSprite.zoom_y)/2
+    rndx.push(rand(144))
+    rndy.push(rand(144))
+  end
+  fp["punch"] = Sprite.new(@viewport)
+  fp["punch"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb108")
+  fp["punch"].ox = fp["punch"].bitmap.width/2
+  fp["punch"].oy = fp["punch"].bitmap.height/2
+  fp["punch"].opacity = 0
+  fp["punch"].z = 40
+  fp["punch"].angle = 180
+  fp["punch"].zoom_x = @targetIsPlayer ? 6 : 4
+  fp["punch"].zoom_y = @targetIsPlayer ? 6 : 4
+  fp["punch"].tone = Tone.new(48,16,6)
+  shake = 4
+  # start animation
+  @vector.set(@scene.getRealVector(@targetIndex, @targetIsPlayer))
+  pbSEPlay("Anim/fog2", 75)
+  @sprites["battlebg"].defocus
+  for i in 0...36
+    cx, cy = @targetSprite.getCenter(true)
+    fp["punch"].x = cx
+    fp["punch"].y = cy
+    fp["punch"].angle -= 45 if i < 20
+    fp["punch"].zoom_x -= @targetIsPlayer ? 0.2 : 0.15 if i < 20
+    fp["punch"].zoom_y -= @targetIsPlayer ? 0.2 : 0.15 if i < 20
+    fp["punch"].opacity += 8 if i < 20
+    if i >= 20
+      fp["punch"].tone = Tone.new(255,255,255) if i == 20
+      fp["punch"].tone.all -= 25.5
+      fp["punch"].opacity -= 25.5
+    end
+    pbSEPlay("Anim/Fire3") if i==20
+    for j in 0...12
+      next if i < 20
+      if fp["#{j}"].opacity == 0 && fp["#{j}"].tone.gray == 0
+        fp["#{j}"].x = cx
+        fp["#{j}"].y = cy
+      end
+      x2 = cx - 72*@targetSprite.zoom_x + rndx[j]*@targetSprite.zoom_x
+      y2 = cy - 72*@targetSprite.zoom_y + rndy[j]*@targetSprite.zoom_y
+      x0 = fp["#{j}"].x
+      y0 = fp["#{j}"].y
+      fp["#{j}"].x += (x2 - x0)*0.2
+      fp["#{j}"].y += (y2 - y0)*0.2
+      fp["#{j}"].src_rect.x += 53 if i%2==0
+      fp["#{j}"].src_rect.x = 0 if fp["#{j}"].src_rect.x >= fp["#{j}"].bitmap.width
+      if (x2 - x0)*0.2 < 1 && (y2 - y0)*0.2 < 1
+        fp["#{j}"].opacity -= 16
+        fp["#{j}"].tone.gray += 16
+        fp["#{j}"].tone.red -= 4; fp["#{j}"].tone.green -= 4; fp["#{j}"].tone.blue -= 4
+        fp["#{j}"].zoom_x -= 0.005
+        fp["#{j}"].zoom_y += 0.01
+      else
+        fp["#{j}"].opacity += 45
+      end
+    end
+    fp["bg"].opacity += 4 if  i < 20
+    if i >= 20
+      if i >= 28
+        @targetSprite.tone.red -= 3*2
+        @targetSprite.tone.green += 1.5*2
+        @targetSprite.tone.blue += 3*2
+        fp["bg"].opacity -= 10
+      else
+        @targetSprite.tone.red += 3*2 if @targetSprite.tone.red < 48*2
+        @targetSprite.tone.green -= 1.5*2 if @targetSprite.tone.green > -24*2
+        @targetSprite.tone.blue -= 3*2 if @targetSprite.tone.blue > -48*2
+      end
+      @targetSprite.ox += shake
+      shake = -4 if @targetSprite.ox > @targetSprite.bitmap.width/2 + 2
+      shake = 4 if @targetSprite.ox < @targetSprite.bitmap.width/2 - 2
+      @targetSprite.still
+    end
+    @scene.wait(1,true)
+  end
+  @sprites["battlebg"].focus
+  @targetSprite.ox = @targetSprite.bitmap.width/2
+  @vector.reset if !@multiHit
+  pbDisposeSpriteHash(fp)
+end
+EliteBattle.defineMoveAnimation(:SPACIALGROVE) do
+  vector = @scene.getRealVector(@targetIndex, @targetIsPlayer)
+  vector2 = @scene.getRealVector(@userIndex, @userIsPlayer)
+  factor = @userIsPlayer ? 2 : 1
+  # set up animation
+  fp = {}
+  rndx = []; prndx = []
+  rndy = []; prndy = []
+  rangl = []
+  dx = []
+  dy = []
+  fp["bg"] = ScrollingSprite.new(@viewport)
+  fp["bg"].speed = 64
+  fp["bg"].setBitmap("Graphics/EBDX/Animations/Moves/eb027_bg")
+  fp["bg"].color = Color.new(0,0,0,255)
+  fp["bg"].opacity = 0
+  for i in 0...128
+    fp["#{i}"] = Sprite.new(@viewport)
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb191_2")
+    fp["#{i}"].ox = fp["#{i}"].bitmap.width/2
+    fp["#{i}"].oy = fp["#{i}"].bitmap.height/2
+    fp["#{i}"].visible = false
+    fp["#{i}"].z = 50
+    rndx.push(rand(256)); prndx.push(rand(72))
+    rndy.push(rand(256)); prndy.push(rand(72))
+    rangl.push(rand(9))
+    dx.push(0)
+    dy.push(0)
+  end
+  for i in 0...128
+    fp["#{i}"] = Sprite.new(@viewport)
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb191")
+    fp["#{i}"].ox = fp["#{i}"].bitmap.width/2
+    fp["#{i}"].oy = fp["#{i}"].bitmap.height/2
+    fp["#{i}"].visible = false
+    fp["#{i}"].z = 50
+    rndx.push(rand(256)); prndx.push(rand(72))
+    rndy.push(rand(256)); prndy.push(rand(72))
+    rangl.push(rand(9))
+    dx.push(0)
+    dy.push(0)
+  end
+  for i in 0...8
+    fp["#{i}s"] = Sprite.new(@viewport)
+    fp["#{i}s"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb191_3")
+    fp["#{i}s"].ox = fp["#{i}s"].bitmap.width/2
+    fp["#{i}s"].oy = fp["#{i}s"].bitmap.height + 8*factor
+    fp["#{i}s"].angle = rand(360)
+    r = rand(2)
+    fp["#{i}s"].zoom_x = (r==0 ? 0.5 : 1)*factor
+    fp["#{i}s"].zoom_y = (r==0 ? 0.5 : 1)*factor
+    fp["#{i}s"].visible = false
+    fp["#{i}s"].opacity = 255 - rand(101)
+    fp["#{i}s"].z = 50
+  end
+  shake = 4
+  k = 0
+  # start animation
+  @vector.set(vector2)
+  @sprites["battlebg"].defocus
+  for i in 0...30
+    if i < 10
+      fp["bg"].opacity += 25.5
+    elsif i < 20
+      fp["bg"].color.alpha -= 25.5
+    end
+    pbSEPlay("EBDX/Anim/grass2") if i == 20
+    fp["bg"].update
+    @scene.wait(1,true)
+  end
+  pbSEPlay("EBDX/Anim/wind1",90)
+  for i in 0...96
+    pbSEPlay("EBDX/Anim/grass1",60) if i%3==0 && i < 64
+    ax, ay = @userSprite.getCenter
+    cx, cy = @targetSprite.getCenter(true)
+    for j in 0...128
+      next if j>(i*2)
+      if !fp["#{j}"].visible
+        dx[j] = ax - 46*@userSprite.zoom_x*0.5 + prndx[j]*@userSprite.zoom_x*0.5
+        dy[j] = ay - 46*@userSprite.zoom_y*0.5 + prndy[j]*@userSprite.zoom_y*0.5
+        fp["#{j}"].x = dx[j]
+        fp["#{j}"].y = dy[j]
+        fp["#{j}"].visible = true
+      end
+      x0 = ax - 46*@userSprite.zoom_x*0.5 + prndx[j]*@userSprite.zoom_x*0.5
+      y0 = ay - 46*@userSprite.zoom_y*0.5 + prndy[j]*@userSprite.zoom_y*0.5
+      x2 = cx - 128*@targetSprite.zoom_x*0.5 + rndx[j]*@targetSprite.zoom_x*0.5
+      y2 = cy - 128*@targetSprite.zoom_y*0.5 + rndy[j]*@targetSprite.zoom_y*0.5
+      fp["#{j}"].x += (x2 - x0)*0.1
+      fp["#{j}"].y += (y2 - y0)*0.1
+      fp["#{j}"].angle += rangl[j]*2
+      nextx = fp["#{j}"].x# + (x2 - x0)*0.1
+      nexty = fp["#{j}"].y# + (y2 - y0)*0.1
+      if !@targetIsPlayer
+        fp["#{j}"].opacity -= 51 if nextx > cx && nexty < cy
+      else
+        fp["#{j}"].opacity -= 51 if nextx < cx && nexty > cy
+      end
+    end
+    if i >= 64
+      @targetSprite.ox += shake
+      shake = -4 if @targetSprite.ox > @targetSprite.bitmap.width/2 + 2
+      shake = 4 if @targetSprite.ox < @targetSprite.bitmap.width/2 - 2
+      @targetSprite.still
+    end
+    for m in 0...8
+      fp["#{m}s"].visible = true
+      fp["#{m}s"].opacity -= 12
+      fp["#{m}s"].oy +=6*factor if fp["#{m}s"].opacity > 0
+      fp["#{m}s"].x, fp["#{m}s"].y = @userSprite.getCenter
+    end
+    #pbSEPlay("Anim/Comet Punch") if i == 64
+    fp["bg"].update
+    @vector.set(vector) if i == 32
+    @vector.inc = 0.1 if i == 32
+    @scene.wait(1,true)
+  end
+  @targetSprite.ox = @targetSprite.bitmap.width/2
+  for i in 0...20
+    @targetSprite.still
+    if i < 10
+      fp["bg"].color.alpha += 25.5
+    else
+      fp["bg"].opacity -= 25.5
+    end
+    fp["bg"].update
+    @scene.wait(1,true)
+  end
+  @sprites["battlebg"].focus
+  @vector.reset if !@multiHit
+  @vector.inc = 0.2
+  pbDisposeSpriteHash(fp)
+end
+EliteBattle.defineMoveAnimation(:SIRENSSONG) do
+  vector = @scene.getRealVector(@targetIndex, @targetIsPlayer)
+  vector2 = @scene.getRealVector(@userIndex, @userIsPlayer)
+  factor = @userIsPlayer ? 2 : 1
+  # set up animation
+  fp = {}
+  rndx = []; prndx = []
+  rndy = []; prndy = []
+  rangl = []
+  dx = []
+  dy = []
+  fp["bg"] = ScrollingSprite.new(@viewport)
+  fp["bg"].speed = 64
+  fp["bg"].setBitmap("Graphics/EBDX/Animations/Moves/eb536_bg")
+  fp["bg"].color = Color.new(0,0,0,255)
+  fp["bg"].opacity = 0
+  for i in 0...128
+    fp["#{i}"] = Sprite.new(@viewport)
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/sound2")
+    fp["#{i}"].ox = fp["#{i}"].bitmap.width/2
+    fp["#{i}"].oy = fp["#{i}"].bitmap.height/2
+    fp["#{i}"].visible = false
+    fp["#{i}"].z = 50
+    rndx.push(rand(256)); prndx.push(rand(72))
+    rndy.push(rand(256)); prndy.push(rand(72))
+    rangl.push(rand(9))
+    dx.push(0)
+    dy.push(0)
+  end
+  for i in 0...8
+    fp["#{i}s"] = Sprite.new(@viewport)
+    fp["#{i}s"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb191_3")
+    fp["#{i}s"].ox = fp["#{i}s"].bitmap.width/2
+    fp["#{i}s"].oy = fp["#{i}s"].bitmap.height + 8*factor
+    fp["#{i}s"].angle = rand(360)
+    r = rand(2)
+    fp["#{i}s"].zoom_x = (r==0 ? 0.5 : 1)*factor
+    fp["#{i}s"].zoom_y = (r==0 ? 0.5 : 1)*factor
+    fp["#{i}s"].visible = false
+    fp["#{i}s"].opacity = 255 - rand(101)
+    fp["#{i}s"].z = 50
+  end
+  shake = 4
+  k = 0
+  # start animation
+  @vector.set(vector2)
+  @sprites["battlebg"].defocus
+  for i in 0...30
+    if i < 10
+      fp["bg"].opacity += 25.5
+    elsif i < 20
+      fp["bg"].color.alpha -= 25.5
+    end
+    pbSEPlay("EBDX/Anim/grass2") if i == 20
+    fp["bg"].update
+    @scene.wait(1,true)
+  end
+  pbSEPlay("EBDX/Anim/wind1",90)
+  for i in 0...96
+    pbSEPlay("EBDX/Anim/grass1",60) if i%3==0 && i < 64
+    ax, ay = @userSprite.getCenter
+    cx, cy = @targetSprite.getCenter(true)
+    for j in 0...128
+      next if j>(i*2)
+      if !fp["#{j}"].visible
+        dx[j] = ax - 46*@userSprite.zoom_x*0.5 + prndx[j]*@userSprite.zoom_x*0.5
+        dy[j] = ay - 46*@userSprite.zoom_y*0.5 + prndy[j]*@userSprite.zoom_y*0.5
+        fp["#{j}"].x = dx[j]
+        fp["#{j}"].y = dy[j]
+        fp["#{j}"].visible = true
+      end
+      x0 = ax - 46*@userSprite.zoom_x*0.5 + prndx[j]*@userSprite.zoom_x*0.5
+      y0 = ay - 46*@userSprite.zoom_y*0.5 + prndy[j]*@userSprite.zoom_y*0.5
+      x2 = cx - 128*@targetSprite.zoom_x*0.5 + rndx[j]*@targetSprite.zoom_x*0.5
+      y2 = cy - 128*@targetSprite.zoom_y*0.5 + rndy[j]*@targetSprite.zoom_y*0.5
+      fp["#{j}"].x += (x2 - x0)*0.1
+      fp["#{j}"].y += (y2 - y0)*0.1
+      fp["#{j}"].angle += rangl[j]*2
+      nextx = fp["#{j}"].x# + (x2 - x0)*0.1
+      nexty = fp["#{j}"].y# + (y2 - y0)*0.1
+      if !@targetIsPlayer
+        fp["#{j}"].opacity -= 51 if nextx > cx && nexty < cy
+      else
+        fp["#{j}"].opacity -= 51 if nextx < cx && nexty > cy
+      end
+    end
+    if i >= 64
+      @targetSprite.ox += shake
+      shake = -4 if @targetSprite.ox > @targetSprite.bitmap.width/2 + 2
+      shake = 4 if @targetSprite.ox < @targetSprite.bitmap.width/2 - 2
+      @targetSprite.still
+    end
+    for m in 0...8
+      fp["#{m}s"].visible = true
+      fp["#{m}s"].opacity -= 12
+      fp["#{m}s"].oy +=6*factor if fp["#{m}s"].opacity > 0
+      fp["#{m}s"].x, fp["#{m}s"].y = @userSprite.getCenter
+    end
+    #pbSEPlay("Anim/Comet Punch") if i == 64
+    fp["bg"].update
+    @vector.set(vector) if i == 32
+    @vector.inc = 0.1 if i == 32
+    @scene.wait(1,true)
+  end
+  @targetSprite.ox = @targetSprite.bitmap.width/2
+  for i in 0...20
+    @targetSprite.still
+    if i < 10
+      fp["bg"].color.alpha += 25.5
+    else
+      fp["bg"].opacity -= 25.5
+    end
+    fp["bg"].update
+    @scene.wait(1,true)
+  end
+  @sprites["battlebg"].focus
+  @vector.reset if !@multiHit
+  @vector.inc = 0.2
+  pbDisposeSpriteHash(fp)
+end
+EliteBattle.defineMoveAnimation(:POWERGEM) do
+  factor = @targetSprite.zoom_x
+  @vector.set(@scene.getRealVector(@targetIndex, @targetIsPlayer))
+  @scene.wait(16,true)
+  factor = @targetSprite.zoom_x
+  # set up animation
+  fp = {}
+  dx = []
+  dy = []
+  cx, cy = @targetSprite.getCenter(true)
+  fp["bg"] = ScrollingSprite.new(@viewport)
+  fp["bg"].speed = 64
+  fp["bg"].setBitmap("Graphics/EBDX/Animations/Moves/eb027_bg")
+  fp["bg"].color = Color.new(0,0,0,255)
+  fp["bg"].opacity = 0
+  for j in 0..16
+    fp["i#{j}"] = Sprite.new(@viewport)
+    fp["i#{j}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb504")
+    fp["i#{j}"].ox = fp["i#{j}"].bitmap.width/2
+    fp["i#{j}"].oy = fp["i#{j}"].bitmap.height/2
+    r = 72*factor
+    fp["i#{j}"].x = cx - r + rand(r*2)
+    fp["i#{j}"].y = cy - r*1.5 + rand(r*2)
+    fp["i#{j}"].z = @targetSprite.z + (rand(2)==0 ? 1 : -1)
+    fp["i#{j}"].zoom_x = factor
+    fp["i#{j}"].zoom_y = factor
+    fp["i#{j}"].opacity = 0
+    dx.push(rand(2)==0 ? 1 : -1)
+    dy.push(rand(2)==0 ? 1 : -1)
+  end
+  for m in 0...24
+    fp["d#{m}"] = Sprite.new(@viewport)
+    fp["d#{m}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb504")
+    fp["d#{m}"].src_rect.set(0,0,80,78)
+    fp["d#{m}"].ox = fp["d#{m}"].src_rect.width/2
+    fp["d#{m}"].oy = fp["d#{m}"].src_rect.height/2
+    r = 32*factor
+    fp["d#{m}"].x = cx - r + rand(r*2)
+    fp["d#{m}"].y = cy - r + rand(r*2)
+    fp["d#{m}"].z = @targetSprite.z + 1
+    fp["d#{m}"].opacity = 0
+    fp["d#{m}"].angle = rand(360)
+  end
+  for m in 0...24
+    fp["s#{m}"] = Sprite.new(@viewport)
+    fp["s#{m}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb504")
+    fp["s#{m}"].src_rect.set(80,0,80,78)
+    fp["s#{m}"].ox = fp["s#{m}"].src_rect.width/2
+    fp["s#{m}"].oy = fp["s#{m}"].src_rect.height/2
+    r = 32*factor
+    fp["s#{m}"].x = fp["d#{m}"].x
+    fp["s#{m}"].y = fp["d#{m}"].y
+    fp["s#{m}"].z = @targetSprite.z + 1
+    fp["s#{m}"].opacity = 0
+    fp["s#{m}"].angle = fp["d#{m}"].angle
+  end
+  pbSEPlay("EBDX/Anim/rock1",100)
+  for i in 0...48
+    if i < 20
+      fp["bg"].opacity += 25.5
+    elsif i < 40
+      fp["bg"].color.alpha -= 25.5
+    end
+    k = (i-16)/4
+    pbSEPlay("EBDX/Anim/psychic4",80-20*k) if i >= 16 && i%4==0 && i < 28
+    fp["bg"].update
+    for j in 0...16
+      next if j>(i/2)
+      t = fp["i#{j}"].tone.red
+      t += 32 if i%4==0
+      t = 0 if t > 96
+      fp["i#{j}"].tone = Tone.new(t,t,t)
+      fp["i#{j}"].opacity += 16
+      fp["i#{j}"].angle += dx[j]
+    end
+    @scene.wait
+  end
+  for i in 0...64
+    pbSEPlay("EBDX/Anim/rock2",80) if i >= 2 && i%4==0 && i < 26
+    for j in 0...16
+      next if j>(i)
+      fp["i#{j}"].x += (cx - fp["i#{j}"].x)*0.5
+      fp["i#{j}"].y += (cy - fp["i#{j}"].y)*0.5
+      fp["i#{j}"].angle += dx[j]
+      fp["i#{j}"].visible = (cx - fp["i#{j}"].x)*0.5 >= 1
+    end
+    for m in 0...12
+      next if i < 6
+      next if m>(i-6)/2
+      fp["d#{m}"].opacity += 32*(fp["d#{m}"].zoom_x < 1.5 ? 1 : -1)
+      fp["d#{m}"].zoom_x += 0.05
+      fp["d#{m}"].zoom_y += 0.05
+      fp["d#{m}"].angle += 4
+      fp["s#{m}"].opacity += 32*(fp["s#{m}"].zoom_x < 1.5 ? 1 : -1)
+      fp["s#{m}"].zoom_x += 0.05
+      fp["s#{m}"].zoom_y += 0.05
+      fp["s#{m}"].angle += 4
+    end
+    @targetSprite.still
+    @scene.wait
+  end
+  pbDisposeSpriteHash(fp)
+  @vector.reset if !@multiHit
+end
+EliteBattle.defineMoveAnimation(:PALEOBEAM) do
+  vector = @scene.getRealVector(@targetIndex, @targetIsPlayer)
+  vector2 = @scene.getRealVector(@userIndex, @userIsPlayer)
+  factor = @userIsPlayer ? 2 : 1
+  # set up animation
+  fp = {}
+  rndx = []; prndx = []
+  rndy = []; prndy = []
+  rangl = []
+  dx = []
+  dy = []
+  for i in 0...128
+    fp["#{i}"] = Sprite.new(@viewport)
+    fp["#{i}"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb504")
+    fp["#{i}"].ox = fp["#{i}"].bitmap.width/2
+    fp["#{i}"].oy = fp["#{i}"].bitmap.height/2
+    fp["#{i}"].visible = false
+    fp["#{i}"].z = 50
+    rndx.push(rand(256)); prndx.push(rand(72))
+    rndy.push(rand(256)); prndy.push(rand(72))
+    rangl.push(rand(9))
+    dx.push(0)
+    dy.push(0)
+  end
+  for i in 0...8
+    fp["#{i}s"] = Sprite.new(@viewport)
+    fp["#{i}s"].bitmap = pbBitmap("Graphics/EBDX/Animations/Moves/eb191_3")
+    fp["#{i}s"].ox = fp["#{i}s"].bitmap.width/2
+    fp["#{i}s"].oy = fp["#{i}s"].bitmap.height + 8*factor
+    fp["#{i}s"].angle = rand(360)
+    r = rand(2)
+    fp["#{i}s"].zoom_x = (r==0 ? 0.5 : 1)*factor
+    fp["#{i}s"].zoom_y = (r==0 ? 0.5 : 1)*factor
+    fp["#{i}s"].visible = false
+    fp["#{i}s"].opacity = 255 - rand(101)
+    fp["#{i}s"].z = 50
+  end
+  shake = 4
+  k = 0
+  # start animation
+  @vector.set(vector2)
+  @sprites["battlebg"].defocus
+  for i in 0...30
+    pbSEPlay("EBDX/Anim/rock1") if i == 20
+    @scene.wait(1,true)
+  end
+  pbSEPlay("EBDX/Anim/wind1",90)
+  for i in 0...96
+    pbSEPlay("EBDX/Anim/rock2",60) if i%3==0 && i < 64
+    ax, ay = @userSprite.getCenter
+    cx, cy = @targetSprite.getCenter(true)
+    for j in 0...128
+      next if j>(i*2)
+      if !fp["#{j}"].visible
+        dx[j] = ax - 46*@userSprite.zoom_x*0.5 + prndx[j]*@userSprite.zoom_x*0.5
+        dy[j] = ay - 46*@userSprite.zoom_y*0.5 + prndy[j]*@userSprite.zoom_y*0.5
+        fp["#{j}"].x = dx[j]
+        fp["#{j}"].y = dy[j]
+        fp["#{j}"].visible = true
+      end
+      x0 = ax - 46*@userSprite.zoom_x*0.5 + prndx[j]*@userSprite.zoom_x*0.5
+      y0 = ay - 46*@userSprite.zoom_y*0.5 + prndy[j]*@userSprite.zoom_y*0.5
+      x2 = cx - 128*@targetSprite.zoom_x*0.5 + rndx[j]*@targetSprite.zoom_x*0.5
+      y2 = cy - 128*@targetSprite.zoom_y*0.5 + rndy[j]*@targetSprite.zoom_y*0.5
+      fp["#{j}"].x += (x2 - x0)*0.1
+      fp["#{j}"].y += (y2 - y0)*0.1
+      fp["#{j}"].angle += rangl[j]*2
+      nextx = fp["#{j}"].x# + (x2 - x0)*0.1
+      nexty = fp["#{j}"].y# + (y2 - y0)*0.1
+      if !@targetIsPlayer
+        fp["#{j}"].opacity -= 51 if nextx > cx && nexty < cy
+      else
+        fp["#{j}"].opacity -= 51 if nextx < cx && nexty > cy
+      end
+    end
+    if i >= 64
+      @targetSprite.ox += shake
+      shake = -4 if @targetSprite.ox > @targetSprite.bitmap.width/2 + 2
+      shake = 4 if @targetSprite.ox < @targetSprite.bitmap.width/2 - 2
+      @targetSprite.still
+    end
+    for m in 0...8
+      fp["#{m}s"].visible = true
+      fp["#{m}s"].opacity -= 12
+      fp["#{m}s"].oy +=6*factor if fp["#{m}s"].opacity > 0
+      fp["#{m}s"].x, fp["#{m}s"].y = @userSprite.getCenter
+    end
+    #pbSEPlay("Anim/Comet Punch") if i == 64
+    @vector.set(vector) if i == 32
+    @vector.inc = 0.1 if i == 32
+    @scene.wait(1,true)
+  end
+  @targetSprite.ox = @targetSprite.bitmap.width/2
+  @sprites["battlebg"].focus
+  @vector.reset if !@multiHit
+  @vector.inc = 0.2
+  pbDisposeSpriteHash(fp)
+end
 
 #=====================
 #

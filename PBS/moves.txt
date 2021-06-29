@@ -821,7 +821,7 @@
 960,MACHRUSH,Mach Rush,0A5,60,SOUND,Physical,0,20,0,NearOther,0,abefjk,"The user throws a punch at the speed of sound. The punch lands without fail."
 961,DOPPLERPUNCH,Doppler Punch,007,75,SOUND,Physical,100,15,10,NearOther,0,abefjk,"The user throws a punch at the speed of sound. It may paralyze the foe."
 962,SONICSTRIKE,Sonic Strike,000,95,SOUND,Physical,100,15,10,NearOther,0,abefk,"The user rushes the foe at mach speeds and emits a deafening clap."
-963,ECHORUSH,Echo Rush,000,40,SOUND,Physical,100,15,10,NearOther,1,abefk,"The user rushes the foe at mach speeds. This move usually goes first."
+963,ECHORUSH,Echo Rush,000,40,SOUND,Physical,100,30,10,NearOther,1,abefk,"The user rushes the foe at mach speeds. This move usually goes first."
 964,WEATHERSHOT,Weather Shot,087,30,NORMAL,Special,100,25,0,NearOther,0,befn,"An attack move that varies in power and type depending on the weather."
 965,TEMPESTRAGE,Tempest Rage,087,85,NORMAL,Special,100,15,0,NearOther,0,befn,"An attack move that varies in power and type depending on the weather."
 966,SEPTICSHOT,Septic Shot,000,40,POISON,Physical,100,30,0,NearOther,1,abef,"The user shoots a dart laced with poison. This move usually goes first."
