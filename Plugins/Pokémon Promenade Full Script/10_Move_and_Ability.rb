@@ -3313,7 +3313,7 @@ end
 class PokeBattle_Move_501 < PokeBattle_Move_163
 
   def pbCalcTypeModSingle(moveType,defType,user,target)
-    retur Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :ELECTRIC &&
+    return Effectiveness::NORMAL_EFFECTIVE_ONE if moveType == :ELECTRIC &&
                                                         defType == :GROUND
     return super
   end
