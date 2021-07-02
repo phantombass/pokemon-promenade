@@ -68,5 +68,8 @@ BattleEnv       = TEMPLE
 BattleEnv       = CAVE
 #-------------------------------
 [284]
-BattleEnv       = MOUNTAIN
+BattleEnv       = CAVE
+#-------------------------------
+[285]
+BattleEnv       = FOREST
 #-------------------------------

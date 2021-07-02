@@ -2820,7 +2820,19 @@ class PokeBattle_Move_181 < PokeBattle_Move
   end
 end
 
-
+#===============================================================================
+# Changes Revelation Dance to only change types for Oricorio
+#===============================================================================
+class PokeBattle_Move_169 < PokeBattle_Move
+  def pbBaseType(user)
+    userTypes = user.pbTypes(true)
+    if user.isSpecies?(:ORICORIO)
+      return userTypes[0]
+    else
+      return :NORMAL
+    end
+  end
+end
 
 #===============================================================================
 # Ignores move redirection from abilities and moves. (Snipe Shot)

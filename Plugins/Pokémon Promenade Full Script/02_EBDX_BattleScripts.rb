@@ -1,8 +1,10 @@
+module EliteBattle
+  TRAINER_SPRITE_SCALE = 1
+  REPLACE_MISSING_ANIM = true
+end
 def poisonAllPokemon(event=nil)
     for pkmn in $Trainer.ablePokemonParty
-       next if pkmn.hasType?(:POISON)  || pkmn.hasType?(:STEEL) ||
-          pkmn.hasAbility?(:COMATOSE)  || pkmn.hasAbility?(:SHIELDSDOWN) || pkmn.hasAbility?(:IMMUNITY)
-          pkmn.status!=0
+       next if pkmn.can_poison == false
        pkmn.status = :POISON
        pkmn.statusCount = 1
      end
@@ -19,18 +21,10 @@ end
 
 def burnAllPokemon(event=nil)
     for pkmn in $Trainer.ablePokemonParty
-       next if pkmn.hasType?(:FIRE) ||
-          pkmn.hasAbility?(:COMATOSE)  || pkmn.hasAbility?(:SHIELDSDOWN) || pkmn.hasAbility?(:WATERBUBBLE) || pkmn.hasAbility?(:WATERVEIL)
-          pkmn.status!=0
-       pkmn.status = :BURN
-     end
+      next if pkmn.can_burn == false
+      pkmn.status = :BURN
+    end
 end
-
-module EliteBattle
-  TRAINER_SPRITE_SCALE = 1
-  REPLACE_MISSING_ANIM = true
-end
-
 module EnvironmentEBDX
   TEMPLE = {
     "backdrop" => "Sapphire",
@@ -83,8 +77,106 @@ class PokeBattle_Battle
       @battlers[0].pbOpposingSide.effects[PBEffects::StickyWeb] = false
     end
   end
+  def poisonAllPokemon
+      for pkmn in $Trainer.ablePokemonParty
+         next if pkmn.hasType?(:POISON)  || pkmn.hasType?(:STEEL) || pkmn.hasAbility?(:COMATOSE)  || pkmn.hasAbility?(:SHIELDSDOWN) || pkmn.hasAbility?(:IMMUNITY) || pkmn.status!=0
+         pkmn.status = :POISON
+         pkmn.statusCount = 1
+       end
+  end
+
+  def paralyzeAllPokemon
+      for pkmn in $Trainer.ablePokemonParty
+         next if pkmn.hasType?(:ELECTRIC) ||
+            pkmn.hasAbility?(:COMATOSE)  || pkmn.hasAbility?(:SHIELDSDOWN) || pkmn.hasAbility?(:LIMBER)
+            pkmn.status!=0
+         pkmn.status = :PARALYSIS
+       end
+  end
+
+  def burnAllPokemon
+      for pkmn in $Trainer.ablePokemonParty
+         next if pkmn.can_burn == false
+         pkmn.status = :BURN
+       end
+  end
 end
 
+class PokeBattle_Battler
+  def can_burn
+    if self.type1 == :FIRE || self.type2 == :FIRE || hasActiveAbility?(:COMATOSE)  || hasActiveAbility?(:SHIELDSDOWN) || hasActiveAbility?(:WATERBUBBLE) || hasActiveAbility?(:WATERVEIL) || self.status != :NONE
+      return false
+    else
+      return true
+    end
+  end
+  def can_poison
+    if self.type1 == :POISON || self.type2 == :POISON || self.type1 == :STEEL || self.type2 == :POISON || hasActiveAbility?(:COMATOSE)  || hasActiveAbility?(:SHIELDSDOWN) || hasActiveAbility?(:IMMUNITY) || self.status != :NONE
+      return false
+    else
+      return true
+    end
+  end
+  def can_paralyze
+    if pbHasType?(:ELECTRIC) || hasAbility?(:COMATOSE)  || hasAbility?(:SHIELDSDOWN) || hasAbility?(:LIMBER) || @status!=0
+      return false
+    else
+      return true
+    end
+  end
+  def can_sleep
+    if hasAbility?(:COMATOSE)  || hasAbility?(:SHIELDSDOWN) || hasAbility?(:VITALSPIRIT) || hasAbility?(:CACOPHONY) || @effects[PBEffects::Uproar] != 0 || @status!=0
+      return false
+    else
+      return true
+    end
+  end
+  def can_freeze
+    if pbHasType?(:ICE) || hasAbility?(:COMATOSE)  || hasAbility?(:SHIELDSDOWN) || hasAbility?(:MAGMAARMOR) || hasAbility?(:FLAMEBODY) || @status!=0
+      return false
+    else
+      return true
+    end
+  end
+end
+
+class Pokemon
+  def can_burn
+    if self.type1 == :FIRE || self.type2 == :FIRE || self.ability == :COMATOSE || self.ability == :SHIELDSDOWN || self.ability == :WATERBUBBLE || self.ability == :WATERVEIL || self.status != :NONE
+      return false
+    else
+      return true
+    end
+  end
+  def can_poison
+    if self.type1 == :POISON || self.type2 == :POISON || self.type1 == :STEEL || self.type2 == :POISON || self.ability == :COMATOSE || self.ability == :SHIELDSDOWN || self.ability == :IMMUNITY || self.status != :NONE
+      return false
+    else
+      return true
+    end
+  end
+  def can_paralyze
+    if pbHasType?(:ELECTRIC) || hasAbility?(:COMATOSE)  || hasAbility?(:SHIELDSDOWN) || hasAbility?(:LIMBER) || @status!=0
+      return false
+    else
+      return true
+    end
+  end
+  def can_sleep
+    if hasAbility?(:COMATOSE)  || hasAbility?(:SHIELDSDOWN) || hasAbility?(:VITALSPIRIT) || hasAbility?(:CACOPHONY) || @effects[PBEffects::Uproar] != 0 || @status!=0
+      return false
+    else
+      return true
+    end
+  end
+  def can_freeze
+    if pbHasType?(:ICE) || hasAbility?(:COMATOSE)  || hasAbility?(:SHIELDSDOWN) || hasAbility?(:MAGMAARMOR) || hasAbility?(:FLAMEBODY) || @status!=0
+      return false
+    else
+      return true
+    end
+  end
+end
 #=====================
 #
 #Mid Battle Scripts
@@ -116,8 +208,8 @@ module BattleScripts
       @scene.pbDisplay("The darkness returned!")
       @scene.wait(16, false)
       EliteBattle.playCommonAnimation(:POISON,@scene,0)
-      @battle.battlers[0].status = :POISON
-      @battle.battlers[0].effects[PBEffects::Toxic]
+      @battle.battlers[0].status = :POISON if @battle.battlers[0].can_poison
+      @battle.battlers[0].effects[PBEffects::Toxic] if @battle.battlers[0].can_poison
       poisonAllPokemon(nil)
       @scene.pbDisplay("Seth's underhanded tactics badly poisoned #{pname}'s party!")
 
@@ -153,7 +245,7 @@ module BattleScripts
               @scene.pbDisplay("The sun returned and intensified!")
               @scene.wait(16,false)
               EliteBattle.playCommonAnimation(:BURN,@scene,0)
-              @battle.battlers[0].status = :BURN
+              @battle.battlers[0].status = :BURN if @battle.battlers[0].can_burn
               burnAllPokemon(nil)
               @scene.pbDisplay("The intense sun left #{pname}'s team burned!")
             end,
@@ -410,8 +502,8 @@ OWEN = {
                   @scene.pbDisplay("Sobekodile's Speed rose!")
                   @scene.wait(16,false)
                   EliteBattle.playCommonAnimation(:POISON,@scene,0)
-                  @battle.battlers[0].status = :POISON
-                  @battle.battlers[0].effects[PBEffects::Toxic]
+                  @battle.battlers[0].status = :POISON if @battle.battlers[0].can_poison
+                  @battle.battlers[0].effects[PBEffects::Toxic] if @battle.battlers[0].can_poison
                   poisonAllPokemon(nil)
                   @scene.pbDisplay("Owen badly poisoned your party!")
                 end
@@ -448,8 +540,8 @@ TARA = {
                   @scene.pbDisplay("Osiram's Attack rose!")
                   @scene.wait(16,false)
                   EliteBattle.playCommonAnimation(:POISON,@scene,0)
-                  @battle.battlers[0].status = :POISON
-                  @battle.battlers[0].effects[PBEffects::Toxic]
+                  @battle.battlers[0].status = :POISON if @battle.battlers[0].can_poison
+                  @battle.battlers[0].effects[PBEffects::Toxic] if @battle.battlers[0].can_poison
                   poisonAllPokemon(nil)
                   @scene.pbDisplay("Tara badly poisoned your party!")
                 end
@@ -487,8 +579,8 @@ TUYA = {
                   @scene.pbDisplay("Bastungsten's Defense and Special Defense rose!")
                   @scene.wait(16,false)
                   EliteBattle.playCommonAnimation(:POISON,@scene,0)
-                  @battle.battlers[0].status = :POISON
-                  @battle.battlers[0].effects[PBEffects::Toxic]
+                  @battle.battlers[0].status = :POISON if @battle.battlers[0].can_poison
+                  @battle.battlers[0].effects[PBEffects::Toxic] if @battle.battlers[0].can_poison
                   poisonAllPokemon(nil)
                   @scene.pbDisplay("Tuya badly poisoned your party!")
                 end
@@ -524,7 +616,7 @@ SETI = {
                   @scene.pbDisplay("Fenixet's Special Attack rose!")
                   @scene.wait(16,false)
                   EliteBattle.playCommonAnimation(:BURN,@scene,0)
-                  @battle.battlers[0].status = :BURN
+                  @battle.battlers[0].status = :BURN if @battle.battlers[0].can_burn
                   burnAllPokemon(nil)
                   @scene.pbDisplay("Tuya burned your party!")
                 end
