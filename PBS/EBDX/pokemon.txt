@@ -3742,6 +3742,12 @@ SpriteScalePlayer = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 16
 #-------------------------------
+[PAPYRUN]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 16
+#-------------------------------
 [CHARPHINCH]
 SpriteScaleEnemy = 1
 SpriteScalePlayer = 1

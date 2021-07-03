@@ -2064,7 +2064,7 @@ BattlerEnemyX = -2
 BattlerEnemyY = 25
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = TINSNARE,Item,SOOTHEBELL,SATELLYDRA,Item,DRAGONSCALE
+Evolutions = TINSNARE,Item,SOOTHEBELL,SATELLYDRA,Item,DRAGONSCALE,TINSNARE,HoldItem,SOOTHEBELL,SATELLYDRA,HoldItem,DRAGONSCALE
 #-------------------------------
 [NUMEL,2]
 FormName = Zharonian
