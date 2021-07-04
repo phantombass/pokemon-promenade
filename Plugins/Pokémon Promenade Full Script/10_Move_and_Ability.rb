@@ -3,11 +3,22 @@
 #===================
 
 class Pokemon
-  def can_relearn_move?
+  def getEggMovesList
+    baby = GameData::Species.get(species).get_baby_species
+    form = 0
+    if baby == :RIOLU || baby == :LUCARIO || baby == :BUNEARY || baby == :LOPUNNY || baby == :NUMEL || baby == :CAMERUPT || baby == :ROCKRUFF || baby == :LYCANROC || baby == :YAMASK || baby == :COFAGRIGUS
+      form = 2
+    elsif baby == :CACNEA || baby == :CACTURNE || baby == :SANDYGAST || baby == :PALOSSAND || baby == :DEINO || baby == :ZWEILOUS || baby == :HYDREIGON || baby == :TRAPINCH || baby == :HORSEA || baby == :SEADRA || baby == :EXEGGUTOR || baby == :SEEL || baby == :DEWGONG || baby == :LUVDISC || baby == :QWILFISH
+      form = 1
+    else
+      form = form
+    end
+    egg = GameData::Species.get_species_form(baby,form).egg_moves
+    return egg
+  end
+  def has_egg_move?
     return false if egg? || shadowPokemon?
-    this_level = self.level
-    getMoveList.each { |m| return true if m[0] <= this_level && !hasMove?(m[1]) }
-    @first_moves.each { |m| return true if !hasMove?(m) }
+    getEggMovesList.each { |m| return true if !hasMove?(m[1]) }
     return false
   end
 end
