@@ -3809,7 +3809,6 @@ BattlerEnemyY   = 46
 SpriteScaleEnemy = 1
 SpriteScalePlayer = 1
 BattlerAltitude = 1
-BattlerEnemyY   = 46
 #-------------------------------
 [SCAREUB]
 SpriteScaleEnemy = 1
@@ -3863,13 +3862,19 @@ BattlerEnemyY   = 36
 #-------------------------------
 [ALKALEON]
 SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
 BattlerEnemyY   = 36
+BattlerPlayerY = 26
 #-------------------------------
 [DRAKEON]
 SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
 BattlerEnemyY   = 36
+BattlerPlayerY = 26
 #-------------------------------
 [ASTREON]
 SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
 BattlerEnemyY   = 36
+BattlerPlayerY = 26
 #-------------------------------
