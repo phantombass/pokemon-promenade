@@ -779,3 +779,4 @@
 792,TM123,TM123,TM123s,4,30000,"An energy-draining punch. The user's HP is restored by half the damage taken by the target.",3,0,0,DRAINPUNCH
 793,TM124,TM124,TM124s,4,30000,"The user attacks with a sinister beam of light. It may also confuse the target.",3,0,0,SIGNALBEAM
 794,TM125,TM125,TM125s,4,30000,"The foe slams the target with deep rumbling sounds. It may also make the target flinch.",3,0,0,BASSDROP
+795,TEMPESTSTONE1,Tempest Stone,Tempest Stones,1,0,"A stone said to be loved by one particular Pokémon. It changes color with the weather.",1,0,7,

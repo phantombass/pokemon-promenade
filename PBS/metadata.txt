@@ -1860,3 +1860,8 @@ Weather = Rain,0
 MapPosition = 0,11,11
 SnapEdges = true
 #-------------------------------
+[286]
+# Azgi Pyramid
+MapPosition = 0,21,16
+SnapEdges = true
+#-------------------------------
