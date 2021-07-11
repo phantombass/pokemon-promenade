@@ -296,7 +296,7 @@ class PokeBattle_AI
 							shouldSwitch = (pbAIRandom(100)<switchChance)
 						end
 					else
-						switchChance = 70
+						switchChance = 90
 						shouldSwitch = (pbAIRandom(100)<switchChance)
 					end
 				end
@@ -313,7 +313,7 @@ class PokeBattle_AI
 				typeMod2 = pbCalcTypeMod(moveType2,target,battler)
         if typeMod == Effectiveness::SUPER_EFFECTIVE_ONE && moveData.base_damage>50
 					if skill>=PBTrainerAI.beastMode
-          	switchChance = 85
+          	switchChance = 90
           	shouldSwitch = (pbAIRandom(100)<switchChance)
 					else
 						switchChance = 50
@@ -323,7 +323,7 @@ class PokeBattle_AI
 				if typeMod2 != Effectiveness::SUPER_EFFECTIVE_ONE && target.hp > target.totalhp/3
 					if !faster
 						if skill>=PBTrainerAI.beastMode
-	          	switchChance = 80
+	          	switchChance = 85
 	          	shouldSwitch = (pbAIRandom(100)<switchChance)
 						else
 							switchChance = 30
