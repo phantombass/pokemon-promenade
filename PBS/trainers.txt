@@ -2995,9 +2995,9 @@ Pokemon = SATURABTU,120
      IV = 31,0,31,31,31,31
      EV = 252,0,0,0,252,4
 #-------------------------------
-# Rival2 Battles
+# RIVAL3 Battles
 #-------------------------------
-[RIVAL2,Saoirse]
+[RIVAL3,Saoirse]
 LoseText = "Wow! You're strong!"
 Pokemon = TRAPINCH,10
 	Moves = BULLDOZE,BULLETPUNCH,BITE,BUGBITE
@@ -3009,11 +3009,12 @@ Pokemon = EEVEE,11
 	Item = ORANBERRY
 	Ability = 1
 #-------------------------------
-[RIVAL2,Saoirse,1]
+[RIVAL3,Saoirse,1]
 LoseText = "Wow! You're strong!"
 Pokemon = SANDYGAST,19
 	Moves = SCORCHINGSANDS,ANCIENTPOWER,STEALTHROCK,MEGADRAIN
 	Item = SITRUSBERRY
+	Form = 1
 	Nature = CALM
 	Ability = 0
 Pokemon = SPOOKLOTH,20
@@ -3032,7 +3033,7 @@ Pokemon = PHONEON,22
 	Item = SITRUSBERRY
 	Ability = 2
 #-------------------------------
-[RIVAL2,Saoirse,2]
+[RIVAL3,Saoirse,2]
 LoseText = "Wow! You're strong!"
 Pokemon = CHINGLING,19
 	Moves = MACHPULSE,AURORABEAM,COMETSHARDS,WICKEDWIND
@@ -3055,12 +3056,12 @@ Pokemon = ASTREON,22
 	Item = SITRUSBERRY
 	Ability = 2
 #-------------------------------
-[RIVAL2,Saoirse,3]
+[RIVAL3,Saoirse,3]
 LoseText = "Wow! You're strong!"
 Pokemon = STELLAVAMP,19
 	Moves = LETHALDASH,STELLARWIND,COMETSHARDS,MEGADRAIN
 	Item = SITRUSBERRY
-	Nature = CALM
+	Nature = BOLD
 	Ability = 1
 Pokemon = SUBWINDER,20
 	Moves = ECHOEDVOICE,DRAGONRAGE,SNARL,DEATHTOLL
@@ -3078,11 +3079,12 @@ Pokemon = ARCHAEON,22
 	Item = SITRUSBERRY
 	Ability = 2
 #-------------------------------
-[RIVAL2,Saoirse,4]
+[RIVAL3,Saoirse,4]
 LoseText = "Wow! You're strong!"
 Pokemon = SANDYGAST,24
 	Moves = SCORCHINGSANDS,ANCIENTPOWER,STEALTHROCK,MEGADRAIN
 	Item = SITRUSBERRY
+	Form = 1
 	Nature = CALM
 	Ability = 0
 Pokemon = SPOOKLOTH,25
@@ -3101,7 +3103,7 @@ Pokemon = PHONEON,27
 	Item = SITRUSBERRY
 	Ability = 2
 #-------------------------------
-[RIVAL2,Saoirse,5]
+[RIVAL3,Saoirse,5]
 LoseText = "Wow! You're strong!"
 Pokemon = CHIMECHO,24
 	Moves = BASSDROP,AURORABEAM,COMETSHARDS,WICKEDWIND
@@ -3124,7 +3126,7 @@ Pokemon = ASTREON,27
 	Item = SITRUSBERRY
 	Ability = 2
 #-------------------------------
-[RIVAL2,Saoirse,6]
+[RIVAL3,Saoirse,6]
 LoseText = "Wow! You're strong!"
 Pokemon = STELLAVAMP,24
 	Moves = LETHALDASH,STELLARWIND,COMETSHARDS,GIGADRAIN
@@ -3147,11 +3149,12 @@ Pokemon = ARCHAEON,27
 	Item = SITRUSBERRY
 	Ability = 2
 #-------------------------------
-[RIVAL2,Saoirse,7]
+[RIVAL3,Saoirse,7]
 LoseText = "Wow! You're strong!"
 Pokemon = SANDYGAST,29
 	Moves = SCORCHINGSANDS,ANCIENTPOWER,STEALTHROCK,MEGADRAIN
 	Item = SITRUSBERRY
+	Form = 1
 	Nature = CALM
 	Ability = 0
 Pokemon = RELICLOTH,30
@@ -3170,7 +3173,7 @@ Pokemon = PHONEON,32
 	Item = SITRUSBERRY
 	Ability = 2
 #-------------------------------
-[RIVAL2,Saoirse,8]
+[RIVAL3,Saoirse,8]
 LoseText = "Wow! You're strong!"
 Pokemon = CHIMECHO,29
 	Moves = BASSDROP,AURORABEAM,COMETSHARDS,WICKEDWIND
@@ -3193,12 +3196,12 @@ Pokemon = ASTREON,32
 	Item = SITRUSBERRY
 	Ability = 2
 #-------------------------------
-[RIVAL2,Saoirse,9]
+[RIVAL3,Saoirse,9]
 LoseText = "Wow! You're strong!"
 Pokemon = BARBASTELLA,29
 	Moves = TOXOPLASM,AURORABEAM,COMETSHARDS,GIGADRAIN
 	Item = SITRUSBERRY
-	Nature = CALM
+	Nature = BOLD
 	Ability = 1
 Pokemon = SPEAKOBRA,30
 	Moves = ECHOEDVOICE,DRAGONBREATH,SNARL,DEATHTOLL
@@ -3214,6 +3217,100 @@ Pokemon = ARCHAEON,32
 	Moves = HYPERVOICE,AURASPHERE,TIMELOOP,RECOVER
 	Nature = RELAXED
 	Item = SITRUSBERRY
+	Ability = 2
+#-------------------------------
+[RIVAL3,Saoirse,10]
+LoseText = "Wow! You're strong!"
+Pokemon = PALOSSAND,37
+	Moves = SCORCHINGSANDS,ANCIENTPOWER,STEALTHROCK,GIGADRAIN
+	Item = LEFTOVERS
+	Form = 1
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,0,4,252
+	Nature = CALM
+	Ability = 0
+Pokemon = RELICLOTH,38
+	Moves = SHADOWPUNCH,DOPPLERPUNCH,MACHPUNCH,FORCEPALM
+	Item = MUSCLEBAND
+	IV = 31,31,31,31,31,31
+	EV = 0,252,0,252,0,4
+	Nature = ADAMANT
+	Ability = 2
+Pokemon = SATELLYDRA,38
+	Moves = IRONFANGS,LEECHLIFE,DRACOFANGS,UTURN
+	Item = CHOICEBAND
+	IV = 31,31,31,31,31,31
+	EV = 0,252,0,252,0,4
+	Nature = ADAMANT
+	Ability = 2
+Pokemon = PHONEON,40
+	Moves = MACHPULSE,WICKEDWIND,HYPERVOICE,SLACKOFF
+	Nature = TIMID
+	IV = 31,31,31,31,31,31
+	EV = 0,0,0,252,252,4
+	Item = WISEGLASSES
+	Ability = 2
+#-------------------------------
+[RIVAL3,Saoirse,11]
+LoseText = "Wow! You're strong!"
+Pokemon = CHIMECHO,37
+	Moves = BASSDROP,AURORABEAM,COMETSHARDS,WICKEDWIND
+	Item = LEFTOVERS
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,0,4,252
+	Nature = CALM
+	Ability = 2
+Pokemon = HYDREAM,38
+	Moves = DAZZLINGGLEAM,DRAGONBREATH,WEATHERBALL,HYPERVOICE
+	Item = LIFEORB
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,0,252,4
+	Nature = MODEST
+	Ability = 0
+Pokemon = SATELLYDRA,38
+	Moves = IRONFANGS,LEECHLIFE,DRACOFANGS,UTURN
+	Item = CHOICEBAND
+	IV = 31,31,31,31,31,31
+	EV = 0,252,0,252,0,4
+	Nature = ADAMANT
+	Ability = 2
+Pokemon = ASTREON,40
+	Moves = STARSAP,SIMPLERAY,HYPERVOICE,COSMICPOWER
+	Nature = TIMID
+	IV = 31,31,31,31,31,31
+	EV = 252,0,0,252,4,0
+	Item = LEFTOVERS
+	Ability = 2
+#-------------------------------
+[RIVAL3,Saoirse,12]
+LoseText = "Wow! You're strong!"
+Pokemon = BARBASTELLA,37
+	Moves = TOXOPLASM,AURORABEAM,COMETSHARDS,GIGADRAIN
+	Item = BLACKSLUDGE
+	Nature = BOLD
+	IV = 31,31,31,31,31,31
+	EV = 252,0,252,0,4,0
+	Ability = 1
+Pokemon = SPEAKOBRA,38
+	Moves = BASSDROP,DRAGONBREATH,SNARL,DEATHTOLL
+	Item = KEBIABERRY
+	IV = 31,31,31,31,31,31
+	EV = 0,0,0,252,252,4
+	Nature = MODEST
+	Ability = 2
+Pokemon = SATELLYDRA,38
+	Moves = IRONFANGS,LEECHLIFE,DRACOFANGS,UTURN
+	Item = CHOICEBAND
+	Nature = ADAMANT
+	IV = 31,31,31,31,31,31
+	EV = 0,252,0,252,0,4
+	Ability = 2
+Pokemon = ARCHAEON,40
+	Moves = HYPERVOICE,AURASPHERE,TEMPOBLAST,RECOVER
+	Nature = RELAXED
+	IV = 31,31,31,31,31,31
+	EV = 252,0,252,0,4,0
+	Item = LEFTOVERS
 	Ability = 2
 #-------------------------------
 # Victory Road - Reverb Cave

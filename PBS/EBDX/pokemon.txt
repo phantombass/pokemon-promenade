@@ -3752,6 +3752,8 @@ BattlerEnemyY   = 16
 SpriteScaleEnemy = 1
 SpriteScalePlayer = 1
 BattlerAltitude = 0
+BattlerEnemyY   = 36
+BattlerPlayerY   = 26
 #-------------------------------
 [PHIRUNDO]
 SpriteScaleEnemy = 1.25

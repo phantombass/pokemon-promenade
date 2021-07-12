@@ -3,7 +3,7 @@
 BattleBGM        = B2W2-RivalTheme.ogg
 BattleVS         = classicVS
 #-------------------------------
-[RIVAL2]
+[RIVAL3]
 BattleBGM        = ZinniaBattleTheme.ogg
 BattleVS         = classicVS
 #-------------------------------
