@@ -2296,6 +2296,14 @@ class PokeBattle_TargetMultiStatUpMove < PokeBattle_Move
   end
 end
 
+class PokeBattle_Battle
+  alias initialize_ex initialize
+  def initialize(scene,p1,p2,player,opponent)
+    initialize_ex(scene,p1,p2,player,opponent)
+    $game_variables[101] = -1
+  end
+end
+
 class PokeBattle_Move_049 < PokeBattle_TargetStatDownMove
   def ignoresSubstitute?(user); return true; end
 

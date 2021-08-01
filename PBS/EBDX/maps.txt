@@ -19,6 +19,9 @@ BattleEnv       = MOUNTAIN
 [132]
 BattleEnv       = MOUNTAIN
 #-------------------------------
+[136]
+BattleEnv       = TEMPLE
+#-------------------------------
 [141]
 BattleEnv       = SNOW
 #-------------------------------

@@ -309,6 +309,12 @@ class PokeBattle_Battle
   def pbStartBattleCore
     # Set up the battlers on each side
     sendOuts = pbSetUpSides
+    olditems = []
+    pbParty(0).each_with_index do |pkmn,i|
+      item = pkmn.item_id
+      olditems.push(item)
+    end
+    $olditems = olditems
     # Create all the sprites and play the battle intro animation
     @field.weather = $game_screen.weather_type
     @scene.pbStartBattle(self)
@@ -465,7 +471,11 @@ class PokeBattle_Battle
     pbParty(0).each_with_index do |pkmn,i|
       next if !pkmn
       @peer.pbOnLeavingBattle(self,pkmn,@usedInBattle[0][i],true)   # Reset form
-      pkmn.item = @initialItems[0][i]
+      if @opponent
+        pkmn.item = $olditems[i]
+      else
+        pkmn.item = @initialItems[0][i]
+      end
     end
     @scene.pbTrainerBattleSpeech("loss") if @decision == 2
     # reset all the EBDX queues
