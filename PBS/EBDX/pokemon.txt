@@ -3818,6 +3818,24 @@ SpriteScaleEnemy = 1
 SpriteScalePlayer = 1
 BattlerAltitude = 1
 #-------------------------------
+[TABLU]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = -1
+BattlerEnemyY   = 16
+#-------------------------------
+[MORNTAB]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 16
+#-------------------------------
+[SOBELISK]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
 [SCAREUB]
 SpriteScaleEnemy = 1
 BattlerAltitude = 0
