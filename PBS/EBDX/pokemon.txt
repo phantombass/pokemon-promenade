@@ -3836,6 +3836,29 @@ SpriteScalePlayer = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 36
 #-------------------------------
+[TEMPORIFT]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[ARCHASM]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[IMOTOMB]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 1
+#-------------------------------
+[IMHOTERROR]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 1
+BattlerEnemyY   = 16
+#-------------------------------
 [SCAREUB]
 SpriteScaleEnemy = 1
 BattlerAltitude = 0

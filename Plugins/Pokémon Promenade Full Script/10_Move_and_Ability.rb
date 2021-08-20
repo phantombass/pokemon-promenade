@@ -1431,6 +1431,12 @@ BattleHandlers::DamageCalcUserAbility.add(:SUBWOOFER,
   }
 )
 
+BattleHandlers::StatusImmunityAbility.add(:FAIRYBUBBLE,
+  proc { |ability,battler,status|
+    next true if status =! :NONE
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:FAIRYBUBBLE,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:attack_multiplier] *= 2 if type == :FAIRY
