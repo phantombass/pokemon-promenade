@@ -3919,21 +3919,87 @@ SpriteScalePlayer = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 36
 #-------------------------------
+[SPOOKLOTH]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[RELICLOTH]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[CORPUSCUFF]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 46
+#-------------------------------
+[HYPIXIE]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 1
+BattlerEnemyY   = 16
+#-------------------------------
+[HYDREAM]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 1
+BattlerEnemyY   = 16
+#-------------------------------
+[NYMPHYDRA]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 1
+BattlerEnemyY   = 36
+#-------------------------------
+[SUBWINDER]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 16
+#-------------------------------
+[SPEAKOBRA]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 16
+#-------------------------------
+[BASSILISK]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
 [ALKALEON]
 SpriteScaleEnemy = 1
 SpriteScalePlayer = 1
-BattlerEnemyY   = 36
+BattlerEnemyY   = 26
 BattlerPlayerY = 26
 #-------------------------------
 [DRAKEON]
 SpriteScaleEnemy = 1
 SpriteScalePlayer = 1
-BattlerEnemyY   = 36
+BattlerEnemyY   = 26
 BattlerPlayerY = 26
 #-------------------------------
 [ASTREON]
 SpriteScaleEnemy = 1
 SpriteScalePlayer = 1
-BattlerEnemyY   = 36
+BattlerEnemyY   = 26
+BattlerPlayerY = 26
+#-------------------------------
+[ARCHAEON]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerEnemyY   = 26
+BattlerPlayerY = 26
+#-------------------------------
+[PHONEON]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerEnemyY   = 26
 BattlerPlayerY = 26
 #-------------------------------
