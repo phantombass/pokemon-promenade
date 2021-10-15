@@ -3810,6 +3810,7 @@ BattlerAltitude = 1
 #-------------------------------
 [MAGATE]
 SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 46
 #-------------------------------
@@ -3861,6 +3862,7 @@ BattlerEnemyY   = 16
 #-------------------------------
 [SCAREUB]
 SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 56
 #-------------------------------
@@ -3882,6 +3884,7 @@ BattlerEnemyY   = 36
 #-------------------------------
 [JERBUZZ]
 SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 46
 #-------------------------------
