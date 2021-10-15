@@ -500,7 +500,7 @@ class PokeBattle_AI
 			PBDebug.log(logMsg)
 		end
 		# Find any preferred moves and just choose from them
-		if skill == PBTrainerAI.minimumSkill || $game_switches[69]
+		if skill == PBTrainerAI.minimumSkill
 			battler = @battle.battlers[idxBattler]
 			battler.eachMoveWithIndex do |_m,i|
         next if !@battle.pbCanChooseMove?(idxBattler,i,false)
