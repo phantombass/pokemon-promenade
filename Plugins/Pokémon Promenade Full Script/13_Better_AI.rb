@@ -299,10 +299,10 @@ class PokeBattle_AI
 				if type1Target == (battler_SE || battler_2SE) || type2Target == (battler_SE || battler_2SE)
 					shouldSwitch = true
 				end
-				if (type1Battler == (battler_SE || battler_2SE) || type2Battler == (battler_SE || battler_2SE)) && (type1Target < battler_SE && type2Target < battler_SE)
+				if (type1Battler == (battler_SE || battler_2SE) || type2Battler == (battler_SE || battler_2SE)) && (type1Target != battler_SE && type2Target != battler_SE)
 					shouldSwitch = false
 				end
-				if type1Target < battler_SE && type2Target < battler_SE
+				if type1Target != battler_SE && type2Target != battler_SE
 					if faster && target.hp <= (target.totalhp/3)
 						shouldSwitch = false
 					elsif faster
@@ -337,7 +337,7 @@ class PokeBattle_AI
           	shouldSwitch = (pbAIRandom(100)<switchChance)
 					end
         end
-				if typeMod2 < battler_SE && target.hp > target.totalhp/3
+				if typeMod2 != battler_SE && target.hp > target.totalhp/3
 					if !faster
 						if skill>=PBTrainerAI.beastMode
 	          	switchChance = 85
