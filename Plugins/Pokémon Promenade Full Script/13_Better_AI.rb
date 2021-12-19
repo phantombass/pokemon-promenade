@@ -296,7 +296,6 @@ class PokeBattle_AI
 					if battler.effects[PBEffects::Substitute] > 0
 						shouldSwitch = false
 					end
-					p type1Target == (battler_SE || battler_2SE)
 				if type1Target == (battler_SE || battler_2SE) || type2Target == (battler_SE || battler_2SE)
 					shouldSwitch = true
 				end
