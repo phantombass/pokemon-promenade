@@ -1,0 +1,47 @@
+Script error in event 8 (coords 9,4), map 92 (Icaro Gym):
+Exception: NoMethodError
+Message: undefined method `[]' for nil:NilClass
+
+***Full script:
+pbTrainerBattle(:YOUNGSTER,"Steven")
+
+Backtrace:
+[Pokemon Promenade Full Script] 11_Multiple_Forms.rb:85:in `block in <main>'
+007_Evolution.rb:32:in `call_level_up'
+001_Pokemon.rb:917:in `block in check_evolution_on_level_up'
+001_Pokemon.rb:961:in `block in check_evolution_internal'
+001_Pokemon.rb:959:in `each'
+001_Pokemon.rb:959:in `check_evolution_internal'
+001_Pokemon.rb:916:in `check_evolution_on_level_up'
+001_Overworld_BattleStarting.rb:595:in `block in pbEvolutionCheck'
+001_Overworld_BattleStarting.rb:591:in `each'
+001_Overworld_BattleStarting.rb:591:in `pbEvolutionCheck'
+
+
+003_Interpreter.rb:189:in `rescue in execute_script'
+003_Interpreter.rb:135:in `execute_script'
+004_Interpreter_Commands.rb:352:in `command_111'
+004_Interpreter_Commands.rb:29:in `execute_command'
+003_Interpreter.rb:127:in `block in update'
+003_Interpreter.rb:87:in `loop'
+003_Interpreter.rb:87:in `update'
+002_Scene_Map.rb:157:in `block in update'
+002_Scene_Map.rb:155:in `loop'
+002_Scene_Map.rb:155:in `update'
+002_Scene_Map.rb:218:in `block in main'
+002_Scene_Map.rb:215:in `loop'
+002_Scene_Map.rb:215:in `main'
+999_Main.rb:34:in `mainFunctionDebug'
+999_Main.rb:20:in `mainFunction'
+999_Main.rb:44:in `block (2 levels) in load_scripts_from_folder'
+999_Main.rb:43:in `loop'
+999_Main.rb:43:in `block in load_scripts_from_folder'
+Section000:31:in `eval'
+Section000:31:in `block in load_scripts_from_folder'
+Section000:28:in `each'
+Section000:28:in `load_scripts_from_folder'
+Section000:41:in `block in load_scripts_from_folder'
+Section000:40:in `each'
+Section000:40:in `load_scripts_from_folder'
+Section000:45:in `<main>'
+-e:in `eval'
