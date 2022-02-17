@@ -63,14 +63,14 @@ Events.onMapChange += proc {| sender, e |
     end
   end
     $game_switches[350] = false
-  #  $game_switches[184] = true
-  #  if $game_switches[142] == false && $game_switches[128] == true
-  #      $game_switches[141] = true
-  #  end
-  #  if $game_switches[141] == true && $game_switches[142] == false
-  #      pbMessage(INTL_("You now have access to the full game! Please make your way to Mauselynx Alley!"))
-  #      $game_switches[142] = true
-  #  end
+    $game_switches[184] = true
+    if $game_switches[142] == false && $game_switches[128] == true
+        $game_switches[141] = true
+    end
+    if $game_switches[141] == true && $game_switches[142] == false
+        pbMessage(INTL_("You now have access to the full game! Please make your way to Mauselynx Alley!"))
+        $game_switches[142] = true
+    end
     if $game_switches[184] == true && $game_switches[187] == false && $game_switches[161] == true
       $game_switches[187] = true
     end
