@@ -52,7 +52,9 @@ module EnvironmentEBDX
       :bitmap => "pillars",
       :oy => 100, :x => 96, :y => 98, :flat => false, :zoom => 0.5
     }
-  }
+}
+    DESERT = {  "backdrop" => "Sand" }
+
 end
 class PokeBattle_Battle
   def removeAllHazards

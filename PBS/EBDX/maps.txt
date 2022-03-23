@@ -5,19 +5,19 @@ BattleEnv       = OUTDOOR
 BattleEnv       = OUTDOOR
 #-------------------------------
 [124]
-BattleEnv       = MOUNTAIN
+BattleEnv       = DESERT
 #-------------------------------
 [126]
-BattleEnv       = MOUNTAIN
+BattleEnv       = DESERT
 #-------------------------------
 [127]
-BattleEnv       = MOUNTAIN
+BattleEnv       = DESERT
 #-------------------------------
 [131]
-BattleEnv       = MOUNTAIN
+BattleEnv       = DESERT
 #-------------------------------
 [132]
-BattleEnv       = MOUNTAIN
+BattleEnv       = DESERT
 #-------------------------------
 [136]
 BattleEnv       = TEMPLE
