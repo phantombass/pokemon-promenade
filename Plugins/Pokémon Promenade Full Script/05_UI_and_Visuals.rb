@@ -1284,7 +1284,6 @@ class PokemonOption_Scene
     pbFadeInAndShow(@sprites) { pbUpdate }
   end
 end
-
 #===============================================================================
 # Scene class for handling appearance of the screen
 #===============================================================================
