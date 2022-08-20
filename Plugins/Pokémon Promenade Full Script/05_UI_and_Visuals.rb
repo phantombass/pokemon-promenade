@@ -35,23 +35,33 @@ end
 
 class PokemonPauseMenu_Scene
   def pbStartScene
-    @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
-    @viewport.z = 99999
-    capColor = "90F090,000000"
-    @sprites = {}
-    @sprites["cmdwindow"] = Window_CommandPokemon.new([])
-    @sprites["cmdwindow"].visible = false
-    @sprites["cmdwindow"].viewport = @viewport
-    @sprites["infowindow"] = Window_UnformattedTextPokemon.newWithSize("",0,0,32,32,@viewport)
-    @sprites["infowindow"].visible = false
-    @sprites["helpwindow"] = Window_UnformattedTextPokemon.newWithSize("",0,0,32,32,@viewport)
-    @sprites["helpwindow"].visible = false
-    @sprites["levelcapwindow"] = Window_UnformattedTextPokemon.newWithSize("Level Cap: #{$game_variables[LvlCap::LevelCap]}",0,0,208,64,@viewport)
-    @sprites["levelcapwindow"].visible = true
-    @infostate = false
-    @helpstate = false
-    $viewport4 = @viewport
-    pbSEPlay("GUI menu open")
+    if $game_switches[350] == false
+      @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
+      @viewport.z = 99999
+      capColor = "90F090,000000"
+      @sprites = {}
+      @sprites["cmdwindow"] = Window_CommandPokemon.new([])
+      @sprites["cmdwindow"].visible = false
+      @sprites["cmdwindow"].viewport = @viewport
+      @sprites["infowindow"] = Window_UnformattedTextPokemon.newWithSize("",0,0,32,32,@viewport)
+      @sprites["infowindow"].visible = false
+      @sprites["helpwindow"] = Window_UnformattedTextPokemon.newWithSize("",0,0,32,32,@viewport)
+      @sprites["helpwindow"].visible = false
+      @sprites["levelcapwindow"] = Window_UnformattedTextPokemon.newWithSize("Level Cap: #{LEVEL_CAP[$game_system.level_cap]}",0,64,208,64,@viewport)
+      @sprites["levelcapwindow"].visible = true
+      @infostate = false
+      @helpstate = false
+      $viewport4 = @viewport
+      $close_dexnav = 0
+      pbSEPlay("GUI menu open")
+    else
+      $viewport1.dispose
+      $currentDexSearch = nil
+      $close_dexnav = 1
+      $game_switches[350] = false
+      pbSEPlay("GUI menu close")
+      return
+    end
   end
 
   def pbShowInfo(text)
@@ -81,29 +91,42 @@ class PokemonPauseMenu_Scene
     @sprites["helpwindow"].visible = false
   end
 
+  def pbShowLevelCap
+    @sprites["levelcapwindow"].visible = true
+  end
+
+  def pbHideLevelCap
+    @sprites["levelcapwindow"].visible = false
+  end
+
   def pbShowCommands(commands)
-    ret = -1
-    cmdwindow = @sprites["cmdwindow"]
-    cmdwindow.commands = commands
-    cmdwindow.index    = $PokemonTemp.menuLastChoice
-    cmdwindow.resizeToFit(commands)
-    cmdwindow.x        = Graphics.width-cmdwindow.width
-    cmdwindow.y        = 0
-    cmdwindow.visible  = true
-    loop do
-      cmdwindow.update
-      Graphics.update
-      Input.update
-      pbUpdateSceneMap
-      if Input.trigger?(Input::BACK)
-        ret = -1
-        break
-      elsif Input.trigger?(Input::USE)
-        ret = cmdwindow.index
-        $PokemonTemp.menuLastChoice = ret
-        break
+    if $game_switches[350] == false && $close_dexnav < 1
+      ret = -1
+      cmdwindow = @sprites["cmdwindow"]
+      cmdwindow.commands = commands
+      cmdwindow.index    = $PokemonTemp.menuLastChoice
+      cmdwindow.resizeToFit(commands)
+      cmdwindow.x        = Graphics.width-cmdwindow.width
+      cmdwindow.y        = 0
+      cmdwindow.visible  = true
+      loop do
+        cmdwindow.update
+        Graphics.update
+        Input.update
+        pbUpdateSceneMap
+        if Input.trigger?(Input::BACK)
+          ret = -1
+          break
+        elsif Input.trigger?(Input::USE)
+          ret = cmdwindow.index
+          $PokemonTemp.menuLastChoice = ret
+          break
+        end
       end
+    else
+      ret = -1
     end
+    $close_dexnav -= 1
     return ret
   end
 
@@ -237,6 +260,7 @@ class PokemonPauseMenu
   def pbShowMenu
     @scene.pbRefresh
     @scene.pbShowMenu
+    @scene.pbShowLevelCap
   end
 
   def pbStartPokemonMenu
@@ -410,6 +434,7 @@ class PokemonPauseMenu
         end
       elsif cmdSave>=0 && command==cmdSave
         @scene.pbHideMenu
+        @scene.pbHideLevelCap
         scene = PokemonSave_Scene.new
         screen = PokemonSaveScreen.new(scene)
         if screen.pbSaveScreen
@@ -418,6 +443,7 @@ class PokemonPauseMenu
           break
         else
           pbShowMenu
+          @scene.pbShowLevelCap if $game_switches[Settings::LEVEL_CAP_SWITCH] == true
         end
       elsif cmdOption>=0 && command==cmdOption
         pbPlayDecisionSE
@@ -453,7 +479,9 @@ class PokemonPauseMenu
         break
       end
     end
-    @scene.pbEndScene if endscene
+    if $close_dexnav != 0
+      @scene.pbEndScene if endscene
+    end
   end
 end
 
@@ -469,10 +497,6 @@ class PokemonPokegearScreen
     cmdJukebox = -1
     cmdBoxLink = -1
     commands[cmdMap = commands.length]     = ["map",_INTL("Map")]
-    if $PokemonGlobal.phoneNumbers && $PokemonGlobal.phoneNumbers.length>0
-      commands[cmdPhone = commands.length] = ["phone",_INTL("Phone")]
-    end
-    commands[cmdJukebox = commands.length] = ["jukebox",_INTL("Jukebox")]
     commands[cmdBoxLink = commands.length] = ["pc",_INTL("PC Box Link")] if $game_switches[115] == false
     @scene.pbStartScene(commands)
     loop do
@@ -481,18 +505,29 @@ class PokemonPokegearScreen
         break
       elsif cmdMap>=0 && cmd==cmdMap
         pbShowMap(-1,false)
-      elsif cmdPhone>=0 && cmd==cmdPhone
-        pbFadeOutIn {
-          PokemonPhoneScene.new.start
-        }
-      elsif cmdJukebox>=0 && cmd==cmdJukebox
-        pbFadeOutIn {
-          scene = PokemonJukebox_Scene.new
-          screen = PokemonJukeboxScreen.new(scene)
-          screen.pbStartScreen
-        }
       elsif cmdBoxLink>=0 && cmd==cmdBoxLink
-        pbPokeCenterPC
+        pbPlayDecisionSE
+        pbMessage("Which would you like to do?\\ch[34,4,Access PC,Heal,Cancel]")
+        if $game_variables[34] == 0
+         if $game_switches[115] == true
+           pbMessage(_INTL("You cannot access the PC in here."))
+         else
+          pbFadeOutIn {
+            scene = PokemonStorageScene.new
+            screen = PokemonStorageScreen.new(scene,$PokemonStorage)
+            screen.pbStartScreen(0)
+          }
+         end
+        elsif $game_variables[34] == 1
+          if $game_switches[901]
+            pbMessage(_INTL("You cannot use this in here."))
+          else
+            $Trainer.heal_party
+            pbMessage(_INTL("Your party was healed!"))
+          end
+        else
+          break
+        end
       end
     end
     @scene.pbEndScene
@@ -500,6 +535,364 @@ class PokemonPokegearScreen
 end
 
 class PokemonSummary_Scene
+  def change_Stats
+    @sprites["nav"] = AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport)
+    @sprites["nav"].x = 200
+    @sprites["nav"].y = 74
+    @sprites["nav"].visible
+    @sprites["nav"].play
+    commands = []
+    cmdHP = -1
+    cmdAtk = -1
+    cmdDef = -1
+    cmdSpA = -1
+    cmdSpD = -1
+    cmdSpe = -1
+    stat_choice = 0
+    loop do
+      Graphics.update
+      Input.update
+      pbUpdateSpriteHash(@sprites)
+      if Input.trigger?(Input::DOWN)
+        if stat_choice == 0
+          @sprites["nav"].y += 47
+          stat_choice += 1
+        elsif stat_choice > 0 && stat_choice < 5
+          stat_choice += 1
+          @sprites["nav"].y += 32
+        elsif stat_choice == 5
+          stat_choice -= 5
+          @sprites["nav"].y -= 175
+        end
+      elsif Input.trigger?(Input::UP)
+        if stat_choice == 0
+          @sprites["nav"].y += 175
+          stat_choice += 5
+        elsif stat_choice > 1 && stat_choice != 0
+          stat_choice -= 1
+          @sprites["nav"].y -= 32
+        elsif stat_choice == 1
+          stat_choice -= 1
+          @sprites["nav"].y -= 47
+        end
+      elsif Input.trigger?(Input::C)
+        @scene.pbMessage(_INTL("Change which?\\ch[34,5,EVs,Max IVs,Clear EVs,Min IVs,Cancel]"))
+        stat = $game_variables[34]
+        pkmn = @pokemon
+        if stat == -1 || stat == 5 || stat == 4
+          @sprites["nav"].visible = false
+          pbPlayCloseMenuSE
+          break
+        end
+        case stat_choice
+        when 0
+          if stat == 0
+            params = ChooseNumberParams.new
+            upperLimit = 0
+            GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != :HP }
+            upperLimit = Pokemon::EV_LIMIT - upperLimit
+            upperLimit = [upperLimit, Pokemon::EV_STAT_LIMIT].min
+            thisValue = [pkmn.ev[:HP], upperLimit].min
+            params.setRange(0, upperLimit)
+            params.setDefaultValue(thisValue)
+            params.setCancelValue(pkmn.ev[:HP])
+            f = pbMessageChooseNumber(_INTL("Set the EV for {1} (max. {2}).",
+               GameData::Stat.get(:HP).name, upperLimit), params) { pbUpdate }
+            if f != pkmn.ev[:HP]
+              pkmn.ev[:HP] = f
+              pkmn.calc_stats
+              dorefresh = true
+            end
+          elsif stat == 1
+            pkmn.iv[:HP] = 31
+            pkmn.calc_stats
+            dorefresh = true
+          elsif stat == 2
+            pkmn.ev[:HP] = 0
+            pkmn.calc_stats
+            dorefresh = true
+          elsif stat == 3
+            pkmn.iv[:HP] = 0
+            pkmn.calc_stats
+            dorefresh = true
+          else
+            break
+          end
+        when 1
+          if stat == 0
+            params = ChooseNumberParams.new
+            upperLimit = 0
+            GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != :ATTACK }
+            upperLimit = Pokemon::EV_LIMIT - upperLimit
+            upperLimit = [upperLimit, Pokemon::EV_STAT_LIMIT].min
+            thisValue = [pkmn.ev[:ATTACK], upperLimit].min
+            params.setRange(0, upperLimit)
+            params.setDefaultValue(thisValue)
+            params.setCancelValue(pkmn.ev[:ATTACK])
+            f = pbMessageChooseNumber(_INTL("Set the EV for {1} (max. {2}).",
+               GameData::Stat.get(:ATTACK).name, upperLimit), params) { pbUpdate }
+            if f != pkmn.ev[:ATTACK]
+              pkmn.ev[:ATTACK] = f
+              pkmn.calc_stats
+              dorefresh = true
+            end
+          elsif stat == 1
+            pkmn.iv[:ATTACK] = 31
+            pkmn.calc_stats
+            dorefresh = true
+          elsif stat == 2
+            pkmn.ev[:ATTACK] = 0
+            pkmn.calc_stats
+            dorefresh = true
+          elsif stat == 3
+            pkmn.iv[:ATTACK] = 0
+            pkmn.calc_stats
+            dorefresh = true
+          else
+            break
+          end
+      when 2
+        if stat == 0
+          params = ChooseNumberParams.new
+          upperLimit = 0
+          GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != :DEFENSE }
+          upperLimit = Pokemon::EV_LIMIT - upperLimit
+          upperLimit = [upperLimit, Pokemon::EV_STAT_LIMIT].min
+          thisValue = [pkmn.ev[:DEFENSE], upperLimit].min
+          params.setRange(0, upperLimit)
+          params.setDefaultValue(thisValue)
+          params.setCancelValue(pkmn.ev[:DEFENSE])
+          f = pbMessageChooseNumber(_INTL("Set the EV for {1} (max. {2}).",
+             GameData::Stat.get(:DEFENSE).name, upperLimit), params) { pbUpdate }
+          if f != pkmn.ev[:DEFENSE]
+            pkmn.ev[:DEFENSE] = f
+            pkmn.calc_stats
+            dorefresh = true
+          end
+        elsif stat == 1
+          pkmn.iv[:DEFENSE] = 31
+          pkmn.calc_stats
+          dorefresh = true
+        elsif stat == 2
+          pkmn.ev[:DEFENSE] = 0
+          pkmn.calc_stats
+          dorefresh = true
+        elsif stat == 3
+          pkmn.iv[:DEFENSE] = 0
+          pkmn.calc_stats
+          dorefresh = true
+        else
+          break
+        end
+    when 3
+        if stat == 0
+          params = ChooseNumberParams.new
+          upperLimit = 0
+          GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != :SPECIAL_ATTACK }
+          upperLimit = Pokemon::EV_LIMIT - upperLimit
+          upperLimit = [upperLimit, Pokemon::EV_STAT_LIMIT].min
+          thisValue = [pkmn.ev[:SPECIAL_ATTACK], upperLimit].min
+          params.setRange(0, upperLimit)
+          params.setDefaultValue(thisValue)
+          params.setCancelValue(pkmn.ev[:SPECIAL_ATTACK])
+          f = pbMessageChooseNumber(_INTL("Set the EV for {1} (max. {2}).",
+             GameData::Stat.get(:SPECIAL_ATTACK).name, upperLimit), params) { pbUpdate }
+          if f != pkmn.ev[:SPECIAL_ATTACK]
+            pkmn.ev[:SPECIAL_ATTACK] = f
+            pkmn.calc_stats
+            dorefresh = true
+          end
+        elsif stat == 1
+          pkmn.iv[:SPECIAL_ATTACK] = 31
+          pkmn.calc_stats
+          dorefresh = true
+        elsif stat == 2
+          pkmn.ev[:SPECIAL_ATTACK] = 0
+          pkmn.calc_stats
+          dorefresh = true
+        elsif stat == 3
+          pkmn.iv[:SPECIAL_ATTACK] = 0
+          pkmn.calc_stats
+          dorefresh = true
+        else
+          break
+        end
+    when 4
+      if stat == 0
+        params = ChooseNumberParams.new
+        upperLimit = 0
+        GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != :SPECIAL_DEFENSE }
+        upperLimit = Pokemon::EV_LIMIT - upperLimit
+        upperLimit = [upperLimit, Pokemon::EV_STAT_LIMIT].min
+        thisValue = [pkmn.ev[:SPECIAL_DEFENSE], upperLimit].min
+        params.setRange(0, upperLimit)
+        params.setDefaultValue(thisValue)
+        params.setCancelValue(pkmn.ev[:SPECIAL_DEFENSE])
+        f = pbMessageChooseNumber(_INTL("Set the EV for {1} (max. {2}).",
+           GameData::Stat.get(:SPECIAL_DEFENSE).name, upperLimit), params) { pbUpdate }
+        if f != pkmn.ev[:SPECIAL_DEFENSE]
+          pkmn.ev[:SPECIAL_DEFENSE] = f
+          pkmn.calc_stats
+          dorefresh = true
+        end
+      elsif stat == 1
+        pkmn.iv[:SPECIAL_DEFENSE] = 31
+        pkmn.calc_stats
+        dorefresh = true
+      elsif stat == 2
+        pkmn.ev[:SPECIAL_DEFENSE] = 0
+        pkmn.calc_stats
+        dorefresh = true
+      elsif stat == 3
+        pkmn.iv[:SPECIAL_DEFENSE] = 0
+        pkmn.calc_stats
+        dorefresh = true
+      else
+        break
+      end
+    when 5
+      if stat == 0
+        params = ChooseNumberParams.new
+        upperLimit = 0
+        GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != :SPEED }
+        upperLimit = Pokemon::EV_LIMIT - upperLimit
+        upperLimit = [upperLimit, Pokemon::EV_STAT_LIMIT].min
+        thisValue = [pkmn.ev[:SPEED], upperLimit].min
+        params.setRange(0, upperLimit)
+        params.setDefaultValue(thisValue)
+        params.setCancelValue(pkmn.ev[:SPEED])
+        f = pbMessageChooseNumber(_INTL("Set the EV for {1} (max. {2}).",
+           GameData::Stat.get(:SPEED).name, upperLimit), params) { pbUpdate }
+        if f != pkmn.ev[:SPEED]
+          pkmn.ev[:SPEED] = f
+          pkmn.calc_stats
+          dorefresh = true
+        end
+      elsif stat == 1
+        pkmn.iv[:SPEED] = 31
+        pkmn.calc_stats
+        dorefresh = true
+      elsif stat == 2
+        pkmn.ev[:SPEED] = 0
+        pkmn.calc_stats
+        dorefresh = true
+      elsif stat == 3
+        pkmn.iv[:SPEED] = 0
+        pkmn.calc_stats
+        dorefresh = true
+      else
+        break
+      end
+    end
+      elsif Input.trigger?(Input::B)
+        @sprites["nav"].visible = false
+        pbPlayCloseMenuSE
+        break
+      end
+      if dorefresh
+        drawPage(@page)
+      end
+    end
+  end
+
+  def change_Nature
+    commands = []
+    ids = []
+    pkmn = @pokemon
+    GameData::Nature.each do |nature|
+      if nature.stat_changes.length == 0
+        commands.push(_INTL("{1} (---)", nature.real_name))
+      else
+        plus_text = ""
+        minus_text = ""
+        nature.stat_changes.each do |change|
+          if change[1] > 0
+            plus_text += "/" if !plus_text.empty?
+            plus_text += GameData::Stat.get(change[0]).name_brief
+          elsif change[1] < 0
+            minus_text += "/" if !minus_text.empty?
+            minus_text += GameData::Stat.get(change[0]).name_brief
+          end
+        end
+        commands.push(_INTL("{1} (+{2}, -{3})", nature.real_name, plus_text, minus_text))
+      end
+      ids.push(nature.id)
+    end
+    cmd = ids.index(pkmn.nature_id || ids[0])
+    loop do
+      msg = _INTL("Nature is {1}.", pkmn.nature.name)
+      cmd = pbShowCommands(commands, cmd)
+      break if cmd < 0
+      if cmd >= 0 && cmd < commands.length - 1   # Set nature
+        pkmn.nature = ids[cmd]
+        dorefresh = true
+      end
+      if dorefresh
+        drawPage(@page)
+        break
+      end
+    end
+  end
+
+  def change_Ability
+    commands = []
+    ids = []
+    pkmn = @pokemon
+    loop do
+      abils = pkmn.getAbilityList
+      ability_commands = []
+      abil_cmd = 0
+      for i in abils
+        ability_commands.push(((i[1] < 2) ? "" : "(H) ") + GameData::Ability.get(i[0]).name)
+        abil_cmd = ability_commands.length - 1 if pkmn.ability_id == i[0]
+      end
+      abil_cmd = pbShowCommands(ability_commands, abil_cmd)
+      next if abil_cmd < 0
+      pkmn.ability_index = abils[abil_cmd][1]
+      pkmn.ability = nil
+      dorefresh = true
+      if dorefresh
+        drawPage(@page)
+        break
+      end
+    end
+  end
+
+  def change_Level
+    pkmn = @pokemon
+    if pkmn.egg?
+      pbMessage(_INTL("{1} is an egg.", pkmn.name))
+    elsif pkmn.fainted?
+      pbMessage(_INTL("This Pokémon can no longer be used in the Nuzlocke."))
+    else
+      @scene.pbMessage(_INTL("How would you like to Level Up?\\ch[34,5,To Level Cap,Change Level...,Cancel]"))
+      lvl = $game_variables[34]
+      if lvl == -1 || lvl == 2 || lvl == 3
+        pbPlayCloseMenuSE
+        dorefresh = true
+      end
+      case lvl
+      when 0
+        pkmn.level = LEVEL_CAP[$game_system.level_cap]
+        pkmn.calc_stats
+        dorefresh = true
+      when 1
+        params = ChooseNumberParams.new
+        params.setRange(1, LEVEL_CAP[$game_system.level_cap])
+        params.setDefaultValue(pkmn.level)
+        level = pbMessageChooseNumber(
+           _INTL("Set the Pokémon's level (max. {1}).", params.maxNumber), params) { pbUpdate }
+        if level != pkmn.level
+          pkmn.level = level
+          pkmn.calc_stats
+          dorefresh = true
+        end
+      end
+      if dorefresh
+        drawPage(@page)
+      end
+    end
+  end
   def drawPage(page)
     if @pokemon.egg?
       drawPageOneEgg
@@ -745,6 +1138,70 @@ class PokemonSummary_Scene
       overlay.blt(96,78,@typebitmap.bitmap,type1rect)
       overlay.blt(166,78,@typebitmap.bitmap,type2rect)
     end
+  end
+  def pbOptions
+    dorefresh = false
+    commands   = []
+    cmdGiveItem = -1
+    cmdTakeItem = -1
+    cmdPokedex  = -1
+    cmdMinGrind = -1
+    cmdMark     = -1
+    if !@pokemon.egg?
+      commands[cmdGiveItem = commands.length] = _INTL("Give item")
+      commands[cmdTakeItem = commands.length] = _INTL("Take item") if @pokemon.hasItem?
+      commands[cmdPokedex = commands.length]  = _INTL("View Pokédex") if $Trainer.has_pokedex
+      if $game_switches[84]
+        commands[cmdMinGrind = commands.length] = _INTL("Minimal Grinding Options...") if @page == 2 || @page == 3 || @page == 4
+      end
+    end
+    commands[cmdMark = commands.length]       = _INTL("Mark")
+    commands[commands.length]                 = _INTL("Cancel")
+    command = pbShowCommands(commands)
+    if cmdGiveItem>=0 && command==cmdGiveItem
+      item = nil
+      pbFadeOutIn {
+        scene = PokemonBag_Scene.new
+        screen = PokemonBagScreen.new(scene,$PokemonBag)
+        item = screen.pbChooseItemScreen(Proc.new { |itm| GameData::Item.get(itm).can_hold? })
+      }
+      if item
+        dorefresh = pbGiveItemToPokemon(item,@pokemon,self,@partyindex)
+      end
+    elsif cmdTakeItem>=0 && command==cmdTakeItem
+      dorefresh = pbTakeItemFromPokemon(@pokemon,self)
+    elsif cmdPokedex>=0 && command==cmdPokedex
+      $Trainer.pokedex.register_last_seen(@pokemon)
+      pbFadeOutIn {
+        scene = PokemonPokedexInfo_Scene.new
+        screen = PokemonPokedexInfoScreen.new(scene)
+        screen.pbStartSceneSingle(@pokemon.species)
+      }
+      dorefresh = true
+    elsif cmdMinGrind>=0 && command==cmdMinGrind
+      min_grind_commands = []
+      cmdLevel = -1
+      cmdNature = -1
+      cmdStatChange = -1
+      cmdAbility = -1
+      min_grind_commands[cmdLevel = min_grind_commands.length] = _INTL("Set Level") if (@page == 2 || @page == 3 || @page == 4) && ($game_switches[12] == false)
+      min_grind_commands[cmdNature = min_grind_commands.length] = _INTL("Change Nature") if @page == 2 || @page == 3 || @page == 4
+      min_grind_commands[cmdStatChange = min_grind_commands.length] = _INTL("Change EVs/IVs") if @page == 3 || @page == 4
+      min_grind_commands[cmdAbility = min_grind_commands.length] = _INTL("Change Ability") if @page == 2 || @page == 3 || @page == 4
+      min_command = pbShowCommands(min_grind_commands)
+      if cmdLevel>=0 && min_command==cmdLevel
+        change_Level
+      elsif cmdNature>=0 && min_command==cmdNature
+        change_Nature
+      elsif cmdStatChange>=0 && min_command==cmdStatChange
+        change_Stats
+      elsif cmdAbility>=0 && min_command==cmdAbility
+        change_Ability
+      end
+    elsif cmdMark>=0 && command==cmdMark
+      dorefresh = pbMarking(@pokemon)
+    end
+    return dorefresh
   end
   def drawSelectedMove(move_to_learn, selected_move)
     # Draw all of page four, except selected move's details
@@ -1505,6 +1962,8 @@ class PokemonPartyScreen
       cmdDebug   = -1
       cmdMoves   = [-1] * pkmn.numMoves
       cmdSwitch  = -1
+      cmdEvolve  = -1
+      cmdRelearn = -1
       cmdName    = -1
       cmdMail    = -1
       cmdItem    = -1
@@ -1524,9 +1983,13 @@ class PokemonPartyScreen
       if !pkmn.egg?
         if pkmn.mail
           commands[cmdMail = commands.length]     = _INTL("Mail")
+          commands[cmdRelearn = commands.length]   = _INTL("Relearn Moves")
+          commands[cmdEvolve = commands.length]   = _INTL("Evolve")
           commands[cmdName = commands.length]     = _INTL("Nickname")
         else
           commands[cmdItem = commands.length]     = _INTL("Item")
+          commands[cmdRelearn = commands.length]   = _INTL("Relearn Moves")
+          commands[cmdEvolve = commands.length]   = _INTL("Evolve")
           commands[cmdName = commands.length]     = _INTL("Nickname")
         end
       end
@@ -1600,6 +2063,53 @@ class PokemonPartyScreen
         if pkmnid>=0 && pkmnid!=oldpkmnid
           pbSwitch(oldpkmnid,pkmnid)
         end
+      elsif cmdRelearn>=0 && command==cmdRelearn
+        if pkmn.can_relearn_move?
+          pbRelearnMoveScreen(pkmn)
+        else
+          pbDisplay(_INTL("This Pokémon cannot relearn any moves."))
+        end
+      elsif cmdEvolve>=0 && command==cmdEvolve
+        evoreqs = {}
+        GameData::Species.get_species_form(pkmn.species,pkmn.form).get_evolutions(true).each do |evo|   # [new_species, method, parameter, boolean]
+          if evo[1].to_s.start_with?('Item')
+            evoreqs[evo[0]] = evo[2] if $PokemonBag.pbHasItem?(evo[2]) && pkmn.check_evolution_on_use_item(evo[2])
+          elsif evo[1].to_s.start_with?('Location')
+            evoreqs[evo[0]] = nil if $game_map.map_id == evo[2]
+          elsif evo[1].to_s.start_with?('Trade')
+            evoreqs[evo[0]] = evo[2] if $Trainer.has_species?(evo[2]) || pkmn.check_evolution_on_trade(evo[2])
+          elsif evo[1].to_s.start_with?('Happiness')
+            evoreqs[evo[0]] = nil
+          elsif pkmn.check_evolution_on_level_up
+            evoreqs[evo[0]] = nil
+          end
+        end
+        case evoreqs.length
+        when 0
+          pbDisplay(_INTL("This Pokémon can't evolve."))
+          next
+        when 1
+          newspecies = evoreqs.keys[0]
+        else
+          newspecies = evoreqs.keys[@scene.pbShowCommands(
+            _INTL("Which species would you like to evolve into?"),
+            evoreqs.keys.map { |id| _INTL(GameData::Species.get(id).real_name) }
+          )]
+        end
+        if evoreqs[newspecies] # requires an item
+          next unless @scene.pbConfirmMessage(_INTL(
+            "This will consume a {1}. Do you want to continue?",
+            GameData::Item.get(evoreqs[newspecies]).name
+          ))
+          $PokemonBag.pbDeleteItem(evoreqs[newspecies])
+        end
+        pbFadeOutInWithMusic {
+          evo = PokemonEvolutionScene.new
+          evo.pbStartScreen(pkmn,newspecies)
+          evo.pbEvolution
+          evo.pbEndScreen
+          scene.pbRefresh
+        }
       elsif cmdName>=0 && command==cmdName
         speciesname = pkmn.speciesName
         nickname = pbEnterPokemonName(_INTL("{1}'s nickname?", speciesname),

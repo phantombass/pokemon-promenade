@@ -23,8 +23,6 @@ Changes:
     ~ Powerful
   - If no moves fit the above conditions, choose a random one
 =end
-MEGAEVOMETHOD = 1 #if its 1, it will start as false and run checks to make sure it needs to, if 2, the opposite
-SPIRIT_POWERS = false
 #-------------------------------------------------------------------------------
 # AI skill levels:
 #     0:     Wild Pokémon
@@ -63,102 +61,58 @@ def isSuperEffective?(battler1,battler2)
 	end
 	return false
 end
+
+class PokeBattle_Move
+	def pbDisplayUseMessage(user)
+    @battle.pbDisplayBrief(_INTL("{1} used {2}!",user.pbThis,@name))
+		if !user.opposes?
+			case $target_idx
+			when 0
+				$ai_learned_team[:moves1].push(@realMove)
+				$ai_learned_team[:moves1].uniq!
+			when 1
+				$ai_learned_team[:moves2].push(@realMove)
+				$ai_learned_team[:moves2].uniq!
+			when 2
+				$ai_learned_team[:moves3].push(@realMove)
+				$ai_learned_team[:moves3].uniq!
+			when 3
+				$ai_learned_team[:moves4].push(@realMove)
+				$ai_learned_team[:moves4].uniq!
+			when 4
+				$ai_learned_team[:moves5].push(@realMove)
+				$ai_learned_team[:moves5].uniq!
+			when 5
+				$ai_learned_team[:moves6].push(@realMove)
+				$ai_learned_team[:moves6].uniq!
+			end
+		end
+  end
+end
+
 class PokeBattle_AI
 	def initialize(battle)
 		@battle = battle
+		$ai_learned_team = {
+			:pokemon => [],
+			:moves1 => [],
+			:moves2 => [],
+			:moves3 => [],
+			:moves4 => [],
+			:moves5 => [],
+			:moves6 => []
+		}
+		$enem_prio = false
+		$enem_should_switch = false
+		$targ_moves = []
 	end
-
-	def pbAIRandom(x); return rand(x); end
-
-	def pbStdDev(choices)
-		sum = 0
-		n   = 0
-		choices.each do |c|
-			sum += c[1]
-			n   += 1
-		end
-		return 0 if n<2
-		mean = sum.to_f/n.to_f
-		varianceTimesN = 0
-		choices.each do |c|
-			next if c[1]<=0
-			deviation = c[1].to_f-mean
-			varianceTimesN += deviation*deviation
-		end
-		# Using population standard deviation
-		# [(n-1) makes it a sample std dev, would be 0 with only 1 sample]
-		return Math.sqrt(varianceTimesN/n)
-	end
-
-	#=============================================================================
-	# Decide whether the opponent should Mega Evolve their Pokémon
-	#=============================================================================
 	def pbEnemyShouldMegaEvolve?(idxBattler)
-		return false if @battle.wildBattle?
 		battler = @battle.battlers[idxBattler]
-		$opposing = []
-    for i in @battle.battlers
-      if i != battler
-        if not(i.fainted?)
-          if i.opposes?
-            $opposing.push(i)
-          end
-        end
-      end
-    end
-		moves = battler.moves
-		should = (MEGAEVOMETHOD==1)
-		move   = false
-		skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill
-		battler.moves do |move|
-			opposing do |o|
-				baseDmg = pbMoveBaseDamage(move,battler,o,skill)
-				if pbRoughDamage(move,battler,o,skill,baseDmg) >= o.hp
-					move = false
-					$nextTarget = o
-					$nextMove = move
-					$nextQue = 1
-				end
-			end
-		end
-		for o in $opposing
-			if isSuperEffective?(battler,o)
-				move = true
-			end
-		end
-		for o in $opposing
-			if o.hp <= (o.totalhp/3).floor
-				should = true
-			end
-		end
-		if move
-			should = true
-		end
-		if should && @battle.pbCanMegaEvolve?(idxBattler)
-			PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will Mega Evolve")
-			return true
-		end
-		return false
-	end
-
-	#=============================================================================
-	# Choose an action
-	#=============================================================================
-	def pbDefaultChooseEnemyCommand(idxBattler)
-		return if pbEnemyShouldUseItem?(idxBattler)
-		return if pbEnemyShouldWithdraw?(idxBattler)
-		return if @battle.pbAutoFightMenu(idxBattler)
-		@battle.pbRegisterMegaEvolution(idxBattler) if pbEnemyShouldMegaEvolve?(idxBattler)
-		if SPIRIT_POWERS
-			@battle.pbRegisterSpiritPower(idxBattler) if pbEnemyShouldUseSpiritPower?(idxBattler)
-		end
-		pbChooseMoves(idxBattler)
-	end
-end
+    return true if battler.turnCount == 0
+  end
 
 #-------------------------------------------------------------------------------
 # Switching pkmn
-class PokeBattle_AI
 	#=============================================================================
 	# Decide whether the opponent should switch Pokémon
 	#=============================================================================
@@ -168,7 +122,7 @@ class PokeBattle_AI
 
 	def shouldSwitchHandler(idxBattler,battler,opps)
     battler = @battle.battlers[idxBattler]
-		skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill || 0
+		skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill_level || 0
 		moves = battler.moves
 		hp = battler.hp
 		higherhp = false
@@ -268,20 +222,117 @@ class PokeBattle_AI
 	def pbEnemyShouldWithdrawEx?(idxBattler,forceSwitch)
     return false if @battle.wildBattle?
 		return false if @battle.battlers.length == 1
+		$shouldBoost = false
+		$shouldBoostSpeed = false
+		$shouldPri = false
+		$shouldHeal = false
+		$fakeOut = false
+		$canSwitch = true
+		$shouldAttack = false
+		$shouldHaze = false
     shouldSwitch = forceSwitch
     batonPass = -1
+		teleport = -1
     moveType = -1
-		faster = false
-    skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill || 0
+    skill = @battle.pbGetOwnerFromBattlerIndex(idxBattler).skill_level || 0
     battler = @battle.battlers[idxBattler]
+		target = battler.pbDirectOpposing(true)
+		role = battler.role
+		$role = role.id
+		$opposing = []
+		for i in @battle.battlers
+			if i != battler
+				if not(i.fainted?)
+					if i.opposes?
+						$opposing.push(i)
+					end
+				end
+			end
+		end
+		moves = battler.moves
+		battler.moves do |move|
+			for o in $opposing
+				baseDmg = pbMoveBaseDamage(move,battler,o,skill)
+			end
+		end
+		aspeed = pbRoughStat(battler,:SPEED,skill)
+		ospeed = pbRoughStat(target,:SPEED,skill)
+		faster = aspeed > ospeed ? true : false
+		$ai_learned_team[:pokemon].push(target.species)
+		$ai_learned_team[:pokemon].uniq!
     # If Pokémon is within 6 levels of the foe, and foe's last move was
     # super-effective and powerful
     if !shouldSwitch && battler.turnCount>-1 && skill>=PBTrainerAI.highSkill
-      target = battler.pbDirectOpposing(true)
+			target_id = $ai_learned_team[:pokemon]
+			targ = target.species
+			$target_idx = -1
+			for i in target_id
+				$target_idx += 1
+				break if i == targ
+			end
+			$targ_id = $ai_learned_team[:pokemon][$target_idx]
+			move_id1 = $ai_learned_team[:move1]
+			move_id2 = $ai_learned_team[:move2]
+			move_id3 = $ai_learned_team[:move3]
+			move_id4 = $ai_learned_team[:move4]
+			move_id5 = $ai_learned_team[:move5]
+			move_id6 = $ai_learned_team[:move6]
+			case $target_idx
+			when 0
+				if move_id1 != nil
+					for i in 0..move_id1.length
+						$targ_move = move_id1[i]
+						$enem_prio = true if $targ_move.priority > 0
+						$targbaseDmg = pbMoveBaseDamage($ai_learned_team[:move1][i],target,battler,skill)
+					end
+				end
+			when 1
+				if move_id2 != nil
+					for i in 0..move_id2.length
+						$targ_move = move_id2[i]
+						$enem_prio = true if $targ_move.priority > 0
+						$targbaseDmg = pbMoveBaseDamage($ai_learned_team[:move2][i],target,battler,skill)
+					end
+				end
+			when 2
+				if move_id3 != nil
+					for i in 0..move_id3.length
+						$targ_move = move_id3[i]
+						$enem_prio = true if $targ_move.priority > 0
+						$targbaseDmg = pbMoveBaseDamage($ai_learned_team[:move3][i],target,battler,skill)
+					end
+				end
+			when 3
+				if move_id4 != nil
+					for i in 0..move_id4.length
+						$targ_move = move_id4[i]
+						$enem_prio = true if $targ_move.priority > 0
+						$targbaseDmg = pbMoveBaseDamage($ai_learned_team[:move4][i],target,battler,skill)
+					end
+				end
+			when 4
+				if move_id5 != nil
+					for i in 0..move_id5.length
+						$targ_move = move_id5[i]
+						$enem_prio = true if $targ_move.priority > 0
+						$targbaseDmg = pbMoveBaseDamage($ai_learned_team[:move5][i],target,battler,skill)
+					end
+				end
+			when 5
+				if move_id6 != nil
+					for i in 0..move_id6.length
+						$targ_move = move_id6[i]
+						$enem_prio = true if $targ_move.priority > 0
+						$targbaseDmg = pbMoveBaseDamage($ai_learned_team[:move6][i],target,battler,skill)
+					end
+				end
+			end
+			#Effectiveness of Target against Battler
 					type1Battler = GameData::Type.get(target.type1).effectiveness(battler.type1) * GameData::Type.get(target.type2).effectiveness(battler.type1)
 				if battler.type1 != battler.type2
 					type2Battler = GameData::Type.get(target.type1).effectiveness(battler.type2) * GameData::Type.get(target.type2).effectiveness(battler.type2)
 				end
+			#Effectiveness of Battler against Target
 				type1Target = GameData::Type.get(battler.type1).effectiveness(target.type1) * GameData::Type.get(battler.type2).effectiveness(target.type1)
 				if target.type1 != target.type2
 					type2Target = GameData::Type.get(battler.type1).effectiveness(target.type2) * GameData::Type.get(battler.type2).effectiveness(target.type2)
@@ -293,23 +344,218 @@ class PokeBattle_AI
 				# 4 = SE
 				# 0 = Immune
 				if skill>=PBTrainerAI.beastMode
-					if battler.effects[PBEffects::Substitute] > 0
-						shouldSwitch = false
+					switchChance = 0
+					for move in battler.moves
+						$has_prio = true if move.priority > 0 && !move.statusMove?
+						$fakeOut = true if move.function == "012"
+						$has_haze = true if move.function == "051"
+						$has_healing = true if move.healingMove?
+					end
+					if (target.stages[:ATTACK] >= 2 || target.stages[:SPECIAL_ATTACK] >= 2) && !battler.hasActiveAbility?(:UNAWARE) && $has_haze == false
+						$shouldAttack = true
+					end
+					if $has_haze == true
+						stages = 0
+						@battle.eachBattler do |b|
+		          totalStages = 0
+		          GameData::Stat.each_battle { |s| totalStages += b.stages[s.id] }
+		          if b.opposes?(battler)
+		            stages += totalStages
+		          else
+		            stages -= totalStages
+		          end
+		        end
+						haze_score = stages*10
+						haze_score += 50 if stages > 0
+						haze_score += 20 if [:PHYSICALWALL,:SPECIALWALL,:PIVOT,:STALLBREAKER].include?($role) && stages > 0
+						$shouldHaze = (pbAIRandom(100)<haze_score)
 					end
 				if type1Target == (battler_SE || battler_2SE) || type2Target == (battler_SE || battler_2SE)
-					shouldSwitch = true
-				end
-				if (type1Battler == (battler_SE || battler_2SE) || type2Battler == (battler_SE || battler_2SE)) && (type1Target != battler_SE && type2Target != battler_SE)
-					shouldSwitch = false
-				end
-				if type1Target != battler_SE && type2Target != battler_SE
-					if faster && target.hp <= (target.totalhp/3)
-						shouldSwitch = false
-					elsif faster
-						if type1Battler == (battler_SE || battler_2SE) || type2Battler == (battler_SE || battler_2SE)
-							shouldSwitch = false
+					if !faster && $shouldPri == false
+						if $targ_move != nil
+							for i in $targ_move
+								if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) >= battler.hp
+									shouldSwitch = true
+								else
+									for move in battler.moves
+										baseDmg = pbMoveBaseDamage(move,battler,target,skill)
+										switchChance += 20 if pbRoughDamage(move,battler,target,skill,baseDmg) < target.hp
+										switchChance -= 20 if pbRoughDamage(move,battler,target,skill,baseDmg) >= target.hp
+									end
+									shouldSwitch = (pbAIRandom(100)<switchChance)
+								end
+							end
+							$shouldBoostSpeed = shouldSwitch ? false : true
+							$shouldHeal = true if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) < battler.totalhp/2 && $has_healing && battler.hp < battler.totalhp*(0.75)
 						else
-							switchChance = 95
+							switchChance = 85
+							shouldSwitch = (pbAIRandom(100)<switchChance)
+						end
+					elsif !faster && $shouldPri
+						if $targ_move != nil
+							for i in $targ_move
+								if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) >= battler.hp
+									switchChance += 50
+								else
+									for move in battler.moves
+										baseDmg = pbMoveBaseDamage(move,battler,target,skill)
+										switchChance += 20 if pbRoughDamage(move,battler,target,skill,baseDmg) < target.hp
+										switchChance -= 40 if move.priority > 0
+										switchChance -= 60 if pbRoughDamage(move,battler,target,skill,baseDmg) >= target.hp && move.priority > 0
+										switchChance -= 20 if $fakeOut == true
+									end
+								end
+							end
+							shouldSwitch = (pbAIRandom(100)<switchChance)
+						else
+							for move in battler.moves
+								baseDmg = pbMoveBaseDamage(move,battler,target,skill)
+								switchChance += 40 if pbRoughDamage(move,battler,target,skill,baseDmg) < target.hp
+								switchChance -= 40 if move.priority > 0
+								switchChance -= 60 if pbRoughDamage(move,battler,target,skill,baseDmg) >= target.hp && move.priority > 0
+								switchChance -= 20 if $fakeOut == true
+							end
+							shouldSwitch = (pbAIRandom(100)<switchChance)
+						end
+						$enem_should_switch = true if shouldSwitch == false
+					elsif faster
+						$enem_should_switch = true
+						if $targ_move != nil
+							for i in $targ_move
+								if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) >= battler.hp
+									switchChance += 40
+									for move in battler.moves
+										baseDmg = pbMoveBaseDamage(move,battler,target,skill)
+										switchChance += 20 if pbRoughDamage(move,battler,target,skill,baseDmg) < target.hp
+										switchChance -= 80 if pbRoughDamage(move,battler,target,skill,baseDmg) >= target.hp
+									end
+									shouldSwitch = (pbAIRandom(100)<switchChance)
+									$shouldBoost = shouldSwitch ? false : true
+								else
+									shouldSwitch = false
+									$shouldBoost = shouldSwitch ? false : true
+								end
+							end
+						else
+							shouldSwitch = false
+						end
+					end
+				end
+				if (type1Battler == (battler_SE || battler_2SE) || type2Battler == (battler_SE || battler_2SE)) && (type1Target != (battler_SE || battler_2SE) && type2Target != (battler_SE || battler_2SE))
+					if !faster && $shouldPri == false
+						if $targ_move != nil
+							for i in $targ_move
+								if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) >= battler.hp
+									shouldSwitch = true
+								else
+									for move in battler.moves
+										baseDmg = pbMoveBaseDamage(move,battler,target,skill)
+										switchChance += 20 if pbRoughDamage(move,battler,target,skill,baseDmg) < target.hp
+										switchChance -= 20 if pbRoughDamage(move,battler,target,skill,baseDmg) >= target.hp
+									end
+									shouldSwitch = false
+								end
+							end
+							$shouldBoostSpeed = true if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) < battler.hp/2
+							$shouldHeal = true if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) < battler.totalhp/2 && $has_healing && battler.hp < battler.totalhp*(0.75)
+						else
+							shouldSwitch = true
+						end
+					elsif !faster && $shouldPri
+						if $targ_move != nil
+							for i in $targ_move
+								if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) >= battler.hp
+									switchChance += 50
+								else
+									for move in battler.moves
+										baseDmg = pbMoveBaseDamage(move,battler,target,skill)
+										switchChance += 20 if pbRoughDamage(move,battler,target,skill,baseDmg) < target.hp
+										switchChance -= 20 if move.priority > 0
+										switchChance -= 60 if pbRoughDamage(move,battler,target,skill,baseDmg) >= target.hp && move.priority > 0
+										switchChance -= 20 if $fakeOut == true
+									end
+									shouldSwitch = (pbAIRandom(100)<switchChance)
+								end
+							end
+						else
+							for move in battler.moves
+								baseDmg = pbMoveBaseDamage(move,battler,target,skill)
+								switchChance += 20 if pbRoughDamage(move,battler,target,skill,baseDmg) < target.hp
+								switchChance -= 40 if move.priority > 0
+								switchChance -= 60 if pbRoughDamage(move,battler,target,skill,baseDmg) >= target.hp && move.priority > 0
+								switchChance -= 20 if $fakeOut == true
+							end
+							shouldSwitch = (pbAIRandom(100)<switchChance)
+						end
+					elsif faster
+						if $targ_move != nil
+							for i in $targ_move
+								if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) >= battler.hp
+									switchChance += 40
+									for move in battler.moves
+										baseDmg = pbMoveBaseDamage(move,battler,target,skill)
+										switchChance += 20 if pbRoughDamage(move,battler,target,skill,baseDmg) < target.hp
+										switchChance -= 20 if pbRoughDamage(move,battler,target,skill,baseDmg) >= target.hp
+									end
+									shouldSwitch = (pbAIRandom(100)<switchChance)
+									$shouldBoost = shouldSwitch ? false : true
+								else
+									shouldSwitch = false
+									$shouldBoost = shouldSwitch ? false : true
+									$shouldHeal = true if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) < battler.totalhp/2 && $has_healing && battler.hp <= battler.totalhp/2
+								end
+							end
+						else
+							shouldSwitch = false
+						end
+						$enem_should_switch = true if shouldSwitch == false
+					end
+				end
+				if type1Target != (battler_SE || battler_2SE) && type2Target != (battler_SE || battler_2SE)
+					if faster
+						if $targ_move != nil
+							for i in $targ_move
+								if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) >= battler.hp
+									switchChance += 50
+								else
+									$shouldHeal = true if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) < battler.totalhp/2 && $has_healing && battler.hp <= battler.totalhp/2
+								end
+							end
+						end
+						for move in battler.moves
+							baseDmg = pbMoveBaseDamage(move,battler,target,skill)
+							switchChance += 20 if pbRoughDamage(move,battler,target,skill,baseDmg) < target.hp
+							switchChance -= 40 if pbRoughDamage(move,battler,target,skill,baseDmg) >= target.hp
+						end
+						shouldSwitch = (pbAIRandom(100)<switchChance)
+						$enem_should_switch = true if shouldSwitch == false
+						$shouldBoost = shouldSwitch ? false : true
+					elsif !faster && $shouldPri == false
+						if type1Battler == (battler_SE || battler_2SE) || type2Battler == (battler_SE || battler_2SE)
+							if $targ_move != nil
+								for i in $targ_move
+									switchChance = pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) < battler.hp/2 ? 25 : 75
+									$shouldBoostSpeed = true if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) < battler.hp/2
+									$shouldHeal = true if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) < battler.totalhp/2 && $has_healing && battler.hp < battler.totalhp*(0.75)
+								end
+							end
+							shouldSwitch = (pbAIRandom(100)<switchChance)
+						else
+							switchChance = 50
+							shouldSwitch = (pbAIRandom(100)<switchChance)
+						end
+					elsif !faster && $shouldPri
+						if type1Battler == (battler_SE || battler_2SE) || type2Battler == (battler_SE || battler_2SE)
+							if $targ_move != nil
+								for i in $targ_move
+									switchChance = pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) < battler.hp/2 ? false : 50
+									$shouldBoostSpeed = true if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) < battler.hp/2
+									$shouldHeal = true if pbRoughDamage(i,$targ_id,battler,skill,$targbaseDmg) < battler.totalhp/2 && $has_healing && battler.hp < battler.totalhp*(0.75)
+								end
+							end
+							shouldSwitch = (pbAIRandom(100)<switchChance)
+						else
+							switchChance = 35
 							shouldSwitch = (pbAIRandom(100)<switchChance)
 						end
 					else
@@ -354,12 +600,130 @@ class PokeBattle_AI
     if !@battle.pbCanChooseAnyMove?(idxBattler) && battler.turnCount && battler.turnCount>=0
       shouldSwitch = true
     end
+		if battler.effects[PBEffects::Substitute] > 0
+			shouldSwitch = false
+		end
+		if [:WINCON,:SETUPSWEEPER,:NONE].include?($role) && $enem_prio == false
+			switchChance = 0
+			if $targ_move != nil
+				for i in $targ_move
+					switchChance += 25 if pbRoughDamage(i,target,battler,skill,$baseDmg) >= battler.hp
+					switchChance -= 25 if pbRoughDamage(i,target,battler,skill,$baseDmg) < battler.hp/2
+				end
+			end
+			shouldSwitch = (pbAIRandom(100)<switchChance)
+			if $has_healing && shouldSwitch == false
+				healChance = (battler.hp/battler.totalhp)*100
+				if healChance < 67
+					$shouldHeal = healChance <= 50 ? true : pbAIRandom(100)<healChance
+				else
+					$shouldHeal = pbAIRandom(100)>healChance
+				end
+			end
+			if battler.stages[:ATTACK] <= 0 || battler.stages[:SPECIAL_ATTACK] <= 0
+				$shouldBoost = true if shouldSwitch == false && $shouldHeal == false
+			end
+			if battler.stages[:SPEED] <= 0 && !faster
+				$shouldBoostSpeed = true if shouldSwitch == false && $shouldHeal == false
+			end
+		end
+		@battle.pbParty(idxBattler).each_with_index do |pkmn,i|
+			if !@battle.pbCanSwitch?(idxBattler,i)
+				$canSwitch = false
+				$shouldPri = true if ((battler.hp < battler.totalhp/3) && $has_prio)
+				next if $targ_move == nil
+				for i in $targ_move
+					if pbRoughDamage(i,target,battler,skill,$baseDmg) >= battler.hp && (battler.stages[:ATTACK] > 0 || battler.stages[:SPECIAL_ATTACK] > 0) && $has_prio
+						$shouldPri = true
+					elsif pbRoughDamage(i,target,battler,skill,$baseDmg) >= battler.hp && i.priority > 0
+						$shouldPri = true
+					elsif pbRoughDamage(i,target,battler,skill,$baseDmg) < battler.hp/2
+						$shouldBoost = true if battler.hp>=battler.totalhp/2
+						if $has_healing
+							healChance = (battler.hp/battler.totalhp)*100
+							if healChance < 67
+								$shouldHeal = healChance <= 50 ? true : pbAIRandom(100)<healChance
+							else
+								$shouldHeal = pbAIRandom(100)>healChance
+							end
+						end
+						$shouldBoost = false if $shouldHeal
+					end
+				end
+			end
+		end
+		if battler.stages[:ATTACK] > 0 || battler.stages[:SPECIAL_ATTACK] > 0
+			$shouldPri = true if $has_prio && (!faster || battler.hp<battler.totalhp/4)
+			switchChance = 0 if [:SETUPSWEEPER,:SPECIALBREAKER,:PHYSICALBREAKER,:NONE].include?($role)
+			if $role == :WINCON && $canSwitch
+				if $targ_move != nil
+					for i in $targ_move
+						if pbRoughDamage(i,target,battler,skill,$baseDmg) < battler.hp/2
+							if !faster && battler.hp > battler.hp/2
+								$shouldBoostSpeed = true
+							else
+								for move in battler.moves
+									baseDmg = pbMoveBaseDamage(move,battler,target,skill)
+									$shouldBoost if pbRoughDamage(move,battler,target,skill,baseDmg) < target.hp && !$has_healing
+									if $has_healing
+										healChance = (battler.hp/battler.totalhp)*100
+										if healChance < 67
+											$shouldHeal = healChance <= 50 ? true : pbAIRandom(100)<healChance
+										else
+											$shouldHeal = pbAIRandom(100)>healChance
+										end
+									end
+								end
+							end
+							switchChance = 0
+						end
+						if pbRoughDamage(i,target,battler,skill,$baseDmg) >= battler.hp && !faster
+							for move in battler.moves
+								baseDmg = pbMoveBaseDamage(move,battler,target,skill)
+								ch += 2 if pbRoughDamage(move,battler,target,skill,baseDmg) < target.hp
+								ch -= 2 if pbRoughDamage(move,battler,target,skill,baseDmg) >= target.hp
+							end
+							switchChance = i.priority > 0 ? 100 : (92 + ch)
+						end
+					end
+				end
+			shouldSwitch = pbAIRandom(100)<switchChance
+		end
+	end
+		if battler.stages[:SPEED] > 0
+			$shouldBoostSpeed = false if faster
+			switchChance = 0 if [:SETUPSWEEPER,:SPECIALBREAKER,:PHYSICALBREAKER,:NONE].include?($role)
+			if $role == :WINCON && $canSwitch
+				if $targ_move == nil
+					for i in $targ_move
+						if pbRoughDamage(i,target,battler,skill,$baseDmg) > battler.hp && (!faster)
+							for move in battler.moves
+								baseDmg = pbMoveBaseDamage(move,battler,target,skill)
+								ch += 5 if pbRoughDamage(move,battler,target,skill,baseDmg) < target.hp
+								ch -= 5 if pbRoughDamage(move,battler,target,skill,baseDmg) >= target.hp
+							end
+							switchChance = i.priority > 0 ? 100 : (80 + ch)
+						end
+					end
+				end
+			end
+			shouldSwitch = pbAIRandom(100)<switchChance
+		end
     # Pokémon is Perish Songed and has Baton Pass
     if skill>=PBTrainerAI.highSkill && battler.effects[PBEffects::PerishSong]==1
       battler.eachMoveWithIndex do |m,i|
         next if m.function!="0ED"   # Baton Pass
         next if !@battle.pbCanChooseMove?(idxBattler,i,false)
         batonPass = i
+        break
+      end
+    end
+
+		if skill>=PBTrainerAI.highSkill
+      battler.eachMoveWithIndex do |m,i|
+        next if m.function!="0EA"   # Teleport
+        next if !@battle.pbCanChooseMove?(idxBattler,i,false)
+        teleport = i
         break
       end
     end
@@ -395,7 +759,7 @@ class PokeBattle_AI
       opp = battler.pbDirectOpposing
       if opp.effects[PBEffects::HyperBeam]>0 ||
          (opp.hasActiveAbility?(:TRUANT) && opp.effects[PBEffects::Truant])
-        shouldSwitch = false if pbAIRandom(100)<80
+        shouldSwitch = false
       end
     end
     # Sudden Death rule - I'm not sure what this means
@@ -423,7 +787,7 @@ class PokeBattle_AI
           if spikes>0
             spikesDmg = [8,6,4][spikes-1]
             if pkmn.hp<=pkmn.totalhp/spikesDmg
-              next if !pkmn.hasType?(:FLYING) && !pkmn.hasActiveAbility?(:LEVITATE)
+              next if !battler.airborne? && !battler.hasActiveAbility?(:MAGICGUARD)
             end
           end
         end
@@ -436,6 +800,43 @@ class PokeBattle_AI
             weight = 100
           end
           list.unshift(i) if pbAIRandom(100)<weight   # Put this Pokemon first
+				elsif moveType>=0 && Effectiveness.super_effective?(pbCalcTypeMod(moveType,battler,battler))
+					list.push(i)
+				elsif $role == :WINCON && @battle.pbCanChooseMove?(idxBattler,i,false)
+					list.push(i)
+				elsif moveData != nil && moveData.category == 0 && $role == :PHYSICALWALL
+					weight = 70
+					if $targ_move != nil
+						for j in $targ_move.length
+							if $targ_move[j].category == 0
+								weight += 10
+							end
+						end
+					end
+					list.unshift(i)  if pbAIRandom(100)<weight
+				elsif moveData != nil && moveData.category == 1 && $role == :SPECIALWALL
+					weight = 70
+					if $targ_move != nil
+						for j in $targ_move.length
+							if $targ_move[j].category == 1
+								weight += 10
+							end
+						end
+					end
+					list.unshift(i)  if pbAIRandom(100)<weight
+				elsif moveData != nil && moveData.category == 2 && $role == :STALLBREAKER
+					weight = 80
+					if $targ_move != nil
+						for j in $targ_move.length
+							if $targ_move[j].category == 2
+								weight += 10
+							end
+						end
+					end
+					list.unshift(i)  if pbAIRandom(100)<weight
+				elsif $role == :PIVOT
+					weight = 80
+					list.unshift(i)  if pbAIRandom(100)<weight
         elsif moveType>=0 && Effectiveness.resistant?(pbCalcTypeMod(moveType,battler,battler))
           weight = 40
           typeMod = pbCalcTypeModPokemon(pkmn,battler.pbDirectOpposing(true))
@@ -451,6 +852,10 @@ class PokeBattle_AI
       if list.length>0
         if batonPass>=0 && @battle.pbRegisterMove(idxBattler,batonPass,false)
           PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will use Baton Pass to avoid Perish Song")
+          return true
+        end
+				if teleport>=0 && @battle.pbRegisterMove(idxBattler,teleport,false)
+          PBDebug.log("[AI] #{battler.pbThis} (#{idxBattler}) will use Teleport.")
           return true
         end
         if @battle.pbRegisterSwitch(idxBattler,list[0])
@@ -485,7 +890,7 @@ class PokeBattle_AI
 		wildBattler = @battle.wildBattle?
 		skill       = 0
 		if !wildBattler
-			skill     = @battle.pbGetOwnerFromBattlerIndex(user.index).skill || 0
+			skill     = @battle.pbGetOwnerFromBattlerIndex(user.index).skill_level || 0
 		end
 		# Get scores and targets for each move
 		# NOTE: A move is only added to the choices array if it has a non-zero
@@ -520,10 +925,11 @@ class PokeBattle_AI
 		if skill == PBTrainerAI.minimumSkill
 			battler = @battle.battlers[idxBattler]
 			battler.eachMoveWithIndex do |_m,i|
-        next if !@battle.pbCanChooseMove?(idxBattler,i,false)
+        #next if !@battle.pbCanChooseMove?(idxBattler,i,false)
         choices.push(i)   # Move index, score, target
       end
-			@battle.pbRegisterMove(idxBattler,choices[0],false)
+			memento = choices[0][0]
+			@battle.pbRegisterMove(idxBattler,memento,false)
 		end
 		if !wildBattler && skill>=PBTrainerAI.highSkill && maxScore>100
 			stDev = pbStdDev(choices)
@@ -536,9 +942,12 @@ class PokeBattle_AI
 						preferredMoves.push(c) if user.hp <= (user.totalhp/3).floor
 					end
 					user.eachOpposing do |o|
-						superEffective = GameData::Type.get(o.damageState.typeMod).effectiveness(Effectiveness::SUPER_EFFECTIVE_ONE)
+						typeMatch = o.damageState.typeMod
+						superEffective = Effectiveness.super_effective?(typeMatch)
 						if superEffective
-							preferredMoves.push(c)
+							if !o.immune_by_ability?(user.moves[c[0]].type,o.ability)
+								preferredMoves.push(c)
+							end
 						end
 					end
 					# preferredMoves.push(c) No. Bad moves should not be added to possible moves
@@ -737,12 +1146,6 @@ class PokeBattle_AI
 			if user.status==GameData::Status.get(:FROZEN).id
 				if move.thawsUser?
 					score += 40
-				else
-					user.eachMove do |m|
-						next unless m.thawsUser?
-						score -= 60
-						break
-					end
 				end
 			end
 			# If target is frozen, don't prefer moves that could thaw them
@@ -759,6 +1162,13 @@ class PokeBattle_AI
 				if move.soundMove?
 					score += 40
 				end
+			end
+		end
+
+		user.eachMove do |m|
+			if Effectiveness.super_effective?(pbCalcTypeMod(m.type,user,target))
+				score += 20 if [:PHYSICALBREAKER,:SPECIALBREAKER,:REVENGEKILLER,:NONE].include?($role)
+				score += 30 if [:WINCON,:PHYSICALBREAKER,:SPECIALBREAKER,:SETUPSWEEPER,:NONE].include?($role) && (user.stages[:ATTACK]>0||user.stages[:SPECIAL_ATTACK]>0||user.stages[:SPEED]>0)
 			end
 		end
 		# Adjust score based on how much damage it can deal
@@ -796,20 +1206,6 @@ class PokeBattle_AI
 		end
 		# Prefer flinching external effects (note that move effects which cause
 		# flinching are dealt with in the function code part of score calculation)
-		if skill>=PBTrainerAI.mediumSkill
-			if !target.hasActiveAbility?(:INNERFOCUS) &&
-				!target.hasActiveAbility?(:SHIELDDUST) &&
-				target.effects[PBEffects::Substitute]==0
-				canFlinch = false
-				if move.canKingsRock? && user.hasActiveItem?([:KINGSROCK,:RAZORFANG])
-					canFlinch = true
-				end
-				if user.hasActiveAbility?(:STENCH) && !move.flinchingMove?
-					canFlinch = true
-				end
-				realDamage *= 1.3 if canFlinch
-			end
-		end
 		# Convert damage to percentage of target's remaining HP
 		damagePercentage = realDamage*100.0/target.hp
 		# Don't prefer weak attacks

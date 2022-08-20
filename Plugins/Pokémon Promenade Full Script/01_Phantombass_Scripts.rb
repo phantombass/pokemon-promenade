@@ -1,79 +1,62 @@
 #===================================
 # Level Cap Scripts
 #===================================
-Events.onMapChange += proc {| sender, e |
-  badges = $Trainer.badge_count
-  if $game_switches[112] == true
-    if badges == 0
-      $game_variables[106] = 15
-    elsif badges == 1
-      $game_variables[106] = 22
-    elsif badges == 2
-      $game_variables[106] = 27
-    elsif badges == 3
-      $game_variables[106] = 32
-    elsif badges == 4
-      if $game_variables[110] == 6
-        $game_variables[106] = 64
-      elsif $game_variables[110] == 5
-        $game_variables[106] = 61
-      elsif $game_variables[110] == 4
-        $game_variables[106] = 58
-      elsif $game_variables[110] == 3
-        $game_variables[106] = 55
-      elsif $game_variables[110] == 2
-        $game_variables[106] = 46
-      elsif $game_variables[110] == 1
-        $game_variables[106] = 43
-      else
-      $game_variables[106] = 40
-      end
-    elsif badges == 5
-      if $game_variables[110] == 9
-        $game_variables[106] = 78
-      elsif $game_variables[110] == 8
-        $game_variables[106] = 75
-      elsif $game_variables[110] == 7
-        $game_variables[106] = 72
-      else
-      $game_variables[106] = 68
-      end
-    elsif badges == 6
-      $game_variables[106] = 81
-    elsif badges == 7
-      if $game_variables[110] == 13
-        $game_variables[106] = 95
-      elsif $game_variables[110] == 12
-        $game_variables[106] = 93
-      elsif $game_variables[110] == 11
-        $game_variables[106] = 90
-      elsif $game_variables[110] == 10
-        $game_variables[106] = 87
-      else
-      $game_variables[106] = 84
-      end
-    elsif badges == 8
-    if $game_variables[110] == 14
-      $game_variables[106] = 120
-    else
-      $game_variables[106] = 100
-    end
-    elsif $game_switches[12] == true
-      $game_variables[106] = 150
-    end
+module Settings
+  LEVEL_CAP_SWITCH = 904
+  FISHING_AUTO_HOOK     = true
+end
+
+class Game_System
+  attr_accessor :level_cap
+  alias initialize_cap initialize
+  def initialize
+    initialize_cap
+    @level_cap          = 0
   end
-#    $game_switches[350] = false
-#    $game_switches[184] = true
-#    if $game_switches[142] == false && $game_switches[128] == true
-#        $game_switches[141] = true
-#    end
-#    if $game_switches[141] == true && $game_switches[142] == false
-#        pbMessage(INTL_("You now have access to the full game! Please make your way to Mauselynx Alley!"))
-#        $game_switches[142] = true
-#    end
-#    if $game_switches[184] == true && $game_switches[187] == false && $game_switches[161] == true
-#      $game_switches[187] = true
-#    end
+  def level_cap
+    return @level_cap
+  end
+end
+
+LEVEL_CAP = [7,15,19,25,29,36,40,43,45,50,53,54,58,59,61,64,68,69,70,71,78,80,85,90,100]
+
+module Game
+  def self.level_cap_update
+    $game_system.level_cap += 1
+    $game_system.level_cap = LEVEL_CAP.size-1 if $game_system.level_cap >= LEVEL_CAP.size
+    $game_variables[106] = LEVEL_CAP[$game_system.level_cap]
+  end
+  def self.start_new
+    if $game_map && $game_map.events
+      $game_map.events.each_value { |event| event.clear_starting }
+    end
+    $game_temp.common_event_id = 0 if $game_temp
+    $PokemonTemp.begunNewGame = true
+    $game_system.initialize
+    $scene = Scene_Map.new
+    SaveData.load_new_game_values
+    $MapFactory = PokemonMapFactory.new($data_system.start_map_id)
+    $game_player.moveto($data_system.start_x, $data_system.start_y)
+    $game_player.refresh
+    $PokemonEncounters = PokemonEncounters.new
+    $PokemonEncounters.setup($game_map.map_id)
+    $game_map.autoplay
+    $game_map.update
+  end
+end
+Events.onMapChange += proc {| sender, e |
+      $game_switches[350] = false
+    $game_switches[184] = true
+    if $game_switches[142] == false && $game_switches[128] == true
+        $game_switches[141] = true
+    end
+    if $game_switches[141] == true && $game_switches[142] == false
+        pbMessage(INTL_("You now have access to the full game! Please make your way to Mauselynx Alley!"))
+        $game_switches[142] = true
+    end
+    if $game_switches[184] == true && $game_switches[187] == false && $game_switches[161] == true
+      $game_switches[187] = true
+    end
     # Weather Setting
     time = pbGetTimeNow
     $game_variables[99] = time.day
@@ -82,69 +65,6 @@ Events.onMapChange += proc {| sender, e |
       $game_variables[27] = 1+rand(100)
       $game_variables[28] = $game_variables[99]
     end
-}
-
-Events.onStepTaken += proc {| sender, e |
-  badges = $Trainer.badge_count
-  if $game_switches[112] == true
-    if badges == 0
-      $game_variables[106] = 15
-    elsif badges == 1
-      $game_variables[106] = 22
-    elsif badges == 2
-      $game_variables[106] = 27
-    elsif badges == 3
-      $game_variables[106] = 32
-    elsif badges == 4
-      if $game_variables[110] == 6
-        $game_variables[106] = 64
-      elsif $game_variables[110] == 5
-        $game_variables[106] = 61
-      elsif $game_variables[110] == 4
-        $game_variables[106] = 58
-      elsif $game_variables[110] == 3
-        $game_variables[106] = 55
-      elsif $game_variables[110] == 2
-        $game_variables[106] = 46
-      elsif $game_variables[110] == 1
-        $game_variables[106] = 43
-      else
-      $game_variables[106] = 40
-      end
-    elsif badges == 5
-      if $game_variables[110] == 9
-        $game_variables[106] = 78
-      elsif $game_variables[110] == 8
-        $game_variables[106] = 75
-      elsif $game_variables[110] == 7
-        $game_variables[106] = 72
-      else
-      $game_variables[106] = 68
-      end
-    elsif badges == 6
-      $game_variables[106] = 81
-    elsif badges == 7
-      if $game_variables[110] == 13
-        $game_variables[106] = 95
-      elsif $game_variables[110] == 12
-        $game_variables[106] = 93
-      elsif $game_variables[110] == 11
-        $game_variables[106] = 90
-      elsif $game_variables[110] == 10
-        $game_variables[106] = 87
-      else
-      $game_variables[106] = 84
-      end
-    elsif badges == 8
-    if $game_variables[110] == 14
-      $game_variables[106] = 120
-    else
-      $game_variables[106] = 100
-    end
-    elsif $game_switches[12] == true
-      $game_variables[106] = 150
-    end
-  end
 }
 
 Events.onWildPokemonCreate+=proc {|sender,e|
@@ -229,9 +149,9 @@ end
 class Trainer
   def heal_party
     if $game_switches[73] == true
-      @party.each { |pkmn| pkmn.heal if !pkmn.fainted? }
+      pbEachPokemon { |poke,_box| poke.heal if !poke.fainted?}
     else
-      @party.each { |pkmn| pkmn.heal }
+      pbEachPokemon { |poke,_box| poke.heal}
     end
   end
 end
@@ -501,7 +421,7 @@ class PokeBattle_Battle
     isPartic    = defeatedBattler.participants.include?(idxParty)
     hasExpShare = expShare.include?(idxParty)
     level = defeatedBattler.level
-    level_cap = $game_variables[106]
+    level_cap = LEVEL_CAP[$game_system.level_cap]
     level_cap_gap = growth_rate.exp_values[level_cap] - pkmn.exp
     # Main Exp calculation
     exp = 0

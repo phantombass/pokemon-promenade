@@ -808,6 +808,7 @@ ItemHandlers::UseInField.add(:ESCAPEROPE,proc { |item|
   next 2
 })
 
+=begin
 Events.onStepTaken += proc {
   if $PokemonGlobal.repel > 0 && !$game_player.terrain_tag.ice   # Shouldn't count down if on ice
     $PokemonGlobal.repel -= 1
@@ -869,7 +870,7 @@ Events.onStepTaken += proc {
     end
   end
 }
-
+=end
 BattleHandlers::WeatherExtenderItem.add(:WEATHERROCK,
   proc { |item,weather,duration,battler,battle|
     next 8 if weather != :None

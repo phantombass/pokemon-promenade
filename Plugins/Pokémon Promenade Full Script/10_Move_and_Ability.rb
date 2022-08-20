@@ -1551,6 +1551,30 @@ BattleHandlers::DamageCalcTargetAbility.add(:ICESCALES,
 )
 
 class PokeBattle_Battler
+  def immune_by_ability?(type,ability)
+    if type == :COSMIC && ability == :DIMENSIONBLOCK
+      return true
+    end
+    if type == :DARK && ability == :UNTAINTED
+      return true
+    end
+    if type == :FAIRY && ability == :CORRUPTION
+      return true
+    end
+    if type == :FIRE && ability == :FLASHFIRE
+      return true
+    end
+    if type == :GRASS && ability == :SAPSIPPER
+      return true
+    end
+    if type == :WATER && [:STORMDRAIN,:WATERABSORB,:DRYSKIN].include?(ability)
+      return true
+    end
+    if type == :GROUND && ability == :LEVITATE
+      return true
+    end
+    return false
+  end
   def pbInitEffects(batonPass)
     if batonPass
       # These effects are passed on if Baton Pass is used, but they need to be

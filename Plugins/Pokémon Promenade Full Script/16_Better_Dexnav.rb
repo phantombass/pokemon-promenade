@@ -1,10 +1,3 @@
-PluginManager.register({
-  :name => "Better DexNav",
-  :version => "2.0",
-  :credits => ["Phantombass, with portions of code taken from:","Suzerain","Nuri Yuri","Developers of SimpleEncounterUI"],
-  :link => "https://reliccastle.com/resources/520/"
-})
-
 class NewDexNav
 
   def initialize
@@ -18,8 +11,10 @@ class NewDexNav
     searchmon = 0
     @sprites = {}
     @encarray = []
+    $encTerr = nil
     @pkmnsprite = []
     @navChoice = 0
+    $no_enc = 0
     navAbil = []
     @ab = []
     encstringarray = [] # Savordez simplified this on discord but I kept it for me to understand better
@@ -31,18 +26,16 @@ class NewDexNav
     if temparray.pop==7 || @encarray.length == 0 # i picked 7 cause funny
       loctext += sprintf("<al><c2=FFCADE00>This area has no encounters</c2></al>")
       loctext += sprintf("<c2=63184210>-----------------------------------------</c2>")
+      #@viewport1.dispose
+      #@viewport2.dispose
+      @viewport3.dispose
+      $no_enc = 1
     else
       i = 0
       @encarray.each do |specie|
      #   loctext += _INTL("<ar><c2=7FFF5EF7>{1}</c2></ar>",PBSpecies.getName(specie))
          iform = 0
-       if specie == :RIOLU || specie == :LUCARIO || specie == :BUNEARY|| specie == :LOPUNNY|| specie == :NUMEL|| specie == :CAMERUPT|| specie == :ROCKRUFF || specie == :LYCANROC|| specie == :YAMASK || specie == :COFAGRIGUS
-         iform = 2
-       elsif specie == :CACNEA || specie == :CACTURNE || specie == :SANDYGAST || specie == :PALOSSAND || specie == :DEINO || specie == :ZWEILOUS || specie == :HYDREIGON || specie == :TRAPINCH || specie == :HORSEA || specie == :SEADRA || specie == :EXEGGUTOR || specie == :SEEL || specie == :DEWGONG || specie == :LUVDISC || specie == :QWILFISH
-         iform = 1
-       else
          iform = iform
-       end
          encstringarray.push(GameData::Species.get(specie).name)#+", ")
          if iform != 0
            speciepic = "#{specie}_#{iform}"
@@ -80,6 +73,10 @@ class NewDexNav
     @sprites["nav"].visible
     @sprites["nav"].play
     pbFadeInAndShow(@sprites)
+    if $no_enc != 0
+      pbWait(24)
+      @viewport1.dispose
+    end
     main
   end
 
@@ -198,41 +195,50 @@ class NewDexNav
       pLoc = $game_map.terrain_tag($game_player.x,$game_player.y)
       if GameData::TerrainTag.get(pLoc).id == :Grass || GameData::TerrainTag.get(pLoc).id == :None
         if $MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
-          encTerr = :OldRod
+          $encTerr = :OldRod
         else
-          encTerr = :Land
+          $encTerr = :Land if $PokemonEncounters.has_land_encounters?
+          $encTerr = :Cave if !$PokemonEncounters.has_land_encounters?
+        end
+      elsif GameData::TerrainTag.get(pLoc).id == :Rock
+        if $MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
+          $encTerr = :OldRod
+        else
+          $encTerr = :Cave
         end
       elsif GameData::TerrainTag.get(pLoc).id == :HighBridge
         if $MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
-          encTerr = :OldRod
+          $encTerr = :OldRod
         else
-          encTerr = :HighBridge
+          $encTerr = :HighBridge
         end
       elsif GameData::TerrainTag.get(pLoc).id == :Graveyard
         if $MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
-          encTerr = :OldRod
+          $encTerr = :OldRod
         else
-          encTerr = :Graveyard
+          $encTerr = :Graveyard
         end
       elsif GameData::TerrainTag.get(pLoc).id == :Snow
         if $MapFactory.getFacingTerrainTag== :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
-          encTerr = :OldRod
+          $encTerr = :OldRod
         else
-          encTerr = :Snow if $PokemonEncounters.has_snow_encounters?
+          $encTerr = :Snow if $PokemonEncounters.has_snow_encounters?
         end
       elsif GameData::TerrainTag.get(pLoc).id == :Sandy || GameData::TerrainTag.get(pLoc).id == :Sand
         if $MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater
-          encTerr = :OldRod
+          $encTerr = :OldRod
         else
-          encTerr = :Sandy if $PokemonEncounters.has_sandy_encounters?
+          $encTerr = :Sandy if $PokemonEncounters.has_sandy_encounters?
+          $encTerr = :Cave if $PokemonEncounters.has_cave_encounters? && !$PokemonEncounters.has_sandy_encounters?
+          $encTerr = :Land if !$PokemonEncounters.has_cave_encounters? && !$PokemonEncounters.has_sandy_encounters?
         end
       elsif GameData::TerrainTag.get(pLoc).can_surf
-        encTerr = :OldRod
+        $encTerr = :OldRod
       elsif GameData::TerrainTag.get(pLoc).id == :Bridge
-        encTerr = :Water
+        $encTerr = :Water
       end
       terr = 0
-      case encTerr
+      case $encTerr
       when enc_type
         terr = 0
       when enc_type2
@@ -244,7 +250,7 @@ class NewDexNav
       when enc_type5
         terr = 4
       end
-      if encTerr == :OldRod
+      if $encTerr == :OldRod
         terr += 4
       end
       case terr
@@ -266,7 +272,7 @@ class NewDexNav
       encdata = encdata.uniq
       encdata = encdata.compact
 
-      if encTerr == nil
+      if $encTerr == nil
         @encarray = [7]
       else
         @encarray = encdata
@@ -326,10 +332,18 @@ class NewDexNav
           @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name)
           @sprites["nav"].x -= 64
         else
-          if lastMon < 6 && @navChoice == 0 || (lastMon < 13 && lastMon > 6 && @navChoice > 6) || (lastMon < 20 && lastMon > 13 && @navChoice > 13)
+          if lastMon < 6 && @navChoice == 0 || (lastMon < 13 && lastMon > 6 && @navChoice == 7) || (lastMon < 20 && lastMon > 13 && @navChoice == 14)
             @navChoice = lastMon
             navMon = lastMon
-            @sprites["nav"].x = 5 + (64*navMon)
+            if navMon > 0 && navMon < 6 || navMon > 7 && navMon < 13 || navMon > 14 && navMon < 20
+              if navMon < 6
+                @sprites["nav"].x = 5 + (64*navMon)
+              elsif navMon > 7 && navMon < 13
+                @sprites["nav"].x = 5 + (64*(navMon-7))
+              else
+                @sprites["nav"].x = 5 + (64*(navMon-14))
+              end
+            end
             @sprites["navMon"].text = _INTL("<c2=FFCADE00>{1}</c2>",GameData::Species.get(@encarray[navMon]).name)
           else
             @navChoice +=6
@@ -410,17 +424,26 @@ class NewDexNav
       searchmon = GameData::Species.get($currentDexSearch[0]).id
       maps = GameData::MapMetadata.try_get($game_map.map_id)   # Map IDs for Zharonian Forme
       form = 0
-        if searchmon == :RIOLU || searchmon == :LUCARIO || searchmon == :BUNEARY|| searchmon == :LOPUNNY|| searchmon == :NUMEL|| searchmon == :CAMERUPT|| searchmon == :ROCKRUFF || searchmon == :LYCANROC|| searchmon == :YAMASK || searchmon == :COFAGRIGUS
-          form = 2
-        elsif searchmon == :CACNEA || searchmon == :CACTURNE || searchmon == :SANDYGAST || searchmon == :PALOSSAND || searchmon == :DEINO || searchmon == :ZWEILOUS || searchmon == :HYDREIGON || searchmon == :TRAPINCH || searchmon == :HORSEA || searchmon == :SEADRA || searchmon == :EXEGGUTOR || searchmon == :SEEL || searchmon == :DEWGONG || searchmon == :LUVDISC || searchmon == :QWILFISH
-          form = 1
-        else
-          form = form
-        end
+      form = form
+      $form_hunt = GameData::Species.get($currentDexSearch[0]).form
       navRand = rand(3)
+      itemRand = rand(3)
       $game_variables[400] = navRand
-      hAbil = GameData::Species.get_species_form(searchmon,form).hidden_abilities
       navAbil1 = GameData::Species.get_species_form(searchmon,form).abilities
+      hAbil = GameData::Species.get_species_form(searchmon,form).hidden_abilities
+      navItemCommon = GameData::Species.get(searchmon).wild_item_common
+      navItemUncommon = GameData::Species.get(searchmon).wild_item_uncommon
+      navItemRare = GameData::Species.get(searchmon).wild_item_rare
+      case itemRand
+      when 0
+        $game_variables[401] = navItemCommon
+      when 1
+        $game_variables[401] = navItemUncommon
+      when 2
+        $game_variables[401] = navItemRare
+      end
+      navItem = $game_variables[401]
+        hAbil = hAbil.length == 0 ? GameData::Species.get_species_form(searchmon,form).abilities : GameData::Species.get_species_form(searchmon,form).hidden_abilities
       if navAbil1.length == 1
         navAbil = [navAbil1[0],navAbil1[0],hAbil[0]]
       else
@@ -437,7 +460,7 @@ class NewDexNav
       searchtext = [searchmonName,ab,dexMove]
       searchpic = "#{searchmon}_#{form}"
       @sprites["search"] = Window_AdvancedTextPokemon.newWithSize("",265,130,250,126,@viewport3)
-      if navRand == 2
+      if navRand == 2 && navAbil[0] != navAbil[2]
         @sprites["search"].text = _INTL("{1}\n<c2=463F0000>{2}</c2>\n{3}",searchtext[0],searchtext[1],searchtext[2])
       else
         @sprites["search"].text = _INTL("{1}\n{2}\n{3}",searchtext[0],searchtext[1],searchtext[2])
@@ -449,6 +472,9 @@ class NewDexNav
       else
         @sprites["searchIcon"] = PokemonSpeciesIconSprite.new(searchmon,@viewport3)
       end
+      if (itemRand == 0 && navItemCommon != nil) || (itemRand == 1 && navItemUncommon != nil) || (itemRand == 2 && navItemRare != nil)
+        @sprites["item"] = ItemIconSprite.new(440,65,navItem,@viewport3)
+      end
       @sprites["searchIcon"].x = 450
       @sprites["searchIcon"].y = 65
       $viewport1 = @viewport3
@@ -459,6 +485,7 @@ class NewDexNav
 end
 
 Events.onStartBattle+=proc {|_sender,e|
+  $repel_toggle = false
   if $game_switches[350] == true
     $viewport1.dispose
     $game_switches[350] = false
@@ -478,8 +505,11 @@ Events.onMapChanging +=proc {|_sender,e|
 Events.onWildPokemonCreate+=proc {|sender,e|
     pokemon=e[0]
     # Checks current search value, if it exists, sets the Pokemon to it
-    if $currentDexSearch != nil && $currentDexSearch.is_a?(Array)
-        pokemon.species=$currentDexSearch[0]
+    if $currentDexSearch != nil
+      mapid = $game_map.map_id
+      pLoc = $game_map.terrain_tag($game_player.x,$game_player.y)
+      if GameData::TerrainTag.get(pLoc).id == $encTerr || (GameData::TerrainTag.get(pLoc).id == :Sand && $encTerr == :Sandy) || ((GameData::TerrainTag.get(pLoc).id == :Rock || GameData::TerrainTag.get(pLoc).id == :Sand || GameData::TerrainTag.get(pLoc).id == :None) && $encTerr == :Cave) ||((GameData::TerrainTag.get(pLoc).id == :Grass || GameData::TerrainTag.get(pLoc).id == :None || GameData::TerrainTag.get(pLoc).id == :Sand) && $encTerr == :Land) || (($MapFactory.getFacingTerrainTag == :Water || $MapFactory.getFacingTerrainTag == :StillWater || $MapFactory.getFacingTerrainTag == :DeepWater) && $encTerr == :OldRod && (($PokemonBag.pbQuantity(:OLDROD)>0 && GameData::EncounterType.get($PokemonTemp.encounterType).id == :OldRod) || ($PokemonBag.pbQuantity(:GOODROD)>0 && GameData::EncounterType.get($PokemonTemp.encounterType).id == :GoodRod) || ($PokemonBag.pbQuantity(:SUPERROD)>0 && GameData::EncounterType.get($PokemonTemp.encounterType).id == :SuperRod)))
+        pokemon.species = $currentDexSearch[0]
         $chainNav = [$currentDexSearch[0],0] if $chain == nil
         $chain = 0 if $chain == nil
         if $chain == 0
@@ -493,22 +523,19 @@ Events.onWildPokemonCreate+=proc {|sender,e|
         end
         $chain = $chainNav[1]
         lvl = rand(100)
-        if lvl > 80
-          pokemon.level = pokemon.level + 10
+        if lvl > 90
+          pokemon.level = pokemon.level + rand(100-lvl)
+          if pokemon.level > $game_variables[106]
+            $game_switches[81] = true
+          end
         else
           pokemon.level = pokemon.level
         end
+        pokemon.item = $game_variables[401]
         pokemon.name=GameData::Species.get(pokemon.species).name
+        pokemon.form = $form_hunt
         pokemon.ability_index = $game_variables[400]
         maps = GameData::MapMetadata.try_get($game_map.map_id)
-        pform = 0
-        if pokemon.species == :RIOLU || pokemon.species == :LUCARIO || pokemon.species == :BUNEARY|| pokemon.species == :LOPUNNY|| pokemon.species == :NUMEL|| pokemon.species == :CAMERUPT|| pokemon.species == :ROCKRUFF || pokemon.species == :LYCANROC|| pokemon.species == :YAMASK || pokemon.species == :COFAGRIGUS
-          pform = 2
-        elsif pokemon.species == :CACNEA || pokemon.species == :CACTURNE || pokemon.species == :SANDYGAST || pokemon.species == :PALOSSAND || pokemon.species == :DEINO || pokemon.species == :ZWEILOUS || pokemon.species == :HYDREIGON || pokemon.species == :TRAPINCH || pokemon.species == :HORSEA || pokemon.species == :SEADRA || pokemon.species == :EXEGGUTOR || pokemon.species == :SEEL || pokemon.species == :DEWGONG || pokemon.species == :LUVDISC || pokemon.species == :QWILFISH
-          pform = 1
-        else
-          pform = pform
-        end
         if $chain >= 0
           ivRand1 = rand(6)
         elsif $chain >= 5
@@ -549,7 +576,7 @@ Events.onWildPokemonCreate+=proc {|sender,e|
           when 5 then pokemon.iv[:SPEED] = 31
           end
         end
-        pokemon.form = pform
+        pokemon.calc_stats
         pokemon.reset_moves
         if pokemon.moves[1] == nil
           pokemon.moves[1]=Pokemon::Move.new($currentDexSearch[1]) if $currentDexSearch[1]
@@ -563,6 +590,7 @@ Events.onWildPokemonCreate+=proc {|sender,e|
         if rand(tempInt)<=1+($chain/5).floor && $chain<46
          pokemon.makeShiny
         end
+      end
         $currentDexSearch = nil
     end
 }
@@ -571,14 +599,7 @@ class DexNav
   def self.addRandomEggMove(species)
     baby = GameData::Species.get(species).get_baby_species
     maps = GameData::MapMetadata.try_get($game_map.map_id)
-    form = 0
-    if baby == :RIOLU || baby == :LUCARIO || baby == :BUNEARY || baby == :LOPUNNY || baby == :NUMEL || baby == :CAMERUPT || baby == :ROCKRUFF || baby == :LYCANROC || baby == :YAMASK || baby == :COFAGRIGUS
-      form = 2
-    elsif baby == :CACNEA || baby == :CACTURNE || baby == :SANDYGAST || baby == :PALOSSAND || baby == :DEINO || baby == :ZWEILOUS || baby == :HYDREIGON || baby == :TRAPINCH || baby == :HORSEA || baby == :SEADRA || baby == :EXEGGUTOR || baby == :SEEL || baby == :DEWGONG || baby == :LUVDISC || baby == :QWILFISH
-      form = 1
-    else
-      form = form
-    end
+    form = GameData::Species.get(species).form
     egg = GameData::Species.get_species_form(baby,form).egg_moves
     moveChoice = rand(egg.length)
     moves = egg[moveChoice]

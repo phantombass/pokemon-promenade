@@ -19,10 +19,10 @@ Events.onWildPokemonCreate += proc { |_sender, e|
 # and other such details.  Of course, you don't HAVE to use this code.
 Events.onWildPokemonCreate += proc { |_sender, e|
   pokemon = e[0]
-  if $game_map.map_id == 51
-    new_level = pbBalancedLevel($Trainer.party) - 4 + rand(5)   # For variety
-    new_level = new_level.clamp(1, GameData::GrowthRate.max_level)
-    pokemon.level = new_level
+  mlv = $Trainer.party.map { |e| e.level  }.max
+  if $game_switches[114]
+    level = mlv - rand(3)
+    pokemon.level = level <= 0 ? 1 : level
     pokemon.calc_stats
     pokemon.reset_moves
   end
