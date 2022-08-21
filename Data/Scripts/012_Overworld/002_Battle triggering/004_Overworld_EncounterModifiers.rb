@@ -6,6 +6,7 @@
 ################################################################################
 
 # Make all wild Pokémon shiny while a certain Switch is ON (see Settings).
+=begin
 Events.onWildPokemonCreate += proc { |_sender, e|
   pokemon = e[0]
   if $game_switches[Settings::SHINY_WILD_POKEMON_SWITCH]
@@ -27,7 +28,7 @@ Events.onWildPokemonCreate += proc { |_sender, e|
     pokemon.reset_moves
   end
 }
-
+=end
 # This is the basis of a trainer modifier. It works both for trainers loaded
 # when you battle them, and for partner trainers when they are registered.
 # Note that you can only modify a partner trainer's Pokémon, and not the trainer

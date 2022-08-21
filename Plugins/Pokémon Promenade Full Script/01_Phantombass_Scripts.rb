@@ -45,18 +45,18 @@ module Game
   end
 end
 Events.onMapChange += proc {| sender, e |
-      $game_switches[350] = false
-#    $game_switches[184] = true
-#    if $game_switches[142] == false && $game_switches[128] == true
-#        $game_switches[141] = true
-#    end
-#    if $game_switches[141] == true && $game_switches[142] == false
-#        pbMessage(INTL_("You now have access to the full game! Please make your way to Mauselynx Alley!"))
-#        $game_switches[142] = true
-#    end
-#    if $game_switches[184] == true && $game_switches[187] == false && $game_switches[161] == true
-#      $game_switches[187] = true
-#    end
+    $game_switches[350] = false
+    $game_switches[184] = true
+    if $game_switches[142] == false && $game_switches[128] == true
+        $game_switches[141] = true
+    end
+    if $game_switches[141] == true && $game_switches[142] == false
+        pbMessage(INTL_("You now have access to the full game! Please make your way to Mauselynx Alley!"))
+        $game_switches[142] = true
+    end
+    if $game_switches[184] == true && $game_switches[187] == false && $game_switches[161] == true
+      $game_switches[187] = true
+    end
     # Weather Setting
     time = pbGetTimeNow
     $game_variables[99] = time.day
@@ -65,6 +65,9 @@ Events.onMapChange += proc {| sender, e |
       $game_variables[27] = 1+rand(100)
       $game_variables[28] = $game_variables[99]
     end
+}
+Events.onMapUpdate+=proc {|sender,e|
+  $repel_toggle = true if $game_switches[114]
 }
 
 Events.onWildPokemonCreate+=proc {|sender,e|
@@ -80,6 +83,7 @@ Events.onWildPokemonCreate+=proc {|sender,e|
 
 Events.onEndBattle += proc { |_sender,e|
   $game_switches[81] = false
+  $repel_toggle = true
 }
 
 def pbStartOver(gameover=false)

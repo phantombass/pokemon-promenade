@@ -3976,6 +3976,72 @@ SpriteScalePlayer = 1
 BattlerAltitude = 0
 BattlerEnemyY   = 36
 #-------------------------------
+[MERITEMPO]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[CENTISEPA]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[ORRUSTORM]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 1
+BattlerEnemyY   = 16
+#-------------------------------
+[CANINPU]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[SOBEKODILE]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[OSIRAM]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[BASTUNGSTEN]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[FENIXET]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[MAUSELYNX]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[APOPHICARY]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[FALKMUNRA]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 1
+BattlerEnemyY   = 16
+#-------------------------------
 [ALKALEON]
 SpriteScaleEnemy = 1
 SpriteScalePlayer = 1

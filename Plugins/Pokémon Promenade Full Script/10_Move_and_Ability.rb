@@ -630,6 +630,9 @@ class PokeBattle_Move
        !user.hasActiveAbility?(:GUTS)
       multipliers[:final_damage_multiplier] /= 2
     end
+    if user.status == :FROZEN && specialMove? && damageReducedByFreeze?
+      multipliers[:final_damage_multiplier] /= 2
+    end
     # Aurora Veil, Reflect, Light Screen
     if !ignoresReflect? && !target.damageState.critical &&
        !user.hasActiveAbility?(:INFILTRATOR)
@@ -1614,6 +1617,7 @@ class PokeBattle_Battler
       @effects[PBEffects::PerishSongUser]    = -1
       @effects[PBEffects::PowerTrick]        = false
       @effects[PBEffects::Substitute]        = 0
+      @effects[PBEffects::StarSap]         = -1
       @effects[PBEffects::Telekinesis]       = 0
     end
     @fainted               = (@hp==0)
@@ -2014,11 +2018,11 @@ class PokeBattle_Battler
       if showMessages
         msg = ""
         case self.status
-        when :SLEEP     then msg = _INTL("{1} is already asleep!", pbThis)
+        when :SLEEP     then msg = _INTL("{1} is already drowsy!", pbThis)
         when :POISON    then msg = _INTL("{1} is already poisoned!", pbThis)
         when :BURN      then msg = _INTL("{1} already has a burn!", pbThis)
         when :PARALYSIS then msg = _INTL("{1} is already paralyzed!", pbThis)
-        when :FROZEN    then msg = _INTL("{1} is already frozen solid!", pbThis)
+        when :FROZEN    then msg = _INTL("{1} is already frostbitten!", pbThis)
         end
         @battle.pbDisplay(msg)
       end
@@ -2036,7 +2040,7 @@ class PokeBattle_Battler
       return false
     end
     # Weather immunity
-    if newStatus == :FROZEN && [:Sun, :HarshSun].include?(@battle.pbWeather)
+    if newStatus == :FROZEN && [:Sun, :HarshSun].include?(@battle.pbWeather) && !hasUtilityUmbrella?
       @battle.pbDisplay(_INTL("It doesn't affect {1}...",pbThis(true))) if showMessages
       return false
     end
@@ -2058,14 +2062,6 @@ class PokeBattle_Battler
     if newStatus == :SLEEP && !(hasActiveAbility?(:SOUNDPROOF) && !@battle.moldBreaker)
       @battle.eachBattler do |b|
         next if b.effects[PBEffects::Uproar]==0
-        @battle.pbDisplay(_INTL("But the uproar kept {1} awake!",pbThis(true))) if showMessages
-        return false
-      end
-    end
-    # Cacophony Immunity
-    if newStatus == :SLEEP && hasActiveAbility?(:CACOPHONY)
-      @battle.eachBattler do |b|
-        next if hasActiveAbility?(:SOUNDPROOF)
         @battle.pbDisplay(_INTL("But the uproar kept {1} awake!",pbThis(true))) if showMessages
         return false
       end
@@ -2118,7 +2114,7 @@ class PokeBattle_Battler
           when :POISON    then msg = _INTL("{1} cannot be poisoned!", pbThis)
           when :BURN      then msg = _INTL("{1} cannot be burned!", pbThis)
           when :PARALYSIS then msg = _INTL("{1} cannot be paralyzed!", pbThis)
-          when :FROZEN    then msg = _INTL("{1} cannot be frozen solid!", pbThis)
+          when :FROZEN    then msg = _INTL("{1} cannot be frostitten!", pbThis)
           end
         elsif immAlly
           case newStatus
@@ -2135,7 +2131,7 @@ class PokeBattle_Battler
             msg = _INTL("{1} cannot be paralyzed because of {2}'s {3}!",
                pbThis,immAlly.pbThis(true),immAlly.abilityName)
           when :FROZEN
-            msg = _INTL("{1} cannot be frozen solid because of {2}'s {3}!",
+            msg = _INTL("{1} cannot be frostbitten because of {2}'s {3}!",
                pbThis,immAlly.pbThis(true),immAlly.abilityName)
           end
         else
@@ -2144,7 +2140,7 @@ class PokeBattle_Battler
           when :POISON    then msg = _INTL("{1}'s {2} prevents poisoning!", pbThis, abilityName)
           when :BURN      then msg = _INTL("{1}'s {2} prevents burns!", pbThis, abilityName)
           when :PARALYSIS then msg = _INTL("{1}'s {2} prevents paralysis!", pbThis, abilityName)
-          when :FROZEN    then msg = _INTL("{1}'s {2} prevents freezing!", pbThis, abilityName)
+          when :FROZEN    then msg = _INTL("{1}'s {2} prevents frostbite!", pbThis, abilityName)
           end
         end
         @battle.pbDisplay(msg)
@@ -2244,6 +2240,7 @@ end
 
 class PokeBattle_Move
     def beamMove?;          return @flags[/p/]; end
+    def damageReducedByFreeze?;  return true;  end   # For Facade
     def pbHitEffectivenessMessages(user,target,numTargets=1)
       return if target.damageState.disguise
       if target.damageState.substitute
@@ -2536,6 +2533,10 @@ class PokeBattle_Move_110 < PokeBattle_Move
     if user.effects[PBEffects::LeechSeed]>=0
       user.effects[PBEffects::LeechSeed] = -1
       @battle.pbDisplay(_INTL("{1} shed Leech Seed!",user.pbThis))
+    end
+    if user.effects[PBEffects::StarSap]>=0
+      user.effects[PBEffects::StarSap] = -1
+      @battle.pbDisplay(_INTL("{1} shed Star Sap!",user.pbThis))
     end
     if user.pbOwnSide.effects[PBEffects::StealthRock]
       user.pbOwnSide.effects[PBEffects::StealthRock] = false
@@ -3432,7 +3433,7 @@ end
 
 class PokeBattle_Move_507 < PokeBattle_Move
   def pbEffectAgainstTarget(user,target)
-    target.effects[PBEffects::LeechSeed] = user.index
+    target.effects[PBEffects::StarSap] = user.index
     @battle.pbDisplay(_INTL("{1} was sapped!",target.pbThis))
   end
 end
@@ -3794,6 +3795,23 @@ class PokeBattle_Battle
       b.pbFaint if b.fainted?
       recipient.pbFaint if recipient.fainted?
     end
+    priority.each do |b|
+      next if b.effects[PBEffects::StarSap]<0
+      next if !b.takesIndirectDamage?
+      recipient = @battlers[b.effects[PBEffects::StarSap]]
+      next if !recipient || recipient.fainted?
+      oldHP = b.hp
+      oldHPRecipient = recipient.hp
+      pbCommonAnimation("LeechSeed",recipient,b)
+      hpLoss = b.pbReduceHP(b.totalhp/8)
+      recipient.pbRecoverHPFromDrain(hpLoss,b,
+         _INTL("{1}'s health is sapped by Star Sap!",b.pbThis))
+      recipient.pbAbilitiesOnDamageTaken(oldHPRecipient) if recipient.hp<oldHPRecipient
+      b.pbItemHPHealCheck
+      b.pbAbilitiesOnDamageTaken(oldHP)
+      b.pbFaint if b.fainted?
+      recipient.pbFaint if recipient.fainted?
+    end
     # Damage from Hyper Mode (Shadow Pokémon)
     priority.each do |b|
       next if !b.inHyperMode? || @choices[b.index][0]!=:UseMove
@@ -3839,6 +3857,15 @@ class PokeBattle_Battle
       oldHP = b.hp
       dmg = (Settings::MECHANICS_GENERATION >= 7) ? b.totalhp/16 : b.totalhp/8
       dmg = (dmg/2.0).round if b.hasActiveAbility?(:HEATPROOF)
+      b.pbContinueStatus { b.pbReduceHP(dmg,false) }
+      b.pbItemHPHealCheck
+      b.pbAbilitiesOnDamageTaken(oldHP)
+      b.pbFaint if b.fainted?
+    end
+    priority.each do |b|
+      next if b.status != :FROZEN || !b.takesIndirectDamage?
+      oldHP = b.hp
+      dmg = (Settings::MECHANICS_GENERATION >= 7) ? b.totalhp/16 : b.totalhp/8
       b.pbContinueStatus { b.pbReduceHP(dmg,false) }
       b.pbItemHPHealCheck
       b.pbAbilitiesOnDamageTaken(oldHP)
@@ -4344,6 +4371,7 @@ module PBEffects
   #=
   StickyWebUser      = 22
   CometShards        = 23
+  StarSap            = 129
   #=
   NeutralizingGas = 13
 end

@@ -494,10 +494,11 @@ class PokemonPokegearScreen
     commands = []
     cmdMap     = -1
     cmdPhone   = -1
-    cmdJukebox = -1
+    cmdHeal = -1
     cmdBoxLink = -1
     commands[cmdMap = commands.length]     = ["map",_INTL("Map")]
     commands[cmdBoxLink = commands.length] = ["pc",_INTL("PC Box Link")] if $game_switches[115] == false
+    commands[cmdHeal = commands.length] = ["jukebox",_INTL("Heal Party")] if $game_switches[901] == false
     @scene.pbStartScene(commands)
     loop do
       cmd = @scene.pbScene
@@ -507,27 +508,19 @@ class PokemonPokegearScreen
         pbShowMap(-1,false)
       elsif cmdBoxLink>=0 && cmd==cmdBoxLink
         pbPlayDecisionSE
-        pbMessage("Which would you like to do?\\ch[34,4,Access PC,Heal,Cancel]")
+        pbMessage("Which would you like to do?\\ch[34,2,Access PC,Cancel]")
         if $game_variables[34] == 0
-         if $game_switches[115] == true
-           pbMessage(_INTL("You cannot access the PC in here."))
-         else
           pbFadeOutIn {
             scene = PokemonStorageScene.new
             screen = PokemonStorageScreen.new(scene,$PokemonStorage)
             screen.pbStartScreen(0)
           }
-         end
-        elsif $game_variables[34] == 1
-          if $game_switches[901]
-            pbMessage(_INTL("You cannot use this in here."))
-          else
-            $Trainer.heal_party
-            pbMessage(_INTL("Your party was healed!"))
-          end
-        else
-          break
         end
+      elsif cmdHeal>=0 && cmd==cmdHeal
+          $Trainer.heal_party
+          pbMessage(_INTL("Your party was healed!"))
+      else
+        break
       end
     end
     @scene.pbEndScene
@@ -1311,6 +1304,138 @@ class BattleSceneRoom
       end
       eval("delete" + wth[0]) unless proceed
       eval("draw"  + wth[0]) if proceed
+    end
+  end
+  def setTerrain
+    for ter in [["Electric",[:Electric]],["Grassy",[:Grassy]],["Misty",[:Misty]],["Psychic",[:Psychic]],["Poison",[:Poison]]]
+      proceed = false
+      for cond in (ter[1].is_a?(Array) ? ter[1] : [ter[1]])
+        proceed = true if @battle.field.terrain == cond
+      end
+      eval("delete" + ter[0]) unless proceed
+      eval("draw"  + ter[0]) if proceed
+    end
+  end
+
+  def updateTerrain
+    self.setTerrain
+    for j in 0...2
+      next if !@sprites["t_gr#{j}"]
+      @sprites["t_gr#{j}"].update
+    end
+    for j in 0...2
+      next if !@sprites["t_misty#{j}"]
+      @sprites["t_misty#{j}"].update
+    end
+    for j in 0...2
+      next if !@sprites["t_tox#{j}"]
+      @sprites["t_tox#{j}"].update
+    end
+    for j in 0...2
+      next if !@sprites["t_ele#{j}"]
+      @sprites["t_ele#{j}"].update
+    end
+    for j in 0...2
+      next if !@sprites["t_psy#{j}"]
+      @sprites["t_psy#{j}"].update
+    end
+  end
+
+  def drawElectric
+    for j in 0...2
+      next if @sprites["t_ele#{j}"]
+      @sprites["t_ele#{j}"] = ScrollingSprite.new(@viewport)
+      @sprites["t_ele#{j}"].default!
+      @sprites["t_ele#{j}"].z = 150
+      @sprites["t_ele#{j}"].y = 200
+      @sprites["t_ele#{j}"].setBitmap("Graphics/EBDX/Animations/Weather/electricTerrain")
+      @sprites["t_ele#{j}"].speed = 1
+      @sprites["t_ele#{j}"].direction = j == 0 ? 1 : -1
+    end
+  end
+  def drawGrassy
+    for j in 0...2
+      next if @sprites["t_gr#{j}"]
+      @sprites["t_gr#{j}"] = ScrollingSprite.new(@viewport)
+      @sprites["t_gr#{j}"].default!
+      @sprites["t_gr#{j}"].z = 150
+      @sprites["t_gr#{j}"].y = 200
+      @sprites["t_gr#{j}"].setBitmap("Graphics/EBDX/Animations/Weather/Grassy")
+      @sprites["t_gr#{j}"].speed = 1
+      @sprites["t_gr#{j}"].direction = j == 0 ? 1 : -1
+    end
+  end
+  def drawMisty
+    for j in 0...2
+      next if @sprites["t_misty#{j}"]
+      @sprites["t_misty#{j}"] = ScrollingSprite.new(@viewport)
+      @sprites["t_misty#{j}"].default!
+      @sprites["t_misty#{j}"].z = 150
+      @sprites["t_misty#{j}"].y = 200
+      @sprites["t_misty#{j}"].setBitmap("Graphics/EBDX/Animations/Weather/Misty")
+      @sprites["t_misty#{j}"].speed = 1
+      @sprites["t_misty#{j}"].opacity = 64
+      @sprites["t_misty#{j}"].direction = j == 0 ? 1 : -1
+    end
+  end
+  def drawPsychic
+    for j in 0...2
+      next if @sprites["t_psy#{j}"]
+      @sprites["t_psy#{j}"] = ScrollingSprite.new(@viewport)
+      @sprites["t_psy#{j}"].default!
+      @sprites["t_psy#{j}"].z = 150
+      @sprites["t_psy#{j}"].y = 200
+      @sprites["t_psy#{j}"].setBitmap("Graphics/EBDX/Animations/Weather/Psychic")
+      @sprites["t_psy#{j}"].speed = 1
+      @sprites["t_psy#{j}"].direction = j == 0 ? 1 : -1
+    end
+  end
+  def drawPoison
+    for j in 0...2
+      next if @sprites["t_tox#{j}"]
+      @sprites["t_tox#{j}"] = ScrollingSprite.new(@viewport)
+      @sprites["t_tox#{j}"].default!
+      @sprites["t_tox#{j}"].z = 150
+      @sprites["t_tox#{j}"].y = 200
+      @sprites["t_tox#{j}"].opacity = 50
+      @sprites["t_tox#{j}"].setBitmap("Graphics/EBDX/Battlebacks/elements/poisonTerrain")
+      @sprites["t_tox#{j}"].speed = 1
+      @sprites["t_tox#{j}"].direction = j == 0 ? 1 : -1
+    end
+  end
+  def deleteElectric
+    for j in 0...2
+      next if !@sprites["t_ele#{j}"]
+      @sprites["t_ele#{j}"].dispose
+      @sprites.delete("t_ele#{j}")
+    end
+  end
+  def deleteGrassy
+    for j in 0...2
+      next if !@sprites["t_gr#{j}"]
+      @sprites["t_gr#{j}"].dispose
+      @sprites.delete("t_gr#{j}")
+    end
+  end
+  def deleteMisty
+    for j in 0...2
+      next if !@sprites["t_misty#{j}"]
+      @sprites["t_misty#{j}"].dispose
+      @sprites.delete("t_misty#{j}")
+    end
+  end
+  def deletePsychic
+    for j in 0...2
+      next if !@sprites["t_psy#{j}"]
+      @sprites["t_psy#{j}"].dispose
+      @sprites.delete("t_psy#{j}")
+    end
+  end
+  def deletePoison
+    for j in 0...2
+      next if !@sprites["t_tox#{j}"]
+      @sprites["t_tox#{j}"].dispose
+      @sprites.delete("t_tox#{j}")
     end
   end
   #-----------------------------------------------------------------------------

@@ -504,6 +504,13 @@ Events.onMapChanging +=proc {|_sender,e|
 
 Events.onWildPokemonCreate+=proc {|sender,e|
     pokemon=e[0]
+    mlv = $Trainer.party.map { |e| e.level  }.max
+    if $game_switches[114]
+      level = (mlv-1) - rand(2)
+      pokemon.level = level <= 0 ? 1 : level
+      pokemon.calc_stats
+      pokemon.reset_moves
+    end
     # Checks current search value, if it exists, sets the Pokemon to it
     if $currentDexSearch != nil
       mapid = $game_map.map_id
@@ -524,7 +531,7 @@ Events.onWildPokemonCreate+=proc {|sender,e|
         $chain = $chainNav[1]
         lvl = rand(100)
         if lvl > 90
-          pokemon.level = pokemon.level + rand(100-lvl)
+          pokemon.level += rand(100-lvl)
           if pokemon.level > $game_variables[106]
             $game_switches[81] = true
           end

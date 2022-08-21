@@ -329,6 +329,10 @@ Height = 1.4
 Pokedex = The energy of Mega Evolution awakened it. It sinks into another dimension, where it keeps a patient watch for its chance to attack.
 Generation = 6
 #-------------------------------
+[EXEGGCUTE,1]
+Generation = 7
+Evolutions = EXEGGUTOR,Item,DRACOSTONE
+#-------------------------------
 [EXEGGUTOR,1]
 FormName = Alolan
 Type1 = GRASS
@@ -2001,6 +2005,9 @@ Evolutions = LUCARIO,Fishoos,118
 #-------------------------------
 [BUNEARY,2]
 Evolutions = LOPUNNY,Item,BLACKBELT
+#-------------------------------
+[POOCHYENA,1]
+Evolutions = HYENASTY,ZharoPoochyena,18
 #-------------------------------
 [LOPUNNY,2]
 FormName = Zharonian

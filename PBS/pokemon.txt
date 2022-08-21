@@ -8818,7 +8818,7 @@ BattlerEnemyX = 1
 BattlerEnemyY = 21
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = MIGHTYENA,Level,18,HYENASTY,ZharoPoochyena,18
+Evolutions = MIGHTYENA,Level,18
 #-------------------------------
 [262]
 Name = Mightyena
