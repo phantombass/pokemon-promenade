@@ -19,32 +19,32 @@ end
 
 
 Events.onTrainerPartyLoad+=proc {| sender, trainer |
-  if $game_switches[129] == true || $game_switches[69] == true || $game_switches[70] == true || $game_switches[LvlCap::Guardian] == true
-    $CanToggle = false
-    $GameSpeed = 0
-  end
    if trainer # Trainer data should exist to be loaded, but may not exist somehow
      party = trainer[0].party   # An array of the trainer's Pokémon
     if $game_switches && $game_switches[LvlCap::Switch] && $Trainer
-       levelcap = $game_variables[LvlCap::LevelCap]
+       levelcap = LEVEL_CAP[$game_system.level_cap]
        badges = $Trainer.badge_count
        mlv = $Trainer.party.map { |e| e.level  }.max
       for i in 0...party.length
         level = 0
         level=1 if level<1
       if mlv<levelcap && mlv < party[i].level && $game_switches[LvlCap::Gym] == true
-        level = levelcap
+        level = levelcap - rand(1)
       elsif $game_switches[LvlCap::LvlTrainer] == true
         level = levelcap - 5
       elsif mlv<levelcap && mlv>party[i].level && $game_switches[LvlCap::Rival] == true
         level = mlv
       elsif mlv<levelcap && mlv<=party[i].level && $game_switches[LvlCap::Rival] == true
         level = party[i].level
+      elsif $game_switches[LvlCap::Guardian]
+        level = party[i].level
+      elsif $game_switches[LvlCap::Ace]
+        level = mlv - rand(2)
       elsif mlv<levelcap && mlv <= party[i].level
         level = party[i].level
         level = levelcap if level > levelcap
       elsif mlv<levelcap && mlv > party[i].level
-        level = (mlv - 2) + rand(5)
+        level = (mlv-1) - rand(1)
         level = levelcap if level > levelcap
       elsif mlv <= 1 && $game_switches[LvlCap::Rival] == true
         level = party[i].level
@@ -107,7 +107,7 @@ Events.onTrainerPartyLoad+=proc {| sender, trainer |
       party[i].name=GameData::Species.get(species).name
       party[i].species=species
       party[i].calc_stats
-      if $game_switches[LvlCap::Gym] == false && $game_switches[LvlCap::Ace] == false && $game_switches[LvlCap::LvlTrainer] == false
+      if $game_switches[LvlCap::Gym] == false && $game_switches[LvlCap::Ace] == false && $game_switches[LvlCap::LvlTrainer] == false && $game_switches[LvlCap::Guardian] == false
         party[i].reset_moves
       end
       end #end of for

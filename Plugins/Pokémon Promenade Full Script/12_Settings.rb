@@ -56,7 +56,7 @@ Settings::MENU_WINDOWSKINS = [
     "frlgtextskin"
   ]
 Settings::FIELD_MOVES_COUNT_BADGES = false
-Settings::MAXIMUM_LEVEL = 200
+Settings::MAXIMUM_LEVEL = 150
 Settings::GAME_VERSION = "0.9.0"
 
 module Settings

@@ -211,16 +211,6 @@ class PokeBattle_Battler
           return false
         end
       end
-    when :FROZEN
-      if !move.thawsUser?
-        if @battle.pbRandom(100)<20
-          pbCureStatus
-        else
-          pbContinueStatus
-          @lastMoveFailed = true
-          return false
-        end
-      end
     end
     # Obedience check
     return false if !pbObedienceCheck?(choice)

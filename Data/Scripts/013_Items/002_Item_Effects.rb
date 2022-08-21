@@ -95,7 +95,7 @@ def pbRepel(item,steps)
   $PokemonGlobal.repel = steps
   return 3
 end
-
+=begin
 ItemHandlers::UseInField.add(:REPEL,proc { |item|
   next pbRepel(item,100)
 })
@@ -131,7 +131,7 @@ Events.onStepTaken += proc {
     end
   end
 }
-
+=end
 ItemHandlers::UseInField.add(:BLACKFLUTE,proc { |item|
   pbUseItemMessage(item)
   pbMessage(_INTL("Wild Pokémon will be repelled."))
