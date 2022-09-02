@@ -100,12 +100,22 @@ class PokeBattle_AI
     # Immunity due to ability/item/other effects
     if skill>=PBTrainerAI.mediumSkill
       case type
+      when :COSMIC
+        return true if target.hasActiveAbility?(:DIMENSIONBLOCK)
+      when :DARK
+        return true if target.hasActiveAbility?(:UNTAINTED)
+      when :DRAGON
+        return true if target.hasActiveAbility?(:LEGENDARMOR)
+      when :PSYCHIC
+        return true if target.hasActiveAbility?(:MENTALBLOCK)
+      when :FAIRY
+        return true if target.hasActiveAbility?(:CORRUPTION)
       when :GROUND
         return true if target.airborne? && !move.hitsFlyingTargets?
       when :FIRE
-        return true if target.hasActiveAbility?(:FLASHFIRE)
+        return true if target.hasActiveAbility?([:FLASHFIRE,:STEAMENGINE])
       when :WATER
-        return true if target.hasActiveAbility?([:DRYSKIN,:STORMDRAIN,:WATERABSORB])
+        return true if target.hasActiveAbility?([:DRYSKIN,:STORMDRAIN,:WATERABSORB,:WATERCOMPACTION,:STEAMENGINE])
       when :GRASS
         return true if target.hasActiveAbility?(:SAPSIPPER)
       when :ELECTRIC

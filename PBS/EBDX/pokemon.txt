@@ -3905,22 +3905,16 @@ SpriteScalePlayer = 1
 BattlerAltitude = 1
 #-------------------------------
 [GRIMMERA]
-SpriteScaleEnemy = 1
-SpriteScalePlayer = 1
 BattlerAltitude = 0
-BattlerEnemyY   = 26
+BattlerEnemyY   = 66
 #-------------------------------
 [CHIMORA]
-SpriteScaleEnemy = 1
-SpriteScalePlayer = 1
 BattlerAltitude = 0
-BattlerEnemyY   = 16
+BattlerEnemyY   = 56
 #-------------------------------
 [ECHOMERA]
-SpriteScaleEnemy = 1
-SpriteScalePlayer = 1
 BattlerAltitude = 0
-BattlerEnemyY   = 36
+BattlerEnemyY   = 56
 #-------------------------------
 [SPOOKLOTH]
 SpriteScaleEnemy = 1
@@ -4025,6 +4019,24 @@ BattlerAltitude = 0
 BattlerEnemyY   = 36
 #-------------------------------
 [MAUSELYNX]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[NEFLORA]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[PHIRENIX]
+SpriteScaleEnemy = 1
+SpriteScalePlayer = 1
+BattlerAltitude = 0
+BattlerEnemyY   = 36
+#-------------------------------
+[SATURABTU]
 SpriteScaleEnemy = 1
 SpriteScalePlayer = 1
 BattlerAltitude = 0

@@ -1493,6 +1493,12 @@ BattleHandlers::MoveImmunityTargetAbility.add(:CORRUPTION,
   }
 )
 
+BattleHandlers::MoveImmunityTargetAbility.add(:STEAMENGINE,
+  proc { |ability,user,target,move,type,battle|
+    next (pbBattleMoveImmunityStatAbility(user,target,move,type,:WATER,:SPEED,6,battle) || pbBattleMoveImmunityStatAbility(user,target,move,type,:FIRE,:SPEED,6,battle))
+  }
+)
+
 BattleHandlers::MoveImmunityTargetAbility.add(:DIMENSIONBLOCK,
   proc { |ability,user,target,move,type,battle|
     next pbBattleMoveImmunityHealAbility(user,target,move,type,:COSMIC,battle)
