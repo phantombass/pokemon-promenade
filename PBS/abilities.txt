@@ -275,7 +275,7 @@
 273,NIGHTFALL,Nightfall,"Summons Eclipse on entry."
 274,DUAT,Duat,"Gains Time as a third typing."
 275,GAIAFORCE,Gaia Force,"Ground moves are boosted."
-276,DIMENSIONBLOCK,Dimension Block,"Immune to Cosmic and Time moves."
+276,DIMENSIONBLOCK,Dimension Block,"Immune to Cosmic moves."
 277,BALLISTIC,Ballistic,"Boosts the power of bomb moves."
 278,MEDUSOID,Medusoid,"Lowers opponent's speed on entry."
 279,QUICKDRAW,Quick Draw,"May sometimes move first."
