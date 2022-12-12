@@ -44,28 +44,35 @@ module Game
     $game_map.update
   end
 end
+
+module DailyWeather
+  Variable = 27
+  TimeNow = 28
+  LastTime = 99
+end
+
 Events.onMapChange += proc {| sender, e |
-      $game_switches[350] = false
-#    $game_switches[184] = true
-#    if $game_switches[142] == false && $game_switches[128] == true
-#        $game_switches[141] = true
-#    end
-#    if $game_switches[141] == true && $game_switches[142] == false
-#        pbMessage(INTL_("You now have access to the full game! Please make your way to Mauselynx Alley!"))
-#        $game_switches[142] = true
-#    end
-#    if $game_switches[184] == true && $game_switches[187] == false && $game_switches[161] == true
-#      $game_switches[187] = true
-#    end
+    $game_switches[350] = false
     # Weather Setting
     time = pbGetTimeNow
-    $game_variables[99] = time.day
-    dailyWeather = $game_variables[27]
-    if $game_variables[28] > $game_variables[99] || $game_variables[28]<$game_variables[99]
-      $game_variables[27] = 1+rand(100)
-      $game_variables[28] = $game_variables[99]
+    $game_variables[DailyWeather::LastTime] = time.day
+    dailyWeather = $game_variables[DailyWeather::Variable]
+    if $game_variables[DailyWeather::TimeNow] > $game_variables[DailyWeather::LastTime] || $game_variables[DailyWeather::TimeNow]<$game_variables[DailyWeather::LastTime]
+      $game_variables[DailyWeather::Variable] = 1+rand(100)
+      $game_variables[DailyWeather::TimeNow] = $game_variables[DailyWeather::LastTime]
     end
 }
+
+def pbDailyWeather(weather1,weather2,weather3)
+  weather = $game_variables[DailyWeather::Variable]
+  if weather >= 96
+    $game_screen.weather(weather1,9,20)
+  elsif weather >= 86
+    $game_screen.weather(weather2,9,20)
+  else
+    $game_screen.weather(weather3,9,20)
+  end
+end
 Events.onMapUpdate+=proc {|sender,e|
   $repel_toggle = true if $game_switches[114]
 }

@@ -549,32 +549,32 @@ class PokemonWeatherScreen
     @viewport3.z = 999999
     @sprites = {}
     commands[cmdNone = commands.length]   = _INTL("Clear")
-    commands[cmdRain = commands.length] = _INTL("Rain") if $game_variables[52] >0
-    commands[cmdSnow = commands.length]     = _INTL("Hail") if $game_variables[53]>0
-    commands[cmdSun = commands.length]  = _INTL("Sun") if $game_variables[54]>0
-    commands[cmdSand = commands.length]  = _INTL("Sand") if $game_variables[55] >0
-    commands[cmdHeavyR = commands.length]  = _INTL("Heavy Rain") if $game_variables[56] >0
-    commands[cmdHarshS = commands.length]  = _INTL("Harsh Sun") if $game_variables[57] >0
-    commands[cmdDelta = commands.length] = _INTL("Strong Winds") if $game_variables[58] >0
-    commands[cmdStar = commands.length]  = _INTL("Starstorm") if $game_variables[59] >0
-    commands[cmdOver = commands.length]  = _INTL("Overcast") if $game_variables[60] >0
-    commands[cmdSleet = commands.length]  = _INTL("Sleet") if $game_variables[75] >0
-    commands[cmdFog = commands.length]  = _INTL("Fog") if $game_variables[72] >0
-    commands[cmdEclipse = commands.length]  = _INTL("Eclipse") if $game_variables[61] >0
-    commands[cmdWindy = commands.length]  = _INTL("Windy") if $game_variables[63] >0
-    commands[cmdAcidR = commands.length]  = _INTL("Acid Rain") if $game_variables[62] >0
-    commands[cmdHumid = commands.length]  = _INTL("Humid") if $game_variables[65] >0
-    commands[cmdHeatL = commands.length]  = _INTL("Heat Lightning") if $game_variables[64] >0
-    commands[cmdRainbow = commands.length]  = _INTL("Rainbow") if $game_variables[66] >0
-    commands[cmdDust = commands.length]  = _INTL("Dust Devil") if $game_variables[67] >0
-    commands[cmdDClear = commands.length]  = _INTL("Distortion World - Clear") if $game_variables[68] >0
-    commands[cmdDRain = commands.length]  = _INTL("Distortion World - Rain") if $game_variables[70] >0
-    commands[cmdDWind = commands.length]  = _INTL("Distortion World - Windy") if $game_variables[69] >0
-    commands[cmdDAsh = commands.length]  = _INTL("Distortion World - Ashfall") if $game_variables[71] >0
-    commands[cmdVolc = commands.length]  = _INTL("Volcanic Ash") if $game_variables[73] >0
-    commands[cmdNLight = commands.length]  = _INTL("Northern Lights") if $game_variables[74] >0
-    commands[cmdRift = commands.length]  = _INTL("Temporal Rift") if $game_variables[111] >0
-    commands[cmdEcho = commands.length]  = _INTL("Echo Chamber") if $game_variables[112] >0
+    commands[cmdRain = commands.length] = _INTL("Rain") if $game_variables[52]==1
+    commands[cmdSnow = commands.length]     = _INTL("Hail") if $game_variables[53]==1
+    commands[cmdSun = commands.length]  = _INTL("Sun") if $game_variables[54]==1
+    commands[cmdSand = commands.length]  = _INTL("Sand") if $game_variables[55]==1
+    commands[cmdHeavyR = commands.length]  = _INTL("Heavy Rain") if $game_variables[56]==1
+    commands[cmdHarshS = commands.length]  = _INTL("Harsh Sun") if $game_variables[57]==1
+    commands[cmdDelta = commands.length] = _INTL("Strong Winds") if $game_variables[58]==1
+    commands[cmdStar = commands.length]  = _INTL("Starstorm") if $game_variables[59]==1
+    commands[cmdOver = commands.length]  = _INTL("Overcast") if $game_variables[60]==1
+    commands[cmdSleet = commands.length]  = _INTL("Sleet") if $game_variables[75]==1
+    commands[cmdFog = commands.length]  = _INTL("Fog") if $game_variables[72]==1
+    commands[cmdEclipse = commands.length]  = _INTL("Eclipse") if $game_variables[61]==1
+    commands[cmdWindy = commands.length]  = _INTL("Windy") if $game_variables[63]==1
+    commands[cmdAcidR = commands.length]  = _INTL("Acid Rain") if $game_variables[62]==1
+    commands[cmdHumid = commands.length]  = _INTL("Humid") if $game_variables[65]==1
+    commands[cmdHeatL = commands.length]  = _INTL("Heat Lightning") if $game_variables[64]==1
+    commands[cmdRainbow = commands.length]  = _INTL("Rainbow") if $game_variables[66]==1
+    commands[cmdDust = commands.length]  = _INTL("Dust Devil") if $game_variables[67]==1
+    commands[cmdDClear = commands.length]  = _INTL("Distortion World - Clear") if $game_variables[68]==1
+    commands[cmdDRain = commands.length]  = _INTL("Distortion World - Rain") if $game_variables[70]==1
+    commands[cmdDWind = commands.length]  = _INTL("Distortion World - Windy") if $game_variables[69]==1
+    commands[cmdDAsh = commands.length]  = _INTL("Distortion World - Ashfall") if $game_variables[71]==1
+    commands[cmdVolc = commands.length]  = _INTL("Volcanic Ash") if $game_variables[73]==1
+    commands[cmdNLight = commands.length]  = _INTL("Northern Lights") if $game_variables[74]==1
+    commands[cmdRift = commands.length]  = _INTL("Temporal Rift") if $game_variables[111]==1
+    commands[cmdEcho = commands.length]  = _INTL("Echo Chamber") if $game_variables[112]==1
     commands[commands.length]              = _INTL("Exit")
     @scene.pbStartScene(commands)
     loop do

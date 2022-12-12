@@ -569,214 +569,74 @@ class PokemonSummary_Scene
           @sprites["nav"].y -= 47
         end
       elsif Input.trigger?(Input::C)
-        @scene.pbMessage(_INTL("Change which?\\ch[34,5,EVs,Max IVs,Clear EVs,Min IVs,Cancel]"))
+        @scene.pbMessage(_INTL("Change which?\\ch[34,3,EVs,IVs,Cancel]"))
         stat = $game_variables[34]
+        stats = [:HP,:ATTACK,:DEFENSE,:SPECIAL_ATTACK,:SPECIAL_DEFENSE,:SPEED]
         pkmn = @pokemon
-        if stat == -1 || stat == 5 || stat == 4
+        if stat == -1 || stat == 3 || stat == 2
           @sprites["nav"].visible = false
           pbPlayCloseMenuSE
           break
         end
-        case stat_choice
-        when 0
-          if stat == 0
-            params = ChooseNumberParams.new
+        if stat == 0
+          @scene.pbMessage(_INTL("How?\\ch[34,4,Max EVs,Clear EVs,Change EVs...,Cancel]"))
+          stat_ev = $game_variables[34]
+          if stat_ev == -1 || stat_ev == 4 || stat_ev == 3
+            @sprites["nav"].visible = false
+            pbPlayCloseMenuSE
+            break
+          end
+          if stat_ev == 0
             upperLimit = 0
-            GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != :HP }
+            GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != stats[stat_choice] }
             upperLimit = Pokemon::EV_LIMIT - upperLimit
             upperLimit = [upperLimit, Pokemon::EV_STAT_LIMIT].min
-            thisValue = [pkmn.ev[:HP], upperLimit].min
+            pkmn.ev[stats[stat_choice]] = upperLimit
+            pkmn.calc_stats
+            dorefresh = true
+          elsif stat_ev == 1
+            pkmn.ev[stats[stat_choice]] = 0
+            pkmn.calc_stats
+            dorefresh = true
+          elsif stat_ev == 2
+            params = ChooseNumberParams.new
+            upperLimit = 0
+            GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != stats[stat_choice] }
+            upperLimit = Pokemon::EV_LIMIT - upperLimit
+            upperLimit = [upperLimit, Pokemon::EV_STAT_LIMIT].min
+            thisValue = [pkmn.ev[stats[stat_choice]], upperLimit].min
             params.setRange(0, upperLimit)
             params.setDefaultValue(thisValue)
-            params.setCancelValue(pkmn.ev[:HP])
+            params.setCancelValue(pkmn.ev[stats[stat_choice]])
             f = pbMessageChooseNumber(_INTL("Set the EV for {1} (max. {2}).",
-               GameData::Stat.get(:HP).name, upperLimit), params) { pbUpdate }
-            if f != pkmn.ev[:HP]
-              pkmn.ev[:HP] = f
+               GameData::Stat.get(stats[stat_choice]).name, upperLimit), params) { pbUpdate }
+            if f != pkmn.ev[stats[stat_choice]]
+              pkmn.ev[stats[stat_choice]] = f
               pkmn.calc_stats
               dorefresh = true
             end
-          elsif stat == 1
-            pkmn.iv[:HP] = 31
+          end
+        end
+        if stat == 1
+          @scene.pbMessage(_INTL("How?\\ch[34,4,Max IVs,Min IVs,Cancel]"))
+          stat_iv = $game_variables[34]
+          if stat_iv == -1 || stat_iv == 3 || stat_iv == 2
+            @sprites["nav"].visible = false
+            pbPlayCloseMenuSE
+            break
+          end
+          if stat_iv == 0
+            pkmn.iv[stats[stat_choice]] = 31
             pkmn.calc_stats
             dorefresh = true
-          elsif stat == 2
-            pkmn.ev[:HP] = 0
-            pkmn.calc_stats
-            dorefresh = true
-          elsif stat == 3
-            pkmn.iv[:HP] = 0
+          elsif stat_iv == 1
+            pkmn.iv[stats[stat_choice]] = 0
             pkmn.calc_stats
             dorefresh = true
           else
             break
           end
-        when 1
-          if stat == 0
-            params = ChooseNumberParams.new
-            upperLimit = 0
-            GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != :ATTACK }
-            upperLimit = Pokemon::EV_LIMIT - upperLimit
-            upperLimit = [upperLimit, Pokemon::EV_STAT_LIMIT].min
-            thisValue = [pkmn.ev[:ATTACK], upperLimit].min
-            params.setRange(0, upperLimit)
-            params.setDefaultValue(thisValue)
-            params.setCancelValue(pkmn.ev[:ATTACK])
-            f = pbMessageChooseNumber(_INTL("Set the EV for {1} (max. {2}).",
-               GameData::Stat.get(:ATTACK).name, upperLimit), params) { pbUpdate }
-            if f != pkmn.ev[:ATTACK]
-              pkmn.ev[:ATTACK] = f
-              pkmn.calc_stats
-              dorefresh = true
-            end
-          elsif stat == 1
-            pkmn.iv[:ATTACK] = 31
-            pkmn.calc_stats
-            dorefresh = true
-          elsif stat == 2
-            pkmn.ev[:ATTACK] = 0
-            pkmn.calc_stats
-            dorefresh = true
-          elsif stat == 3
-            pkmn.iv[:ATTACK] = 0
-            pkmn.calc_stats
-            dorefresh = true
-          else
-            break
-          end
-      when 2
-        if stat == 0
-          params = ChooseNumberParams.new
-          upperLimit = 0
-          GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != :DEFENSE }
-          upperLimit = Pokemon::EV_LIMIT - upperLimit
-          upperLimit = [upperLimit, Pokemon::EV_STAT_LIMIT].min
-          thisValue = [pkmn.ev[:DEFENSE], upperLimit].min
-          params.setRange(0, upperLimit)
-          params.setDefaultValue(thisValue)
-          params.setCancelValue(pkmn.ev[:DEFENSE])
-          f = pbMessageChooseNumber(_INTL("Set the EV for {1} (max. {2}).",
-             GameData::Stat.get(:DEFENSE).name, upperLimit), params) { pbUpdate }
-          if f != pkmn.ev[:DEFENSE]
-            pkmn.ev[:DEFENSE] = f
-            pkmn.calc_stats
-            dorefresh = true
-          end
-        elsif stat == 1
-          pkmn.iv[:DEFENSE] = 31
-          pkmn.calc_stats
-          dorefresh = true
-        elsif stat == 2
-          pkmn.ev[:DEFENSE] = 0
-          pkmn.calc_stats
-          dorefresh = true
-        elsif stat == 3
-          pkmn.iv[:DEFENSE] = 0
-          pkmn.calc_stats
-          dorefresh = true
-        else
-          break
         end
-    when 3
-        if stat == 0
-          params = ChooseNumberParams.new
-          upperLimit = 0
-          GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != :SPECIAL_ATTACK }
-          upperLimit = Pokemon::EV_LIMIT - upperLimit
-          upperLimit = [upperLimit, Pokemon::EV_STAT_LIMIT].min
-          thisValue = [pkmn.ev[:SPECIAL_ATTACK], upperLimit].min
-          params.setRange(0, upperLimit)
-          params.setDefaultValue(thisValue)
-          params.setCancelValue(pkmn.ev[:SPECIAL_ATTACK])
-          f = pbMessageChooseNumber(_INTL("Set the EV for {1} (max. {2}).",
-             GameData::Stat.get(:SPECIAL_ATTACK).name, upperLimit), params) { pbUpdate }
-          if f != pkmn.ev[:SPECIAL_ATTACK]
-            pkmn.ev[:SPECIAL_ATTACK] = f
-            pkmn.calc_stats
-            dorefresh = true
-          end
-        elsif stat == 1
-          pkmn.iv[:SPECIAL_ATTACK] = 31
-          pkmn.calc_stats
-          dorefresh = true
-        elsif stat == 2
-          pkmn.ev[:SPECIAL_ATTACK] = 0
-          pkmn.calc_stats
-          dorefresh = true
-        elsif stat == 3
-          pkmn.iv[:SPECIAL_ATTACK] = 0
-          pkmn.calc_stats
-          dorefresh = true
-        else
-          break
-        end
-    when 4
-      if stat == 0
-        params = ChooseNumberParams.new
-        upperLimit = 0
-        GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != :SPECIAL_DEFENSE }
-        upperLimit = Pokemon::EV_LIMIT - upperLimit
-        upperLimit = [upperLimit, Pokemon::EV_STAT_LIMIT].min
-        thisValue = [pkmn.ev[:SPECIAL_DEFENSE], upperLimit].min
-        params.setRange(0, upperLimit)
-        params.setDefaultValue(thisValue)
-        params.setCancelValue(pkmn.ev[:SPECIAL_DEFENSE])
-        f = pbMessageChooseNumber(_INTL("Set the EV for {1} (max. {2}).",
-           GameData::Stat.get(:SPECIAL_DEFENSE).name, upperLimit), params) { pbUpdate }
-        if f != pkmn.ev[:SPECIAL_DEFENSE]
-          pkmn.ev[:SPECIAL_DEFENSE] = f
-          pkmn.calc_stats
-          dorefresh = true
-        end
-      elsif stat == 1
-        pkmn.iv[:SPECIAL_DEFENSE] = 31
-        pkmn.calc_stats
-        dorefresh = true
-      elsif stat == 2
-        pkmn.ev[:SPECIAL_DEFENSE] = 0
-        pkmn.calc_stats
-        dorefresh = true
-      elsif stat == 3
-        pkmn.iv[:SPECIAL_DEFENSE] = 0
-        pkmn.calc_stats
-        dorefresh = true
-      else
-        break
-      end
-    when 5
-      if stat == 0
-        params = ChooseNumberParams.new
-        upperLimit = 0
-        GameData::Stat.each_main { |s| upperLimit += pkmn.ev[s.id] if s.id != :SPEED }
-        upperLimit = Pokemon::EV_LIMIT - upperLimit
-        upperLimit = [upperLimit, Pokemon::EV_STAT_LIMIT].min
-        thisValue = [pkmn.ev[:SPEED], upperLimit].min
-        params.setRange(0, upperLimit)
-        params.setDefaultValue(thisValue)
-        params.setCancelValue(pkmn.ev[:SPEED])
-        f = pbMessageChooseNumber(_INTL("Set the EV for {1} (max. {2}).",
-           GameData::Stat.get(:SPEED).name, upperLimit), params) { pbUpdate }
-        if f != pkmn.ev[:SPEED]
-          pkmn.ev[:SPEED] = f
-          pkmn.calc_stats
-          dorefresh = true
-        end
-      elsif stat == 1
-        pkmn.iv[:SPEED] = 31
-        pkmn.calc_stats
-        dorefresh = true
-      elsif stat == 2
-        pkmn.ev[:SPEED] = 0
-        pkmn.calc_stats
-        dorefresh = true
-      elsif stat == 3
-        pkmn.iv[:SPEED] = 0
-        pkmn.calc_stats
-        dorefresh = true
-      else
-        break
-      end
-    end
       elsif Input.trigger?(Input::B)
         @sprites["nav"].visible = false
         pbPlayCloseMenuSE
@@ -1295,9 +1155,176 @@ class PokemonSummary_Scene
 end
 
 class BattleSceneRoom
+  alias initialize_ter initialize
+  def initialize(viewport, scene, data)
+    $viewport = viewport
+    return initialize_ter(viewport, scene, data)
+  end
+  def refresh(*args)
+    unless args[0].is_a?(Hash)
+      @sprites[args[0]] = args[1] if args[0].is_a?(String) && args.length > 1
+      return
+    end
+    @fpIndex = 0
+    # disposes sprites if they exist
+    pbDisposeSpriteHash(@sprites)
+    sx, sy = @scene.vector.spoof(@defaultvector)
+    # void sprite
+    @sprites["void"] = Sprite.new(@viewport)
+    @sprites["void"].z = -10
+    @sprites["void"].bitmap = Bitmap.new(@viewport.width, @viewport.height)
+    # draws backdrop
+    @sprites["bg"] = Sprite.new(@viewport)
+    @sprites["bg"].z = 0
+    # draws base
+    @baseBmp = nil
+    # draws elements from data block (prority added to predefined modules)
+    for key in ["backdrop", "base", "water", "spinningLights", "outdoor", "sky", "trees", "tallGrass", "spinLights",
+               "lightsA", "lightsB", "lightsC", "vacuum", "bubbles"] # to sort the order
+      next if !@data.has_key?(key)
+      case key
+      when "backdrop" # adds custom background image
+        path = pbResolveBitmap(@data["backdrop"]) ? @data["backdrop"] : "Graphics/EBDX/Battlebacks/battlebg/" + @data["backdrop"]
+        $initPath = path
+        tbmp = pbBitmap(path)
+        @sprites["bg"].bitmap = Bitmap.new(tbmp.width, tbmp.height)
+        @sprites["bg"].bitmap.blt(0, 0, tbmp, tbmp.rect)
+        tbmp.dispose
+      when "base" # blt base onto backdrop
+        str = pbResolveBitmap(@data["base"]) ? @data["base"] : "Graphics/EBDX/Battlebacks/base/" + @data["base"]
+        @baseBmp = pbBitmap(str) if str
+      when "sky" # adds dynamic sky to scene
+        self.drawSky
+      when "trees" # adds array of trees to scene
+        self.drawTrees
+      when "tallGrass" # adds array of tall grass to scene
+        self.drawGrass
+      when "spinLights" # adds PWT styled spinning base lights
+        self.drawSpinLights
+      when "lightsA" # adds PWT styled stage lights
+        self.drawLightsA
+      when "lightsB" # adds disco styled stage lights
+        self.drawLightsB
+      when "lightsC" # adds ambiental scene lights
+        self.drawLightsC
+      when "water" # adds water animation effect
+        self.drawWater
+      when "vacuum"
+        self.vacuumWaves(@data[key]) # draws vacuum waves
+      when "bubbles"
+        self.bubbleStream(@data[key]) # draws bubble particles
+      end
+    end
+    # draws additional modules where sequencing is disregarded
+    for key in @data.keys
+      if key.include?("img")
+        self.drawImg(key)
+      end
+    end
+    # applies backdrop positioning
+    if @sprites["bg"].bitmap
+      @sprites["bg"].center!
+      @sprites["bg"].ox = sx/1.5 - 16
+      @sprites["bg"].oy = sy/1.5 + 16
+      if @baseBmp
+        @sprites["bg"].bitmap.blt(0, @sprites["bg"].bitmap.height - @baseBmp.height, @baseBmp, @baseBmp.rect)
+      end
+      c1 = @sprites["bg"].bitmap.get_pixel(0, 0)
+      c2 = @sprites["bg"].bitmap.get_pixel(0, @sprites["bg"].bitmap.height-1)
+      @sprites["void"].bitmap.fill_rect(0, 0, @viewport.width, @viewport.height/2, c1)
+      @sprites["void"].bitmap.fill_rect(0, @viewport.height/2, @viewport.width, @viewport.height/2, c2)
+    end
+    # battler sprite positioning
+    self.adjustMetrics
+    # applies daylight tinting
+    self.daylightTint
+  end
+  def update
+    return if self.disposed?
+    # updates to the spatial warping with respect to the scene vector
+    @sprites["bg"].x = @scene.vector.x2
+    @sprites["bg"].y = @scene.vector.y2
+    sx, sy = @scene.vector.spoof(@defaultvector)
+    @sprites["bg"].zoom_x = @scale*((@scene.vector.x2 - @scene.vector.x)*1.0/(sx - @defaultvector[0])*1.0)**0.6
+    @sprites["bg"].zoom_y = @scale*((@scene.vector.y2 - @scene.vector.y)*1.0/(sy - @defaultvector[1])*1.0)**0.6
+    # updates the vacuum waves
+    for j in 0...3
+      next if j > @fpIndex/50 || !@sprites["ec#{j}"]
+      if @sprites["ec#{j}"].param <= 0
+        @sprites["ec#{j}"].param = 1.5
+        @sprites["ec#{j}"].opacity = 0
+        @sprites["ec#{j}"].ex = 234
+      end
+      @sprites["ec#{j}"].opacity += (@sprites["ec#{j}"].param < 0.75 ? -4 : 4)/self.delta
+      @sprites["ec#{j}"].ex += [1, 2/self.delta].max if (@fpIndex*self.delta)%4 == 0 && @sprites["ec#{j}"].ex < 284
+      @sprites["ec#{j}"].ey -= [1, 2/self.delta].min if (@fpIndex*self.delta)%4 == 0 && @sprites["ec#{j}"].ey > 108
+      @sprites["ec#{j}"].param -= 0.01/self.delta
+    end
+    # updates bubble particles
+    for j in 0...18
+      next if !@sprites["bubble#{j}"]
+      if @sprites["bubble#{j}"].ey <= -32
+        r = rand(5) + 2
+        @sprites["bubble#{j}"].param = 0.16 + 0.01*rand(32)
+        @sprites["bubble#{j}"].ey = @sprites["bg"].bitmap.height*0.25 + rand(@sprites["bg"].bitmap.height*0.75)
+        @sprites["bubble#{j}"].ex = 32 + rand(@sprites["bg"].bitmap.width - 64)
+        @sprites["bubble#{j}"].end_y = 64 + rand(72)
+        @sprites["bubble#{j}"].end_x = @sprites["bubble#{j}"].ex
+        @sprites["bubble#{j}"].toggle = rand(2) == 0 ? 1 : -1
+        @sprites["bubble#{j}"].speed = 1 + 2/((r + 1)*0.4)
+        @sprites["bubble#{j}"].z = [2,15,25][rand(3)] + rand(6) - (@focused ? 0 : 100)
+        @sprites["bubble#{j}"].opacity = 0
+      end
+      min = @sprites["bg"].bitmap.height/4
+      max = @sprites["bg"].bitmap.height/2
+      scale = (2*Math::PI)/((@sprites["bubble#{j}"].bitmap.width/64.0)*(max - min) + min)
+      @sprites["bubble#{j}"].opacity += 4 if @sprites["bubble#{j}"].opacity < @sprites["bubble#{j}"].end_y
+      @sprites["bubble#{j}"].ey -= [1, @sprites["bubble#{j}"].speed/self.delta].max
+      @sprites["bubble#{j}"].ex = @sprites["bubble#{j}"].end_x + @sprites["bubble#{j}"].bitmap.width*0.25*Math.sin(@sprites["bubble#{j}"].ey*scale)*@sprites["bubble#{j}"].toggle
+    end
+    # update weather particles
+    self.updateWeather
+    self.updateTerrain
+    # positions all elements according to the battle backdrop
+    self.position
+    # updates skyline
+    self.updateSky
+    # turn off shadows if appropriate
+    if @data.has_key?("noshadow") && @data["noshadow"] == true
+      # for battler sprites
+      @battle.battlers.each_with_index do |b, i|
+        next if !b || !@scene.sprites["pokemon_#{i}"]
+        @scene.sprites["pokemon_#{i}"].noshadow = true
+      end
+      # for trainer sprites
+      if @battle.opponent
+        for t in 0...@battle.opponent.length
+          next if !@scene.sprites["trainer_#{t}"]
+          @scene.sprites["trainer_#{t}"].noshadow = true
+        end
+      end
+    end
+    # adjusts for wind affected elements
+    if @strongwind
+      @wind -= @toggle*2
+      @toggle *= -1 if @wind < 65 || (@wind >= 70 && @toggle < 0)
+    else
+      @wWait += 1
+      if @wWait > Graphics.frame_rate*5
+        mod = @toggle*(2 + (@wind >= 88 && @wind <= 92 ? 2 : 0))
+        @wind -= mod
+        @toggle *= -1 if @wind <= 80 || @wind >= 100
+        @wWait = 0 if @wWait > Graphics.frame_rate*5 + 33
+      end
+    end
+    # additional metrics
+    @fpIndex += 1
+    @fpIndex = 150 if @fpIndex > 255*self.delta
+  end
+
   def setWeather
     # loop once
-    for wth in [["Rain", [:Rain, :HeavyRain, :Storm, :AcidRain,]],["Snow", [:Hail, :Sleet]], ["StrongWind", [:StrongWinds, :Windy]], ["Sunny", [:Sun, :HarshSun]], ["Sandstorm", [:Sandstorm, :DustDevil]],["Overcast", [:Overcast]],["Starstorm", [:Starstorm]],["VolcanicAsh", [:VolcanicAsh, :DAshfall]]]
+    for wth in [["Rain", [:Rain, :HeavyRain, :Storm, :AcidRain,]],["Snow", [:Hail, :Sleet]], ["StrongWind", [:StrongWinds]],["Windy", [:Windy]], ["Sunny", [:Sun, :HarshSun]], ["Sandstorm", [:Sandstorm, :DustDevil]],["Overcast", [:Overcast]],["Eclipse", [:Eclipse]],["Starstorm", [:Starstorm]],["VolcanicAsh", [:VolcanicAsh, :DAshfall]]]
       proceed = false
       for cond in (wth[1].is_a?(Array) ? wth[1] : [wth[1]])
         proceed = true if @battle.pbWeather == cond
@@ -1306,6 +1333,7 @@ class BattleSceneRoom
       eval("draw"  + wth[0]) if proceed
     end
   end
+
   def setTerrain
     for ter in [["Electric",[:Electric]],["Grassy",[:Grassy]],["Misty",[:Misty]],["Psychic",[:Psychic]],["Poison",[:Poison]]]
       proceed = false
@@ -1372,7 +1400,7 @@ class BattleSceneRoom
       @sprites["t_misty#{j}"].default!
       @sprites["t_misty#{j}"].z = 150
       @sprites["t_misty#{j}"].y = 200
-      @sprites["t_misty#{j}"].setBitmap("Graphics/EBDX/Animations/Weather/Misty")
+      @sprites["t_misty#{j}"].setBitmap("Graphics/EBDX/Animations/Weather/forestShade")
       @sprites["t_misty#{j}"].speed = 1
       @sprites["t_misty#{j}"].opacity = 64
       @sprites["t_misty#{j}"].direction = j == 0 ? 1 : -1
@@ -1531,6 +1559,16 @@ class BattleSceneRoom
       next if !@sprites["w_sand#{j}"]
       @sprites["w_sand#{j}"].update
     end
+    # windy particles
+    for j in 0...2
+      next if !@sprites["w_windy#{j}"]
+      @sprites["w_windy#{j}"].update
+    end
+    #eclipse particles
+    for j in 0...2
+      next if !@sprites["eclipse#{j}"]
+      @sprites["eclipse#{j}"].update
+    end
   end
   #-----------------------------------------------------------------------------
   # sunny weather handlers
@@ -1585,7 +1623,7 @@ class BattleSceneRoom
     end
   end
   #-----------------------------------------------------------------------------
-  # snow weather handlers
+  # sandstorm weather handlers
   #-----------------------------------------------------------------------------
   def drawSandstorm
     for j in 0...2
@@ -1606,7 +1644,7 @@ class BattleSceneRoom
     end
   end
   #-----------------------------------------------------------------------------
-  # sandstorm weather handlers
+  # snow weather handlers
   #-----------------------------------------------------------------------------
   def drawSnow
     for j in 0...72
@@ -1738,6 +1776,69 @@ class BattleSceneRoom
     end
   end
   #-----------------------------------------------------------------------------
+  # eclipse weather handlers
+  #-----------------------------------------------------------------------------
+
+  def drawEclipse
+    if @sprites["sky"]
+      @sprites["sky"].tone.all -= 10 if @sprites["sky"].tone.all > -100
+      @sprites["sky"].tone.gray += 16 if @sprites["sky"].tone.gray < 172
+      for i in 0..1
+        @sprites["cloud#{i}"].tone.all -= 10 if @sprites["cloud#{i}"].tone.all > -100
+        @sprites["cloud#{i}"].tone.gray += 16 if @sprites["cloud#{i}"].tone.gray < 172
+      end
+    end
+    for j in 0...2
+      next if @sprites["eclipse#{j}"]
+      @sprites["eclipse#{j}"] = ScrollingSprite.new(@viewport)
+      @sprites["eclipse#{j}"].default!
+      @sprites["eclipse#{j}"].z = 150
+      @sprites["eclipse#{j}"].y = 200
+      @sprites["eclipse#{j}"].setBitmap("Graphics/EBDX/Animations/Weather/eclipse")
+      @sprites["eclipse#{j}"].speed = 1
+      @sprites["eclipse#{j}"].opacity = 64
+      @sprites["eclipse#{j}"].direction = j == 0 ? 1 : -1
+    end
+  end
+  def deleteEclipse
+    if @sprites["sky"]
+      @sprites["sky"].tone.all += 10 if @sprites["sky"].tone.all < 0
+      @sprites["sky"].tone.gray -= 16 if @sprites["sky"].tone.gray > 0
+      for i in 0..1
+        @sprites["cloud#{i}"].tone.all += 10 if @sprites["cloud#{i}"].tone.all < 0
+        @sprites["cloud#{i}"].tone.gray -= 16 if @sprites["cloud#{i}"].tone.gray > 0
+      end
+    end
+    for j in 0...2
+      next if !@sprites["eclipse#{j}"]
+      @sprites["eclipse#{j}"].dispose
+      @sprites.delete("eclipse#{j}")
+    end
+  end
+  #-----------------------------------------------------------------------------
+  # windy weather handlers
+  #-----------------------------------------------------------------------------
+  def drawWindy
+    @strongwind = true
+    for j in 0...2
+      next if @sprites["w_windy#{j}"]
+      @sprites["w_windy#{j}"] = ScrollingSprite.new(@viewport)
+      @sprites["w_windy#{j}"].default!
+      @sprites["w_windy#{j}"].z = 100
+      @sprites["w_windy#{j}"].setBitmap("Graphics/EBDX/Animations/Weather/windy#{j}")
+      @sprites["w_windy#{j}"].speed = 32
+      @sprites["w_windy#{j}"].direction = -1
+    end
+  end
+  def deleteWindy
+    @strongwind = false
+    for j in 0...2
+      next if !@sprites["w_windy#{j}"]
+      @sprites["w_windy#{j}"].dispose
+      @sprites.delete("w_windy#{j}")
+    end
+  end
+  #-----------------------------------------------------------------------------
   # volcanic ash weather handlers
   #-----------------------------------------------------------------------------
   def drawVolcanicAsh
@@ -1777,6 +1878,7 @@ class BattleSceneRoom
     end
   end
 end
+
 
 
 class PokemonOption_Scene

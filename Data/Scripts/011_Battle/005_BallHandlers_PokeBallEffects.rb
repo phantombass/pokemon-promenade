@@ -87,27 +87,43 @@ BallHandlers::IsUnconditional.add(:MASTERBALL,proc { |ball,battle,battler|
 # NOTE: This code is not called if the battler is an Ultra Beast (except if the
 #       Ball is a Beast Ball). In this case, all Balls' catch rates are set
 #       elsewhere to 0.1x.
-#===============================================================================
+BallHandlers::ModifyCatchRate.add(:POKEBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
+  next catchRate*255 if $game_switches[84]
+
+})
 BallHandlers::ModifyCatchRate.add(:GREATBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
+  next catchRate*255 if $game_switches[84]
   next catchRate*1.5
+
 })
 
 BallHandlers::ModifyCatchRate.add(:ULTRABALL,proc { |ball,catchRate,battle,battler,ultraBeast|
+  next catchRate*255 if $game_switches[84]
   next catchRate*2
+
 })
 
 BallHandlers::ModifyCatchRate.add(:SAFARIBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
+  next catchRate*255 if $game_switches[84]
   next catchRate*1.5
+
 })
 
 BallHandlers::ModifyCatchRate.add(:NETBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
   multiplier = (Settings::NEW_POKE_BALL_CATCH_RATES) ? 3.5 : 3
+  next catchRate*255 if $game_switches[84]
   catchRate *= multiplier if battler.pbHasType?(:BUG) || battler.pbHasType?(:WATER)
+
   next catchRate
 })
 
 BallHandlers::ModifyCatchRate.add(:DIVEBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
-  catchRate *= 3.5 if battle.environment == :Underwater
+  if Settings::MECHANICS_GENERATION >= 4
+    catchRate *= 3.5 if [:MovingWater, :StillWater, :Puddle, :Underwater].include?(battle.environment)
+  else
+    catchRate *= 3.5 if battle.environment == :Underwater
+  end
+  next catchRate*255 if $game_switches[84]
   next catchRate
 })
 
@@ -115,29 +131,34 @@ BallHandlers::ModifyCatchRate.add(:NESTBALL,proc { |ball,catchRate,battle,battle
   if battler.level <= 30
     catchRate *= [(41 - battler.level) / 10.0, 1].max
   end
+  next catchRate*255 if $game_switches[84]
   next catchRate
 })
 
 BallHandlers::ModifyCatchRate.add(:REPEATBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
   multiplier = (Settings::NEW_POKE_BALL_CATCH_RATES) ? 3.5 : 3
   catchRate *= multiplier if battle.pbPlayer.owned?(battler.species)
+  next catchRate*255 if $game_switches[84]
   next catchRate
 })
 
 BallHandlers::ModifyCatchRate.add(:TIMERBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
   multiplier = [1+(0.3*battle.turnCount),4].min
   catchRate *= multiplier
+  next catchRate*255 if $game_switches[84]
   next catchRate
 })
 
 BallHandlers::ModifyCatchRate.add(:DUSKBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
   multiplier = (Settings::NEW_POKE_BALL_CATCH_RATES) ? 3 : 3.5
   catchRate *= multiplier if battle.time==2
+  next catchRate*255 if $game_switches[84]
   next catchRate
 })
 
 BallHandlers::ModifyCatchRate.add(:QUICKBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
   catchRate *= 5 if battle.turnCount==0
+  next catchRate*255 if $game_switches[84]
   next catchRate
 })
 
@@ -145,7 +166,9 @@ BallHandlers::ModifyCatchRate.add(:FASTBALL,proc { |ball,catchRate,battle,battle
   baseStats = battler.pokemon.baseStats
   baseSpeed = baseStats[:SPEED]
   catchRate *= 4 if baseSpeed >= 100
+  next catchRate*255 if $game_switches[84]
   next [catchRate, 255].min
+
 })
 
 BallHandlers::ModifyCatchRate.add(:LEVELBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
@@ -157,12 +180,15 @@ BallHandlers::ModifyCatchRate.add(:LEVELBALL,proc { |ball,catchRate,battle,battl
   elsif maxlevel>=battler.level*2; catchRate *= 4
   elsif maxlevel>battler.level;    catchRate *= 2
   end
+  next catchRate*255 if $game_switches[84]
   next [catchRate,255].min
+
 })
 
 BallHandlers::ModifyCatchRate.add(:LUREBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
   multiplier = (Settings::NEW_POKE_BALL_CATCH_RATES) ? 5 : 3
   catchRate *= multiplier if GameData::EncounterType.get($PokemonTemp.encounterType).type == :fishing
+  next catchRate*255 if $game_switches[84]
   next [catchRate,255].min
 })
 
@@ -182,7 +208,9 @@ BallHandlers::ModifyCatchRate.add(:HEAVYBALL,proc { |ball,catchRate,battle,battl
     end
   end
   catchRate = [catchRate,1].max
+  next catchRate*255 if $game_switches[84]
   next [catchRate,255].min
+
 })
 
 BallHandlers::ModifyCatchRate.add(:LOVEBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
@@ -192,7 +220,9 @@ BallHandlers::ModifyCatchRate.add(:LOVEBALL,proc { |ball,catchRate,battle,battle
     catchRate *= 8
     break
   end
+  next catchRate*255 if $game_switches[84]
   next [catchRate,255].min
+
 })
 
 BallHandlers::ModifyCatchRate.add(:MOONBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
@@ -203,15 +233,20 @@ BallHandlers::ModifyCatchRate.add(:MOONBALL,proc { |ball,catchRate,battle,battle
   if moon_stone && battler.pokemon.species_data.family_item_evolutions_use_item?(moon_stone.id)
     catchRate *= 4
   end
+  next catchRate*255 if $game_switches[84]
   next [catchRate, 255].min
+
 })
 
 BallHandlers::ModifyCatchRate.add(:SPORTBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
+  next catchRate*255 if $game_switches[84]
   next catchRate*1.5
+
 })
 
 BallHandlers::ModifyCatchRate.add(:DREAMBALL,proc { |ball,catchRate,battle,battler,ultraBeast|
-  catchRate *= 4 if battler.status == :SLEEP
+  catchRate *= 4 if battler.asleep?
+  next catchRate*255 if $game_switches[84]
   next catchRate
 })
 
@@ -221,6 +256,7 @@ BallHandlers::ModifyCatchRate.add(:BEASTBALL,proc { |ball,catchRate,battle,battl
   else
     catchRate /= 10
   end
+  next catchRate*255 if $game_switches[84]
   next catchRate
 })
 
@@ -229,8 +265,13 @@ BallHandlers::ModifyCatchRate.add(:BEASTBALL,proc { |ball,catchRate,battle,battl
 #===============================================================================
 BallHandlers::OnCatch.add(:HEALBALL,proc { |ball,battle,pkmn|
   pkmn.heal
+  next catchRate*255 if $game_switches[84]
+
 })
 
 BallHandlers::OnCatch.add(:FRIENDBALL,proc { |ball,battle,pkmn|
   pkmn.happiness = 200
+  next catchRate*255 if $game_switches[84]
+
 })
+

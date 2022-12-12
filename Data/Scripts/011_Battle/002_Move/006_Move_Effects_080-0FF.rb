@@ -510,7 +510,9 @@ class PokeBattle_Move_096 < PokeBattle_Move
   end
 
   def pbBaseDamage(baseDmg,user,target)
-    return pbNaturalGiftBaseDamage(user.item.id)
+    itm = user.item
+    return pbNaturalGiftBaseDamage(itm.id) if itm != nil
+    return 0
   end
 
   def pbEndOfMoveUsageEffect(user,targets,numHits,switchedBattlers)
