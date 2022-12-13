@@ -35,6 +35,7 @@ end
 #==============================================================================
 # Fixed some game data not being cleared before compiling.
 #==============================================================================
+
 module Compiler
   class << self
     alias __hotfixes__compile_encounters compile_encounters
@@ -47,7 +48,6 @@ module Compiler
     GameData::Encounter::DATA.clear
 	__hotfixes__compile_encounters(path)
   end
-
   def compile_trainers(path = "PBS/trainers.txt")
     GameData::Trainer::DATA.clear
 	__hotfixes__compile_trainers(path)

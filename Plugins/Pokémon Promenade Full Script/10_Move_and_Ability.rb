@@ -1584,6 +1584,9 @@ class PokeBattle_Battler
     end
     return false
   end
+  def hasUtilityUmbrella?
+    return hasActiveItem?(:UTILITYUMBRELLA)
+  end
   def pbInitEffects(batonPass)
     if batonPass
       # These effects are passed on if Baton Pass is used, but they need to be
@@ -2024,7 +2027,7 @@ class PokeBattle_Battler
       if showMessages
         msg = ""
         case self.status
-        when :SLEEP     then msg = _INTL("{1} is already drowsy!", pbThis)
+        when :SLEEP     then msg = _INTL("{1} is already asleep!", pbThis)
         when :POISON    then msg = _INTL("{1} is already poisoned!", pbThis)
         when :BURN      then msg = _INTL("{1} already has a burn!", pbThis)
         when :PARALYSIS then msg = _INTL("{1} is already paralyzed!", pbThis)
@@ -4319,7 +4322,7 @@ class PokeBattle_Battle
         next if !b.takesStarstormDamage? ||  b.isSpecies?(:ALTEMPER)
         pbDisplay(_INTL("{1} is hurt by the Starstorm!",b.pbThis))
         @scene.pbDamageAnimation(b)
-        b.pbReduceHP(b.totalhp/8,false)
+        b.pbReduceHP(b.totalhp/16,false)
         b.pbItemHPHealCheck
         b.pbFaint if b.fainted?
       when :ShadowSky

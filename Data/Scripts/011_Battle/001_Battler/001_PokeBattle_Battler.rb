@@ -42,6 +42,7 @@ class PokeBattle_Battler
   attr_accessor :tookPhysicalHit
   attr_accessor :damageState
   attr_accessor :initialHP     # Set at the start of each move's usage
+  attr_accessor :role
 
   #=============================================================================
   # Complex accessors
@@ -128,7 +129,15 @@ class PokeBattle_Battler
   def happiness;    return @pokemon ? @pokemon.happiness : 0;    end
   def nature;       return @pokemon ? @pokemon.nature : 0;       end
   def pokerusStage; return @pokemon ? @pokemon.pokerusStage : 0; end
+  def role
+    @role = :NONE if (@role == "" || @role == nil)
+    return GameData::Role.try_get(@role)
+  end
 
+  def role=(value)
+    new_role = GameData::Role.try_get(value)
+    @role = (new_role) ? new_role.id : nil
+  end
   #=============================================================================
   # Mega Evolution, Primal Reversion, Shadow Pokémon
   #=============================================================================
