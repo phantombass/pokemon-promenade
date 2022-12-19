@@ -4037,8 +4037,8 @@ BattlerAltitude = 0
 BattlerEnemyY   = 36
 #-------------------------------
 [SATURABTU]
-SpriteScaleEnemy = 1
-SpriteScalePlayer = 1
+SpriteScaleEnemy = 1.3
+SpriteScalePlayer = 1.3
 BattlerAltitude = 0
 BattlerEnemyY   = 36
 #-------------------------------
