@@ -756,9 +756,9 @@ Graveyard
     HYENASTY,2,4
     SEADRA_1,2,4
     SEADRA_1,2,4
-    HYENASTY,72,75
+    HYENASTY,2,4
     SPOOKLOTH,2,4
-    HYENASTY,72,75
+    HYENASTY,2,4
     SPOOKLOTH,2,4
 #-------------------------------
 197 # Route 22
@@ -825,11 +825,11 @@ Cave
     BEARTIC,2,4
     EXPLOUD,2,4
 Water
-    LUVDISC_1,65,70
-    POLIWHIRL,75,80
-    FISHOOS,70,75
-    FISHOOS,75,80
-    QWILFISH_1,80,85
+    LUVDISC_1,2,4
+    POLIWHIRL,2,4
+    FISHOOS,2,4
+    FISHOOS,2,4
+    QWILFISH_1,2,4
 OldRod
     FISHOOS,5
     FISHOOS,10
@@ -841,8 +841,8 @@ SuperRod
     FISHOOS,15
     FISHOOS,25
     LUVDISC_1,2,4
-    POLIWRATH,50,55
-    POLITOED,50,55
+    POLIWRATH,2,4
+    POLITOED,2,4
 #-------------------------------
 209 # Route 23
 25,10,10
@@ -892,11 +892,11 @@ Land
     LUXRAY,2,4
     DRAKEON,2,4
 Water
-    LUVDISC_1,65,70
-    POLIWHIRL,75,80
-    FISHOOS,70,75
-    FISHOOS,75,80
-    QWILFISH_1,80,85
+    LUVDISC_1,2,4
+    POLIWHIRL,2,4
+    FISHOOS,2,4
+    FISHOOS,2,4
+    QWILFISH_1,2,4
 OldRod
     FISHOOS,5
     FISHOOS,10
@@ -908,17 +908,17 @@ SuperRod
     FISHOOS,15
     FISHOOS,25
     LUVDISC_1,2,4
-    QWILFISH_1,50,55
-    DISCORONA,50,55
+    QWILFISH_1,2,4
+    DISCORONA,2,4
 #-------------------------------
 260 # Victory Road
 25,10,10
 Water
-    LUVDISC_1,65,70
-    POLIWHIRL,75,80
-    FISHOOS,70,75
-    FISHOOS,75,80
-    QWILFISH_1,80,85
+    LUVDISC_1,2,4
+    POLIWHIRL,2,4
+    FISHOOS,2,4
+    FISHOOS,2,4
+    QWILFISH_1,2,4
 OldRod
     FISHOOS,5
     FISHOOS,10
@@ -930,8 +930,8 @@ SuperRod
     FISHOOS,15
     FISHOOS,25
     LUVDISC_1,2,4
-    QWILFISH_1,50,55
-    DISCORONA,50,55
+    QWILFISH_1,2,4
+    DISCORONA,2,4
 #-------------------------------
 264 # Victory Road - Cosmic Cliffs
 25,10,10
@@ -949,11 +949,11 @@ Land
     SIGILYPH,2,4
     SYLVEON,2,4
 Water
-    LUVDISC_1,65,70
-    POLIWHIRL,75,80
-    FISHOOS,70,75
-    FISHOOS,75,80
-    QWILFISH_1,80,85
+    LUVDISC_1,2,4
+    POLIWHIRL,2,4
+    FISHOOS,2,4
+    FISHOOS,2,4
+    QWILFISH_1,2,4
 OldRod
     FISHOOS,5
     FISHOOS,10
@@ -965,8 +965,8 @@ SuperRod
     FISHOOS,15
     FISHOOS,25
     LUVDISC_1,2,4
-    QWILFISH_1,50,55
-    DISCORONA,50,55
+    QWILFISH_1,2,4
+    DISCORONA,2,4
 HighBridge
     SIGILYPH,2,4
     CHIMECHO,2,4
@@ -997,11 +997,11 @@ Cave
     PALOSSAND_1,2,4
     ARCHAEON,2,4
 Water
-    LUVDISC_1,65,70
-    POLIWHIRL,75,80
-    FISHOOS,70,75
-    FISHOOS,75,80
-    QWILFISH_1,80,85
+    LUVDISC_1,2,4
+    POLIWHIRL,2,4
+    FISHOOS,2,4
+    FISHOOS,2,4
+    QWILFISH_1,2,4
 OldRod
     FISHOOS,5
     FISHOOS,10
@@ -1013,8 +1013,8 @@ SuperRod
     FISHOOS,15
     FISHOOS,25
     LUVDISC_1,2,4
-    QWILFISH_1,50,55
-    DISCORONA,50,55
+    QWILFISH_1,2,4
+    DISCORONA,2,4
 #-------------------------------
 266 # Victory Road - Sleet Mountain
 25,10,10
@@ -1064,11 +1064,11 @@ Land
     ALAKAZAM,2,4
     ESPEON,2,4
 Water
-    LUVDISC_1,65,70
-    POLIWHIRL,75,80
-    FISHOOS,70,75
-    FISHOOS,75,80
-    QWILFISH_1,80,85
+    LUVDISC_1,2,4
+    POLIWHIRL,2,4
+    FISHOOS,2,4
+    FISHOOS,2,4
+    QWILFISH_1,2,4
 OldRod
     FISHOOS,5
     FISHOOS,10
@@ -1080,18 +1080,18 @@ SuperRod
     FISHOOS,15
     FISHOOS,25
     LUVDISC_1,2,4
-    QWILFISH_1,50,55
-    DISCORONA,50,55
+    QWILFISH_1,2,4
+    DISCORONA,2,4
 Graveyard
-    AUDINO,121
-    AUDINO,121
-    AUDINO,121
-    AUDINO,121
-    AUDINO,121
-    AUDINO,121
-    AUDINO,121
-    AUDINO,121
-    AUDINO,121
-    AUDINO,121
-    AUDINO,121
-    AUDINO,121
+    AUDINO,90
+    AUDINO,90
+    AUDINO,90
+    AUDINO,90
+    AUDINO,90
+    AUDINO,90
+    AUDINO,90
+    AUDINO,90
+    AUDINO,90
+    AUDINO,90
+    AUDINO,90
+    AUDINO,90

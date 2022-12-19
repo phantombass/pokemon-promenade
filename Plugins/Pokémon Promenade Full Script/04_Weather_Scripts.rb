@@ -114,7 +114,7 @@ GameData::Weather.register({
   :id_number        => 13,
   :category         => :Eclipse,
   :tone_proc        => proc{ |strength|
-    next Tone.new(-strength * 11 / 4, -strength * 11 / 4, -strength * 11 / 4, 20)
+    next Tone.new(-strength * 9 / 4, -strength * 9 / 4, -strength * 9 / 4, 20)
   }
 })
 GameData::Weather.register({

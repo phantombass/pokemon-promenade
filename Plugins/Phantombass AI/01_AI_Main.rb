@@ -1441,6 +1441,17 @@ class PBAI
       return false
     end
 
+    def can_switch?
+      party = @ai.battle.pbParty(self.battler.index)
+      fainted = 0
+      for i in party
+        fainted += 1
+      end
+      return false if fainted == party.length - 1
+      return false if self.trapped?
+      return true
+    end
+
     def trapped?
 			return self.effects[PBEffects::Trapping] > 0
 		end

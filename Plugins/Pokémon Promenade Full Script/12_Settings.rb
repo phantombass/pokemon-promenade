@@ -56,8 +56,8 @@ Settings::MENU_WINDOWSKINS = [
     "frlgtextskin"
   ]
 Settings::FIELD_MOVES_COUNT_BADGES = false
-Settings::MAXIMUM_LEVEL = 150
-Settings::GAME_VERSION = "0.9.0"
+Settings::MAXIMUM_LEVEL = 100
+Settings::GAME_VERSION = "1.0.0"
 
 module Settings
   def self.storage_creator_name
@@ -72,17 +72,7 @@ module Settings
   end
 end
 
-def post_demo_release
-  $game_switches[184] = true
-  if $game_switches[142] == false
-    pbMessage(_INTL("You have unlocked the post-demo content!"))
-    if $game_switches[128] == true
-      pbMessage(_INTL("Please make your way to Mauselynx Alley!"))
-    end
-    $game_switches[141] = true
-    $game_switches[142] = true
-  end
-  if $game_switches[184] == true && $game_switches[187] == false && $game_switches[161] == true
-    $game_switches[187] = true
-  end
+def final_release
+  $game_switches[184] = false if $game_switches[161] == false
+
 end

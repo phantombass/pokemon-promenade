@@ -445,11 +445,11 @@ PBAI::ScoreHandler.add do |score, ai, user, target, move|
     if choiced_move == move.id
       score += 500
       PBAI.log("+ 500 for being Choice locked")
-      if !ai.battle.pbCanSwitch?(user.battler.index)
+      if !user.can_switch?
         score += 1000
         PBAI.log("+ 1000 for being Choice locked and unable to switch")
       end
-      if ai.battle.pbCanSwitch?(user.battler.index) && user.get_move_damage(target, move) < target.totalhp/4
+      if user.can_switch? && user.get_move_damage(target, move) < target.totalhp/4
         score = 0
         PBAI.log("* 0 to encourage switching when Choice Locked into something bad")
       end

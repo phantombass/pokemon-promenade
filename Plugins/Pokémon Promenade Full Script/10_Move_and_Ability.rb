@@ -1584,6 +1584,46 @@ class PokeBattle_Battler
     end
     return false
   end
+  def pbCanLowerStatStage?(stat,user=nil,move=nil,showFailMsg=false,ignoreContrary=false)
+    return false if fainted?
+    return false if hasActiveAbility?(:UNSHAKEN)
+    return false if hasActiveItem?(:UNSHAKENORB)
+    # Contrary
+    if hasActiveAbility?(:CONTRARY) && !ignoreContrary && !@battle.moldBreaker
+      return pbCanRaiseStatStage?(stat,user,move,showFailMsg,true)
+    end
+    if !user || user.index!=@index   # Not self-inflicted
+      if @effects[PBEffects::Substitute]>0 && !(move && move.ignoresSubstitute?(user))
+        @battle.pbDisplay(_INTL("{1} is protected by its substitute!",pbThis)) if showFailMsg
+        return false
+      end
+      if pbOwnSide.effects[PBEffects::Mist]>0 &&
+         !(user && user.hasActiveAbility?(:INFILTRATOR))
+        @battle.pbDisplay(_INTL("{1} is protected by Mist!",pbThis)) if showFailMsg
+        return false
+      end
+      if abilityActive?
+        return false if BattleHandlers.triggerStatLossImmunityAbility(
+           self.ability,self,stat,@battle,showFailMsg) if !@battle.moldBreaker
+        return false if BattleHandlers.triggerStatLossImmunityAbilityNonIgnorable(
+           self.ability,self,stat,@battle,showFailMsg)
+      end
+      if !@battle.moldBreaker
+        eachAlly do |b|
+          next if !b.abilityActive?
+          return false if BattleHandlers.triggerStatLossImmunityAllyAbility(
+             b.ability,b,self,stat,@battle,showFailMsg)
+        end
+      end
+    end
+    # Check the stat stage
+    if statStageAtMin?(stat)
+      @battle.pbDisplay(_INTL("{1}'s {2} won't go any lower!",
+         pbThis, GameData::Stat.get(stat).name)) if showFailMsg
+      return false
+    end
+    return true
+  end
   def hasUtilityUmbrella?
     return hasActiveItem?(:UTILITYUMBRELLA)
   end

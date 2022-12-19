@@ -244,6 +244,7 @@ module BattleScripts
               @sprites["battlebg"].reconfigure(:MAGMA, :DISTORTION)
               @battle.field.defaultWeather = :HarshSun
               @battle.field.weather = :HarshSun
+              @battle.field.weatherDuration = -1
               @scene.pbDisplay("The sun returned and intensified!")
               @scene.wait(16,false)
               EliteBattle.playCommonAnimation(:BURN,@scene,0)
@@ -261,6 +262,7 @@ module BattleScripts
               @sprites["battlebg"].reconfigure(:UNDERWATER, :DISTORTION)
               @battle.field.defaultWeather = :HeavyRain
               @battle.field.weather = :HeavyRain
+              @battle.field.weatherDuration = -1
               @scene.pbDisplay("The rain returned and intensified!")
               @scene.wait(16,false)
               if @battle.battlers[0].pbOwnSide.effects[PBEffects::StealthRock] == false

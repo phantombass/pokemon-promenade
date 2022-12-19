@@ -53,6 +53,7 @@ end
 
 Events.onMapChange += proc {| sender, e |
     $game_switches[350] = false
+    final_release
     # Weather Setting
     time = pbGetTimeNow
     $game_variables[DailyWeather::LastTime] = time.day

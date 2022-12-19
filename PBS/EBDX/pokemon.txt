@@ -4055,32 +4055,32 @@ BattlerAltitude = 1
 BattlerEnemyY   = 16
 #-------------------------------
 [ALKALEON]
-SpriteScaleEnemy = 1
-SpriteScalePlayer = 1
+SpriteScaleEnemy = 0.7
+SpriteScalePlayer = 0.7
 BattlerEnemyY   = 26
 BattlerPlayerY = 26
 #-------------------------------
 [DRAKEON]
-SpriteScaleEnemy = 1
-SpriteScalePlayer = 1
+SpriteScaleEnemy = 0.7
+SpriteScalePlayer = 0.7
 BattlerEnemyY   = 26
 BattlerPlayerY = 26
 #-------------------------------
 [ASTREON]
-SpriteScaleEnemy = 1
-SpriteScalePlayer = 1
-BattlerEnemyY   = 26
+SpriteScaleEnemy = 0.7
+SpriteScalePlayer = 0.7
+BattlerEnemyY   = 21
 BattlerPlayerY = 26
 #-------------------------------
 [ARCHAEON]
-SpriteScaleEnemy = 1
-SpriteScalePlayer = 1
-BattlerEnemyY   = 26
+SpriteScaleEnemy = 0.7
+SpriteScalePlayer = 0.7
+BattlerEnemyY   = 16
 BattlerPlayerY = 26
 #-------------------------------
 [PHONEON]
-SpriteScaleEnemy = 1
-SpriteScalePlayer = 1
+SpriteScaleEnemy = 0.7
+SpriteScalePlayer = 0.7
 BattlerEnemyY   = 26
 BattlerPlayerY = 26
 #-------------------------------
