@@ -1096,24 +1096,19 @@ BattleHandlers::EORHealingAbility.add(:RESURGENCE,
 
 BattleHandlers::EORHealingAbility.add(:ASPIRANT,
   proc { |ability,battler,battle|
-    wishHeal = $game_variables[103]
-    $game_variables[101] -= 1
-    if $game_variables[101]==0
-      wishMaker = $game_variables[102]
-      battler.pbRecoverHP(wishHeal)
-      battle.pbDisplay(_INTL("{1}'s wish came true!",wishMaker))
-    end
-    next if $game_variables[101]>0
-    if $game_variables[101]<0
+    next if battle.positions[battler.index].effects[PBEffects::Wish] == 1
+    battle.positions[battler.index].effects[PBEffects::Wish] -= 1
+    $aspirantBattler = battler.pbThis
+    next if battle.positions[battler.index].effects[PBEffects::Wish]>0
+    if battle.positions[battler.index].effects[PBEffects::Wish]<0
       battle.pbShowAbilitySplash(battler)
       if PokeBattle_SceneConstants::USE_ABILITY_SPLASH
-        $game_variables[103] = (battler.totalhp/2)
-        $game_variables[102] = battler.pbThis
-        $game_variables[101] += 2
-        battle.pbDisplay(_INTL("{1} made a wish!",battler.pbThis))
+        battle.positions[battler.index].effects[PBEffects::WishAmount] = (battler.totalhp/2)
+        battle.pbDisplay(_INTL("{1} made a wish!",$aspirantBattler))
       else
-        battle.pbDisplay(_INTL("{1} made a wish with {2}",battler.pbThis,battler.abilityName))
+        battle.pbDisplay(_INTL("{1} made a wish with {2}",$aspirantBattler,battler.abilityName))
       end
+      battle.positions[battler.index].effects[PBEffects::Wish] = 2
     end
     battle.pbHideAbilitySplash(battler)
   }
@@ -3807,6 +3802,15 @@ class PokeBattle_Battle
       BattleHandlers.triggerEORHealingAbility(b.ability,b,self) if b.abilityActive?
       # Black Sludge, Leftovers
       BattleHandlers.triggerEORHealingItem(b.item,b,self) if b.itemActive?
+    end
+    #Aspirant
+    @positions.each_with_index do |pos,idxPos|
+      next if pos.effects[PBEffects::Wish] != 1
+      pos.effects[PBEffects::Wish] -= 1
+      next if !@battlers[idxPos] || !@battlers[idxPos].canHeal?
+      wishMaker = $aspirantBattler
+      @battlers[idxPos].pbRecoverHP(pos.effects[PBEffects::WishAmount])
+      pbDisplay(_INTL("{1}'s wish came true!",wishMaker))
     end
     # Aqua Ring
     priority.each do |b|
