@@ -53,6 +53,11 @@ end
 
 Events.onMapChange += proc {| sender, e |
     $game_switches[350] = false
+    vroad = [255,259,260,264,265,266,267,268]
+    if vroad.include?($game_map.map_id)
+      $GameSpeed = 0
+      $CanToggle = false
+    end
     final_release
     # Weather Setting
     time = pbGetTimeNow
@@ -86,6 +91,13 @@ Events.onWildPokemonCreate+=proc {|sender,e|
   abilRand = rand(100)
   if abilRand > 80 && $game_map.map_id == 281 && $currentDexSearch == nil
     pokemon.ability_index = 2
+  end
+  mlv = $Trainer.party.map { |e| e.level  }.max
+  if $game_switches[114]
+    level = mlv - 1 - rand(2)
+    pokemon.level = level <= 0 ? 1 : level
+    pokemon.calc_stats
+    pokemon.reset_moves
   end
 }
 
