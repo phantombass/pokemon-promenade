@@ -1,12 +1,3 @@
-################################################################################
-# Advanced Pokemon Level Balancing
-# By Joltik
-#Inspired by Umbreon's code
-#Tweaked by Phantombass for use in Pokémon Promenade
-################################################################################
-################################################################################
-
-
 module LvlCap
   Switch = 111               #Switch that turns on Trainer Difficulty Control
   LevelCap = 106             #Variable for the Level Cap

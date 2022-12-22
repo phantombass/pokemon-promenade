@@ -503,8 +503,7 @@ Events.onMapChanging +=proc {|_sender,e|
 }
 
 Events.onWildPokemonCreate+=proc {|sender,e|
-    pokemon=e[0]
-    mlv = $Trainer.party.map { |e| e.level  }.max
+    pokemon=e[0]      
     # Checks current search value, if it exists, sets the Pokemon to it
     if $currentDexSearch != nil
       mapid = $game_map.map_id

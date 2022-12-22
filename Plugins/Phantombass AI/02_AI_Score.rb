@@ -1894,20 +1894,11 @@ PBAI::ScoreHandler.add("0EA") do |score, ai, user, target, move|
   next score
 end
 
-#Beat Up for Doubles Mini Boss
-PBAI::ScoreHandler.add("0C1") do |score, ai, user, target, move|
-  if user.role.id == :TARGETALLY && move.id == :BEATUP2
-    score += 200
-    PBAI.log("+ 200 for being a #{user.role.name}")
-  end
-  next score
-end
-
-#Tempest Rage for Primal Castform
+#Weather Ball, Tempest Rage, Barometer Bomb for Formeteos
 PBAI::ScoreHandler.add("087") do |score, ai, user, target, move|
-  if user.battler.species == :CASTFORM && user.battler.form == 1 && move.id == :TEMPESTRAGE
+  if user.battler.species == :FORMETEOS
     score += 50
-    PBAI.log("+ 50 because the move changes type and weather to match well vs target")
+    PBAI.log("+ 50 because ability will change weather to make this Super Effective")
   end
   next score
 end
@@ -1998,19 +1989,6 @@ PBAI::ScoreHandler.add("03F","03C","03B","03E","15F","193","114") do |score, ai,
   next score
 end
 
-#Bonemerang
-PBAI::ScoreHandler.add("520") do |score, ai, user, target, move|
-  if target.pbHasType?(:FLYING)
-    score += 50
-    PBAI.log("+ 50 for being effective against Flying types")
-  end
-  if target.hasActiveAbility?(:LEVITATE) && target.pbHasType?([:FIRE,:ELECTRIC,:ROCK,:STEEL])
-    score += 50
-    PBAI.log("+ 50 for move ignoring abilities and potentially being strong against target")
-  end
-  next score
-end
-
 #Perfection Pulse
 PBAI::ScoreHandler.add("504") do |score, ai, user, target, move|
   if target.pbHasType?(:FAIRY)
@@ -2025,15 +2003,6 @@ PBAI::ScoreHandler.add("505") do |score, ai, user, target, move|
   if target.pbHasType?(:ELECTRIC)
     score += 50
     PBAI.log("+ 50 for being super effective against Electric types")
-  end
-  next score
-end
-
-#Stone Axe
-PBAI::ScoreHandler.add("512") do |score, ai, user, target, move|
-  if user.opposing_side.effects[PBEffects::StealthRock] != true
-    score += 50
-    PBAI.log("+ 50 for being able to set Stealth Rocks")
   end
   next score
 end
@@ -2106,7 +2075,7 @@ PBAI::ScoreHandler.add("190") do |score, ai, user, target, move|
     end
     if ally == true
       weak_to_psychic = true if (b.pbHasType?([:POISON,:COSMIC,:FIGHTING]) && !b.pbHasType?(:DARK))
-      resists_psychic = true if (b.pbHasType?([:DARK,:STEEL,:PSYCHIC]) || b.hasActiveAbility?(:TELEPATHY))
+      resists_psychic = true if (b.pbHasType?([:DARK,:STEEL,:PSYCHIC,:SOUND]) || b.hasActiveAbility?(:TELEPATHY))
       weak_to_psychic = false if resists_psychic == true
       if ai.battle.pbSideSize(0) == 2
         if weak_to_psychic
@@ -2193,18 +2162,5 @@ PBAI::ScoreHandler.add("036") do |score, ai, user, target, move|
         PBAI.log("* 0 because we outspeed and Special Attackers don't factor Attack")
       end
     end
-  next score
-end
-
-#Rolling Fog
-PBAI::ScoreHandler.add("521") do |score, ai, user, target, move|
-  if ai.battle.field.terrain == :Misty
-    score += 100
-    PBAI.log("+ 100 for double power in Misty Terrain")
-  end
-  if ai.battle.pbSideSize(0) == 2
-    score += 50
-    PBAI.log("+ 50 for hitting both targets")
-  end
   next score
 end

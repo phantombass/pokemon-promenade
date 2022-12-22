@@ -252,6 +252,16 @@ class PBAI
       return @battler.role
     end
 
+    def defensive?
+      return true if [:SCREENS,:PIVOT,:PHYSICALWALL,:SPECIALWALL,:TOXICSTALLER,:STALLBREAKER,:TRICKROOMSETTER,:TARGETALLY,:REDIRECTION,:CLERIC,:HAZARDLEAD,:SKILLSWAPALLY].include?(@battler.role.id)
+      return false
+    end
+
+    def setup?
+      return true if [:SETUPSWEEPER,:WINCON].include?(@battler.role.id)
+      return false
+    end
+
     def totalhp
       return @battler.totalhp
     end
@@ -352,7 +362,7 @@ class PBAI
       # Count the number of physical moves
       physcount = 0
       attackBoosters = 0
-      self.moves.each do |move|
+      @battler.moves.each do |move|
         next if move.pp == 0
         physcount += 1 if move.physicalMove?
         if move.statUp
@@ -393,7 +403,7 @@ class PBAI
       # Count the number of physical moves
       speccount = 0
       spatkBoosters = 0
-      self.moves.each do |move|
+      @battler.moves.each do |move|
         next if move.pp == 0
         speccount += 1 if move.specialMove?
         if move.statUp
@@ -950,7 +960,7 @@ class PBAI
         # Since this makes status moves unlikely to be chosen when the other moves
         # have a high base power, all status moves should ideally be addressed individually
         # in this method, and used in the optimal scenario for each individual move.
-        score = [:PIVOT,:PHYSICALWALL,:SPECIALWALL,:SETUPSWEEPER,:TOXICSTALLER,:STALLBREAKER,:TRICKROOMSETTER,:TARGETALLY].include?(self.role.id) ? 100 : 30
+        score = (self.defensive? || self.setup?) ? 100 : 30
         PBAI.log("Test move #{move.name} (#{score})...")
         # Trigger general score modifier code
         score = PBAI::ScoreHandler.trigger_general(score, @ai, self, target, move)
@@ -1442,13 +1452,12 @@ class PBAI
     end
 
     def can_switch?
-      party = @ai.battle.pbParty(self.battler.index)
+      party = @battle.pbParty(battler.index)
       fainted = 0
       for i in party
-        fainted += 1
+        fainted += 1 if i.fainted?
       end
       return false if fainted == party.length - 1
-      return false if self.trapped?
       return true
     end
 
