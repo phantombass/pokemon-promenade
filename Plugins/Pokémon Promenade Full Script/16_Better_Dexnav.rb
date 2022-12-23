@@ -522,6 +522,7 @@ Events.onWildPokemonCreate+=proc {|sender,e|
           $chainNav[1]=1
         end
         $chain = $chainNav[1]
+        mlv = $Trainer.party.map { |e| e.level  }.max
         pokemon.level = mlv - 1 - rand(2)
         pokemon.item = $game_variables[401]
         pokemon.name=GameData::Species.get(pokemon.species).name
