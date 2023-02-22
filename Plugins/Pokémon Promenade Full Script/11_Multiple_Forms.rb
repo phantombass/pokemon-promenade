@@ -56,36 +56,6 @@ GameData::Evolution.register({
   }
 })
 
-GameData::Evolution.register({
-  :id            => :ZharoPoochyena,
-  :parameter     => Integer,
-  :minimum_level => 1,   # Needs any level up
-  :level_up_proc => proc { |pkmn, parameter|
-    map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
-    next map_metadata.town_map_position[0] == 0 && pkmn.level >= parameter
-  }
-})
-
-GameData::Evolution.register({
-  :id            => :ZharoPhanpy,
-  :parameter     => Integer,
-  :minimum_level => 1,   # Needs any level up
-  :level_up_proc => proc { |pkmn, parameter|
-    map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
-    next map_metadata.town_map_position[0] == 0 && pkmn.level >= parameter
-  }
-})
-
-GameData::Evolution.register({
-  :id            => :ZharoDrowzee,
-  :parameter     => Integer,
-  :minimum_level => 1,   # Needs any level up
-  :level_up_proc => proc { |pkmn, parameter|
-    map_metadata = GameData::MapMetadata.try_get($game_map.map_id)
-    next map_metadata.town_map_position[0] == 0 && pkmn.level >= parameter
-  }
-})
-
 class PokeBattle_Battler
   def pbCheckFormOnWeatherChange
     return if fainted? || @effects[PBEffects::Transform] || (!isSpecies?(:ALTEMPER) && !isSpecies?(:CASTFORM) && !isSpecies?(:CHERRIM) && !isSpecies?(:FORMETEOS))

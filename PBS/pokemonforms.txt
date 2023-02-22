@@ -2007,7 +2007,10 @@ Evolutions = LUCARIO,Fishoos,118
 Evolutions = LOPUNNY,Item,BLACKBELT
 #-------------------------------
 [POOCHYENA,1]
-Evolutions = HYENASTY,ZharoPoochyena,18
+Evolutions = HYENASTY,Level,18
+#-------------------------------
+[PHANPY,1]
+Evolutions = PHANFAIR,Level,25
 #-------------------------------
 [LOPUNNY,2]
 FormName = Zharonian
@@ -2070,7 +2073,7 @@ BattlerEnemyX = -3
 BattlerEnemyY = 17
 BattlerShadowX = 0
 BattlerShadowSize = 2
-Evolutions = YESOMNIA,ZharoDrowzee,26
+Evolutions = YESOMNIA,Level,26
 #-------------------------------
 [TRAPINCH,1]
 FormName = Zharonian
