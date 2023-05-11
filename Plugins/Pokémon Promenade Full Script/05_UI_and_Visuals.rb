@@ -400,6 +400,7 @@ class PokemonPauseMenu
             pbMessage(_INTL("<c2=7FE00000>You are already searching!</c2>"))
             pbShowMenu
           else
+            Game.save
             @scene = NewDexNav.new
           end
           return
