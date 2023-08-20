@@ -4,7 +4,7 @@
 module Settings
   LEVEL_CAP_SWITCH = 904
   FISHING_AUTO_HOOK     = true
-  GAME_VERSION = '1.1.0'
+  GAME_VERSION = '1.1.1'
 end
 
 Essentials::ERROR_TEXT += "[Pokémon Promenade v#{Settings::GAME_VERSION}]\r\n"
