@@ -22,7 +22,7 @@ class PokeBattle_Battler
     @hp = @totalhp  = 0
     @type1 = @type2 = nil
     @ability_id     = nil
-    @role           = nil
+    @roles           = nil
     @item_id        = nil
     @gender         = 0
     @attack = @defense = @spatk = @spdef = @speed = 0
@@ -47,7 +47,7 @@ class PokeBattle_Battler
     @totalhp      = pkmn.totalhp
     @type1        = pkmn.type1
     @type2        = pkmn.type2
-    @role         = pkmn.role
+    @roles         = pkmn.roles
     # ability and item intentionally not copied across here
     @gender       = pkmn.gender
     @attack       = pkmn.attack
@@ -84,7 +84,7 @@ class PokeBattle_Battler
     @type2        = pkmn.type2
     @ability_id   = pkmn.ability_id
     @item_id      = pkmn.item_id
-    @role         = pkmn.role
+    @roles         = pkmn.roles
     @gender       = pkmn.gender
     @attack       = pkmn.attack
     @defense      = pkmn.defense

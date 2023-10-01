@@ -116,6 +116,13 @@ begin
     WaterSport          = 110
     WeightChange        = 111
     Yawn                = 112
+    GorillaTactics      = 113
+    BallFetch           = 114
+    NoRetreat           = 115
+    Obstruct            = 116
+    JawLock             = 117
+    Octolock            = 118
+    TarShot             = 119
 
     #===========================================================================
     # These effects apply to a battler position

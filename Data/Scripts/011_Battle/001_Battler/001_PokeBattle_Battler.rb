@@ -42,7 +42,7 @@ class PokeBattle_Battler
   attr_accessor :tookPhysicalHit
   attr_accessor :damageState
   attr_accessor :initialHP     # Set at the start of each move's usage
-  attr_accessor :role
+  attr_accessor :roles
 
   #=============================================================================
   # Complex accessors
@@ -129,14 +129,27 @@ class PokeBattle_Battler
   def happiness;    return @pokemon ? @pokemon.happiness : 0;    end
   def nature;       return @pokemon ? @pokemon.nature : 0;       end
   def pokerusStage; return @pokemon ? @pokemon.pokerusStage : 0; end
-  def role
-    @role = :NONE if (@role == "" || @role == nil)
-    return GameData::Role.try_get(@role)
+  def roles
+    @roles.push(:NONE) if (@roles == "" || @roles == nil)
+    return @roles
+  end
+
+  def has_role?(role)
+    x = []
+    for i in @roles
+      x.push(i)
+      if role.is_a?(Array)
+        if role.include?(i)
+          return true
+        end
+      end
+    end
+    return x.include?(role) && !role.is_a?(Array)
   end
 
   def role=(value)
     new_role = GameData::Role.try_get(value)
-    @role = (new_role) ? new_role.id : nil
+    @roles.push(new_role) ? new_role.id : nil
   end
   #=============================================================================
   # Mega Evolution, Primal Reversion, Shadow Pokémon
@@ -594,6 +607,18 @@ class PokeBattle_Battler
     return true if @effects[PBEffects::Outrage]>0
     return true if @effects[PBEffects::Uproar]>0
     return true if @effects[PBEffects::Bide]>0
+    return false
+  end
+
+  def trappedInBattle?
+    return true if @effects[PBEffects::Trapping] > 0
+    return true if @effects[PBEffects::MeanLook] >= 0
+    return true if @effects[PBEffects::JawLock] >= 0
+    @battle.eachBattler { |b| return true if b.effects[PBEffects::JawLock] == @index }
+    return true if @effects[PBEffects::Octolock] >= 0
+    return true if @effects[PBEffects::Ingrain]
+    return true if @effects[PBEffects::NoRetreat]
+    return true if @battle.field.effects[PBEffects::FairyLock] > 0
     return false
   end
 

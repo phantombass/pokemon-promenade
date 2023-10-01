@@ -112,6 +112,9 @@ class PokeBattle_Scene
       # Actions
       if Input.trigger?(Input::USE)      # Confirm choice
         pbPlayDecisionSE
+        $spam_block_flags[:same_move].push(battler.moves[cw.index]) if !@battle.doublebattle
+        $spam_block_flags[:choice] = battler.moves[cw.index]
+        $spam_block_flags[:triple_switch].clear
         break if yield cw.index
         needFullRefresh = true
         needRefresh = true

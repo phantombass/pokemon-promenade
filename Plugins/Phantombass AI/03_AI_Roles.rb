@@ -56,15 +56,15 @@ GameData::Role.register({
 })
 
 GameData::Role.register({
-  :id           => :SUICIDELEAD,
+  :id           => :TANK,
   :id_number    => 5,
-  :name         => _INTL("Suicide Lead")
+  :name         => _INTL("Tank")
 })
 
 GameData::Role.register({
-  :id           => :HAZARDLEAD,
-  :id_number    => 6,
-  :name         => _INTL("Hazard Lead")
+  :id           => :LEAD,
+  :id_number    => 5,
+  :name         => _INTL("Lead")
 })
 
 GameData::Role.register({
@@ -104,9 +104,9 @@ GameData::Role.register({
 })
 
 GameData::Role.register({
-  :id           => :PIVOT,
+  :id           => :DEFENSIVEPIVOT,
   :id_number    => 13,
-  :name         => _INTL("Pivot")
+  :name         => _INTL("Defensive Pivot")
 })
 
 GameData::Role.register({
@@ -144,3 +144,67 @@ GameData::Role.register({
   :id_number    => 19,
   :name         => _INTL("Trick Room Setter")
 })
+
+GameData::Role.register({
+  :id           => :OFFENSIVEPIVOT,
+  :id_number    => 20,
+  :name         => _INTL("Offensive Pivot")
+})
+
+GameData::Role.register({
+  :id           => :STATUSABSORBER,
+  :id_number    => 21,
+  :name         => _INTL("Status Absorber")
+})
+
+GameData::Role.register({
+  :id           => :WEATHERTERRAIN,
+  :id_number    => 22,
+  :name         => _INTL("Weather/Terrain Setter")
+})
+
+GameData::Role.register({
+  :id           => :TRAPPER,
+  :id_number    => 23,
+  :name         => _INTL("Trapper")
+})
+
+GameData::Role.register({
+  :id           => :PHAZER,
+  :id_number    => 24,
+  :name         => _INTL("Phazer")
+})
+
+GameData::Role.register({
+  :id           => :SUPPORT,
+  :id_number    => 25,
+  :name         => _INTL("Support")
+})
+
+GameData::Role.register({
+  :id           => :WEATHERTERRAINABUSER,
+  :id_number    => 26,
+  :name         => _INTL("Weather/Terrain Abuser")
+})
+
+GameData::Role.register({
+  :id           => :STATPASS,
+  :id_number    => 27,
+  :name         => _INTL("Stat Pass")
+})
+
+class Pokemon
+  attr_accessor :roles
+  def roles
+    @roles = [] if @roles.nil?
+    @roles.push(:NONE) if (@roles == [] || @roles == nil)
+    return @roles
+  end
+
+  def add_role(value)
+    return if value && !GameData::Role.exists?(value)
+    @roles = [] if @roles.nil?
+    @roles.push(:NONE) if !value
+    @roles.push(GameData::Role.get(value).id)
+  end
+end

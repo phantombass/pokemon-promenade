@@ -83,6 +83,7 @@ class PokeBattle_Battle
   attr_reader   :endOfRound       # True during the end of round
   attr_accessor :moldBreaker      # True if Mold Breaker applies
   attr_reader   :struggle         # The Struggle move
+  attr_accessor :doublebattle
 
   include PokeBattle_BattleCommon
 
@@ -138,6 +139,7 @@ class PokeBattle_Battle
     @rules             = {}
     @priority          = []
     @priorityTrickRoom = false
+    @doublebattle      = false
     @choices           = []
     @megaEvolution     = [
        [-1] * (@player ? @player.length : 1),
@@ -489,6 +491,7 @@ class PokeBattle_Battle
         return [0,2] if opposes?(idxBattler)
         return [1]
       when 2   # 2v2 double
+        @doublebattle = true
         return [[3,1],[2,0],[1,3],[0,2]][idxBattler]
       when 3   # 2v3
         return [[5,3,1],[2,0],[3,1,5]][idxBattler] if idxBattler<3

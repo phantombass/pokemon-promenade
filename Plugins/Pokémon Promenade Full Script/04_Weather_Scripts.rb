@@ -800,7 +800,7 @@ class PokemonWeatherScreen
 	  if $game_variables[71]>=1
           pbMessage(_INTL("Weather: Distortion World - Ashfall"))
           pbMessage(_INTL("Weather Ball Type: Fighting"))
-          pbMessage(_INTL("Additional Effects: Fighting types gain a 30% boost in Defense"))
+          pbMessage(_INTL("Additional Effects: Fighting types gain a boost in Special Defense"))
           else
             pbMessage(_INTL("No Readout Installed for this Weather"))
           end

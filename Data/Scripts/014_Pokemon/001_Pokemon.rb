@@ -80,7 +80,7 @@ class Pokemon
   attr_accessor :fused
   # @return [Integer] this Pokémon's personal ID
   attr_accessor :personalID
-  attr_accessor :role
+  attr_accessor :roles
 
   # Max total IVs
   IV_STAT_LIMIT = 31
@@ -463,17 +463,6 @@ class Pokemon
 
   def nature_id
     return @nature
-  end
-
-  def role
-    @role = :NONE if (@role == "" || @role == nil)
-    return GameData::Role.try_get(@role)
-  end
-
-  def role=(value)
-    return if value && !GameData::Role.exists?(value)
-    @role = :NONE if !value
-    @role = (value) ? GameData::Role.get(value).id : value
   end
 
   # Sets this Pokémon's nature to a particular nature.
