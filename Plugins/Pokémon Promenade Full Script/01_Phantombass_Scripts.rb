@@ -4,7 +4,8 @@
 module Settings
   LEVEL_CAP_SWITCH = 904
   FISHING_AUTO_HOOK     = true
-  GAME_VERSION = '1.2.0'
+  GAME_VERSION = '1.3.0'
+  DISABLE_EVS = 917
 end
 
 Essentials::ERROR_TEXT += "[Pokémon Promenade v#{Settings::GAME_VERSION}]\r\n"
@@ -437,6 +438,41 @@ class PokeBattle_Battle
     return @decision
   end
 
+  def pbGainEVsOne(idxParty,defeatedBattler)
+    if !$game_switches[Settings::DISABLE_EVS]
+      pkmn = pbParty(0)[idxParty]   # The Pokémon gaining EVs from defeatedBattler
+      evYield = defeatedBattler.pokemon.evYield
+      # Num of effort points pkmn already has
+      evTotal = 0
+      GameData::Stat.each_main { |s| evTotal += pkmn.ev[s.id] }
+      # Modify EV yield based on pkmn's held item
+      if !BattleHandlers.triggerEVGainModifierItem(pkmn.item,pkmn,evYield)
+        BattleHandlers.triggerEVGainModifierItem(@initialItems[0][idxParty],pkmn,evYield)
+      end
+      # Double EV gain because of Pokérus
+      if pkmn.pokerusStage>=1   # Infected or cured
+        evYield.each_key { |stat| evYield[stat] *= 2 }
+      end
+      # Gain EVs for each stat in turn
+      if pkmn.shadowPokemon? && pkmn.saved_ev
+        pkmn.saved_ev.each_value { |e| evTotal += e }
+        GameData::Stat.each_main do |s|
+          evGain = evYield[s.id].clamp(0, Pokemon::EV_STAT_LIMIT - pkmn.ev[s.id] - pkmn.saved_ev[s.id])
+          evGain = evGain.clamp(0, Pokemon::EV_LIMIT - evTotal)
+          pkmn.saved_ev[s.id] += evGain
+          evTotal += evGain
+        end
+      else
+        GameData::Stat.each_main do |s|
+          evGain = evYield[s.id].clamp(0, Pokemon::EV_STAT_LIMIT - pkmn.ev[s.id])
+          evGain = evGain.clamp(0, Pokemon::EV_LIMIT - evTotal)
+          pkmn.ev[s.id] += evGain
+          evTotal += evGain
+        end
+      end
+    end
+  end
+
   def pbGainExpOne(idxParty,defeatedBattler,numPartic,expShare,expAll,showMessages=true)
     pkmn = pbParty(0)[idxParty]   # The Pokémon gaining EVs from defeatedBattler
     growth_rate = pkmn.growth_rate
@@ -819,6 +855,108 @@ class PokeBattle_Battle
         next if !b.pbOwnSide.effects[PBEffects::StealthRock] && b.pbOwnSide.effects[PBEffects::Spikes] == 0 && !b.pbOwnSide.effects[PBEffects::CometShards] && !b.pbOwnSide.effects[PBEffects::StickyWeb] && b.pbOwnSide.effects[PBEffects::ToxicSpikes] == 0
         b.removeAllHazards
       end
+    end
+  end
+end
+
+module PokeBattle_BattleCommon
+  def pbThrowPokeBall(idxBattler,ball,catch_rate=nil,showPlayer=false)
+    # Determine which Pokémon you're throwing the Poké Ball at
+    battler = nil
+    if opposes?(idxBattler)
+      battler = @battlers[idxBattler]
+    else
+      battler = @battlers[idxBattler].pbDirectOpposing(true)
+    end
+    if battler.fainted?
+      battler.eachAlly do |b|
+        battler = b
+        break
+      end
+    end
+    # Messages
+    itemName = GameData::Item.get(ball).name
+    if battler.fainted?
+      if itemName.starts_with_vowel?
+        pbDisplay(_INTL("{1} threw an {2}!",pbPlayer.name,itemName))
+      else
+        pbDisplay(_INTL("{1} threw a {2}!",pbPlayer.name,itemName))
+      end
+      pbDisplay(_INTL("But there was no target..."))
+      return
+    end
+    if itemName.starts_with_vowel?
+      pbDisplayBrief(_INTL("{1} threw an {2}!",pbPlayer.name,itemName))
+    else
+      pbDisplayBrief(_INTL("{1} threw a {2}!",pbPlayer.name,itemName))
+    end
+    # Animation of opposing trainer blocking Poké Balls (unless it's a Snag Ball
+    # at a Shadow Pokémon)
+    if trainerBattle? && !(GameData::Item.get(ball).is_snag_ball? && battler.shadowPokemon?)
+      @scene.pbThrowAndDeflect(ball,1)
+      pbDisplay(_INTL("The Trainer blocked your Poké Ball! Don't be a thief!"))
+      return
+    end
+    # Calculate the number of shakes (4=capture)
+    pkmn = battler.pokemon
+    @criticalCapture = false
+    numShakes = pbCaptureCalc(pkmn,battler,catch_rate,ball)
+    PBDebug.log("[Threw Poké Ball] #{itemName}, #{numShakes} shakes (4=capture)")
+    # Animation of Ball throw, absorb, shake and capture/burst out
+    @scene.pbThrow(ball,numShakes,@criticalCapture,battler.index,showPlayer)
+    # Ball Fetch
+    
+    # Outcome message
+    case numShakes
+    when 0
+      pbDisplay(_INTL("Oh no! The Pokémon broke free!"))
+      BallHandlers.onFailCatch(ball,self,battler)
+    when 1
+      pbDisplay(_INTL("Aww! It appeared to be caught!"))
+      BallHandlers.onFailCatch(ball,self,battler)
+    when 2
+      pbDisplay(_INTL("Aargh! Almost had it!"))
+      BallHandlers.onFailCatch(ball,self,battler)
+    when 3
+      pbDisplay(_INTL("Gah! It was so close, too!"))
+      BallHandlers.onFailCatch(ball,self,battler)
+    when 4
+      pbDisplayBrief(_INTL("Gotcha! {1} was caught!",pkmn.name))
+      @scene.pbThrowSuccess   # Play capture success jingle
+      pbRemoveFromParty(battler.index,battler.pokemonIndex)
+      # Gain Exp
+      if Settings::GAIN_EXP_FOR_CAPTURE
+        battler.captured = true
+        pbGainExp
+        battler.captured = false
+      end
+      battler.pbReset
+      if pbAllFainted?(battler.index)
+        @decision = (trainerBattle?) ? 1 : 4   # Battle ended by win/capture
+      end
+      # Modify the Pokémon's properties because of the capture
+      if GameData::Item.get(ball).is_snag_ball?
+        pkmn.owner = Pokemon::Owner.new_from_trainer(pbPlayer)
+      end
+      BallHandlers.onCatch(ball,self,pkmn)
+      pkmn.poke_ball = ball
+      pkmn.makeUnmega if pkmn.mega?
+      pkmn.makeUnprimal
+      pkmn.update_shadow_moves if pkmn.shadowPokemon?
+      pkmn.record_first_moves
+      if $game_switches[75]
+        for key in pkmn.iv.keys
+          pkmn.iv[key] = 31
+        end
+      end
+      # Reset form
+      pkmn.forced_form = nil if MultipleForms.hasFunction?(pkmn.species,"getForm")
+      @peer.pbOnLeavingBattle(self,pkmn,true,true)
+      # Make the Poké Ball and data box disappear
+      @scene.pbHideCaptureBall(idxBattler)
+      pbSetBattled(battler)
+      # Save the Pokémon for storage at the end of battle
+      @caughtPokemon.push(pkmn)
     end
   end
 end
