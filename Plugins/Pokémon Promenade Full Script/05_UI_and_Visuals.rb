@@ -719,29 +719,10 @@ class PokemonSummary_Scene
     elsif pkmn.fainted?
       pbMessage(_INTL("This Pokémon can no longer be used in the Nuzlocke."))
     else
-      @scene.pbMessage(_INTL("How would you like to Level Up?\\ch[34,5,To Level Cap,Change Level...,Cancel]"))
-      lvl = $game_variables[34]
-      if lvl == -1 || lvl == 2 || lvl == 3
-        pbPlayCloseMenuSE
-        dorefresh = true
-      end
-      case lvl
-      when 0
-        pkmn.level = LEVEL_CAP[$game_system.level_cap]
-        pkmn.calc_stats
-        dorefresh = true
-      when 1
-        params = ChooseNumberParams.new
-        params.setRange(1, LEVEL_CAP[$game_system.level_cap])
-        params.setDefaultValue(pkmn.level)
-        level = pbMessageChooseNumber(
-           _INTL("Set the Pokémon's level (max. {1}).", params.maxNumber), params) { pbUpdate }
-        if level != pkmn.level
-          pkmn.level = level
-          pkmn.calc_stats
-          dorefresh = true
-        end
-      end
+      pkmn.level = LEVEL_CAP[$game_system.level_cap]
+      pkmn.calc_stats
+      dorefresh = true
+      pbMessage(_INTL("Leveled to the Level Cap!"))
       if dorefresh
         drawPage(@page)
       end
@@ -1036,19 +1017,15 @@ class PokemonSummary_Scene
       min_grind_commands = []
       cmdLevel = -1
       cmdNature = -1
-      cmdStatChange = -1
       cmdAbility = -1
       min_grind_commands[cmdLevel = min_grind_commands.length] = _INTL("Set Level") if (@page == 2 || @page == 3 || @page == 4) && ($game_switches[12] == false)
       min_grind_commands[cmdNature = min_grind_commands.length] = _INTL("Change Nature") if @page == 2 || @page == 3 || @page == 4
-      min_grind_commands[cmdStatChange = min_grind_commands.length] = _INTL("Change EVs/IVs") if @page == 3 || @page == 4
       min_grind_commands[cmdAbility = min_grind_commands.length] = _INTL("Change Ability") if @page == 2 || @page == 3 || @page == 4
       min_command = pbShowCommands(min_grind_commands)
       if cmdLevel>=0 && min_command==cmdLevel
         change_Level
       elsif cmdNature>=0 && min_command==cmdNature
         change_Nature
-      elsif cmdStatChange>=0 && min_command==cmdStatChange
-        change_Stats
       elsif cmdAbility>=0 && min_command==cmdAbility
         change_Ability
       end
