@@ -1979,27 +1979,25 @@ end
 class PokeBattle_Move_0C1 < PokeBattle_Move
   def multiHitMove?; return true; end
 
-  def pbMoveFailed?(user,targets)
+  def pbMoveFailed?(user, targets)
     @beatUpList = []
-    @battle.eachInTeamFromBattlerIndex(user.index) do |pkmn,i|
+    @battle.eachInTeamFromBattlerIndex(user.index) do |pkmn, i|
       next if !pkmn.able? || pkmn.status != :NONE
       @beatUpList.push(i)
     end
-    if @beatUpList.length==0
+    if @beatUpList.length == 0
       @battle.pbDisplay(_INTL("But it failed!"))
       return true
     end
     return false
   end
 
-  def pbNumHits(user,targets)
+  def pbNumHits(user, targets)
     return @beatUpList.length
   end
 
-  def pbBaseDamage(baseDmg,user,target)
-    i = @beatUpList.shift   # First element in array, and removes it from array
-    atk = @battle.pbParty(user.index)[i].baseStats[:ATTACK]
-    return 5+(atk/10)
+  def pbBaseDamage(baseDmg, user, target)
+    return 10
   end
 end
 
