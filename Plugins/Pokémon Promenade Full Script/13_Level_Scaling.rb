@@ -27,6 +27,10 @@ class Level_Scaling
     $game_switches[LvlCap::Guardian] = true
   end
 
+  def self.ace
+    $game_switches[LvlCap::Ace] = true
+  end
+
   def self.rival
     $game_switches[LvlCap::Rival] = true
   end
