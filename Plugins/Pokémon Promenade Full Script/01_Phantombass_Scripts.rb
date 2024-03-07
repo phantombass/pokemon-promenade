@@ -4,7 +4,7 @@
 module Settings
   LEVEL_CAP_SWITCH = 904
   FISHING_AUTO_HOOK     = true
-  GAME_VERSION = '1.3.4'
+  GAME_VERSION = '1.3.5'
   DISABLE_EVS = 917
 end
 
@@ -323,6 +323,7 @@ class PokeBattle_Battle
   end
 
   def pbEndOfBattle
+    Level_Scaling.end_battle
     oldDecision = @decision
     @decision = 4 if @decision==1 && wildBattle? && @caughtPokemon.length>0
     case oldDecision

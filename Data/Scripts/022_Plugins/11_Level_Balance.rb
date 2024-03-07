@@ -5,106 +5,93 @@ module LvlCap
   Rival = 69                 #Switch for Rival Battles
   LvlTrainer = 83
   Rival2 = 85
+  Elite4 = 86
   Ace = 129                  #Switch for Ace Trainer Battles
   Guardian = 189
 end
 
+class Level_Scaling
+  def self.activate
+    $game_switches[LvlCap::Switch] = true
+  end
+
+  def self.level_cap
+    return LEVEL_CAP[$game_system.level_cap]
+  end
+
+  def self.gym
+    $game_switches[LvlCap::Gym] = true
+  end
+
+  def self.guardian
+    $game_switches[LvlCap::Guardian] = true
+  end
+
+  def self.rival
+    $game_switches[LvlCap::Rival] = true
+  end
+
+  def self.rival2
+    $game_switches[LvlCap::Rival2] = true
+  end
+
+  def self.elite4
+    $game_switches[LvlCap::Elite4] = true
+  end
+
+  def self.end_battle
+    switches = [69,70,83,85,86,129,189]
+    switches.each {|switch| $game_switches[switch] = false}
+  end
+
+  def self.trainer_max_level
+    return $Trainer.party.map { |e| e.level  }.max
+  end
+
+  def self.reset_moves?
+    return ($game_switches[LvlCap::Gym] == false && $game_switches[LvlCap::Ace] == false &&
+      $game_switches[LvlCap::LvlTrainer] == false && $game_switches[LvlCap::Guardian] == false &&
+      $game_switches[LvlCap::Rival2] == false && $game_switches[LvlCap::Rival == false])
+  end
+
+end
 
 Events.onTrainerPartyLoad+=proc {| sender, trainer |
    if trainer # Trainer data should exist to be loaded, but may not exist somehow
      party = trainer[0].party   # An array of the trainer's Pokémon
     if $game_switches && $game_switches[LvlCap::Switch] && $Trainer
-       levelcap = LEVEL_CAP[$game_system.level_cap]
+       levelcap = Level_Scaling.level_cap
        badges = $Trainer.badge_count
-       mlv = $Trainer.party.map { |e| e.level  }.max
+       mlv = Level_Scaling.trainer_max_level
       for i in 0...party.length
         level = 0
         level=1 if level<1
-      if mlv<levelcap && mlv < party[i].level && $game_switches[LvlCap::Gym] == true
-        level = levelcap - rand(1)
-      elsif $game_switches[LvlCap::LvlTrainer] == true
-        level = levelcap - 5
-      elsif $game_switches[LvlCap::Rival2] == true
-        level = party[i].level
-      elsif mlv<levelcap && mlv>party[i].level && $game_switches[LvlCap::Rival] == true
-        level = mlv
-      elsif mlv<levelcap && mlv<=party[i].level && $game_switches[LvlCap::Rival] == true
-        level = party[i].level
-      elsif $game_switches[LvlCap::Guardian]
-        level = party[i].level
-      elsif $game_switches[LvlCap::Ace]
-        level = mlv - rand(2)
-      elsif mlv<levelcap && mlv <= party[i].level
-        level = party[i].level
-        level = levelcap if level > levelcap
-      elsif mlv<levelcap && mlv > party[i].level
-        level = (mlv-1) - rand(1)
-        level = levelcap if level > levelcap
-      elsif mlv <= 1 && $game_switches[LvlCap::Rival] == true
-        level = party[i].level
-      else
-        level = levelcap
-      end
-      party[i].level = level
-      #now we evolve the pokémon, if applicable
-      species = party[i].species
-      if badges > 8
-      newspecies = GameData::Species.get(species).get_baby_species # revert to the first evolution
-      evoflag=0 #used to track multiple evos not done by lvl
-      endevo=false
-      loop do #beginning of loop to evolve species
-      nl = level + 5
-      nl = levelcap if nl > levelcap
-      pkmn = Pokemon.new(newspecies, nl)
-      cevo = GameData::Species.get(newspecies).evolutions
-      evo = GameData::Species.get(newspecies).get_evolutions
-      if evo
-        evo = evo[rand(evo.length - 1)]
-        # here we evolve things that don't evolve through level
-        # that's what we check with evo[0]!=4
-        #notice that such species have cevo==-1 and wouldn't pass the last check
-        #to avoid it we set evoflag to 1 (with some randomness) so that
-        #pokemon may have its second evolution (Raichu, for example)
-        if evo && cevo < 1 && rand(50) <= level
-          if evo[0] != 4 && rand(50) <= level
-          newspecies = evo[2]
-             if evoflag == 0 && rand(50) <= level
-               evoflag=1
-             else
-               evoflag=0
-             end
-           end
+        if $game_switches[LvlCap::Gym]
+          level = levelcap - rand(1)
+        elsif $game_switches[LvlCap::Elite4]
+          level = levelcap
+        elsif $game_switches[LvlCap::Rival2]
+          level = party[i].level
+        elsif $game_switches[LvlCap::Rival] && badges == 0
+          level = mlv <= 5 ? 5 : levelcap
+        elsif $game_switches[LvlCap::Rival] && badges > 0
+          level = mlv - rand(1)
+        elsif $game_switches[LvlCap::Ace]
+          level = mlv - 1 - rand(1)
+        elsif $game_switches[LvlCap::Guardian]
+          level = party[i].level
+        elsif $game_switches[LvlCap::LvlTrainer]
+          level =  mlv - 5
         else
-        endevo=true
+          level = mlv - 2 - rand(4)
         end
-      end
-      if evoflag==0 || endevo
-      if  cevo == -1 || rand(50) > level
-        # Breaks if there no more evolutions or randomnly
-        # Randomness applies only if the level is under 50
-        break
-      else
-        newspecies = evo[2]
-      end
-      end
-      end #end of loop do
-    #fixing some things such as Bellossom would turn into Vileplume
-    #check if original species could evolve (Bellosom couldn't)
-    couldevo=GameData::Species.get(species).get_evolutions
-    #check if current species can evolve
-    evo = GameData::Species.get(newspecies).get_evolutions
-      if evo.length<1 && couldevo.length<1
-      else
-         species=newspecies
-      end #end of evolving script
-    end
-      party[i].name=GameData::Species.get(species).name
-      party[i].species=species
-      party[i].calc_stats
-      if $game_switches[LvlCap::Gym] == false && $game_switches[LvlCap::Ace] == false && $game_switches[LvlCap::LvlTrainer] == false && $game_switches[LvlCap::Guardian] == false && $game_switches[LvlCap::Rival2] == false
-        party[i].reset_moves
-      end
+        level = 1 if level < 1
+        party[i].level = level
+        party[i].calc_stats
+        if Level_Scaling.reset_moves?
+          party[i].reset_moves
+        end
       end #end of for
      end
-     end
+    end
 }

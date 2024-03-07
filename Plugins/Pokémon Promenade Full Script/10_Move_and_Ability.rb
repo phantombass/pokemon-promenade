@@ -3940,6 +3940,7 @@ class PokeBattle_Battle
     #Aspirant
     @positions.each_with_index do |pos,idxPos|
       next if pos.effects[PBEffects::Wish] != 1
+      next if !$aspirantBattler
       pos.effects[PBEffects::Wish] -= 1
       next if !@battlers[idxPos] || !@battlers[idxPos].canHeal?
       wishMaker = $aspirantBattler
