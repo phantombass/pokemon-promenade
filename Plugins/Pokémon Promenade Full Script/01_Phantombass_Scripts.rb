@@ -4,7 +4,7 @@
 module Settings
   LEVEL_CAP_SWITCH = 904
   FISHING_AUTO_HOOK     = true
-  GAME_VERSION = '1.3.7'
+  GAME_VERSION = '1.3.8'
   DISABLE_EVS = 917
 end
 
@@ -107,7 +107,7 @@ Events.onWildPokemonCreate+=proc {|sender,e|
 
 Events.onEndBattle += proc { |_sender,e|
   $game_switches[81] = false
-  $repel_toggle = true
+  $repel_toggle = true if $game_switches[114]
 }
 
 def pbStartOver(gameover=false)
@@ -257,6 +257,7 @@ end
 class PokeBattle_Battle
   def pbStartBattleCore
     # Set up the battlers on each side
+    $repel_toggle = false
     sendOuts = pbSetUpSides
     olditems = []
     pbParty(0).each_with_index do |pkmn,i|

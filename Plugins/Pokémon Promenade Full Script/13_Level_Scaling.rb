@@ -55,7 +55,7 @@ class Level_Scaling
   def self.reset_moves?
     return ($game_switches[LvlCap::Gym] == false && $game_switches[LvlCap::Ace] == false &&
       $game_switches[LvlCap::LvlTrainer] == false && $game_switches[LvlCap::Guardian] == false &&
-      $game_switches[LvlCap::Rival2] == false && $game_switches[LvlCap::Rival == false])
+      $game_switches[LvlCap::Rival2] == false && $game_switches[LvlCap::Rival] == false)
   end
 
 end
