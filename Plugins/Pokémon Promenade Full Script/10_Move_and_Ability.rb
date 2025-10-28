@@ -1540,6 +1540,12 @@ BattleHandlers::DamageCalcUserAbility.add(:AMPLIFIER,
   }
 )
 
+BattleHandlers::DamageCalcUserAbility.add(:BALLISTIC,
+  proc { |ability,user,target,move,mults,baseDmg,type|
+    mults[:base_damage_multiplier] = (mults[:base_damage_multiplier]*1.3).round if move.bombMove?
+  }
+)
+
 BattleHandlers::DamageCalcUserAbility.add(:TIGHTFOCUS,
   proc { |ability,user,target,move,mults,baseDmg,type|
     mults[:base_damage_multiplier] = (mults[:base_damage_multiplier]*1.5).round if move.beamMove?
